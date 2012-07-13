@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion build_alternative</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>build_alternative</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_mime_mail.php</span>
+		<br><br><br><br><div class="desc">    }
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$boundary&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"b"</span><span style="color: #007700">.</span><span style="color: #0000BB">md5</span><span style="color: #007700">(</span><span style="color: #0000BB">uniqid</span><span style="color: #007700">(</span><span style="color: #0000BB">time</span><span style="color: #007700">()+</span><span style="color: #0000BB">rand</span><span style="color: #007700">(</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">1000</span><span style="color: #007700">)));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$multipart&nbsp;</span><span style="color: #007700">=</span><span style="color: #DD0000">"--</span><span style="color: #0000BB">$boundary</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;for(</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">sizeof</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parts</span><span style="color: #007700">)-</span><span style="color: #0000BB">1</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i&nbsp;</span><span style="color: #007700">&gt;=&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">;&nbsp;</span><span style="color: #0000BB">$i</span><span style="color: #007700">--)<br />&nbsp;&nbsp;&nbsp;&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$multipart&nbsp;</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">.</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">build_message</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parts</span><span style="color: #007700">[</span><span style="color: #0000BB">$i</span><span style="color: #007700">]).</span><span style="color: #DD0000">"--</span><span style="color: #0000BB">$boundary</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parts</span><span style="color: #007700">=</span><span style="color: #DD0000">""</span><span style="color: #007700">;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parts</span><span style="color: #007700">[]&nbsp;=&nbsp;array&nbsp;(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"ctype"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"multipart/alternative;&nbsp;boundary&nbsp;=\"</span><span style="color: #0000BB">$boundary</span><span style="color: #DD0000">\""</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"message"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #0000BB">$multipart</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"encode"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"base64"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"name"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">"Data"</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"cid"&nbsp;</span><span style="color: #007700">=&gt;&nbsp;</span><span style="color: #DD0000">""<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$multipart</span><span style="color: #007700">.=&nbsp;</span><span style="color: #DD0000">"--\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_mime_mail-index.html">up</a></div>
+		<br><br>
+		</body>
+		

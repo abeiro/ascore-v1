@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <titulo  type="string" option="128">Nombre</titulo>
+  <activa  type="boolean" option="Si">Activa</activa>
+  <recurso type="string" option="64">Recurso donde se ejecuta</recurso>
+  <gplanning_id type="ref" >Planificación</gplanning_id>  
+  <ultimavez type="date">Última ejecución</ultimavez>
+</cpd>

@@ -1,0 +1,46 @@
+03-23-11 15:48:24	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:24	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:25	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:25	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:30	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:31	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:31	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:48:31	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 15:59:57	127.0.0.1	INFO	No User	error	message=You are not allowed to access this resource.
+03-23-11 15:59:57	127.0.0.1	INFO	No User	error	message=You are not allowed to access this resource.
+03-23-11 16:00:01	127.0.0.1	INFO	No User	error	message=You are not allowed to access this resource.
+03-23-11 16:00:01	127.0.0.1	INFO	No User	error	message=You are not allowed to access this resource.
+03-23-11 16:00:04	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:05	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:05	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:06	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:09	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:09	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:09	127.0.0.1	INFO	No User	Switch Repository	rep. id=apps
+03-23-11 16:00:10	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:10	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:12	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:12	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:21	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:22	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:23	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:00:23	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:14:10	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:28:10	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:46	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:46	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:46	127.0.0.1	INFO	No User	Switch Repository	rep. id=framework
+03-23-11 16:31:47	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:47	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:52	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:52	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:55	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:31:55	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:39:07	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:39:08	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:39:10	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:39:11	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:45:47	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:45:58	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 16:59:47	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-23-11 17:13:47	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false

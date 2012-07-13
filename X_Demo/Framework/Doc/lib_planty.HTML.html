@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion HTML</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>HTML</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_planty.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">plantHTML</span><span style="color: #007700">(</span><span style="color: #0000BB">$object</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$template</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$excepciones</span><span style="color: #007700">=</span><span style="color: #DD0000">""</span><span style="color: #007700">)&nbsp;{<br /><br />&nbsp;&nbsp;<br />global&nbsp;</span><span style="color: #0000BB">$sc</span><span style="color: #007700">,</span><span style="color: #0000BB">$mod</span><span style="color: #007700">,</span><span style="color: #0000BB">$pag</span><span style="color: #007700">;<br /><br />&nbsp;&nbsp;<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$users</span><span style="color: #007700">=new&nbsp;</span><span style="color: #0000BB">plantilla</span><span style="color: #007700">(</span><span style="color: #0000BB">$template</span><span style="color: #007700">);<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//dataDump($object);<br />&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(&nbsp;</span><span style="color: #0000BB">gettype</span><span style="color: #007700">(</span><span style="color: #0000BB">$object</span><span style="color: #007700">)!=</span><span style="color: #DD0000">"object"</span><span style="color: #007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">=</span><span style="color: #0000BB">$object</span><span style="color: #007700">;<br />&nbsp;&nbsp;else&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">=</span><span style="color: #0000BB">get_object_vars</span><span style="color: #007700">(</span><span style="color: #0000BB">$object</span><span style="color: #007700">);<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">"sc"</span><span style="color: #007700">]=</span><span style="color: #0000BB">$sc</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">"mod"</span><span style="color: #007700">]=</span><span style="color: #0000BB">$mod</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">[</span><span style="color: #DD0000">"pag"</span><span style="color: #007700">]=</span><span style="color: #0000BB">$pag</span><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(empty(</span><span style="color: #0000BB">$excepciones</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$excepciones</span><span style="color: #007700">=array();<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//dataDump($data);&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #007700">echo&nbsp;</span><span style="color: #0000BB">$users</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">plParseTemplate</span><span style="color: #007700">(</span><span style="color: #0000BB">$data</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$excepciones</span><span style="color: #007700">);<br />&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">True</span><span style="color: #007700">;<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_planty-index.html">up</a></div>
+		<br><br>
+		</body>
+		

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<entity>jasperreport</entity>
+	<relationships>
+		<jasperreport>
+			<name>jasperreport</name>
+			<label>Informes</label>
+		</jasperreport>
+		<reportparams>
+			<name>reportparams</name>
+			<label>Parámetros</label>
+			<depends>jasperreport</depends>
+		</reportparams>
+	</relationships>
+</interface>

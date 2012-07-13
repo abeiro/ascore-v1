@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+	<usuario_id	type="ref"	option="">Usuario</usuario_id>
+	<vista	type="string"	option="100">Vista</vista>
+	<campos_ser	type="string"	option="500">Campos serializados</campos_ser>
+</cpd>

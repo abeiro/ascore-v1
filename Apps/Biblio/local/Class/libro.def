@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<cpd>
+	<titulo  type="string"   option="100">Título</titulo>
+	<autor  type="string"   option="100">Autor</autor>
+	<categoria  type="ref" option="cat_lib:nombre_cat">Categoria</categoria>
+	<isbn  type="string" option="17">Isbn</isbn>
+</cpd>

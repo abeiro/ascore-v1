@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion draw_zero_axis_left</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>draw_zero_axis_left</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_chart.php</span>
+		<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">draw_zero_axis_left</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$colour&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'zero_axis'</span><span style="color: #007700">];<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$colour&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #DD0000">'none'</span><span style="color: #007700">)&nbsp;return;<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;draw&nbsp;zero&nbsp;axis&nbsp;on&nbsp;left&nbsp;hand&nbsp;side<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'zero_axis'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">round</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'top'</span><span style="color: #007700">]&nbsp;&nbsp;+&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'y_axis_left'</span><span style="color: #007700">][</span><span style="color: #DD0000">'max'</span><span style="color: #007700">]&nbsp;*&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'y_axis_left'</span><span style="color: #007700">][</span><span style="color: #DD0000">'factor'</span><span style="color: #007700">]));<br />&nbsp;&nbsp;</span><span style="color: #0000BB">ImageLine</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">image</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'left'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'zero_axis'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'right'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'zero_axis'</span><span style="color: #007700">],&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">colour</span><span style="color: #007700">[</span><span style="color: #0000BB">$colour</span><span style="color: #007700">]);<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_chart-index.html">up</a></div>
+		<br><br>
+		</body>
+		

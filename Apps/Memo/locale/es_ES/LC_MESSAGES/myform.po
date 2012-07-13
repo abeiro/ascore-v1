@@ -1,0 +1,178 @@
+# translation of myform.po to 
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Augusto Beiro <abeiro@activasistemas.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: myform\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-03-17 16:48+0100\n"
+"PO-Revision-Date: 2005-03-17 16:52+0100\n"
+"Last-Translator: Augusto Beiro <abeiro@activasistemas.com>\n"
+"Language-Team:  <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#: add_form.php:7 add_form.php:8 _add.php:8 add_form.php:8 _add.php:8
+msgid "Form Edition"
+msgstr "Edici\363n de Formulario "
+
+#: dev.php:14 lib/Skeleton.php:31 lib/Skeleton.php:31 dev.php:14
+msgid "List"
+msgstr "Listado"
+
+#: display.php:14 display.php:14
+msgid "Gaylor"
+msgstr "Gaylor"
+
+#: list.php:14 list.php:6 file.php:7 list_form.php:14 list.php:6 file.php:7
+#: list_form.php:14
+msgid "Form List"
+msgstr "Lista de Formularios"
+
+#: view_form.php:7 view_form.php:7
+msgid "Form View"
+msgstr "Vista de formulario"
+
+#: lib/Skeleton.php:32 lib/Skeleton.php:32
+msgid "Develop"
+msgstr "Desarrollo"
+
+#: lib/Skeleton.php:34 lib/Skeleton.php:34
+msgid "ODBC"
+msgstr "ODBC"
+
+#: lib/Skeleton.php:36 lib/Skeleton.php:36
+msgid "DBTCP"
+msgstr "DBTCP"
+
+#: lib/Skeleton.php:38
+msgid "myFrom"
+msgstr ""
+
+#: framework/Framework/cmd_delcache.php:10
+#: framework/Framework/cmd_delcache.php:10
+msgid "deleted"
+msgstr "borrado"
+
+#: framework/SubCore/mysql.inc.php:11 framework/SubCore/mysql.inc.php:11
+msgid "MySQL Driver: Failed pconnect"
+msgstr "Controlador MySQL : Fall\363 pconnect"
+
+#: framework/SubCore/mysql.inc.php:12 framework/SubCore/mysql.inc.php:12
+msgid "MySQL Driver: Failed select"
+msgstr "Controlador MySQL : Fall\363 select"
+
+#: framework/SubCore/mysql.inc.php:13 framework/SubCore/mysql.inc.php:13
+msgid "MySQL Driver: Connected succesfully"
+msgstr "Controlador MySQL: Conexi\363n exitosa"
+
+#: framework/SubCore/odbc.inc.php:12 framework/SubCore/odbc.inc.php:12
+msgid "ODBC Driver: Connected succesfully"
+msgstr "Controlador ODBC:Conexi\363n exitosa"
+
+#: framework/SubCore/odbc.inc.php:14 framework/SubCore/odbc.inc.php:14
+msgid "ODBC Driver: Connection Failed"
+msgstr "Controlador ODBC:Conexi\363n fallida"
+
+#: framework/SubCore/odbc.inc.php:29 framework/SubCore/odbc.inc.php:36
+#: framework/SubCore/dbtcp.inc.php:29 framework/SubCore/dbtcp.inc.php:36
+#: framework/SubCore/dbtcp.inc.php:39 framework/SubCore/odbc.inc.php:29
+#: framework/SubCore/odbc.inc.php:36 framework/SubCore/dbtcp.inc.php:29
+#: framework/SubCore/dbtcp.inc.php:36 framework/SubCore/dbtcp.inc.php:39
+msgid "query failed:"
+msgstr "Fall\363 query"
+
+#: framework/SubCore/dbtcp.inc.php:12 framework/SubCore/dbtcp.inc.php:12
+msgid "DBTCP Driver: Connected succesfully"
+msgstr "Controlador DBTCP : Conexi\363n exitosa"
+
+#: framework/SubCore/dbtcp.inc.php:14 framework/SubCore/dbtcp.inc.php:14
+msgid "DBTCP Driver: Connection Failed"
+msgstr "Controlador DBTCP:Fallo al conectar"
+
+#: action_del.php:14 action_del.php:14
+msgid "entry deleted ok"
+msgstr "entrada borrada  correctamente"
+
+#: action_del.php:16 action_del.php:16
+msgid "entry not deleted."
+msgstr "entrada no borrada"
+
+#: config/prefs.php:9 config/prefs.php.dist:9 config/prefs.php:9
+msgid "Sample Prefs"
+msgstr "Preferencias"
+
+#: config/prefs.php:10 config/prefs.php.dist:10 config/prefs.php:10
+msgid "Sample Pref"
+msgstr "Preferencia"
+
+#: config/prefs.php:11 config/prefs.php.dist:11 config/prefs.php:11
+msgid "Set your sample preference."
+msgstr "Establezca su ejemplo de preferencia"
+
+#: config/prefs.php:20 config/prefs.php.dist:20 config/prefs.php:20
+msgid "This is your sample preference."
+msgstr ""
+
+#: action_save.php:17 action_save.php:17
+msgid "form saved"
+msgstr "Formulario guardado"
+
+#: action_save.php:19 action_save.php:19
+msgid "form not saved."
+msgstr "formulario no guardado"
+
+#: action_save.php:26 action_save.php:26
+msgid "form updated"
+msgstr "formulario actualizado"
+
+#: action_save.php:28 action_save.php:28
+msgid "form not updated."
+msgstr "formulario no actualizado"
+
+#: _save.php:14 _save.php:14
+msgid "form update ok."
+msgstr "formulario actualizado correctamente"
+
+#: _save.php:16 _save.php:16
+msgid "form failed to update."
+msgstr "fallo al actualizar formulario"
+
+#: _add.php:28 _add.php:28
+msgid "Nobody"
+msgstr "nadie"
+
+#: _add.php:34 _add.php:34
+msgid "No restriction"
+msgstr "sin restricci\363n"
+
+#: dbtcp.php:15 odbc.php:15 dbtcp.php:15 odbc.php:15
+msgid "ODBC comms"
+msgstr "comunicaciones ODBC"
+
+#: local/Tmpl/admin_listado_formularios.html:28
+#: local/Tmpl/listado_formularios.html:28
+msgid "view"
+msgstr "ver"
+
+#: local/Tmpl/admin_listado_formularios.html:29
+#: local/Tmpl/listado_formularios.html:29
+msgid "add"
+msgstr "a\361adir"
+
+#: local/Tmpl/admin_listado_formularios.html:30
+msgid "edit"
+msgstr "editar"
+
+#: lib/Skeleton.php:38 lib/Skeleton.php:38
+msgid "myForm"
+msgstr "myForm"
+
+#: local/Tmpl/forbidden.html:4
+msgid "Not enough access privileges"
+msgstr "No tiene suficientes privilegios de acceso"
+

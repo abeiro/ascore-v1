@@ -1,0 +1,62 @@
+<!--HEAD-->
+<!--SET-->
+<html>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<head>
+
+<style>
+.icon:hover {
+	background-color:#DCDCDC;
+	padding:2px;
+}
+.icon {
+	padding:2px;
+}
+.mini_icon {
+	border-style:solid;
+	border-width:1px;
+	position:relative;
+	left:5px;
+	top:3px;
+}
+</style>
+
+<script>
+var ROOT='<!-- D:ROOT -->';
+var PROJECT='<!-- D:PROJECT -->';
+</script>
+<script src="<!-- D:ROOT -->/Apps/Lehm/interface_functions.js"></script>
+</head>
+<body>
+<br><br>
+<iframe id="operation" name="operation" style="position: absolute;top:0px;right:0px;width:200px;height:30px;z-index:1;border:0px solid black;" src=""></iframe>
+<!-- D:buttons -->
+
+<div style="position:absolute; top:0; height: 36px; width: 100%; z-index:10">
+
+<input type="image" name="new_icon" id="new_icon" value="Nuevo" class="icon" src="<!-- D:new_icon_url -->" title="Nuevo" onclick="newElement(<!-- D:permiso_crear -->)"/>
+<input type="image" name="list_icon" id="list_icon" value="Lista" class="icon" src="<!-- D:list_icon_url -->" title="Lista" onclick="listMode(<!-- D:permiso_listar -->)"/>
+<input type="image" name="edit_icon" id="edit_icon" value="Editar" class="icon" src="<!-- D:edit_icon_url -->" title="Editar" onclick="editMode(<!-- D:permiso_editar -->)"/>
+<input type="<!-- D:delete_type -->" name="delete_icon" id="delete_icon" value="Borrar" class="icon" src="<!-- D:delete_icon_url -->" title="Borrar" onclick="deleteElement()"/>
+<input type="<!-- D:deactivate_type -->" name="deactivate_icon" id="deactivate_icon" value="Desactivar" class="icon" src="<!-- D:deactivate_icon_url -->" title="Desactivar" onclick="checkDeactivateElement(<!-- D:permiso_desactivar -->)"/>
+<input type="image" name="save_icon" id="save_icon" value="Guardar" class="icon" src="<!-- D:save_icon_url -->" title="Guardar" onclick="saveElement(<!-- D:permiso_guardar -->)"/>
+&nbsp;&nbsp;
+<input type="image" name="up_icon" id="up_icon" value="Subir" class="icon" src="<!-- D:up_icon_url -->" title="Subir" onclick="goUp()"/>	
+<input type="image" name="down_icon" id="down_icon" value="Bajar" class="icon" src="<!-- D:down_icon_url -->" title="Bajar" onclick="goDown()"/>
+&nbsp;&nbsp;
+<input type="image" name="up_tab_icon" id="up_tab_icon" value="Subir pestaña" class="icon" src="<!-- D:up_tab_icon_url -->" title="Subir pestaña" onclick="upTab()"/>
+<input type="image" name="down_tab_icon" id="down_tab_icon" value="Bajar pestaña" class="icon" src="<!-- D:down_tab_icon_url -->" title="Bajar pestaña" onclick="downTab()"/>
+&nbsp;&nbsp;
+<input type="image" name="print_preview_icon" id="print_preview_icon" value="Vista preliminar" class="icon" src="<!-- D:print_preview_icon_url -->" title="Vista preliminar" onclick="callPrintPreview(<!-- D:permiso_vista_preliminar -->)"/>
+<input type="image" name="report_icon" id="report_icon" value="Generar informe" class="icon" src="<!-- D:report_icon_url -->" title="Generar informe" onclick="callReport(<!-- D:permiso_generar_informe -->)"/>
+<input type="image" name="view_icon" id="view_icon" value="Salvar vista" class="icon" src="<!-- D:view_icon_url -->" title="Salvar vista" onclick="doSaveView(<!-- D:permiso_salvar_vista -->)"/>
+<input type="image" name="show_all_icon" id="show_all_icon" value="Mostrar todo" class="icon" src="<!-- D:show_all_icon_url -->" title="Mostrar todo" onclick="doUnHide(<!-- D:permiso_mostrar_todo -->)"/>
+<input type="image" name="search_icon" id="search_icon" value="Buscar" class="icon" src="<!-- D:search_icon_url -->" title="Buscar" onclick="callSearch(<!-- D:permiso_buscar_1 -->)"/>
+<input type="image" name="export_csv_icon" id="export_csv_icon" value="Exportar a CSV" class="icon" src="<!-- D:export_csv_icon_url -->" title="Exportar a CSV" onclick="exportCSV(<!-- D:permiso_exportar_csv -->)"/>
+
+<!-- D:hiddens -->
+
+</div>
+
+<iframe frameborder="0" name="mainframe" id="mainframe" style="border:1px;position: absolute;width: 84%; height: 90%; left: 15%; top: 6%;" src="<!-- D:mainframe_url -->"></iframe>
+<!--END-->

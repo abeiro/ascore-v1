@@ -1,0 +1,44 @@
+<!--HEAD-->
+<style  type="text/css">
+td.dynamic_class_listado_ejemplo0 {text-align:left;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_listado_ejemplo1 {text-align:left;vertical-align:top;background-color:white}
+
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<th></th>
+<th><a href="<!-- N:navvars -->&sort=titulo">Titulo</a></th>
+<th><a href="<!-- N:navvars -->&sort=fecha_pub">Fecha publicación</a></th>
+<th><a href="<!-- N:navvars -->&sort=fecha_pub">Categoria</a></th>
+<th></th>
+<!--SET-->
+<tr>
+		
+
+	<td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:titulo --></td>
+	<td class="<!-- dynamic_class -->"><!-- A:fecha_pub --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:id_cat --></td>
+	<td class="<!-- dynamic_class -->" nowrap>
+
+<a href="view_notice.php?ID=<!-- D:ID -->" class="minibuttonik">Ver mas...</a> ::
+<!-- I:isAdmin -->
+<a href="add_notice.php?ID=<!-- D:ID -->" class="minibuttonik" >Editar</a> ::
+<a href="add_notice_simple.php?ID=<!-- D:ID -->" class="minibuttonik" >Edicion simple</a> ::
+<A href="delete_notice.php?ID=<!-- D:ID -->" class="minibuttonik" target="footer">Borrar</a>
+<!-- I:isAdmin -->
+	</td>
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left">
+	<!-- IFPAGER1 --><a id="trfPP" href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right">
+	<!-- IFPAGER2 --><a id="trfNP" href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+<br>

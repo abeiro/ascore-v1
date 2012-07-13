@@ -1,0 +1,57 @@
+<!--HEAD-->
+<!--SET-->
+<style>
+td.dynamic_class_test0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_test1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_test2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_test3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+
+<table width="90%" cellspacing="1" border="0" cellpadding="1" align="center" class="pane" style="border:solid 1px gray">
+<tr>
+	<td>Informe</td>
+
+	<td><input type="text" name="reportname" maxlength="50"
+						value="<!-- D:reportname -->" size="50">
+	</td>
+</tr>
+<tr>
+	<td>Url</td>
+
+	<td><input type="text" name="url" maxlength="50"
+						value="<!-- D:url -->" size="50">
+	</td>
+</tr>
+<tr>
+	<td>Tipo</td>
+
+	<td>
+	
+	<select name="tipo">
+	<!-- X:tipo -->
+	</select>
+	</td>
+</tr>
+<tr>
+	<td>Query ID</td>
+
+	<td>
+	<!-- D:inputQuery -->
+	</td>
+</tr>
+<tr>
+	<td>Activo</td>
+
+	<td><input type="checkbox" id="activo" name="activo" <!-- G:activo -->>
+	</td>
+</tr>
+<tr>
+	<TD>Imprimible</TD>
+	<td><input type="checkbox" id="printable" name="printable" <!-- G:printable -->>
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="right"><!-- D:boton0 -->&nbsp;&nbsp;<!-- D:boton1 -->&nbsp;&nbsp;<!-- D:boton2 -->&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<!--END-->

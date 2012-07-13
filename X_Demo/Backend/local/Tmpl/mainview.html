@@ -1,0 +1,213 @@
+<!--HEAD-->
+<!--SET-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Portal :: Administracion</title>
+  <meta name="GENERATOR" content="Dev-PHP 2.0.12" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link href="<!-- D:ROOT -->Backend/local/free-css-drop-down-menu/css/dropdown/dropdown.css" media="all" rel="stylesheet" type="text/css" />
+  <link href="<!-- D:ROOT -->Backend/local/free-css-drop-down-menu/css/dropdown/themes/default/default.ultimate.core.css" media="all" rel="stylesheet" type="text/css" />
+
+<!--[if lt IE 7]>
+<script type="text/javascript" src="<!-- D:ROOT -->Backend/local/free-css-drop-down-menu/js/jquery/jquery.js"></script>
+<script type="text/javascript" src="<!-- D:ROOT -->Backend/local/free-css-drop-down-menu/js/jquery/jquery.dropdown.js"></script>
+<![endif]-->
+</head>
+<style>
+
+body {
+    margin-top:1px;
+    padding-top:0px;
+    padding-left:0px;
+    margin-left:3px;
+    background-color:#EEEAEE;
+    
+  }
+
+td.tmenuitem {
+    font-family:verdana;
+    font-size:11px;
+    cursor:pointer;
+    border:1px solid #EEEAEE;
+    white-space:nowrap;
+    text-align:left;
+  }
+
+td.tmenuitem:hover {
+    border:1px outset #F0F0F0;
+    
+  }
+  
+
+.thook {
+    background-color : gray;
+    padding-right:2px;
+    padding-bottom:2px;
+    border-right: 1px solid gray;
+    border-bottom: 1px solid gray;
+    -moz-border-radius:6px;
+    
+  }
+.thookreal {
+    background : #EEEAEE;
+    font-family:verdana;
+    font-size:11px;
+    border : 1px outset #DADADA;
+    line-height:15px;
+    text-align:left;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:5px;
+    white-space:nowrap;
+    -moz-border-radius:6px;
+    opacity:1.0;
+       
+  }
+
+
+.tlink {
+    font-family:verdana;
+    font-size:11px;
+    color:black;
+    text-decoration:none;
+    margin-right:5px;
+  }
+ 
+ .tlink:hover {
+    color:#5E70C1;
+  
+  }
+/* MENU STYLES */
+
+</style>
+<script>
+function getBodyLocation() {
+
+	return fbody.location.href;
+	
+}
+function setBodyLocation(url) {
+
+	fbody.location.href=url;
+	
+}
+
+function SizeH() {
+  var myWidth = 0, myHeight = 0;
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    myWidth = window.innerWidth;
+    myHeight = window.innerHeight;
+  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth;
+    myHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth;
+    myHeight = document.body.clientHeight;
+  }
+  //window.alert( 'Width = ' + myWidth );
+  //window.alert( 'Height = ' + myHeight );
+  return myHeight;
+}
+
+function SizeW() {
+  var myWidth = 0, myHeight = 0;
+  if( typeof( window.innerWidth ) == 'number' ) {
+    //Non-IE
+    myWidth = window.innerWidth;
+    myHeight = window.innerHeight;
+  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
+    //IE 6+ in 'standards compliant mode'
+    myWidth = document.documentElement.clientWidth;
+    myHeight = document.documentElement.clientHeight;
+  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
+    //IE 4 compatible
+    myWidth = document.body.clientWidth;
+    myHeight = document.body.clientHeight;
+  }
+  //window.alert( 'Width = ' + myWidth );
+  //window.alert( 'Height = ' + myHeight );
+  return myWidth;
+}
+
+function wResizeAll() {
+		var s;
+		var r;
+		
+		
+		
+		s=SizeH()-22-22-34;
+		
+		try{f=document.getElementById("fbody").style.height=s+"px";}
+		catch(e){alert(s+' '+e)};
+		
+		r=SizeW()-5;
+		try{
+			f=document.getElementById("statusbar").style.width=r+"px";
+		    f=document.getElementById("fbody").style.width=r+"px";
+			f=document.getElementById("footer").style.width=r+"px";
+		
+		}
+		catch(e){alert(r+' '+e)};
+		window.onresize=wResizeAll;
+ 	}
+	
+
+var _opa_i=0;
+var sw=0;
+
+function setOpacity(elemento,value) {
+		testObj=document.getElementById(elemento);
+		testObj.style.opacity = value/10;
+		testObj.style.KhtmlOpacity = value/10;
+		testObj.style.filter = 'alpha(opacity=' + value*10 + ')';
+}
+function opaShow(elemento) {
+	
+	//if ((!sw)||(sw==0)) {
+		if (_opa_i<=10) {
+			setOpacity(elemento,_opa_i);
+			_opa_i++;
+			setTimeout("opaShow('"+elemento+"')", 25);
+		}
+		else
+			_opa_i=0;
+		
+}
+
+</script>
+<body style="overflow:hidden;">
+<ul id="nav" class="dropdown dropdown-horizontal" style="font-size:11px;z-index:50">
+<!-- D:menu_entrys -->
+</ul>
+<br clear="all">
+		
+<iframe name="statusbar" id="statusbar" height="22" width="100%" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;height:22px;"></iframe>
+
+<iframe name="footer"  width="100%" height="22" id="footer" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;height:22px;"></iframe>
+				
+<iframe src="<!-- D:page -->" width="100%"  height="100%" scrolling="auto" frameborder="0" name="fbody" id="fbody" style="border:1px solid gray;padding:0px;margin:0px;" ></iframe>
+
+
+		
+
+
+		
+</body>
+</html>
+<script>
+wResizeAll();
+//window.onresize=wResizeAll;
+/*
+document.getElementById('statusbar').style.display='';
+document.getElementById('fbody').style.display='';
+document.getElementById('footer').style.display='';
+*/
+</script>
+
+
+<!--END-->

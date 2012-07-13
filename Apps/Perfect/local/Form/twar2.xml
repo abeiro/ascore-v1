@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <entity>twar</entity>
+   <name>twar</name>
+   <id>twar</id>
+   <action>index.php</action>
+   <method>post</method>
+   <target>_self</target>
+   <elements>
+      <fecha>
+         <type>text</type>
+         <format>date</format>
+         <label>Fecha</label>
+      </fecha>
+      
+      <activo>
+         <type>checkbox</type>
+         <format>boolean</format>
+         <label>Cerrado</label>
+      </activo>
+   </elements>
+</form>

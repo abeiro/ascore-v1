@@ -1,0 +1,35 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion initialize</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>initialize</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_gmaps.php</span>
+		<br><br><br><br><div class="desc">	}
+<br>	
+<br>	
+<br>	function showPoint($x,$y,$leyend,$html) {
+<br>		
+<br>		$this->buffer.='
+<br><script type="text/javascript">
+<br>google.load("maps", "2");
+<br>google.load("search", "1");
+<br>  
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">initialize</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">map&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">google</span><span style="color: #007700">.</span><span style="color: #0000BB">maps</span><span style="color: #007700">.</span><span style="color: #0000BB">Map2</span><span style="color: #007700">(</span><span style="color: #0000BB">document</span><span style="color: #007700">.</span><span style="color: #0000BB">getElementById</span><span style="color: #007700">(</span><span style="color: #DD0000">"map"</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">map</span><span style="color: #007700">.</span><span style="color: #0000BB">setCenter</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">google</span><span style="color: #007700">.</span><span style="color: #0000BB">maps</span><span style="color: #007700">.</span><span style="color: #0000BB">LatLng</span><span style="color: #007700">(</span><span style="color: #DD0000">'.$x.'</span><span style="color: #007700">,</span><span style="color: #DD0000">'.$y.'</span><span style="color: #007700">),&nbsp;</span><span style="color: #0000BB">13</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">map</span><span style="color: #007700">.</span><span style="color: #0000BB">setZoom</span><span style="color: #007700">(</span><span style="color: #0000BB">15</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">map</span><span style="color: #007700">.</span><span style="color: #0000BB">addControl</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">GSmallMapControl</span><span style="color: #007700">());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">map</span><span style="color: #007700">.</span><span style="color: #0000BB">addControl</span><span style="color: #007700">(new&nbsp;</span><span style="color: #0000BB">GMapTypeControl</span><span style="color: #007700">());&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//map.disableDragging();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">markerOptions&nbsp;</span><span style="color: #007700">=&nbsp;{&nbsp;</span><span style="color: #0000BB">title</span><span style="color: #007700">:</span><span style="color: #DD0000">"'.</span><span style="color: #0000BB">$leyend</span><span style="color: #DD0000">.'"&nbsp;</span><span style="color: #007700">};<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">point&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GLatLng</span><span style="color: #007700">(</span><span style="color: #DD0000">'.$x.'</span><span style="color: #007700">,</span><span style="color: #DD0000">'.$y.'</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;</span><span style="color: #0000BB">marker&nbsp;</span><span style="color: #007700">=&nbsp;new&nbsp;</span><span style="color: #0000BB">GMarker</span><span style="color: #007700">(</span><span style="color: #0000BB">point</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">markerOptions</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">map</span><span style="color: #007700">.</span><span style="color: #0000BB">addOverlay</span><span style="color: #007700">(</span><span style="color: #0000BB">marker</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">GEvent</span><span style="color: #007700">.</span><span style="color: #0000BB">addListener</span><span style="color: #007700">(</span><span style="color: #0000BB">marker</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"click"</span><span style="color: #007700">,&nbsp;function()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">marker</span><span style="color: #007700">.</span><span style="color: #0000BB">openInfoWindowHtml</span><span style="color: #007700">(</span><span style="color: #DD0000">"'.</span><span style="color: #0000BB">$html</span><span style="color: #DD0000">.'"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_gmaps-index.html">up</a></div>
+		<br><br>
+		</body>
+		

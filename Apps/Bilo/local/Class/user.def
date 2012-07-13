@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<username type="string" option="50">Usuario</username>
+	<password type="string" option="50">Contraseña</password>
+	<nombre type="string" option="50">Nombre</nombre>
+	<apellidos type="string" option="50">Apellidos</apellidos>
+	<grupos type="int">Grupos</grupos>
+	<activo type="boolean" option="No">Activo</activo>
+	<email type="string" option="75">E-mail de contacto</email>
+</cpd>
+

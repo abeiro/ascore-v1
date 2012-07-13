@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>AJAX uploader plugin</title>
+<meta name="description" content="Demo de uploader ajax, usando un plugin para jquery" />
+<meta name="keywords" content="jquery, ajax" />
+<script language="javascript" src="js/jquery-1.3.1.min.js"></script>
+<script language="javascript" src="js/AjaxUpload.2.0.min.js"></script>
+<script language="javascript">
+$(document).ready(function(){
+	var button = $('#upload_button'), interval;
+	new AjaxUpload('#upload_button', {
+        action: 'upload.php',
+		onSubmit : function(file , ext){
+		if (! (ext && /^(jpg|png|jpeg|gif)$/.test(ext))){
+			// extensiones permitidas
+			alert('Error: Solo se permiten imagenes');
+			// cancela upload
+			return false;
+		} else {
+			button.text('Uploading');
+			this.disable();
+		}
+		},
+		onComplete: function(file, response){
+			button.text('Upload');
+			// enable upload button
+			this.enable();			
+			// Agrega archivo a la lista
+			$('#lista').appendTo('.files').text(file);
+		}	
+	});
+});
+</script>
+<link href="style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div id="upload_button">Upload</div>
+<ul id="lista">
+</ul>
+</body>
+</html>

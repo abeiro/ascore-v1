@@ -1,0 +1,3 @@
+php_value include_path .;C:/dev/EasyPHP1-8/www/cepes-gc/framework/
+php_value register_globals on
+

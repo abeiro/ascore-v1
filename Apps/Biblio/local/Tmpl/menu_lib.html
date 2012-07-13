@@ -1,0 +1,15 @@
+<!--HEAD-->
+<!--SET-->
+<script>
+function change_cat() {
+	uri=document.getElementById('cat_selector').value;
+	location.href="main.php?cat_id="+uri;
+	
+
+}
+</script>
+Fecha actual: <!-- A:fecha_hoy -->
+<select name="cat_id" id="cat_selector" onchange="change_cat()" style="position:absolute;top:0px;left:0px">
+<!-- X:ID -->
+</select>
+<!--END-->

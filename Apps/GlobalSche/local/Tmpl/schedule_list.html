@@ -1,0 +1,51 @@
+
+<!--HEAD-->
+<style  type="text/css">
+td.dynamic_class_test0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_test1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_test2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_test3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+<table width="95%" cellspacing="1" border="1" cellpadding="1" align="center" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=referencia">Referencia</a></th>
+<th><a href="<!-- N:navvars -->&sort=activa">Activa</a></th>
+<th><a href="<!-- N:navvars -->&sort=minuto">Minuto</a></th>
+<th><a href="<!-- N:navvars -->&sort=hora">Hora</a></th>
+<th><a href="<!-- N:navvars -->&sort=dom">Dia del mes</a></th>
+<th><a href="<!-- N:navvars -->&sort=mon">Mes del año</a></th>
+<th><a href="<!-- N:navvars -->&sort=dow">Dia de la semana</a></th>
+<th></th>
+<!--SET-->
+<tr>
+    
+  <td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+
+  <td class="<!-- dynamic_class -->"><!-- D:referencia --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:activa --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:minuto --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:hora --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:dom --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:mon --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:dow --></td>
+    
+   <td nowrap class="<!-- dynamic_class -->"  class="<!-- dynamic_class -->" style="padding : 2px; text-align : center;" width="220">
+  
+   <div class="sexybutton"><a class="sexybutton"  target="footer"  href="action_del_schedule.php?ID=<!-- D:ID -->" onclick="return confirm('<!-- K:_("¿Esta usted seguro?") -->')"><!-- K:_('borrar') --></a></div>
+   <div class="sexybutton"><a href="schedule_add.php?ID=<!-- D:ID -->" class="sexybutton"><!-- K:_('editar') --></a></div>
+  
+  </td>
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left">
+  <!-- IFPAGER1 --><a id="trfPP" href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right">
+  <!-- IFPAGER2 --><a id="trfNP" href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>

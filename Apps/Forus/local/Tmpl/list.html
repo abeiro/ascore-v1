@@ -1,0 +1,65 @@
+
+<!--HEAD-->
+<style>
+td.dynamic_class_list0 {text-align:center;vertical-align:middle;background-color:#EEEEF6}
+td.dynamic_class_list1 {text-align:center;vertical-align:middle;background-color:white}
+td.dynamic_class_list2 {text-align:center;vertical-align:middle;background-color:#F7F7F7}
+td.dynamic_class_list3 {text-align:center;vertical-align:middle;background-color:white}
+
+
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<tr><td colspan="7"><!-- D:bread --></td></tr>
+<th><a href="<!-- N:navvars -->&sort=title">Titulo</a></th>
+<th><a href="<!-- N:navvars -->&sort=autor">Autor</a></th>
+<th></th>
+<th><a href="<!-- N:navvars -->&sort=fecha">Último mensaje</a></th>
+<th>Respuestas</th>
+<th>Visitas</th>
+<th>% de mensajes</th>
+<th width="95"></th>
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->" style="text-align:left"><a href="view.php?ID=<!-- D:ID -->&foro_id=<!-- D:foro_id -->"><!-- D:title --></a></td>
+
+	<td class="<!-- dynamic_class -->" style="text-align:left"><!-- D:autor --></td>
+	<td class="<!-- dynamic_class -->" style="text-align:left"><!-- D:nuevo2 --></td>
+
+	<td class="<!-- dynamic_class -->"><!-- A:fecha --><!-- T:fecha --><br><!-- D:autormsg --></td>
+
+	<td class="<!-- dynamic_class -->"> <!-- M:respuestas --></td>
+	<td class="<!-- dynamic_class -->"> <!-- D:visitas --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:grafica --></td>
+	<td class="<!-- dynamic_class -->" width="95"><a href="post.php?ID=<!-- D:ID -->&foro_id=<!-- D:foro_id -->" class="minibuttonik">Editar</a>&nbsp;<a target="footer" href="delete.php?ID=<!-- D:ID -->" class="minibuttonik">Borrar</td>
+</tr>
+<!--END-->
+
+</table>
+<br>
+<table width="95%"><tr><td align="center" class="<!-- dynamic_class -->"><a href="post.php?foro_id=<!-- D:foro_id -->" class="minibuttonik">Nuevo Tema</a></td>
+<td align="center">
+<a href="index.php" class="minibuttonik">&nbsp;Volver&nbsp;</a></td></tr></table>
+<br>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left" width="33%">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right" width="33%">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table><br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left" width="33%">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right" width="33%">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+<input type="hidden" name="foro_id" value= "<!-- D:foro_id -->">

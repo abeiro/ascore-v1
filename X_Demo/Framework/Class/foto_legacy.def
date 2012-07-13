@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<id_foto type="ref" >Fotografia adjunta</id_foto>
+	<id_thumb type="ref">Miniatura foto</id_thumb>
+	<id_old type="ref"></id_old>
+	<id_tienda type="ref"></id_tienda>
+	<desc type="string" option="100"></desc>
+	<file type="string" option="100"></file>
+	<tam type="string" option="100"></tam>
+	<fecha type="string" option="100"></fecha>
+	<carpeta type="ref"></carpeta>
+	<padre type="ref"></padre>
+</cpd>

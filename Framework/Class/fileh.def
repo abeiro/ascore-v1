@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<md5 type="string" option="40">Identificación de fichero</md5>
+	<ext type="string" option="5">Extensión de fichero</ext>
+	<mime type="string" option="25" >Tipo MIME</mime>
+	<len type="int">Tamaño en KBytes</len>
+	<fecha type="date">Fecha de creación</fecha>
+	<stats type="int">Número de veces visto</stats>
+	<desc type="string" option="150">Descripción del contenido</desc>
+	<nombre type="string" option="50">Nombre del elemento</nombre>
+	<familia_id type="int">Id. de Familia</familia_id>
+	<capturefile type="int">Propiedad dinámica</capturefile>
+	<owner_id type="ref">Propietario</owner_id>
+</cpd>

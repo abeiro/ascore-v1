@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<id_foto type="ref" >Fotografia adjunta</id_foto>
+	<id_thumb type="ref">Miniatura foto</id_thumb>
+	<desc type="string" option="100">Descripcion</desc>
+	<id_old type="ref" >Legacy</id_old>
+	
+</cpd>

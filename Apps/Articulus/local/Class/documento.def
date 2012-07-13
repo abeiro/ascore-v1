@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<titulo type="string" option="100">Titulo</titulo>
+	<cuerpo type="longtext" option="1024">Cuerpo</cuerpo>
+	<autor type="string" option="50">Autor</autor>
+	<fecha_cre type="date"> Fecha_creacion</fecha_cre>
+	<fecha_mod type="date">Fecha_modificacion</fecha_mod>
+	<cat_id type="ref">Id categoria</cat_id>
+	<cat_pr type="ref">Categoria primaria</cat_pr>
+	
+	
+</cpd>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cpd>
+	<jasperreport_id type="ref" option="jasperreport:reportname">Informe</jasperreport_id>
+	<paraname type="string" option="50">Nombre parámetro</paraname>
+	<paratype type="list" option="Fecha|Cadena|Entero">Tipo de parámetro</paratype>
+	<defaulty type="string" option="100">Valor por defecto</defaulty>
+</cpd>
+

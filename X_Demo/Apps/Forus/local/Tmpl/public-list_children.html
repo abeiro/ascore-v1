@@ -1,0 +1,59 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_list_children0 {text-align:left;vertical-align:middle;background-color:#EEEEF6}
+td.dynamic_class_list_children1 {text-align:left;vertical-align:middle;background-color:white}
+td.dynamic_class_list_children2 {text-align:left;vertical-align:middle;background-color:#F7F7F7}
+td.dynamic_class_list_children3 {text-align:left;vertical-align:middle;background-color:white}
+.buttonik {
+    background : #e6e6e6;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+  }
+
+.buttonik:hover {
+    background : #FFFFFF;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+  }
+
+ .buttonik:active {
+    background : #FFFFFF;
+    padding : 2px;
+    border : inset 2px;
+    color : black;
+    text-decoration : none;
+  }
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="5" align="center" style="border:solid 1px gray">
+
+
+<!--SET-->
+<tr>
+		
+	<td align="left" class="<!-- dynamic_class -->" width="15%"><b>Titulo:</b>&nbsp;&nbsp;<!-- D:title --><br>
+
+	<b>Autor:</b>&nbsp;&nbsp;<!-- D:autor --><br>
+	<b>Fecha:</b>&nbsp;&nbsp;<!-- A:fecha --><b>Hora:</b>&nbsp;&nbsp;<!-- T:fecha --> </td>
+
+	<td align="left" class="<!-- dynamic_class -->" style="text-align:left"><!-- D:msg --></td>
+        <td  width="4%" class="<!-- dynamic_class -->"><a href="post.php?ID=<!-- D:ID -->&p_id=<!-- D:p_id -->&foro_id=<!-- D:foro_id -->" class="buttonik" >Editar</td>
+	<td  width="4%" class="<!-- dynamic_class -->"><a target="footer" class="buttonik" href="delete.php?ID=<!-- D:ID -->&p_id=<!-- D:p_id -->&foro_id=<!-- D:foro_id -->"> Borrar</td>
+
+    
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<br>

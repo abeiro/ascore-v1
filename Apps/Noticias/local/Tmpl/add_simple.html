@@ -1,0 +1,43 @@
+<!--HEAD-->
+<!--SET-->
+
+<table  width ="95%" cellspacing="0" cellpadding="4" border="1" align="center" class="main_notice" style="border:1px solid gray">
+
+<tr>
+<TD align="left" width="230" style="border-bottom:red"><strong>Título de la noticia:</strong></td>
+<TD align="left"><input name="titulo" maxlength="100" size="50" value="<!-- D:titulo -->"></td>
+</tr>
+<tr>
+<TD align="left"><strong>Selecciona una categoria:</strong></TD>
+<TD align="left">
+<select name="id_cat" id="id_cat">
+<!-- X:id_cat -->
+</select>
+</TD>
+</tr>
+<tr>
+<TD align="left"><strong>Si desea insertar una foto a a la noticia:</strong></td><td align="left"><input type="file" name="foto" size="40" maxlength="40"></TD>
+</tr>
+<tr>
+<TD align="left"><br><strong>Cuerpo de la noticia:</strong></td>
+</tr>
+<tr>
+<TD align="center" colspan="2"><textarea name="body" cols="100" rows="10"><!-- D:body --></textarea>
+</tr>
+<tr>
+<TD align="left"><strong>Palabras clave (separadas por comas):</strong></TD>
+<TD align="left"><input type="text" size="50" maxlength="50" value="<!-- D:keyword -->" name="keyword"></TD>
+</tr>
+<tr>
+<tr>
+<TD align="left"><strong>Fecha</strong></TD>
+<TD align="left"><input type="text" size="50" maxlength="50" value="<!-- A:fecha_pub -->" name="fecha_pub"></TD>
+</tr>
+<tr>
+<TD align="right" colspan="2"><br><!-- D:boton0 --></TD></tr>
+</table>
+
+</div>
+<input type="hidden" name="adjunto" value="<!-- D:adjunto -->">
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<!--END-->

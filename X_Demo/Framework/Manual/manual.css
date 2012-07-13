@@ -1,0 +1,36 @@
+body {
+	font-family :verdana, geneva, sans-serif;
+	font-size: 11px;
+	background-color:white;
+   }
+div {
+	margin-left:20px;
+	margin-right:20px;
+	}
+h3 {
+	margin-left:20px;
+	margin-right:20px;
+	}
+p {
+	text-align:justify;
+	margin-left:20px;
+	margin-right:20px;
+   }
+
+a {
+	text-decoration:none;
+}
+
+.npp {
+	font-size: 10px;
+	margin-left:40px;
+	margin-right:20px;
+	bottom:20px;
+	position:absolute;
+}
+.pag {
+	font-size: 9px;
+	right:40px;
+	top:0px;
+	position:absolute;
+}

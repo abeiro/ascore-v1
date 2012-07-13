@@ -1,0 +1,28 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion build_message</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>build_message</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_mime_mail.php</span>
+		<br><br><br><br><div class="desc">    }
+<br>
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">strpos</span><span style="color: #007700">(</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"ctype"</span><span style="color: #007700">],</span><span style="color: #DD0000">"alternative"</span><span style="color: #007700">)!==</span><span style="color: #0000BB">False</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"Content-Type:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"ctype"</span><span style="color: #007700">].</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">.</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"message"</span><span style="color: #007700">].</span><span style="color: #DD0000">"\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$message&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"message"</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$message&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">chunk_split</span><span style="color: #007700">(</span><span style="color: #0000BB">base64_encode</span><span style="color: #007700">(</span><span style="color: #0000BB">$message</span><span style="color: #007700">));<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$encoding&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"base64"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #DD0000">"Content-Type:&nbsp;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"ctype"</span><span style="color: #007700">].(</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"name"</span><span style="color: #007700">]?</span><span style="color: #DD0000">";&nbsp;name&nbsp;=&nbsp;\""</span><span style="color: #007700">.</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"name"</span><span style="color: #007700">].</span><span style="color: #DD0000">"\""&nbsp;</span><span style="color: #007700">:&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">).</span><span style="color: #DD0000">"\nContent-Transfer-Encoding:&nbsp;</span><span style="color: #0000BB">$encoding</span><span style="color: #DD0000">\nContent-ID:&nbsp;&lt;"</span><span style="color: #007700">.</span><span style="color: #0000BB">$part</span><span style="color: #007700">[</span><span style="color: #DD0000">"cid"</span><span style="color: #007700">].</span><span style="color: #DD0000">"&gt;\n\n</span><span style="color: #0000BB">$message</span><span style="color: #DD0000">\n"</span><span style="color: #007700">;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_mime_mail-index.html">up</a></div>
+		<br><br>
+		</body>
+		

@@ -1,0 +1,42 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion avSelectPrintTree</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>avSelectPrintTree</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_tree.php</span>
+		<br><br><br><br><div class="desc">	
+<br>	 
+<br>	 avSelectPrint($name,$module,$class,$show,$current,$method='')
+<br>	
+<br>	returns an invisible iframe linking to Zoom Data Modules.
+<br>	Compatbile CSS whith most Browsers.
+<br>	Parameters are:
+<br>	
+<br>	name: 		name of input
+<br>	module: 	module where to look data
+<br>	class: 		class data source
+<br>	show: 		field to be shown
+<br>	current:	current value (ID)
+<br>	method:		if data has to be mined by this method (defaults to selectAll())
+<br>		
+<br>	
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">avSelectPrintTree</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,</span><span style="color: #0000BB">$module</span><span style="color: #007700">,</span><span style="color: #0000BB">$class</span><span style="color: #007700">,</span><span style="color: #0000BB">$cclass</span><span style="color: #007700">,</span><span style="color: #0000BB">$show</span><span style="color: #007700">,</span><span style="color: #0000BB">$current</span><span style="color: #007700">,</span><span style="color: #0000BB">$method</span><span style="color: #007700">=</span><span style="color: #DD0000">''</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$SYS</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$_SESSION</span><span style="color: #007700">[</span><span style="color: #DD0000">"GLOBAL"</span><span style="color: #007700">][</span><span style="color: #DD0000">"zoom"</span><span style="color: #007700">]==</span><span style="color: #DD0000">"popup"</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">avSelectWPrintTree</span><span style="color: #007700">(</span><span style="color: #0000BB">$name</span><span style="color: #007700">,</span><span style="color: #0000BB">$module</span><span style="color: #007700">,</span><span style="color: #0000BB">$class</span><span style="color: #007700">,</span><span style="color: #0000BB">$show</span><span style="color: #007700">,</span><span style="color: #0000BB">$current</span><span style="color: #007700">,</span><span style="color: #0000BB">$method</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cdata</span><span style="color: #007700">=</span><span style="color: #0000BB">newObject</span><span style="color: #007700">(</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$class</span><span style="color: #DD0000">"</span><span style="color: #007700">,</span><span style="color: #0000BB">$current</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$dsize</span><span style="color: #007700">=</span><span style="color: #0000BB">strlen</span><span style="color: #007700">(</span><span style="color: #0000BB">$cdata</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$show</span><span style="color: #007700">)*</span><span style="color: #0000BB">1.5</span><span style="color: #007700">+</span><span style="color: #0000BB">5</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$cmethod</span><span style="color: #007700">=</span><span style="color: #0000BB">urlencode</span><span style="color: #007700">(</span><span style="color: #0000BB">$method</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">=&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=\"hidden\"&nbsp;size=\"11\"&nbsp;maxlength=\"11\"&nbsp;name=\"</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">\"&nbsp;id=\"Target</span><span style="color: #0000BB">$class$name</span><span style="color: #DD0000">\"&nbsp;value=\"</span><span style="color: #0000BB">$current</span><span style="color: #DD0000">\"&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;input&nbsp;type=\"text\"&nbsp;size=\"</span><span style="color: #0000BB">$dsize</span><span style="color: #DD0000">\"&nbsp;name=\"_t_</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">\"&nbsp;id=\"wTarget</span><span style="color: #0000BB">$class$name</span><span style="color: #DD0000">\"&nbsp;value=\""</span><span style="color: #007700">.</span><span style="color: #0000BB">$cdata</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">$show</span><span style="color: #007700">.</span><span style="color: #DD0000">"\"&nbsp;readonly&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;span&nbsp;onclick=\"a=document.getElementById('wFrame</span><span style="color: #0000BB">$class$name</span><span style="color: #DD0000">');a.style.display=(a.style.display=='none')?'':'none';wFrame</span><span style="color: #0000BB">$class$name</span><span style="color: #DD0000">.wresize()\"<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style=\"cursor:pointer;background-color:white;border:1px&nbsp;solid&nbsp;gray\"&gt;&amp;nbsp;+&amp;nbsp;&lt;/span&gt;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;iframe&nbsp;src=\"</span><span style="color: #007700">{</span><span style="color: #0000BB">$SYS</span><span style="color: #007700">[</span><span style="color: #DD0000">"ROOT"</span><span style="color: #007700">]}</span><span style="color: #DD0000">/Framework/Extensions/Tree/Tree.php?module=</span><span style="color: #0000BB">$module</span><span style="color: #DD0000">&amp;class=</span><span style="color: #0000BB">$class</span><span style="color: #DD0000">&amp;show=</span><span style="color: #0000BB">$show</span><span style="color: #DD0000">&amp;current=</span><span style="color: #0000BB">$current</span><span style="color: #DD0000">&amp;name=</span><span style="color: #0000BB">$name</span><span style="color: #DD0000">&amp;cclass=</span><span style="color: #0000BB">$cclass</span><span style="color: #DD0000">&amp;method=</span><span style="color: #0000BB">$cmethod</span><span style="color: #DD0000">\"&nbsp;id=\"wFrame</span><span style="color: #0000BB">$class$name</span><span style="color: #DD0000">\"&nbsp;width=\"400\"&nbsp;name=\"wFrame</span><span style="color: #0000BB">$class$name</span><span style="color: #DD0000">\"&nbsp;&nbsp;height=\"300\"&nbsp;&nbsp;border=\"0\"&nbsp;style=\"display:none;position:absolute;\"&nbsp;&gt;&lt;/iframe&gt;"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_tree-index.html">up</a></div>
+		<br><br>
+		</body>
+		

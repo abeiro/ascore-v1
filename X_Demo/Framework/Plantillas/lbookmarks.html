@@ -1,0 +1,61 @@
+<!--HEAD-->
+<html>
+
+<head>
+  <title>Favoritos</title>
+  <meta name="GENERATOR" content="Quanta Plus">
+  <meta name="AUTHOR" content="Activa Sistemas">
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15">
+  <LINK href="../../../Temas/Estilos/global.css" rel="stylesheet" type="text/css">
+</head>
+
+
+<script type="text/javascript" language="JavaScript1.3">
+
+function delbk(id) {
+	if (confirm('¿Esta usted seguro?')) {
+		opener.parent.parent.footer.location.href='del.php?ID='+id;
+		window.history.go(0);
+	}
+	
+}
+</script>
+
+<body>
+<style>
+td.dynamic_class_lbookmarks0 {text-align:left;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_lbookmarks1 {text-align:left;vertical-align:top;background-color:white}
+td.dynamic_class_lbookmarks2 {text-align:left;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_lbookmarks3 {text-align:left;vertical-align:top;background-color:white}
+</style>
+
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=nombre">Marcadores favoritos</a></th>
+<th></th>
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+	<td class="<!-- dynamic_class -->"><a target="fbody" href="<!-- D:url -->"><!-- D:nombre --></a></td>
+	
+	<td>
+		<span target="footer" style="cursor:pointer" class="minibuttonik" onclick="delbk('<!-- D:ID -->')">borrar</span>
+	</td>
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td>
+<td align="center"><!-- D:Pager -->
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<br>
+</body>
+</html>

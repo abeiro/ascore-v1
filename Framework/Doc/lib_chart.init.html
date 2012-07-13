@@ -1,0 +1,166 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion init</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>init</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_chart.php</span>
+		<br><br><h2><b>mysqli</b>::<b>init</b></h2>M�todo: pertenece a la clase <b>mysqli</b><br>Clase <b>mysqli</b> </i>: derivada de <b></b><br><br><br><div class="desc">
+<br>Graph Class. PHP Class to draw line, point, bar, and area graphs, including numeric x-axis and double y-axis.
+<br>Version: 1.6.4
+<br>Copyright (C) 2000  Herman Veluwenkamp
+<br>
+<br>This library is free software; you can redistribute it and/or
+<br>modify it under the terms of the GNU Lesser General Public
+<br>License as published by the Free Software Foundation; either
+<br>version 2.1 of the License, or (at your option) any later version.
+<br>
+<br>This library is distributed in the hope that it will be useful,
+<br>but WITHOUT ANY WARRANTY; without even the implied warranty of
+<br>MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+<br>Lesser General Public License for more details.
+<br>
+<br>You should have received a copy of the GNU Lesser General Public
+<br>License along with this library; if not, write to the Free Software
+<br>Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+<br>
+<br>Copy of GNU Lesser General Public License at: http://www.gnu.org/copyleft/lesser.txt
+<br>Contact author at: hermanV@subdimension.com
+<br>
+<br>
+<br>
+<br>class graph {
+<br>  var $image;
+<br>  var $debug             =   FALSE;        // be careful!!
+<br>  var $calculated        =   array();      // array of computed values for chart
+<br>  var $parameter         =   array(        // input parameters
+<br>    'width'              =>  320,          // default width of image
+<br>    'height'             =>  240,          // default height of image
+<br>    'file_name'          =>  'none',       // name of file for file to be saved as.
+<br>                                           //  NOTE: no suffix required. this is determined from output_format below.
+<br>    'output_format'      => 'PNG',         // image output format. 'GIF', 'PNG', 'JPEG'. default 'PNG'.
+<br>
+<br>    'seconds_to_live'    =>  0,            // expiry time in seconds (for HTTP header)
+<br>    'hours_to_live'      =>  0,            // expiry time in hours (for HTTP header)
+<br>    'path_to_fonts'      => '/home/abeiro/public_html/',     // path to fonts folder. don't forget *trailing* slash!!
+<br>                                           //   for WINDOZE this may need to be the full path, not relative.
+<br>
+<br>    'title'              => 'Graph Title', // text for graph title
+<br>    'title_font'         => 'Vera.ttf',   // title text font. don't forget to set 'path_to_fonts' above.
+<br>    'title_size'         =>  12,           // title text point size
+<br>    'title_colour'       => 'black',       // colour for title text
+<br>
+<br>    'x_label'            => '',            // if this is set then this text is printed on bottom axis of graph.
+<br>    'y_label_left'       => '',            // if this is set then this text is printed on left axis of graph.
+<br>    'y_label_right'      => '',            // if this is set then this text is printed on right axis of graph.
+<br>
+<br>    'label_size'         =>  10,           // label text point size
+<br>    'label_font'         => 'Vera.ttf', // label text font. don't forget to set 'path_to_fonts' above.
+<br>    'label_colour'       => 'gray33',      // label text colour
+<br>    'y_label_angle'      =>  90,           // rotation of y axis label
+<br>
+<br>    'x_label_angle'      =>  0,            // rotation of y axis label
+<br>
+<br>    'outer_padding'      =>  8,            // padding around outer text. i.e. title, y label, and x label.
+<br>    'inner_padding'      =>  6,            // padding beteen axis text and graph.
+<br>    'outer_border'       => 'none',        // colour of border aound image, or 'none'.
+<br>    'inner_border'       => 'black',       // colour of border around actual graph, or 'none'.
+<br>    'inner_border_type'  => 'box',         // 'box' for all four sides, 'axis' for x/y axis only,
+<br>                                           // 'y' or 'y-left' for y axis only, 'y-right' for right y axis only,
+<br>                                           // 'x' for x axis only, 'u' for both left and right y axis and x axis.
+<br>    'outer_background'   => 'none',        // background colour of entire image.
+<br>    'inner_background'   => 'none',        // background colour of plot area.
+<br>
+<br>    'y_min_left'         =>  0,            // this will be reset to minimum value if there is a value lower than this.
+<br>    'y_max_left'         =>  0,            // this will be reset to maximum value if there is a value higher than this.
+<br>    'y_min_right'        =>  0,            // this will be reset to minimum value if there is a value lower than this.
+<br>    'y_max_right'        =>  0,            // this will be reset to maximum value if there is a value higher than this.
+<br>    'x_min'              =>  0,            // only used if x axis is numeric.
+<br>    'x_max'              =>  0,            // only used if x axis is numeric.
+<br>
+<br>    'y_resolution_left'  =>  2,            // scaling for rounding of y axis max value.
+<br>                                           // if max y value is 8645 then
+<br>                                           // if y_resolution is 0, then y_max becomes 9000.
+<br>                                           // if y_resolution is 1, then y_max becomes 8700.
+<br>                                           // if y_resolution is 2, then y_max becomes 8650.
+<br>                                           // if y_resolution is 3, then y_max becomes 8645.
+<br>                                           // get it?
+<br>    'y_decimal_left'     =>  0,            // number of decimal places for y_axis text.
+<br>    'y_resolution_right' =>  2,            // ... same for right hand side
+<br>    'y_decimal_right'    =>  0,            // ... same for right hand side
+<br>    'x_resolution'       =>  2,            // only used if x axis is numeric.
+<br>    'x_decimal'          =>  0,            // only used if x axis is numeric.
+<br>
+<br>    'point_size'         =>  4,            // default point size. use even number for diamond or triangle to get nice look.
+<br>    'brush_size'         =>  4,            // default brush size for brush line.
+<br>    'brush_type'         => 'circle',      // type of brush to use to draw line. choose from the following
+<br>                                           //   'circle', 'square', 'horizontal', 'vertical', 'slash', 'backslash'
+<br>    'bar_size'           =>  0.8,          // size of bar to draw. <1 bars won't touch
+<br>                                           //   1 is full width - i.e. bars will touch.
+<br>                                           //   >1 means bars will overlap.
+<br>    'bar_spacing'        =>  10,           // space in pixels between group of bars for each x value.
+<br>    'shadow_offset'      =>  3,            // draw shadow at this offset, unless overidden by data parameter.
+<br>    'shadow'             => 'grayCC',      // 'none' or colour of shadow.
+<br>    'shadow_below_axis'  => FALSE,         // whether to draw shadows of bars and areas below the x/zero axis.
+<br>
+<br>
+<br>    'x_axis_gridlines'   => 'auto',        // if set to a number then x axis is treated as numeric.
+<br>    'y_axis_gridlines'   =>  6,            // number of gridlines on y axis.
+<br>    'zero_axis'          => 'none',        // colour to draw zero-axis, or 'none'.
+<br>
+<br>
+<br>    'axis_font'          => 'Vera.ttf', // axis text font. don't forget to set 'path_to_fonts' above.
+<br>    'axis_size'          =>  9,            // axis text font size in points
+<br>    'axis_colour'        => 'gray33',      // colour of axis text.
+<br>    'y_axis_angle'       =>  0,            // rotation of axis text.
+<br>    'x_axis_angle'       =>  90,           // rotation of axis text.
+<br>
+<br>    'y_axis_text_left'   =>  1,            // whether to print left hand y axis text. if 0 no text, if 1 all ticks have text,
+<br>    'x_axis_text'        =>  1,            //   if 4 then print every 4th tick and text, etc...
+<br>    'y_axis_text_right'  =>  0,            // behaviour same as above for right hand y axis.
+<br>
+<br>    'x_offset'           =>  0.5,          // x axis tick offset from y axis as fraction of tick spacing.
+<br>    'y_ticks_colour'     => 'black',       // colour to draw y ticks, or 'none'.
+<br>    'x_ticks_colour'     => 'black',       // colour to draw x ticks, or 'none'.
+<br>    'y_grid'             => 'line',        // grid lines. set to 'line' or 'dash'...
+<br>    'x_grid'             => 'line',        //   or if set to 'none' print nothing.
+<br>    'grid_colour'        => 'grayEE',      // default grid colour.
+<br>    'tick_length'        =>  4,            // length of ticks in pixels. can be negative. i.e. outside data drawing area.
+<br>
+<br>
+<br>    'legend'             => 'none',        // default. no legend.
+<br>                                          // otherwise: 'top-left', 'top-right', 'bottom-left', 'bottom-right',
+<br>                                          //   'outside-top', 'outside-bottom', 'outside-left', or 'outside-right'.
+<br>    'legend_offset'      =>  10,           // offset in pixels from graph or outside border.
+<br>    'legend_padding'     =>  5,            // padding around legend text.
+<br>    'legend_font'        => '',   // legend text font. don't forget to set 'path_to_fonts' above.
+<br>    'legend_size'        =>  9,            // legend text point size.
+<br>    'legend_colour'      => 'black',       // legend text colour.
+<br>    'legend_border'      => 'none',        // legend border colour, or 'none'.
+<br>
+<br>    'decimal_point'      => '.',           // symbol for decimal separation  '.' or ',' *european support.
+<br>    'thousand_sep'       => ',',           // symbol for thousand separation ',' or ''
+<br>
+<br>  );
+<br>
+<br>
+<br>
+<br>// init all text - title, labels, and axis text.
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">init</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'outer_border'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;outer&nbsp;padding<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'left'</span><span style="color: #007700">]&nbsp;&nbsp;&nbsp;+=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'outer_padding'</span><span style="color: #007700">];<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'top'</span><span style="color: #007700">]&nbsp;&nbsp;&nbsp;&nbsp;+=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'outer_padding'</span><span style="color: #007700">];<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'right'</span><span style="color: #007700">]&nbsp;&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'outer_padding'</span><span style="color: #007700">];<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'bottom'</span><span style="color: #007700">]&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'outer_padding'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_x_axis</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_y_axis</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_legend</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_labels</span><span style="color: #007700">();<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;&nbsp;take&nbsp;into&nbsp;account&nbsp;tick&nbsp;lengths<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'bottom_inner_padding'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'inner_padding'</span><span style="color: #007700">];<br />&nbsp;&nbsp;if&nbsp;((</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'x_ticks_colour'</span><span style="color: #007700">]&nbsp;!=&nbsp;</span><span style="color: #DD0000">'none'</span><span style="color: #007700">)&nbsp;&amp;&amp;&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'tick_length'</span><span style="color: #007700">]&nbsp;&lt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'bottom_inner_padding'</span><span style="color: #007700">]&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'tick_length'</span><span style="color: #007700">];<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'bottom'</span><span style="color: #007700">]&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'bottom_inner_padding'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'left_inner_padding'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'inner_padding'</span><span style="color: #007700">];<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'y_axis_text_left'</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'y_ticks_colour'</span><span style="color: #007700">]&nbsp;!=&nbsp;</span><span style="color: #DD0000">'none'</span><span style="color: #007700">)&nbsp;&amp;&amp;&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'tick_length'</span><span style="color: #007700">]&nbsp;&lt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'left_inner_padding'</span><span style="color: #007700">]&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'tick_length'</span><span style="color: #007700">];<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'left'</span><span style="color: #007700">]&nbsp;+=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'left_inner_padding'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'right_inner_padding'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'inner_padding'</span><span style="color: #007700">];<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'y_axis_text_right'</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;((</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'y_ticks_colour'</span><span style="color: #007700">]&nbsp;!=&nbsp;</span><span style="color: #DD0000">'none'</span><span style="color: #007700">)&nbsp;&amp;&amp;&nbsp;(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'tick_length'</span><span style="color: #007700">]&nbsp;&lt;&nbsp;</span><span style="color: #0000BB">0</span><span style="color: #007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'right_inner_padding'</span><span style="color: #007700">]&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">parameter</span><span style="color: #007700">[</span><span style="color: #DD0000">'tick_length'</span><span style="color: #007700">];<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">][</span><span style="color: #DD0000">'right'</span><span style="color: #007700">]&nbsp;-=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'right_inner_padding'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #FF8000">//&nbsp;boundaryBox&nbsp;now&nbsp;has&nbsp;coords&nbsp;for&nbsp;plotting&nbsp;area.<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'inner_border'</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">calculated</span><span style="color: #007700">[</span><span style="color: #DD0000">'boundary_box'</span><span style="color: #007700">];<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_data</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_x_ticks</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">init_y_ticks</span><span style="color: #007700">();<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_chart-index.html">up</a></div>
+		<br><br>
+		</body>
+		

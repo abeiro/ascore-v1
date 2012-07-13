@@ -1,0 +1,338 @@
+<!--HEAD-->
+<!--SET-->
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+
+<head>
+  <title>Cepes-Andalucía::Entorno de Gestión de Cursos de Formación</title>
+  <meta name="GENERATOR" content="Dev-PHP 2.0.12" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+</head>
+<style>
+
+body {
+    margin-top:1px;
+    padding-top:0px;
+    padding-left:0px;
+    margin-left:3px;
+    background-color:#D1CDC5;
+  }
+
+td.tmenuitem {
+    font-family:tahoma,verdana;
+    font-size:11px;
+    cursor:pointer;
+    border:1px solid #D5CEC5;
+    white-space:nowrap;
+    text-align:left;
+  }
+
+td.tmenuitem:hover {
+    border:1px outset #F0F0F0;
+    
+  }
+  
+
+.thook {
+    background : #D5CEC5;
+    font-family:tahoma,verdana;
+    font-size:11px;
+    border : 1px outset #DADADA;
+    line-height:15px;
+    text-align:left;
+    padding-top:5px;
+    padding-right:5px;
+    white-space:nowrap;
+    
+  }
+
+
+.tlink {
+    font-family:tahoma,verdana;
+    font-size:11px;
+    color:black;
+    text-decoration:none;
+    margin:5px;
+  }
+
+
+
+</style>
+<script>
+function wResizeAll() {
+		var s;
+		
+		s=window.innerHeight-25-22-8-29;
+		if (isNaN(s))
+			s=document.body.clientHeight-25-22-8-25-75;
+	
+		try{f=document.getElementById("fbody").style.height=s+"px";}
+		catch(e){alert(s+' '+e)};
+	}
+	
+function ishow(e) {
+	f=document.getElementById(e);
+	f.style.display=(f.style.display=='none')?'':'none';
+}
+function ihide(e) {
+	f=document.getElementById(e);
+	f.style.display="none";
+}
+
+function getoffsetLeft(element){
+	if(!element) return 0;
+		ie=element.offsetLeft + getoffsetLeft(element.offsetParent);
+	if ((isNaN(ie))||(ie==0))
+		ie=1 + getoffsetLeft(element.parentNode);
+	if ((isNaN(ie)))
+		return 0;
+	else 
+		return ie;
+		
+ }
+function getoffsetTop(element){
+	if(!element) return 0;
+		ie=element.offsetTop + getoffsetTop(element.offsetParent);
+	if ((isNaN(ie))||(ie==0))
+		ie=1 + getoffsetTop(element.parentNode);
+	if ((isNaN(ie)))
+		return 0;
+	else 
+		return ie;
+		
+ }
+
+function flip(id) {
+	if (id=='none') {
+			for (i=0;i<mEindex;i++)
+				document.getElementById(menuEntrys[i]).style.display='none';
+	}
+	else {
+		if (document.getElementById(id).style.display=='') {
+			for (i=0;i<mEindex;i++)
+				document.getElementById(menuEntrys[i]).style.display='none';	
+			document.getElementById(id).style.display='none';
+		}
+	
+		else {
+			for (i=0;i<mEindex;i++)
+				document.getElementById(menuEntrys[i]).style.display='none';	
+			document.getElementById(id).style.display='';
+		
+		}
+	}
+}
+
+function subflip(id) {
+	if (document.getElementById(id).style.display=='') 
+			document.getElementById(id).style.display='none';
+
+	else {
+		document.getElementById(id).style.display='';
+	}
+}
+
+function create_menu_entry(epos,box) {
+	visor=document.getElementById(epos);
+	visor_posX=getoffsetLeft(visor);
+	visor_posY=getoffsetTop(visor);
+	visor=document.getElementById(box);
+	visor.style.position="absolute";
+	visor.style.left=visor_posX+"px";
+	visor.style.top=visor_posY+"px";
+	menuEntrys[mEindex]=box;
+	mEindex++;
+	
+}
+function create_menu_entry_reverse(epos,box) {
+	visor=document.getElementById(epos);
+	visor_posX=getoffsetLeft(visor);
+	visor_posY=getoffsetTop(visor);
+	visor=document.getElementById(box);
+	visor.style.position="absolute";
+	visor.style.right="0px";
+	visor.style.left=(visor_posX-100)+"px";
+	visor.style.top=visor_posY+"px";
+	menuEntrys[mEindex]=box;
+	mEindex++;
+}
+</script>
+<body style="">
+<table width="100%" cellspacing="0" style="z-index : 2;">
+	<tr>
+		
+		<td class="tmenuitem" onclick="flip('menuEntry1_box')" >
+		
+			Expedientes&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry1"></div>
+			
+		
+		</td>
+		<td class="tmenuitem" onclick="flip('menuEntry2_box')">
+			Cursos&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry2"></div>
+      			
+			
+		</td>
+		
+		<td class="tmenuitem" onclick="flip('menuEntry3_box')">
+			Alumnos&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry3"></div>
+			
+      			
+			
+		</td>
+		<td class="tmenuitem" onclick="flip('menuEntry4_box')">
+			Expertos&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry4"></div>
+			
+		</td>
+		<td class="tmenuitem" onclick="flip('menuEntry5_box')">
+			Centros&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry5"></div>
+			
+		</td>
+		<td class="tmenuitem" onclick="flip('menuEntry6_box')">
+			Empresas&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry6"></div>
+			
+		</td>
+		<td class="tmenuitem" class="tmenuitem" onclick="flip('menuEntry9_box')">
+			Gestión Usuarios&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry9"></div>
+		</td>
+		<td class="tmenuitem" class="tmenuitem" onclick="flip('menuEntry7_box')">
+			Consultas&nbsp;&nbsp;&nbsp;<br>
+			<div id="menuEntry7"></div>
+		</td>
+		<td width="100%">
+			&nbsp;
+		</td>
+		<td class="tmenuitem" onclick="flip('menuEntry8_box')">
+			&nbsp;&nbsp;&nbsp;Sistema<br>
+			<div id="menuEntry8"></div>
+
+		</td>
+</tr>
+</table>
+<iframe name="statusbar" width="100%" height="25" src="statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2"></iframe><br>
+<iframe src="<!-- D:page -->" height="100%" width="100%" scrolling="yes" frameborder="0" name="fbody" id="fbody" style="border:1px solid #D8E6F2"></iframe><br>
+<iframe name="footer"  width="100%"  height="22" src="footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2"></iframe><br>
+
+
+
+
+
+
+			<div id="menuEntry1_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<a class="tlink"  href="Cursos/Unidad/list_unidad.php" target="fbody" border="0" >- Lista</a><br>
+			
+			<a class="tlink"  href="Cursos/Unidad/nueva_unidad.php" target="fbody" border="0">- Nuevo Expediente</a><br>
+			
+			</div>
+			
+			<div id="menuEntry2_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<a class="tlink"  href="Cursos/Curso/view_curso.php" target="fbody" border="0" onmouseover="window.status='Listado de cursos';return true" onmouseout="window.status='CEPES Andalucía';return true">- Listado</a><br>
+			<a class="tlink" href="Cursos/Curso/busca_curso.php" target="fbody" border="0" onmouseover="window.status='Busqueda de cursos';return true" onmouseout="window.status='CEPES Andalucía';return true">- Buscar</a><br>
+      			<a class="tlink" href="Cursos/Curso/consulta_soli.php" target="fbody" border="0" onmouseover="window.status='Consultar datos de una solicitud';return true" onmouseout="window.status='CEPES Andalucía';return true">- Consulta Solicitud</a><br>
+      			<a class="tlink" href="Cursos/Curso/nuevo_curso.php" target="fbody" border="0" onmouseover="window.status='Añadir nuevo curso';return true" onmouseout="window.status='CEPES Andalucía';return true">- Nuevo</a><br>
+      			<a class="tlink" href="Cursos/Curso/cursos_cerrados.php" target="fbody" border="0" onmouseover="window.status='Información sobre los cursos no solicitables';return true" onmouseout="window.status='CEPES Andalucía';return true">- Cursos Cerrados</a><br>
+			</div>
+			
+
+
+			<div id="menuEntry3_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<a class="tlink"  href="Cursos/Alumnos/listar_cursos.php" target="fbody" border="0" onmouseover="window.status='Nueva solicitud';return true" onmouseout="window.status='CEPES Andalucía';return true">- Solicitud</a><br>
+			<a class="tlink" href="Cursos/Alumnos/lista_alumnos.php" target="fbody" border="0" onmouseover="window.status='Lista de solicitantes';return true" onmouseout="window.status='CEPES Andalucía';return true">- Solicitantes</a><br>
+      			<a class="tlink" href="Cursos/Alumnos/admitidos.php" target="fbody" border="0" onmouseover="window.status='Listado de solicitudes admitidas';return true" onmouseout="window.status='CEPES Andalucía';return true">- Solicitudes admitidas</a><br>
+      			<a class="tlink" href="Cursos/Alumnos/modif_alumno.php" target="fbody" border="0" onmouseover="window.status='Modificar datos del alumno';return true" onmouseout="window.status='CEPES Andalucía';return true">- Modificar</a><br>
+      			<a class="tlink" href="Cursos/Alumnos/baja_alumno.php" target="fbody" border="0" onmouseover="window.status='Dar de baja a un alumno';return true" onmouseout="window.status='CEPES Andalucía';return true">- Baja de alumno</a><br>
+			</div>
+			
+			<div id="menuEntry4_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<a class="tlink"  href="Cursos/Expertos/lista_expertos.php" target="fbody" border="0" onmouseover="window.status='Listado de profesores / expertos';return true" onmouseout="window.status='CEPES Andalucía';return true">- Listado de profesores</a><br>
+			<a class="tlink" href="Cursos/Expertos/nuevo_experto.php" target="fbody" border="0" onmouseover="window.status='Añadir nuevo profesor / experto';return true" onmouseout="window.status='CEPES Andalucía';return true">- Nuevo profesor</a><br>
+      			<a class="tlink" href="Cursos/Expertos/delete_experto.php" target="fbody" border="0" onmouseover="window.status='Borrar profesor / experto';return true" onmouseout="window.status='CEPES Andalucía';return true">- Borrar profesor</a><br>
+      			</div>
+			
+			<div id="menuEntry5_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<a class="tlink"  href="Cursos/Agentes/lista_agentes.php" target="fbody" border="0" onmouseover="window.status='Listado de centros';return true" onmouseout="window.status='CEPES Andalucía';return true">- Listado</a><br>
+			<a class="tlink" href="Cursos/Agentes/nuevo_agente.php" target="fbody" border="0" onmouseover="window.status='Añadir nuevo centro';return true" onmouseout="window.status='CEPES Andalucía';return true">- Nuevo Centro</a><br>
+      			</div>
+			
+			<div id="menuEntry6_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<a class="tlink"  href="Cursos/Empresas/list_empresas.php" target="fbody" border="0" onmouseover="window.status='Listado de empresas destinadas para prácticas';return true" onmouseout="window.status='CEPES Andalucía';return true">- Listado</a><br>
+			<a class="tlink" href="Cursos/Empresas/new_empresa.php" target="fbody" border="0" onmouseover="window.status='Añadir nueva empresa';return true" onmouseout="window.status='CEPES Andalucía';return true">- Nueva Empresa</a><br>
+      			</div>
+			
+			
+			<div id="menuEntry7_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<A  class="tlink"   target="fbody" href="Informes/" >- Informes</A><br>
+			<A  class="tlink"   target="fbody" href="Informes/add.php" >- Nuevo Informe</A><br>
+			<A  class="tlink"   target="fbody" href="Informes/dev.php?command=querybuilder" >- Consultas</A><br>
+			<A  class="tlink"   target="fbody" href="Cuestionarios/" >- Cuestionarios</A><br>
+      			</div>
+			
+			<div id="menuEntry9_box" class="thook"  style="display:none;position:absolute;"  onclick="flip('none')">
+			<A  class="tlink"   target="fbody" href="Bilo/list.php" >- Usuarios</A><br>
+  			<A  class="tlink"   target="fbody" href="Bilo/list_group.php" class="buttonikIgroups">- Grupos</A><br>
+  			<A   class="tlink"   target="fbody" href="Bilo/add_user.php" >- Nuevo Usuario</A><br>
+  			<A   class="tlink"   target="fbody" href="Bilo/add_group.php" class="buttonikIngroup">- Nuevo Grupo</A><br>
+  			<A   class="tlink"   target="fbody" href="Bilo/registro.php" >- Registro</A><br>
+      			</div>
+			
+			
+			<div id="menuEntry8_box" class="thook"  style="display:none;position:absolute;" onclick="flip('none')">
+			<A href="System/action_check_status.php" target="footer" class="tlink">- Estado</A><br>
+  			<A href="System/info.php" target="fbody" class="tlink">- Acerca de</A><br>
+  			<A  href="System/import_sql.php" target="fbody" class="tlink">- Importar Datos</A><br>
+  			<A  href="System/dump.php" target="fbody" class="tlink">- BackUp de BBDD</A><br>
+  			<A  href="System/import_csv.php" target="fbody" class="tlink">- Importar CSV</A><br>
+  			<A  href="System/action_check_transactions.php" target="footer" class="tlink">- Test de InnoDB</A><br>
+  			<A  href="System/testme.php" target="fbody" class="tlink">- BenchMark de Sistema</A><br>
+			<!-- I:DEV_MODE -->
+			<hr>
+			<a class="tlink" href="framework/Doc/" target="fbody" border="0">- Doc API</a><br>
+      			<a class="tlink" href="framework/Manual/" target="fbody" border="0">- Manual</a><br>
+      			<a class="tlink" href="dev.php" target="fbody" border="0">- Desarrollo</a><br>
+			<!-- I:DEV_MODE -->
+			<hr>
+			<a class="tlink"  href="index.php" target="_blank" border="0">- Nueva Vista</a><br>
+     			<span class="tlink"  style="cursor : pointer;"  onclick="window.open('index.php','<!-- K:time() -->','resizable=1,statusbar=0,scrollbars=0,toolbar=0,width=800,height=600')">- Modo App.
+      			</span><br> 
+			<a class="tlink"  href="Bilo/prefs.php" target="fbody" border="0">- Preferencias</a><br>
+      			<A  class="tlink" href="Bilo/action_logout.php" target="footer" >- Salir</A><br>
+
+			</div>
+
+
+<SCRIPT TYPE="text/javascript" LANGUAGE="JavaScript1.3">
+
+
+var menuEntrys=new Array();
+var mEindex=0;
+	
+	
+
+
+create_menu_entry("menuEntry1","menuEntry1_box");
+create_menu_entry("menuEntry2","menuEntry2_box");
+create_menu_entry("menuEntry3","menuEntry3_box");
+create_menu_entry("menuEntry4","menuEntry4_box");
+create_menu_entry("menuEntry5","menuEntry5_box");
+create_menu_entry("menuEntry6","menuEntry6_box");
+create_menu_entry("menuEntry7","menuEntry7_box");
+create_menu_entry("menuEntry9","menuEntry9_box");
+
+create_menu_entry_reverse("menuEntry8","menuEntry8_box");
+
+</SCRIPT>
+</body>
+</html>
+<script>
+wResizeAll();
+s=window.innerHeight;
+	if (!isNaN(s))
+		window.onresize=wResizeAll;
+</script>
+<!--END-->

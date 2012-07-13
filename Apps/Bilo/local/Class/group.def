@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<groupname type="string" option="50">Nombre de grupo</groupname>
+	<code type="int">Codigo</code>
+	<active type="boolean" option="No">Activo</active>
+</cpd>
+

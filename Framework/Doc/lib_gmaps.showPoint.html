@@ -1,0 +1,28 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion showPoint</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>showPoint</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_gmaps.php</span>
+		<br><br><br><br><div class="desc">	}
+<br>	
+<br>	
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">showPoint</span><span style="color: #007700">(</span><span style="color: #0000BB">$x</span><span style="color: #007700">,</span><span style="color: #0000BB">$y</span><span style="color: #007700">,</span><span style="color: #0000BB">$leyend</span><span style="color: #007700">,</span><span style="color: #0000BB">$html</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">buffer</span><span style="color: #007700">.=</span><span style="color: #DD0000">'<br />&lt;script&nbsp;type="text/javascript"&gt;<br />google.load("maps",&nbsp;"2");<br />google.load("search",&nbsp;"1");<br />&nbsp;&nbsp;<br />function&nbsp;initialize()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;map&nbsp;=&nbsp;new&nbsp;google.maps.Map2(document.getElementById("map"));<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.setCenter(new&nbsp;google.maps.LatLng('</span><span style="color: #007700">.</span><span style="color: #0000BB">$x</span><span style="color: #007700">.</span><span style="color: #DD0000">','</span><span style="color: #007700">.</span><span style="color: #0000BB">$y</span><span style="color: #007700">.</span><span style="color: #DD0000">'),&nbsp;13);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.setZoom(15);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.addControl(new&nbsp;GSmallMapControl());<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.addControl(new&nbsp;GMapTypeControl());&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//map.disableDragging();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markerOptions&nbsp;=&nbsp;{&nbsp;title:"'</span><span style="color: #007700">.</span><span style="color: #0000BB">$leyend</span><span style="color: #007700">.</span><span style="color: #DD0000">'"&nbsp;};<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;point&nbsp;=&nbsp;new&nbsp;GLatLng('</span><span style="color: #007700">.</span><span style="color: #0000BB">$x</span><span style="color: #007700">.</span><span style="color: #DD0000">','</span><span style="color: #007700">.</span><span style="color: #0000BB">$y</span><span style="color: #007700">.</span><span style="color: #DD0000">');<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var&nbsp;marker&nbsp;=&nbsp;new&nbsp;GMarker(point,&nbsp;markerOptions);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;map.addOverlay(marker);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;GEvent.addListener(marker,&nbsp;"click",&nbsp;function()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;marker.openInfoWindowHtml("'</span><span style="color: #007700">.</span><span style="color: #0000BB">$html</span><span style="color: #007700">.</span><span style="color: #DD0000">'");<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;google.setOnLoadCallback(initialize);<br />&lt;/script&gt;<br />'</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_gmaps-index.html">up</a></div>
+		<br><br>
+		</body>
+		

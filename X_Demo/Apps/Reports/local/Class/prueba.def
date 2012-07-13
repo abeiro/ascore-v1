@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='ISO-8859-15'?>
+<cpd>
+
+<titulo  type="string"   option="50">Titulo</titulo>
+<cuerpo  type="longtext"   option="1024">Texto</cuerpo>
+<boletin  type="boolean"   option="No">Boletin</boletin>
+<sss  type="longtext">sss</sss>
+
+
+</cpd>

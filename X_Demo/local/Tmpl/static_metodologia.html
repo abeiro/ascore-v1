@@ -1,0 +1,18 @@
+<!--HEAD-->
+<!--SET-->
+<h3>2. Metodología</h3>
+
+<p align="justify">asCore se basa en la creación de clases dinámicas a partir de unas especificaciones 
+representadas en ficheros XML. Se acerca un poco al concepto de clases persistentes, ya que
+todas las clases definidas tienen una proyección en una base de datos.</p>
+
+<p align="justify">Normalmente el diseño de estas clases viene tras el análisis del sistema a implementar y el diseño de la base de datos relacional a usar. Una vez definidas las entidades a tener
+en cuenta y sus relaciones, crearíamos las clases asociadas a las entidades de la BBDD</p>
+
+<p align="justify">En realidad lo que se define son las propiedades de las clases. El motor de asCore creará un objeto con estas propiedades y lo mapeará en la BBDD. Este objeto contará con una serie de métodos predefinidos, siendo posible (y muchas veces necesario) ampliar estos métodos según las necesidades de la aplicación. Las propiedades de la clase se gestionan de forma automática. Si se redefinen, se volverán a redefinir en la BBDD también. </p>
+
+<p align="justify">Los métodos predefinidos servirán para operar con las instancias de la clases en la base de datos. Borrar, guardar, listar, consultar, etc etc</p>
+
+
+<!--END-->
+

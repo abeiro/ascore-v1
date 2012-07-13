@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<title type="string" option="100">Titulo</title>
+        <foto type="ref" option="100">foto</foto>
+	<autor type="string" option="50">Autor</autor>
+	<msg type="longtext" option="1024">Mensaje</msg>
+	<fecha type="date">Fecha</fecha>
+	<p_id type="ref">Padre</p_id>
+	<respuestas type="int">Respuestas</respuestas>
+	<fecha_hoy type="date">fecha_hoy</fecha_hoy>
+	<foro_id type="ref">Foro</foro_id>
+	<autormsg type="string" option="50">Autormsg</autormsg> 
+	<visitas type="int">Visitas</visitas>
+	<urespuesta type="date">Ultima respuesta</urespuesta>
+</cpd>

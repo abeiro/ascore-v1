@@ -1,0 +1,64 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_list_reports0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list_reports1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list_reports2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list_reports3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray" class="pane">
+<th><a href="<!-- N:navvars -->&sort=ID">Nº</a></th>
+<th><a href="<!-- N:navvars -->&sort=reportname">Informe</a></th>
+<th><a href="<!-- N:navvars -->&sort=url">Url</a></th>
+<th><a href="<!-- N:navvars -->&sort=tipo">Tipo</a></th>
+<th><a href="<!-- N:navvars -->&sort=activo">Activo</a></th>
+<th></th>
+
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+
+	<td class="<!-- dynamic_class -->" align="left" style="padding : 2px; text-align : left;" ><a href="view.php?ID=<!-- D:ID -->"><!-- D:reportname --></a></td>
+
+	<td class="<!-- dynamic_class -->"><!-- D:url --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:tipo --></td>
+
+	<td class="<!-- dynamic_class -->"><!-- D:activo --></td>
+	
+	
+	<td class="<!-- dynamic_class -->"  class="<!-- dynamic_class -->" style="padding : 2px; text-align : left;">
+	<!-- I:isAdmin -->
+	 <a class="minibuttonik"  target="footer"  href="action_del.php?ID=<!-- D:ID -->" onclick="return confirm('<!-- K:_("¿Está usted seguro?") -->')">&nbsp;<!-- K:_('borrar') -->&nbsp;</a> &nbsp;  
+	 <a href="add.php?ID=<!-- D:ID -->" class="minibuttonik">&nbsp;<!-- K:_('editar') -->&nbsp;</a>&nbsp;
+	 <a href="view.php?ID=<!-- D:ID -->" class="minibuttonik">&nbsp;<!-- K:_('ver') -->&nbsp; </a> &nbsp;
+	 <a href="view.php?ID=<!-- D:ID -->&export_mode=yes" target="_blank" class="minibuttonik">&nbsp;<!-- K:_('exportar') -->&nbsp; </a> &nbsp;      
+	<!-- I:isAdmin --> 
+	<!-- I:isPrint -->
+	 <a href="view.php?ID=<!-- D:ID -->&print_mode=yes" class="minibuttonik" target="_blank">&nbsp;
+	 <!-- K:_('imprimir') -->&nbsp;</a>
+	<!-- I:isPrint --> 
+	
+	</td>
+	
+	
+	
+	
+	
+
+    
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 0px gray">
+<tr><td align="left">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a>
+<!-- FIPAGER1 -->
+
+</td>
+<td align="center"><!-- D:Pager -->
+</td><td align="right">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</td>
+</tr>
+</table>

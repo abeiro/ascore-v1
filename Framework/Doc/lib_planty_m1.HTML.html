@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion HTML</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.47.2</h1>
+		<h2>HTML</h2>
+		<span class="mini">Fichero /local/trabajo/asCore/Framework/../Framework/Lib/lib_planty_m1.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><font color="#000000">
+<font color="#007700">&lt;?</font><font color="#0000BB">php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">function&nbsp;</font><font color="#0000BB">plantHTML</font><font color="#007700">(</font><font color="#0000BB">$object</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$template</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$excepciones</font><font color="#007700">=</font><font color="#DD0000">""</font><font color="#007700">)&nbsp;{<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<br />global&nbsp;</font><font color="#0000BB">$sc</font><font color="#007700">,</font><font color="#0000BB">$mod</font><font color="#007700">,</font><font color="#0000BB">$pag</font><font color="#007700">;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$users</font><font color="#007700">=new&nbsp;</font><font color="#0000BB">plantilla</font><font color="#007700">(</font><font color="#0000BB">$template</font><font color="#007700">);<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">//dataDump($object);<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">if&nbsp;(&nbsp;</font><font color="#0000BB">gettype</font><font color="#007700">(</font><font color="#0000BB">$object</font><font color="#007700">)!=</font><font color="#DD0000">"object"</font><font color="#007700">)<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">=</font><font color="#0000BB">$object</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;else&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">=</font><font color="#0000BB">get_object_vars</font><font color="#007700">(</font><font color="#0000BB">$object</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">[</font><font color="#DD0000">"sc"</font><font color="#007700">]=</font><font color="#0000BB">$sc</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">[</font><font color="#DD0000">"mod"</font><font color="#007700">]=</font><font color="#0000BB">$mod</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$data</font><font color="#007700">[</font><font color="#DD0000">"pag"</font><font color="#007700">]=</font><font color="#0000BB">$pag</font><font color="#007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(empty(</font><font color="#0000BB">$excepciones</font><font color="#007700">))<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">$excepciones</font><font color="#007700">=array();<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#FF8000">//dataDump($data);&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#007700">echo&nbsp;</font><font color="#0000BB">$users</font><font color="#007700">-&gt;</font><font color="#0000BB">plParseTemplate</font><font color="#007700">(</font><font color="#0000BB">$data</font><font color="#007700">,&nbsp;</font><font color="#0000BB">$excepciones</font><font color="#007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</font><font color="#0000BB">True</font><font color="#007700">;<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</font><font color="#0000BB">?&gt;</font>
+</font>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_planty_m1-index.html">up</a></div>
+		<br><br>
+		</body>
+		

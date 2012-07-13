@@ -1,0 +1,206 @@
+
+.buttonikIEstado {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/estado.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    font-weight:bold;
+    padding:2px;
+    padding-left : 18px;
+    width : 175px;
+
+    
+} 
+
+
+.buttonikIEstado:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/estado.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }
+  
+  
+  
+  .buttonikISisinfo {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/sisinfo.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikISisinfo:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/sisinfo.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;    
+    font-weight:bold;
+  }  
+
+  
+    
+.buttonikIimport {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/import.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikIimport:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/import.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;   
+    font-weight:bold;
+  }  
+  
+    
+    
+.buttonikIbackup {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/backup.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;    
+    font-weight:bold;
+} 
+
+.buttonikIbackup:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/backup.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }  
+  
+.buttonikIimportcsv {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/importcsv.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikIimportcsv:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/importcsv.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }  
+  
+  .buttonikIinnodb {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/innodb.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikIinnodb:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/innodb.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }  
+  
+.buttonikITest {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/innodb.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikITest:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/innodb.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }  

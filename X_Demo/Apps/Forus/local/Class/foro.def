@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<title type="string" option="100">Titulo</title>
+	<descripcion type="string" option="150">Descripcion</descripcion>
+	<msg type="int">Mensajes</msg>
+	<fecha type="date">Fecha</fecha>
+	<autormsg type="string" option="50">Autormsg</autormsg>
+	<visitas type="int">Visitas</visitas>
+</cpd>

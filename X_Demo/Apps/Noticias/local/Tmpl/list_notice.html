@@ -1,0 +1,55 @@
+<!--HEAD-->
+
+<style>
+td.dynamic_class_list_notice0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list_notice1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list_notice2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list_notice3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+
+
+<table width="100%" cellspacing="1" border="0" cellpadding="2" align="center" style="border:solid 1px gray" bgcolor="#EAD1C6">
+<th><a href="<!-- N:navvars -->&sort=ID">N</a></th>
+<th><a href="<!-- N:navvars -->&sort=titulo">Titulo</a></th>
+<th><a href="<!-- N:navvars -->&sort=fecha_pub">Fecha</a></th>
+<th><a href="<!-- N:navvars -->&sort=visita">Fecha ultima visita</a></th>
+<th><a href="<!-- N:navvars -->&sort=visita">Numero visitas</a></th>
+<th><a href="<!-- N:navvars -->&sort=visita">Ultimo usuario en consultar</a></th>
+<TH>Operaciones</TH>
+
+<!--SET-->
+<tr>
+<TD class="<!-- dynamic_class -->">
+<!-- D:ID -->
+</td>
+
+<td class="<!-- dynamic_class -->" style="text-align:left">
+<a href="view_notice.php?ID=<!-- D:ID -->" class="notice"><b><!-- D:titulo --></b></a></TD>
+<td class="<!-- dynamic_class -->" style="text-align:left"><!-- A:fecha_pub --></TD>
+<td class="<!-- dynamic_class -->" style="text-align:left"><!-- A:fech_ult_consulta --></TD>
+<td class="<!-- dynamic_class -->"><!-- D:visita --></td>
+<td class="<!-- dynamic_class -->"><!-- D:S_UserID_MB --></td>
+<td class="<!-- dynamic_class -->" nowrap>
+
+<a href="view_notice.php?ID=<!-- D:ID -->" class="minibuttonik">Ver mas...</a> ::
+<!-- I:isAdmin -->
+<a href="add_notice.php?ID=<!-- D:ID -->" class="minibuttonik" >Editar</a> ::
+<a href="add_notice_simple.php?ID=<!-- D:ID -->" class="minibuttonik" >Edicion simple</a> ::
+<A href="delete_notice.php?ID=<!-- D:ID -->" class="minibuttonik" target="footer">Borrar</a>
+<!-- I:isAdmin -->
+</TD>
+</tr>
+<!--END-->
+</TABLE>
+<table width="100%" cellspacing="0"  border="0"  cellpadding="4" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td>
+<td align="center"><!-- D:Pager -->
+</td>
+<td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+</td></tr></table>

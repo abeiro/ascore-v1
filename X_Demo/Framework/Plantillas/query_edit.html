@@ -1,0 +1,46 @@
+<!--HEAD-->
+<!--SET-->
+<table width="80%" border="0" cellspacing="5" align="center" bgcolor="#eeeeee" style="border : 1px #c6c6c6  outset; -moz-border-radius : 10px;">
+<TR><TD align="center" bgcolor="#e6a129">
+<h2>Core QUERY BUILDER</h2>
+</TD></TR>
+<TR><TD>
+<form action="dev.php?command=querybuilder&action=save" method="POST" enctype="multipart/form-data" target="footer">
+
+
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<tr>
+	<td>Query</td>
+<td>
+	<textarea name="queryb" cols="70" rows="15"><!-- D:queryb --></textarea>
+	</td>
+<td>
+
+</td>
+<tr>
+	<td>Nombre</td>
+
+	<td><input type="text" name="nombre" maxlength="50"
+						value="<!-- D:nombre -->" size="50">
+	</td>
+</tr>
+<tr>
+	<TD colspan="3" align="right">&nbsp;&nbsp;</td>
+</tr>
+<TR><TD colspan="3" align="right">
+
+<div align="left" style="float:left"><input id="condition3" readonly size="50">&nbsp;&nbsp;&nbsp;
+<a href="#" onclick="window.open('../../Framework/Extensions/QueryBuilder/Helper.html','helper')">Ayuda de funciones</a></div>
+
+<INPUT type="submit">
+</TD>
+</TR>
+</table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+
+
+</form>
+</TD>
+</TR>
+</table>
+<!--END-->

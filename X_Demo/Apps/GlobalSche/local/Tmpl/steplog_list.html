@@ -1,0 +1,49 @@
+
+<!--HEAD-->
+<style  type="text/css">
+td.dynamic_class_test0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_test1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_test2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_test3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+<table width="95%" cellspacing="1" border="1" cellpadding="1" align="center" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=gtask_id">Tarea</a></th>
+<th><a href="<!-- N:navvars -->&sort=gstep_id">Paso</a></th>
+<th><a href="<!-- N:navvars -->&sort=gtasklog_id">Registro</a></th>
+<th><a href="<!-- N:navvars -->&sort=estado">Estado</a></th>
+<th><a href="<!-- N:navvars -->&sort=rini">Fecha/Hora Inicio Real</a></th>
+<th><a href="<!-- N:navvars -->&sort=fin">Fecha/Hora final</a></th>
+<th></th>
+<!--SET-->
+<tr>
+    
+  <td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+
+  <td class="<!-- dynamic_class -->"><!-- D:gtask_id --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:gstep_id --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:gtasklog_id --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:estado --></td>
+  <td class="<!-- dynamic_class -->"><!-- A:rini --></td>
+  <td class="<!-- dynamic_class -->"><!-- A:fin --></td>
+    <td class="<!-- dynamic_class -->">
+      <div class="sexybutton"><a class="sexybutton"  target="footer"  href="action_steplog_cmd.php?cmd=ini&ID=<!-- D:ID -->"> <!-- K:_('iniciar') --></a></div>
+      <div class="sexybutton"><a class="sexybutton"  target="footer"  href="action_steplog_cmd.php?cmd=can&ID=<!-- D:ID -->"> <!-- K:_('cancelar') --></a></div>
+      <div class="sexybutton"><a class="sexybutton"  target="footer"  href="action_steplog_cmd.php?cmd=ter&ID=<!-- D:ID -->"> <!-- K:_('terminar') --></a></div>
+  <div class="sexybutton"><a class="sexybutton"  target="footer"  href="action_del_steplog.php?ID=<!-- D:ID -->" onclick="return confirm('<!-- K:_("¿Esta usted seguro?") -->')"><!-- K:_('borrar') --></a></div>
+  </td>    
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left">
+  <!-- IFPAGER1 --><a id="trfPP" href="<!-- N:prevpage -->">PÃ¡gina anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right">
+  <!-- IFPAGER2 --><a id="trfNP" href="<!-- N:nextpage -->">PÃ¡gina siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+<br>

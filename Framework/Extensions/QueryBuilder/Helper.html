@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="iso-8859-15"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <title></title>
+  <meta name="GENERATOR" content="Quanta Plus" />
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-15" />
+</head>
+<style>
+span.pseudolink {
+	color:blue;
+	cursor:pointer;
+}
+</style>
+<script type="text/javascript">
+function SendToParent(Elemento) {
+	
+	_Target=window.opener.document.getElementById('condition3');
+	_Origin=document.getElementById(Elemento);
+	_Target.value=_Origin.value;
+	window.close();
+}
+</script>
+<body>
+<h2>Funciones MySQL Útiles</h2>
+<h4>Fecha/Tiempo</h4>
+<div>		
+* <span onclick='SendToParent("1")' class="pseudolink">Hoy</span>
+<input id="1" value="UNIX_TIMESTAMP(CURRENT_DATE())" type="Hidden">
+<br />		
+		
+* <span onclick='SendToParent("2")' class="pseudolink">Ayer</span>
+<input id="2" value="UNIX_TIMESTAMP(CURRENT_DATE()-INTERVAL 1 DAY)" type="Hidden">
+<br />
+		
+* <span onclick='SendToParent("3")' class="pseudolink">Hace una semana</span>
+<input id="3" value="UNIX_TIMESTAMP(CURRENT_DATE()-INTERVAL 7 DAY)" type="Hidden">
+<br />
+		
+* <span onclick='SendToParent("4")' class="pseudolink">Mañana</span>
+<input id="4" value="UNIX_TIMESTAMP(CURRENT_DATE()+INTERVAL 1 DAY)" type="Hidden">
+<br />
+		
+* <span onclick='SendToParent("5")' class="pseudolink">Dentro de una semana</span>
+<input id="5" value="UNIX_TIMESTAMP(CURRENT_DATE()+INTERVAL 7 DAY)" type="Hidden">
+<br />
+</div>		
+</body>
+</html>

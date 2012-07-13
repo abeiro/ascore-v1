@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<queryb type="longtext" option="65535">Query</queryb>
+	<nombre type="string" option="50">Nombre</nombre>
+</cpd>

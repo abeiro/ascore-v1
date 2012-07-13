@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <referencia  type="string" option="128">Referencia</referencia>
+  <activa  type="boolean" option="Si">Activa</activa>
+  <minuto type="string" option="64">Minuto</minuto>
+  <hora type="string" option="64">Hora</hora>
+  <dom type="string" option="64">Dia del mes</dom>
+  <mon type="string" option="64">Mes del año</mon>
+  <dow type="string" option="64">Dia de la semana</dow>
+  <md5 type="string" option="64">md5</md5>
+</cpd>

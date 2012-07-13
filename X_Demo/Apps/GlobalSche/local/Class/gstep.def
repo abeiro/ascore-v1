@@ -1,0 +1,16 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <gtask_id type="ref" option="gtask:titulo">Tarea</gtask_id>
+  <titulo  type="string" option="64">Nombre</titulo>
+  <secuencia  type="int">Secuencia</secuencia>
+  <activo  type="boolean" option="Si">Paso Activo</activo>
+  <host type="ref" option="ghost:identificador">Host</host>
+  <comando  type="text" option="1024">comando</comando>
+  <ficheros type="string" option="1024">ficheros involucrados</ficheros>
+  <path type="string" option="1024">path de ejecucion</path>
+  <tipo type="list" option="Ejecucion|Espera|Crear Script">Tipo</tipo>
+  <script type="text" option="65534">Scripting</script>
+  <ultimoerror type="string" option="1024">Último error/mensaje</ultimoerror>
+  <maxreturnstatus type="string"  option="64">Valores de retorno admitidos</maxreturnstatus>
+  <reruninterval type="int">Si el paso es espera y falla, reprogramar tarea x minutos despues</reruninterval>
+</cpd>

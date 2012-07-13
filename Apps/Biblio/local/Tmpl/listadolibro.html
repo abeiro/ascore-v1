@@ -1,0 +1,48 @@
+<!--HEAD-->
+<style  type="text/css">
+td.dynamic_class_listadolibro0 {text-align:left;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_listadolibro1 {text-align:left;vertical-align:top;background-color:white}
+td.dynamic_class_listadolibro2 {text-align:left;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_listadolibro3 {text-align:left;vertical-align:top;background-color:white}
+</style>
+
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 0px gray">
+<tr><th align="left" width="33%">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center" width="33%center"><!-- D:Pager -->
+</th><th align="right" width="33%">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+
+
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<th><a href="<!-- N:navvars -->&sort=titulo">Título</a></th>
+<th><a href="<!-- N:navvars -->&sort=autor">Autor</a></th>
+<th><a href="<!-- N:navvars -->&sort=categoria">Categoria</a></th>
+<th></th>
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><!-- D:titulo --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:autor --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:loquesea --></td>
+	<td class="<!-- dynamic_class -->">
+	<div class="sexybutton">
+		<a class="sexybutton"  target="footer"  href="action_del_libro.php?ID=<!-- D:ID -->" onclick="return confirm('¿Esta usted seguro?')">borrar</a>
+		</div>
+	 	
+		<div class="sexybutton">
+			<a href="add_libro.php?ID=<!-- D:ID -->" class="sexybutton" >editar</a>
+		</div>
+	
+	</td>
+	
+</tr>
+<!--END-->
+</table>
+<br>
+
+<br>

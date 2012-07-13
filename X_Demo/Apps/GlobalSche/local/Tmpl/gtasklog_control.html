@@ -1,0 +1,53 @@
+
+<!--HEAD-->
+<style  type="text/css">
+td.dynamic_class_gtasklog_control0 {text-align:left;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_gtasklog_control1 {text-align:left;vertical-align:top;background-color:white}
+td.dynamic_class_gtasklog_control2 {text-align:left;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_gtasklog_control3 {text-align:left;vertical-align:top;background-color:white}
+</style>
+<table width="95%" cellspacing="1" border="1" cellpadding="1" align="center" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=gtask_id">Tarea</a></th>
+<th><a href="<!-- N:navvars -->&sort=schedule_id">Planificación</a></th>
+<th><a href="<!-- N:navvars -->&sort=estado">Estado</a></th>
+<th><a href="<!-- N:navvars -->&sort=inicio">Inicio programado</a></th>
+<th><a href="<!-- N:navvars -->&sort=inicio">Inicio real</a></th>
+<th><a href="<!-- N:navvars -->&sort=fin">Fin</a></th>
+<th></th>
+<!--SET-->
+<tr>
+    
+  <td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+
+  <td class="<!-- dynamic_class -->"><!-- D:gtask_id --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:schedule_id --></td>
+  <td class="<!-- dynamic_class -->"><!-- D:estado --></td>
+  <td class="<!-- dynamic_class -->"><!-- H:inicio --></td>
+  <td class="<!-- dynamic_class -->"><!-- H:rini --></td>
+  <td class="<!-- dynamic_class -->"><!-- H:fin --></td>
+  
+     <td nowrap class="<!-- dynamic_class -->"  class="<!-- dynamic_class -->" style="padding : 2px; text-align : center;" width="220">
+  
+   <div class="sexybutton"><a target="footer" href="action_tasklog_cmd.php?cmd=ini&ID=<!-- D:ID -->" class="sexybutton"><!-- K:_('iniciar') --></a></div>
+   <div class="sexybutton"><a target="footer"  href="action_tasklog_cmd.php?cmd=can&ID=<!-- D:ID -->" class="sexybutton"><!-- K:_('cancelar') --></a></div>
+   <div class="sexybutton"><a target="footer"  href="action_tasklog_cmd.php?cmd=ter&ID=<!-- D:ID -->" class="sexybutton"><!-- K:_('finalizar') --></a></div>
+  
+       
+  </td>
+  
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left">
+  <!-- IFPAGER1 --><a id="trfPP" href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right">
+  <!-- IFPAGER2 --><a id="trfNP" href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+<br>

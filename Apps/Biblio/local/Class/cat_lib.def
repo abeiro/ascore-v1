@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<nombre_cat type="string" option="50">Nombre categoria</nombre_cat>
+</cpd>

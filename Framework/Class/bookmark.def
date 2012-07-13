@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<user_id type="ref">Propietario</user_id>
+	<nombre type="string" option="50">Nombre</nombre>
+	<url type="string" option="255">URL</url>
+</cpd>

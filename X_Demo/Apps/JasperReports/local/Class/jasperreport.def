@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cpd>
+	<reportname type="string" option="50">Informe</reportname>
+	<filename type="string" option="50">URL</filename>
+	<class type="string" option="50">Clase asociada</class>
+	<activo type="boolean" option="No">Activo</activo>
+	<printable type="boolean" option="No">Imprimible</printable>
+</cpd>
+

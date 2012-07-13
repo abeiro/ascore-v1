@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<nombre type="string" option="25">Nombre</nombre>
+	<cat_id type="ref">ID_categoria</cat_id>
+	<cat_pr type="ref">Categoria primaria</cat_pr>
+</cpd>

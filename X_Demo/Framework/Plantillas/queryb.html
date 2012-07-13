@@ -1,0 +1,39 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_queryb0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_queryb1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_queryb2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_queryb3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" bgcolor="#CECECE" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=nombre">Nombre</a></th>
+<th></th>
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->" rowspan="2"><!-- D:ID --></td>
+	<td class="<!-- dynamic_class -->"><strong><!-- D:nombre --></strong></td>
+	<td class="<!-- dynamic_class -->" nowrap>
+	<a target="footer" class="minibuttonik" href="?command=querybuilder&amp;action=delete&amp;ID=<!-- D:ID -->">borrar</a><a class="minibuttonik" href="?command=querybuilder&amp;action=edit&amp;ID=<!-- D:ID -->">editar</a><a class="minibuttonik" href="?command=querybuilder&amp;action=promote&amp;ID=<!-- D:ID -->" target="footer">promocionar</a>
+	</td>
+</tr>
+<tr><td colspan="2" class="<!-- dynamic_class -->" style="padding:3px"><em style="font-size:9px"><!-- L:queryb --></em></td>
+</tr>
+<tr><td colspan="3" class="<!-- dynamic_class -->" style="padding:3px"></td>
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td>
+<td align="center"><!-- D:Pager -->
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<br>
+

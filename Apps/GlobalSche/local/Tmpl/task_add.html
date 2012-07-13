@@ -1,0 +1,64 @@
+
+<!--HEAD-->
+<!--SET-->
+<style  type="text/css">
+td.dynamic_class_test0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_test1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_test2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_test3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<tr>
+  <td>Nombre</td>
+
+  <td><textarea name="titulo" cols="50"><!-- D:titulo --></textarea>
+  </td>
+</tr>
+<tr>
+  <td>Activa</td>
+
+  <td><input type="checkbox" id="activa" name="activa" <!-- G:activa -->/>
+  </td>
+</tr>
+<tr>
+  <td>Recurso donde se ejecuta</td>
+
+  <td><textarea name="recurso" cols="50"><!-- D:recurso --></textarea>
+  </td>
+</tr>
+<tr>
+  <td>Planificación</td>
+
+  <td><select id="schedule_id" name="schedule_id"><!-- X:schedule_id --></select>
+  </td>
+</tr>
+<tr>
+  <td>Tipo</td>
+
+  <td><select name="tipo">  <option value="SQL" <!-- O:tipoSQL -->>SQL</option>
+  <option value="UCommand" <!-- O:tipoUCommand -->>UCommand</option>
+  <option value="WebFocus" <!-- O:tipoWebFocus -->>WebFocus</option>
+  <option value="Otros" <!-- O:tipoOtros -->>Otros</option>
+</select>
+  </td>
+</tr>  
+<tr>
+  <td>Última ejecución</td>
+
+  <td><input type="text" id="ultimavez" name="ultimavez" maxlength="10"
+          size="10" value="<!-- A:ultimavez -->" onblur="javascript:checkDate('ultimavez')"/>
+  </td>
+</tr>
+<tr>
+  <td>Último error/mensaje</td>
+<td>
+  <textarea name="ultimoerror" cols="50"><!-- D:ultimoerror --></textarea>
+  </td>
+</tr>
+
+<tr>
+  <td colspan="2" align="right"><!-- D:_boton0 -->&nbsp;&nbsp;<!-- D:_boton1 -->&nbsp;&nbsp;<!-- D:_boton2 -->&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+<input type="hidden" name="ID" value="<!-- D:ID -->"/>
+<!--END-->

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+   <entity>twar</entity>
+   <name>twar</name>
+   <id>twar</id>
+   <action>index.php</action>
+   <method>post</method>
+   <target>_self</target>
+   <elements>
+      <fecha>
+         <type>text</type>
+         <format>date</format>
+         <label>Fecha</label>
+      </fecha>
+      <titulo>
+         <type>textarea</type>
+         <attributes>
+            <cols>64</cols>
+            <rows>12.8</rows>
+         </attributes>
+         <format>string</format>
+         <label>Titulo</label>
+      </titulo>
+      <activo>
+         <type>checkbox</type>
+         <format>boolean</format>
+         <label>Cerrado</label>
+      </activo>
+   </elements>
+</form>

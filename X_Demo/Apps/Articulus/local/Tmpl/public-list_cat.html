@@ -1,0 +1,54 @@
+
+<!--HEAD-->
+<style>
+td.dynamic_class_list0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list3 {text-align:center;vertical-align:top;background-color:white}
+a{
+  font-size:10px
+}
+.buttonik {
+    background : #e6e6e6;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+   
+  }
+
+.buttonik:hover {
+    background : #FFFFFF;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+     
+  }
+
+ .buttonik:active {
+    background : #FFFFFF;
+    padding : 2px;
+    border : inset 2px;
+    color : black;
+    text-decoration : none;
+    }
+
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<CAPTION>SUBCATEGORIAS</CAPTION>
+<th class="<!-- dynamic_class -->" align="left">NOMBRE</th>
+<th class="<!-- dynamic_class -->">&nbsp;</th>
+<!--SET-->
+<tr>
+	<td class="<!-- dynamic_class -->" width="20%"><a href="index2.php?cat_id=<!-- D:ID -->">--><!-- D:nombre --></a></td>	
+	<td class="<!-- dynamic_class -->" width="4%"></td> 
+	<td class="<!-- dynamic_class -->" width="4%"></td>
+	<td class="<!-- dynamic_class -->" width="4%"><a href="nueva_categoria.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->">Editar</a> :: <a href="delete.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->" target="footer">Borrar</a></td>
+	
+</tr>
+<!--END-->
+</table>
+<br>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<br>

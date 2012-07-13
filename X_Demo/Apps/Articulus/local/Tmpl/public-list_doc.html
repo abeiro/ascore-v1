@@ -1,0 +1,64 @@
+
+<!--HEAD-->
+<style>
+td.dynamic_class_list0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list3 {text-align:center;vertical-align:top;background-color:white}
+a{
+  font-size:10px
+}
+.buttonik {
+    background : #e6e6e6;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+   
+  }
+
+.buttonik:hover {
+    background : #FFFFFF;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+     
+  }
+
+ .buttonik:active {
+    background : #FFFFFF;
+    padding : 2px;
+    border : inset 2px;
+    color : black;
+    text-decoration : none;
+    }
+
+</style>
+<table width="95%" cellspacing="1" border="1" cellpadding="1" align="center" style="border:solid 1px gray">
+<caption>DOCUMENTOS</caption>
+<th class="<!-- dynamic_class -->">TITULO</th>
+<th class="<!-- dynamic_class -->">FECHA CREACION</th>
+<th class="<!-- dynamic_class -->">ULTIMA MODIFICACION</th>
+<th class="<!-- dynamic_class -->">&nbsp;</th>
+<!--SET-->
+<tr>
+	<td class="<!-- dynamic_class -->" width="20%"><a href="view.php?ID=<!-- D:ID -->"><!-- D:titulo --></a></td>	
+	<td class="<!-- dynamic_class -->" width="4%" align="center"><!-- A:fecha_cre --></td> 
+	<td class="<!-- dynamic_class -->" width="4%" align="center"><!-- A:fecha_mod --></td>
+	<td class="<!-- dynamic_class -->" width="4%" align="center"><a href="nuevo_documento.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->">Editar</a> :: <a href="delete.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->" target="footer">Borrar</a></td>
+	
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<br>

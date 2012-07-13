@@ -1,0 +1,99 @@
+
+.buttonikIList {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/document.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    font-weight:bold;
+    padding:2px;
+    padding-left : 18px;
+    width : 175px;
+
+    
+} 
+
+
+.buttonikIList:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/document.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }
+  
+  
+.buttonikINew {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/new.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    font-weight:bold;
+    padding:2px;
+    padding-left : 18px;
+    width : 175px;
+
+    
+} 
+
+  .buttonikINew:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/new.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }
+  
+  .buttonikIQuery {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/query.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    font-weight:bold;
+    padding:2px;
+    padding-left : 18px;
+    width : 175px;
+
+    
+} 
+
+  .buttonikIQuery:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/query.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }
+  
+ .main_notice {background-color:#efeaee;padding:4px 4px 4px;border-bottom:black}
+ .view_notice {background-color:#efeaee;float:left;width:70%}
+ 

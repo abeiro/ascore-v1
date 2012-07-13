@@ -1,0 +1,83 @@
+<!--HEAD-->
+<script type="text/javascript" language="JavaScript1.3">
+function get_dnd_files() {
+
+document.captureEvents(Event.MOUSEDOWN | Event.MOUSEMOVE | Event.MOUSEUP);
+
+	data=document.getElementById('dnd').value;
+	datag=data.replace(/\n/g,"|");
+	location.href="multifile.php?localnames="+datag;
+	
+}
+
+</script>
+<style>
+td.dynamic_class_list0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+<div align="center">
+<table width="100%" cellspacing="1" border="0" cellpadding="2" align="center" bgcolor="white">
+<tr><TD><span style="font-size:9px;font-weight:bold; color : #b00023;">
+<!-- K:_("Camino:") --> : <!-- D:path --></span></TD></tr>
+</table>
+<table width="100%" cellspacing="1" border="0" cellpadding="2" align="center" bgcolor="#cdcecd">
+<th style="padding : 2px;"><a href="<!-- N:navvars -->&sort=type">tipo</a></th>
+<th style="padding : 2px;"><a href="<!-- N:navvars -->&sort=nombre">objeto</a></th>
+<th style="padding : 2px;"><a href="<!-- N:navvars -->&sort=fecha">fecha</a></th>
+<th style="padding : 2px;"><a href="<!-- N:navvars -->&sort=uid">propietario</a></th>
+<th style="padding : 2px;"><a href="<!-- N:navvars -->&sort=gid">grupo</a></th>
+<th style="padding : 2px;">U</th>
+<th style="padding : 2px;">G</th>
+<th style="padding : 2px;">O</th>
+<th style="padding : 2px;">descripcion</th>
+<th style="padding : 2px;"></th>
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><!-- D:mime_image --></td>
+	<td nowrap class="<!-- dynamic_class -->" style="text-align : left;">
+	<A href="open.php?ID=<!-- D:ID -->&inode=<!-- D:inode -->&amp;" ><!-- D:nombre --></A>
+	</td>
+	<td class="<!-- dynamic_class -->"><!-- H:fecha --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:usuario --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:grupo --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:p_owner --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:p_group --></td>
+	<td class="<!-- dynamic_class -->"><!-- D:p_other --></td>
+	<td class="<!-- dynamic_class -->" style="text-align : left;" ><!-- D:descripcion --></td>
+	
+	<td class="<!-- dynamic_class -->" style="text-align : left;" >
+	<input type="checkbox" name="element_selection_<!-- D:ID -->" id="id_element_selection_<!-- D:ID -->" value="<!-- D:ID -->">
+	<A href="#" style="background : #2e8dc8; color : #ffffff; text-decoration : none;" 
+	
+onclick="window.open('info.php?ID=<!-- D:ID -->','info','width=450,height=350,scrollbars=YES')">
+	&nbsp;&nbsp;<strong>i</strong>&nbsp;&nbsp;</A>
+	</td>
+	
+	
+    
+</tr>
+<!--END-->
+<tr>
+<td colspan="10" height="250" align="right" valign="bottom" bgcolor="white">
+
+
+</textarea>
+<br>
+
+</td>
+</tr>
+<tr>
+<td  class="<!-- dynamic_class -->" colspan="10">
+<!-- K:_("Total ") -->&nbsp;:&nbsp;<!-- D:nRes -->
+&nbsp;
+</td>	
+</tr>
+</table>
+<br>
+
+</div>
+
+<br><br>

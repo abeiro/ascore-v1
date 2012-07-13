@@ -1,0 +1,36 @@
+ASCore 0.45.2 - - Cada clase lleva una nueva propiedad ROOT con la URI de la raiz
+ASCore 0.45.3 - - Los input se generan con tag al final "/>" (XHTML compliance)
+ASCore 0.45.4 - - Tag <!-- END OF SET --> eliminado (XHTML compliance)
+ASCore 0.45.5 - - lib_planty y lib_list modificado para adaptarse a mod_rewrite
+ASCore 0.45.6 - - lib_planty 'S:' acepta cadenas
+ASCore 0.45.7 - - SubCore/root: genera plantillas con nuevo sistema de paginado
+ASCore 0.45.8 - - lib_planty: 'E:' redondeo a entero
+ASCore 0.45.9 - - lib_planty: 'I:' funciona en header y footer
+ASCore 0.46.0 - - SubCore/root: selectA completa this->nRes
+ASCore 0.46.1 - - Solved VNH in PATH_SYMBOL
+ASCore 0.46.2 - - Integrado bcompiler (coreg2, root, core). deshabilitado por defecto
+ASCore 0.46.3 - - lib_planty, se inicializa la variable $nn(dynamic classes)
+ASCore 0.46.4 - - arreglado bug en Login
+ASCore 0.46.5 - - añadido tinymce (fckedit esta obsoleto!)
+ASCore 0.46.6 - - añadida extension tree
+ASCore 0.46.7 - - borrados modulos innecesarios
+ASCore 0.46.8 - - Modificacion en lib_planty  (IFPAGER para quitar siguiente pagina)
+ASCore 0.46.9 - - Arreglo de .0.46.8. Nueva funcion http_build_query
+ASCore 0.47.0 - - Arreglo de .0.46.9. Arreglado fileh (codigo obsoleto)
+ASCore 0.47.1 - - Added W: tag in lib_planty for wordwrapping
+ASCore 0.47.2 - - Added NI: tag (relaxed conditional) in lib_planty
+		  		  Changed select to support more SQL Syntax
+		  		  Fixed bug in lib_planty (Paging)	
+ASCore 0.48.0 - - Fixed some update bugs
+ASCore 0.48.2 - - Added initial plParseTemplateFast (lib_planty,lib_list,testme.php)
+ASCore 0.99.0 - - Added support for PHP5 and various fixes
+ASCore 0.99.1 - - CleanUp
+ASCore 0.99.9 - - Added new parameter to select to force to retrieve a specific page
+				  Added new type for listList (xxref). Is an initial support for automatic foreing keys	
+				  Added $SYS["FORCEDURLFORPAGING"] to force a URL in listList links
+				  Added new extensions: QueryBuilder, GeoIP and phpsysinfo
+				  Added new libs: QueryBuilder, GeoIP and xml2array
+				  Added new field to registro class
+				  Updated Report applicative to fit new QueryBuilder
+				  
+				  

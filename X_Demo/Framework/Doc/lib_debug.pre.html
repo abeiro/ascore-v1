@@ -1,0 +1,31 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion pre</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>pre</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_debug.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc">}
+<br>
+<br>
+<br>######################
+<br># function prints/returns strings wrapped between <pre></pre>
+<br>#
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">pre</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$return_mode&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">FALSE</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tabwidth&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">3&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$tab&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_repeat</span><span style="color: #007700">(</span><span style="color: #DD0000">'&amp;nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tabwidth</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'/\t+/em'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">"str_repeat(&nbsp;'&nbsp;',&nbsp;strlen('\\0')&nbsp;*&nbsp;</span><span style="color: #0000BB">$tabwidth</span><span style="color: #DD0000">&nbsp;);"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;replace&nbsp;all&nbsp;tabs&nbsp;with&nbsp;spaces&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$out&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">'&lt;pre&gt;'</span><span style="color: #007700">.</span><span style="color: #0000BB">$string</span><span style="color: #007700">.</span><span style="color: #DD0000">"&lt;/pre&gt;\n"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;if(</span><span style="color: #0000BB">$return_mode</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$out</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;print&nbsp;</span><span style="color: #0000BB">$out</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_debug-index.html">up</a></div>
+		<br><br>
+		</body>
+		

@@ -1,0 +1,22 @@
+# translation of coreg2.po to 
+# This file is distributed under the same license as the PACKAGE package.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER.
+# Augusto Beiro <abeiro@activasistemas.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: coreg2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2005-03-07 13:41+0100\n"
+"PO-Revision-Date: 2005-03-07 13:46+0100\n"
+"Last-Translator: Augusto Beiro <abeiro@activasistemas.com>\n"
+"Language-Team:  <es@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#: SubCore/core.php:293
+msgid "Spanish"
+msgstr "Español "
+

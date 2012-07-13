@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<type type="list" option="archive|folder">Tipo</type>
+	<fileh type="ref">Fileh object</fileh>
+	<uid type="string" option="30">Propietario</uid>
+	<gid type="string" option="30">Grupo</gid>
+	<p_owner type="list" option="...|r..|.w.|..x|rw.|r.x|.w.|.wx|..x|rwx">Permisos Usuarios</p_owner>
+	<p_group type="list" option="...|r..|.w.|..x|rw.|r.x|.w.|.wx|..x|rwx">Permisos Grupo</p_group>
+	<p_other type="list" option="...|r..|.w.|..x|rw.|r.x|.w.|.wx|..x|rwx">Permisos Otros</p_other>
+	<inode type="ref">I-nodo</inode>
+	<nombre type="string" option="255">nombre</nombre>
+	<mime type="string" option="50">tipo mime</mime>
+	<fecha type="date" >fecha</fecha>
+	<descripcion type="string"  option="255">Descripcion</descripcion>
+	
+</cpd>
+

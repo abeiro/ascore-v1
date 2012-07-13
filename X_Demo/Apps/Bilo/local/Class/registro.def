@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<user_id type="ref" option="">Usuario</user_id>
+	<dia type="date">Dia</dia>
+	<entrada_m type="time">Hora de salida (mañana)</entrada_m>
+	<salida_m type="time">Hora de salida (mañana)</salida_m>
+	<entrada_t type="time">Hora de entrada (tarde)</entrada_t>
+	<salida_t type="time">Hora de salida (tarde)</salida_t>
+	<ip type="string" option="15">Direccion IP></ip>
+</cpd>
+

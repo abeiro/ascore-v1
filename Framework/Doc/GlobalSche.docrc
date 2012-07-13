@@ -1,0 +1,59 @@
+
+[Tree]
+
+Doc dir=Doc/
+
+#top level elements
+Top Element=Documentacion FrameWork GlobalSche
+
+Documentacion FrameWork GlobalSche=Bienvenido,Acerca de,#Clases principales,#Librerias
+Bienvenido=intro.html
+Acerca de=about.html
+Clases principales=mysql,core,odbc,root,dbtcp
+
+mysql=mysql-index.html
+core=core-index.html
+odbc=odbc-index.html
+root=root-index.html
+dbtcp=dbtcp-index.html
+
+
+
+Librerias=lib_asupdate,lib_zoom,lib_autoquery,lib_date,lib_simple_xml,lib_gfx,lib_xml2tree,lib_ajaxbot,lib_tree,lib_calendario,lib_grafo,lib_geoip,lib_barcode,lib_planty,lib_class_xml_to_array,lib_mime_mail,lib_chart,lib_carrito,lib_list,lib_frame,lib_class_xml2array,lib_image,lib_monitor,lib_PDF,lib_list_ng,lib_debug,lib_gmaps,lib_DNS
+
+lib_asupdate=lib_asupdate-index.html
+lib_zoom=lib_zoom-index.html
+lib_autoquery=lib_autoquery-index.html
+lib_date=lib_date-index.html
+lib_simple_xml=lib_simple_xml-index.html
+lib_gfx=lib_gfx-index.html
+lib_xml2tree=lib_xml2tree-index.html
+lib_ajaxbot=lib_ajaxbot-index.html
+lib_tree=lib_tree-index.html
+lib_calendario=lib_calendario-index.html
+lib_grafo=lib_grafo-index.html
+lib_geoip=lib_geoip-index.html
+lib_barcode=lib_barcode-index.html
+lib_planty=lib_planty-index.html
+lib_class_xml_to_array=lib_class_xml_to_array-index.html
+lib_mime_mail=lib_mime_mail-index.html
+lib_chart=lib_chart-index.html
+lib_carrito=lib_carrito-index.html
+lib_list=lib_list-index.html
+lib_frame=lib_frame-index.html
+lib_class_xml2array=lib_class_xml2array-index.html
+lib_image=lib_image-index.html
+lib_monitor=lib_monitor-index.html
+lib_PDF=lib_PDF-index.html
+lib_list_ng=lib_list_ng-index.html
+lib_debug=lib_debug-index.html
+lib_gmaps=lib_gmaps-index.html
+lib_DNS=lib_DNS-index.html
+
+
+# keywords for context help
+[Context]
+
+ContextList=
+
+

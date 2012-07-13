@@ -1,0 +1,151 @@
+
+.buttonikIusers {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/users.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    font-weight:bold;
+    padding:2px;
+    padding-left : 18px;
+    width : 175px;
+
+    
+} 
+
+
+.buttonikIusers:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/users.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }
+  
+  
+  
+  .buttonikIgroups {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/groups.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikIgroups:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/groups.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;    
+    font-weight:bold;
+  }  
+
+  
+    
+.buttonikInuser {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/nuser.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikInuser:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/nuser.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;   
+    font-weight:bold;
+  }  
+  
+    
+    
+.buttonikIngroup {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/ngroup.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;    
+    font-weight:bold;
+} 
+
+.buttonikIngroup:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/ngroup.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }  
+  
+.buttonikIregi {
+    background-color : #EBEBEB ;
+    background-image :url('Icons/regi.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : black;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+} 
+
+.buttonikIregi:hover {
+    background-color : #2A81B7 ;
+    background-image :url('Icons/regi.png');
+    background-repeat: no-repeat;
+    background-position: center left;
+    border : outset 1px;
+    border-color : #cecece;
+    color : white;
+    text-decoration : none;
+    padding:2px;
+    padding-left : 18px;
+    font-weight:bold;
+  }  
+  

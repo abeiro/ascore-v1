@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"  ?>
+<!-- Created with iReport - A designer for JasperReports -->
+<!DOCTYPE jasperReport PUBLIC "//JasperReports//DTD Report Design//EN" "http://jasperreports.sourceforge.net/dtds/jasperreport.dtd">
+<jasperReport
+		 name="Tareas"
+		 columnCount="1"
+		 printOrder="Vertical"
+		 orientation="Portrait"
+		 pageWidth="595"
+		 pageHeight="842"
+		 columnWidth="535"
+		 columnSpacing="0"
+		 leftMargin="30"
+		 rightMargin="30"
+		 topMargin="20"
+		 bottomMargin="20"
+		 whenNoDataType="NoPages"
+		 isTitleNewPage="false"
+		 isSummaryNewPage="false">
+	<property name="ireport.scriptlethandling" value="0" />
+	<property name="ireport.encoding" value="UTF-8" />
+	<import value="java.util.*" />
+	<import value="net.sf.jasperreports.engine.*" />
+	<import value="net.sf.jasperreports.engine.data.*" />
+
+	<parameter name="Fecha" isForPrompting="true" class="java.util.Date">
+		<defaultValueExpression ><![CDATA[new Date()]]></defaultValueExpression>
+	</parameter>
+	<queryString><![CDATA[SELECT
+     coreg2_schedule.`referencia` AS coreg2_schedule_referencia,
+     coreg2_gtasklog.`estado` AS coreg2_gtasklog_estado,
+     CASE WHEN coreg2_gtasklog.`inicio`>0 THEN FROM_UNIXTIME(coreg2_gtasklog.`inicio`) ELSE NULL END AS coreg2_gtasklog_inicio,
+     CASE WHEN coreg2_gtasklog.`fin`>0 THEN FROM_UNIXTIME(coreg2_gtasklog.`fin`)  ELSE NULL END AS coreg2_gtasklog_fin,
+     CASE WHEN coreg2_gtasklog.`rini`>0 THEN FROM_UNIXTIME(coreg2_gtasklog.`rini`)  ELSE NULL END AS coreg2_gtasklog_rini,
+     coreg2_gtask.`titulo` AS coreg2_gtask_titulo,
+     coreg2_gstep.`titulo` AS coreg2_gstep_titulo,
+     coreg2_gstep.`secuencia` AS coreg2_gstep_secuencia,
+     coreg2_gstep.`comando` AS coreg2_gstep_comando,
+     CASE WHEN coreg2_gsteplog.`rini`>0 THEN FROM_UNIXTIME(coreg2_gsteplog.`rini`)  ELSE NULL END AS coreg2_gsteplog_rini,
+     CASE WHEN coreg2_gsteplog.`fin`>0 THEN  FROM_UNIXTIME(coreg2_gsteplog.`fin`)  ELSE NULL END AS coreg2_gsteplog_fin,
+     coreg2_gsteplog.`estado` AS coreg2_gsteplog_estado,
+     coreg2_gtasklog.`ID` AS coreg2_gtasklog_ID,
+     coreg2_gsteplog.`ID` AS coreg2_gsteplog_ID, 
+     coreg2_gtasklog.`inicio`-UNIX_TIMESTAMP(NOW()) as retraso,
+	coreg2_gtasklog.etiqueta as etiqueta,CASE WHEN (coreg2_gtasklog.ejecutor>1) THEN coreg2_user.username ELSE 'sistema' END as username
+FROM
+     `coreg2_gtasklog` coreg2_gtasklog
+     LEFT JOIN	`coreg2_gtask` coreg2_gtask ON coreg2_gtask.`ID` = coreg2_gtasklog.`gtask_id`
+     LEFT JOIN `coreg2_schedule` coreg2_schedule ON coreg2_gtasklog.`schedule_id` = coreg2_schedule.`ID`
+     LEFT JOIN `coreg2_gsteplog` coreg2_gsteplog ON coreg2_gtasklog.`ID` = coreg2_gsteplog.`gtasklog_id`
+     LEFT JOIN `coreg2_gstep` coreg2_gstep ON coreg2_gsteplog.`gstep_id` = coreg2_gstep.`ID`
+     LEFT JOIN  coreg2_user ON coreg2_user.ID = coreg2_gtasklog.ejecutor
+
+WHERE DATE(FROM_UNIXTIME(coreg2_gtasklog.inicio+604800))>DATE($P{Fecha}) OR DATE(FROM_UNIXTIME(coreg2_gtasklog.rini+604800))=DATE($P{Fecha}) OR (DATE(FROM_UNIXTIME(coreg2_gtasklog.inicio))<DATE($P{Fecha}) 
+AND coreg2_gtasklog.estado<>'Terminada' AND coreg2_gtasklog.estado<>'Cancelada')
+ORDER BY coreg2_gtasklog.ID ASC,COALESCE(coreg2_gtasklog.inicio,coreg2_gtasklog.rini) ASC,coreg2_gsteplog.secuencia ASC]]></queryString>
+
+	<field name="coreg2_schedule_referencia" class="java.lang.String"/>
+	<field name="coreg2_gtasklog_estado" class="java.lang.String"/>
+	<field name="coreg2_gtasklog_inicio" class="java.sql.Timestamp"/>
+	<field name="coreg2_gtasklog_fin" class="java.sql.Timestamp"/>
+	<field name="coreg2_gtasklog_rini" class="java.sql.Timestamp"/>
+	<field name="coreg2_gtask_titulo" class="java.lang.String"/>
+	<field name="coreg2_gstep_titulo" class="java.lang.String"/>
+	<field name="coreg2_gstep_secuencia" class="java.lang.Integer"/>
+	<field name="coreg2_gstep_comando" class="java.lang.String"/>
+	<field name="coreg2_gsteplog_rini" class="java.sql.Timestamp"/>
+	<field name="coreg2_gsteplog_fin" class="java.sql.Timestamp"/>
+	<field name="coreg2_gsteplog_estado" class="java.lang.String"/>
+	<field name="coreg2_gtasklog_ID" class="java.lang.Integer"/>
+	<field name="coreg2_gsteplog_ID" class="java.lang.Integer"/>
+	<field name="retraso" class="java.lang.Long"/>
+	<field name="etiqueta" class="java.lang.String"/>
+	<field name="username" class="java.lang.String"/>
+
+
+		<group  name="task" >
+			<groupExpression><![CDATA[$F{coreg2_gtasklog_ID}]]></groupExpression>
+			<groupHeader>
+			<band height="22"  isSplitAllowed="true" >
+				<rectangle>
+					<reportElement
+						x="0"
+						y="0"
+						width="535"
+						height="20"
+						forecolor="#E0E0DD"
+						backcolor="#E0E0DD"
+						key="rectangle-2"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="0"
+						y="0"
+						width="140"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{etiqueta}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yy HH:mm" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="160"
+						y="0"
+						width="100"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{coreg2_gtasklog_inicio}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yy HH:mm" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="330"
+						y="0"
+						width="100"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{coreg2_gtasklog_fin}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yy HH:mm" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="260"
+						y="0"
+						width="70"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{coreg2_gtasklog_rini}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="430"
+						y="0"
+						width="100"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{coreg2_gtasklog_estado}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement
+						x="139"
+						y="1"
+						width="20"
+						height="19"
+						forecolor="#CC0033"
+						key="staticText-7">
+							<printWhenExpression><![CDATA[new Boolean(($F{retraso}.intValue()<0)&&(!$F{coreg2_gtasklog_estado}.equals( "Terminada" )))]]></printWhenExpression>
+						</reportElement>
+					<box></box>
+					<textElement textAlignment="Center">
+						<font pdfFontName="Helvetica-Bold" size="16" isBold="true"/>
+					</textElement>
+				<text><![CDATA[!]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="440"
+						y="5"
+						width="80"
+						height="10"
+						forecolor="#FFFFFF"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Left" verticalAlignment="Bottom">
+						<font size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{username}]]></textFieldExpression>
+				</textField>
+			</band>
+			</groupHeader>
+			<groupFooter>
+			<band height="2"  isSplitAllowed="true" >
+			</band>
+			</groupFooter>
+		</group>
+		<background>
+			<band height="0"  isSplitAllowed="true" >
+			</band>
+		</background>
+		<title>
+			<band height="34"  isSplitAllowed="true" >
+				<staticText>
+					<reportElement
+						x="0"
+						y="4"
+						width="240"
+						height="30"
+						key="staticText-6"/>
+					<box></box>
+					<textElement verticalAlignment="Bottom">
+						<font size="24"/>
+					</textElement>
+				<text><![CDATA[Informe Semanal]]></text>
+				</staticText>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yyyy" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="380"
+						y="4"
+						width="150"
+						height="30"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right" verticalAlignment="Bottom">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$P{Fecha}]]></textFieldExpression>
+				</textField>
+			</band>
+		</title>
+		<pageHeader>
+			<band height="31"  isSplitAllowed="true" >
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="400"
+						y="6"
+						width="100"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$V{PAGE_NUMBER}+"/"]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Report" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="500"
+						y="6"
+						width="30"
+						height="20"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+			</band>
+		</pageHeader>
+		<columnHeader>
+			<band height="21"  isSplitAllowed="true" >
+				<rectangle radius="0" >
+					<reportElement
+						x="0"
+						y="0"
+						width="535"
+						height="20"
+						forecolor="#CCCCCC"
+						backcolor="#CCCCCC"
+						key="rectangle-1"/>
+					<graphicElement stretchType="NoStretch"/>
+				</rectangle>
+				<staticText>
+					<reportElement
+						x="0"
+						y="1"
+						width="100"
+						height="20"
+						key="staticText-1"/>
+					<box leftPadding="1" rightPadding="1"></box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans"/>
+					</textElement>
+				<text><![CDATA[Tarea]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="160"
+						y="1"
+						width="100"
+						height="20"
+						key="staticText-2"/>
+					<box leftPadding="1" rightPadding="1"></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans"/>
+					</textElement>
+				<text><![CDATA[Programación]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="260"
+						y="1"
+						width="70"
+						height="20"
+						key="staticText-3"/>
+					<box leftPadding="1" rightPadding="1"></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans"/>
+					</textElement>
+				<text><![CDATA[Inicio]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="330"
+						y="1"
+						width="100"
+						height="20"
+						key="staticText-4"/>
+					<box leftPadding="1" rightPadding="1"></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans"/>
+					</textElement>
+				<text><![CDATA[Fin]]></text>
+				</staticText>
+				<staticText>
+					<reportElement
+						x="430"
+						y="1"
+						width="100"
+						height="20"
+						key="staticText-5"/>
+					<box leftPadding="1" rightPadding="1"></box>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="Bitstream Vera Sans"/>
+					</textElement>
+				<text><![CDATA[Estado]]></text>
+				</staticText>
+			</band>
+		</columnHeader>
+		<detail>
+			<band height="12"  isSplitAllowed="true" >
+				<printWhenExpression><![CDATA[new Boolean($F{coreg2_gsteplog_ID}!=null)]]></printWhenExpression>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="40"
+						y="0"
+						width="100"
+						height="12"
+						key="textField"/>
+					<box></box>
+					<textElement>
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{coreg2_gstep_titulo}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="140"
+						y="0"
+						width="70"
+						height="12"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.Integer"><![CDATA[$F{coreg2_gstep_secuencia}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yy HH:mm" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="220"
+						y="0"
+						width="110"
+						height="12"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{coreg2_gsteplog_rini}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" pattern="dd/MM/yy HH:mm" isBlankWhenNull="true" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="330"
+						y="0"
+						width="100"
+						height="12"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.util.Date"><![CDATA[$F{coreg2_gsteplog_fin}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="false" isBlankWhenNull="false" evaluationTime="Now" hyperlinkType="None"  hyperlinkTarget="Self" >
+					<reportElement
+						x="430"
+						y="0"
+						width="100"
+						height="12"
+						key="textField"/>
+					<box></box>
+					<textElement textAlignment="Right">
+						<font fontName="Bitstream Vera Sans" size="8"/>
+					</textElement>
+				<textFieldExpression   class="java.lang.String"><![CDATA[$F{coreg2_gsteplog_estado}]]></textFieldExpression>
+				</textField>
+			</band>
+		</detail>
+		<columnFooter>
+			<band height="10"  isSplitAllowed="true" >
+			</band>
+		</columnFooter>
+		<pageFooter>
+			<band height="30"  isSplitAllowed="false" >
+			</band>
+		</pageFooter>
+		<lastPageFooter>
+			<band height="9"  isSplitAllowed="true" >
+			</band>
+		</lastPageFooter>
+		<summary>
+			<band height="8"  isSplitAllowed="true" >
+			</band>
+		</summary>
+</jasperReport>

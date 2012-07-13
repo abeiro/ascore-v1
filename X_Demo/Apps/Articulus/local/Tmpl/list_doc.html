@@ -1,0 +1,98 @@
+
+<!--HEAD-->
+<style>
+td.dynamic_class_list_doc0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list_doc1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list_doc2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list_doc3 {text-align:center;vertical-align:top;background-color:white}
+a{
+  font-size:10px
+}
+.buttonik {
+    background : #e6e6e6;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+   
+  }
+
+.buttonik:hover {
+    background : #FFFFFF;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+     
+  }
+
+ .buttonik:active {
+    background : #FFFFFF;
+    padding : 2px;
+    border : inset 2px;
+    color : black;
+    text-decoration : none;
+    }
+.minibuttonik {
+    background : #e6e6e6;
+    font-size : 9px;
+    padding : 1px;
+    border : outset 1px;
+    color : black;
+    text-decoration : none;
+    
+  }
+
+.minibuttonik:active {
+    background : #FFFFFF;
+    padding : 2px;
+    border : inset 1px;
+    color : black;
+    text-decoration : none;
+     font-size:8 px;
+  }
+
+.minibuttonik:hover {
+    background : #FFFFFF;
+    padding : 1px;
+    border : groove 1px;
+    color : black;
+    text-decoration : none;
+    font-size:8 px;
+   }
+</style>
+<table width="95%" cellspacing="2" border="0" cellpadding="0" align="center" style="border:dotted 1px gray">
+<br><div align="center"><b>DOCUMENTOS</b></div><br>
+<th class="<!-- dynamic_class -->" align="center">TITULO</th>
+<th class="<!-- dynamic_class -->" align="center">CATEGORIA</th>
+<th class="<!-- dynamic_class -->">FECHA CREACION</th>
+<th class="<!-- dynamic_class -->">ULTIMA MODIFICACION</th>
+<th class="<!-- dynamic_class -->">&nbsp;</th>
+<!-- D:nohay -->
+<!--SET-->
+<tr>
+	<td class="<!-- dynamic_class -->" style="text-align:left"><a href="view.php?ID=<!-- D:ID -->"><!-- D:titulo --></a></td>	
+	<td class="<!-- dynamic_class -->" ><a href="index2.php?cat_id=<!-- D:cat_id -->"><!-- D:categoria --></a></td>	
+	<td class="<!-- dynamic_class -->" align="center"><!-- A:fecha_cre --></td> 
+	<td class="<!-- dynamic_class -->" align="center"><!-- A:fecha_mod --></td>
+	
+	<!-- I:isAdmin -->
+	<td class="<!-- dynamic_class -->" align="center" nowrap><a href="nuevo_documento.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->" class="minibuttonik">Editar</a> :: <a href="edit_documento-simple.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->" class="minibuttonik">Editar Simple</a> ::<a href="action_delete.php?ID=<!-- D:ID -->&cat_id=<!-- D:cat_id -->&type=doc" target="footer" class="minibuttonik">Borrar</a></td>
+	<!-- I:isAdmin -->
+	
+<tr><TD>&nbsp;</TD><td>&nbsp;</td></tr>	
+</tr>
+<!--END-->
+</table>
+<br>
+
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<br>

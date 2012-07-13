@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<reportname type="string" option="50">Informe</reportname>
+	<url type="string" option="50">Url</url>
+	<query_id type="ref">Query ID</query_id>
+	<tipo type="list" option="HardCoded|SoftCoded">Tipo de Informe</tipo>
+	<activo type="boolean" option="No">Activo</activo>
+	<printable type="boolean" option="No">Imprimible</printable>
+</cpd>
+

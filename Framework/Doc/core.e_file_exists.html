@@ -1,0 +1,33 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion e_file_exists</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>e_file_exists</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/core.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc"> 
+<br>e_file_exists (string nombre_de_fichero)
+<br>
+<br>Chequea la existencia de un fichero
+<br>buscando en el path actual. Extiende
+<br>la funcionalidad de file_exists
+<br>  
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">e_file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$filename</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">[</span><span style="color: #DD0000">"petitions"</span><span style="color: #007700">]++;<br />&nbsp;&nbsp;if&nbsp;(!isset(</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">[</span><span style="color: #0000BB">$filename</span><span style="color: #007700">]))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$current</span><span style="color: #007700">=</span><span style="color: #0000BB">ini_get</span><span style="color: #007700">(</span><span style="color: #DD0000">"include_path"</span><span style="color: #007700">).</span><span style="color: #0000BB">_PATH_SYMBOL</span><span style="color: #007700">.</span><span style="color: #DD0000">"/"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #DD0000">"PATH:&nbsp;</span><span style="color: #0000BB">$current</span><span style="color: #DD0000">"</span><span style="color: #007700">,</span><span style="color: #DD0000">"red"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$dirs</span><span style="color: #007700">=</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #0000BB">_PATH_SYMBOL</span><span style="color: #007700">,</span><span style="color: #0000BB">$current</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;foreach&nbsp;(</span><span style="color: #0000BB">$dirs&nbsp;</span><span style="color: #007700">as&nbsp;</span><span style="color: #0000BB">$k</span><span style="color: #007700">=&gt;</span><span style="color: #0000BB">$v</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$res</span><span style="color: #007700">=</span><span style="color: #0000BB">file_exists</span><span style="color: #007700">(</span><span style="color: #0000BB">$v</span><span style="color: #007700">.</span><span style="color: #DD0000">"/</span><span style="color: #0000BB">$filename</span><span style="color: #DD0000">"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #0000BB">$v</span><span style="color: #007700">.</span><span style="color: #DD0000">"/</span><span style="color: #0000BB">$filename</span><span style="color: #DD0000">"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$res</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #0000BB">$v</span><span style="color: #007700">.</span><span style="color: #DD0000">"/</span><span style="color: #0000BB">$filename</span><span style="color: #DD0000">"</span><span style="color: #007700">.</span><span style="color: #DD0000">"&nbsp;OK"</span><span style="color: #007700">,</span><span style="color: #DD0000">"blue"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">[</span><span style="color: #0000BB">$filename</span><span style="color: #007700">]=</span><span style="color: #0000BB">$v</span><span style="color: #007700">.</span><span style="color: #DD0000">"/</span><span style="color: #0000BB">$filename</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">[</span><span style="color: #DD0000">"cached"</span><span style="color: #007700">]++;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(</span><span style="color: #0000BB">$v</span><span style="color: #007700">.</span><span style="color: #DD0000">"/</span><span style="color: #0000BB">$filename</span><span style="color: #DD0000">"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">[</span><span style="color: #0000BB">$filename</span><span style="color: #007700">]=</span><span style="color: #0000BB">false</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">False</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />&nbsp;&nbsp;else<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$CACHE_FILE_EXIST</span><span style="color: #007700">[</span><span style="color: #0000BB">$filename</span><span style="color: #007700">];<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="core-index.html">up</a></div>
+		<br><br>
+		</body>
+		

@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion _handle_whitespace</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>_handle_whitespace</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_debug.php</span>
+		<br><br><h2><b>Print_a_class</b>::<b>_handle_whitespace</b></h2>M�todo: pertenece a la clase <b>Print_a_class</b><br>Clase <b>Print_a_class</b> </i>: derivada de <b></b><br><br><br><div class="desc">	}
+<br>	
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">_handle_whitespace</span><span style="color: #007700">(&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">str_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'&nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&amp;nbsp;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(array(</span><span style="color: #DD0000">'/&amp;nbsp;$/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'/^&amp;nbsp;/'</span><span style="color: #007700">),&nbsp;</span><span style="color: #DD0000">'&lt;span&nbsp;style="color:red;"&gt;_&lt;/span&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;replace&nbsp;spaces&nbsp;at&nbsp;the&nbsp;start/end&nbsp;of&nbsp;the&nbsp;STRING&nbsp;with&nbsp;red&nbsp;underscores&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$string&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">preg_replace</span><span style="color: #007700">(</span><span style="color: #DD0000">'/\t/'</span><span style="color: #007700">,&nbsp;</span><span style="color: #DD0000">'&amp;nbsp;&amp;nbsp;&lt;span&nbsp;style="border-bottom:#'</span><span style="color: #007700">.</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">value_bg_color</span><span style="color: #007700">.</span><span style="color: #DD0000">'&nbsp;solid&nbsp;1px;"&gt;&amp;nbsp;&lt;/span&gt;'</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">);&nbsp;</span><span style="color: #FF8000">/*&nbsp;replace&nbsp;tabulators&nbsp;with&nbsp;'_&nbsp;_'&nbsp;*/<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #0000BB">$string</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_debug-index.html">up</a></div>
+		<br><br>
+		</body>
+		

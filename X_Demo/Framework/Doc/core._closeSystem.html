@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion _closeSystem</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>_closeSystem</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/core.php</span>
+		<br><br>Funcion<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">_closeSystem</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$SYS</span><span style="color: #007700">,</span><span style="color: #0000BB">$DEBUGHANDLER</span><span style="color: #007700">,</span><span style="color: #0000BB">$CODEINITTIME</span><span style="color: #007700">,</span><span style="color: #0000BB">$monitor</span><span style="color: #007700">;<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">$CORETIME</span><span style="color: #007700">=</span><span style="color: #0000BB">getmicrotime</span><span style="color: #007700">()-</span><span style="color: #0000BB">$CODEINITTIME</span><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(isset(</span><span style="color: #0000BB">$SYS</span><span style="color: #007700">[</span><span style="color: #DD0000">"monitor_enabled"</span><span style="color: #007700">]))<br />&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$SYS</span><span style="color: #007700">[</span><span style="color: #DD0000">"monitor_enabled"</span><span style="color: #007700">])&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$monitor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">MonAverageUpdate</span><span style="color: #007700">(</span><span style="color: #0000BB">$CORETIME</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$stats</span><span style="color: #007700">=</span><span style="color: #0000BB">$monitor</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">MonGetStat</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #DD0000">"Ending&nbsp;System:&nbsp;Pages&nbsp;</span><span style="color: #007700">{</span><span style="color: #0000BB">$stats</span><span style="color: #007700">[</span><span style="color: #DD0000">"pages"</span><span style="color: #007700">]}</span><span style="color: #DD0000">&nbsp;Average:</span><span style="color: #007700">{</span><span style="color: #0000BB">$stats</span><span style="color: #007700">[</span><span style="color: #DD0000">"avg"</span><span style="color: #007700">]}</span><span style="color: #DD0000">&nbsp;spp"</span><span style="color: #007700">,</span><span style="color: #DD0000">"white"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//$monitor-&gt;MonClose();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">ob_start</span><span style="color: #007700">();</span><span style="color: #0000BB">print_r</span><span style="color: #007700">(</span><span style="color: #0000BB">error_get_last</span><span style="color: #007700">());</span><span style="color: #0000BB">$err</span><span style="color: #007700">=</span><span style="color: #0000BB">ob_get_contents</span><span style="color: #007700">();</span><span style="color: #0000BB">ob_end_clean</span><span style="color: #007700">();<br />&nbsp;&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #DD0000">"Debug:&nbsp;</span><span style="color: #0000BB">$err</span><span style="color: #DD0000">"</span><span style="color: #007700">,</span><span style="color: #DD0000">"red"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #DD0000">"Ending&nbsp;System:&nbsp;Total&nbsp;ms&nbsp;of&nbsp;ASCore:</span><span style="color: #0000BB">$CORETIME</span><span style="color: #DD0000">"</span><span style="color: #007700">,</span><span style="color: #DD0000">"white"</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fflush</span><span style="color: #007700">(</span><span style="color: #0000BB">$DEBUGHANDLER</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fclose</span><span style="color: #007700">(</span><span style="color: #0000BB">$DEBUGHANDLER</span><span style="color: #007700">);<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="core-index.html">up</a></div>
+		<br><br>
+		</body>
+		

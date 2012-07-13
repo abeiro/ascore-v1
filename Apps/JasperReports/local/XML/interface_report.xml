@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<interface>
+	<entity>report</entity>
+	<relationships>
+		<report>
+			<name>report</name>
+			<label>Informes</label>
+		</report>
+		
+	</relationships>
+</interface>

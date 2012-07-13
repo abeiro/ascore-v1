@@ -1,0 +1,66 @@
+
+<!--HEAD-->
+<style>
+td.dynamic_class_list0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list3 {text-align:center;vertical-align:top;background-color:white}
+a{
+  font-size:10px
+}
+.buttonik {
+    background : #e6e6e6;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+   
+  }
+
+.buttonik:hover {
+    background : #FFFFFF;
+    padding : 2px;
+    border : outset 2px;
+    color : black;
+    text-decoration : none;
+     
+  }
+
+ .buttonik:active {
+    background : #FFFFFF;
+    padding : 2px;
+    border : inset 2px;
+    color : black;
+    text-decoration : none;
+    }
+
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<th class="<!-- dynamic_class -->"><a href="<!-- N:navvars -->&sort=apellidos">Apellidos</a></th>
+<th class="<!-- dynamic_class -->"><a href="<!-- N:navvars -->&sort=nombre">Nombre</th>
+<th class="<!-- dynamic_class -->"><a href="<!-- N:navvars -->&sort=grupo_id">Grupo</a></th>
+
+
+<!--SET-->
+<tr>
+	<td class="<!-- dynamic_class -->" width="20%"><a href="view.php?ID=<!-- D:ID -->"><!-- D:apellidos --></a></td>	
+	<td class="<!-- dynamic_class -->" width="20%"><a href="view.php?ID=<!-- D:ID -->"><!-- D:nombre --></a></td>
+ 	<td class="<!-- dynamic_class -->" width="20%"><!-- D:grupos --></td> 
+	<td class="<!-- dynamic_class -->"></td>
+	<td class="<!-- dynamic_class -->" width="7%"><a href="nuevo_contacto.php?ID=<!-- D:ID -->" class="buttonik"> Editar 
+        <td class="<!-- dynamic_class -->" width="7%"><a target="footer" href="delete.php?ID=<!-- D:ID -->&grupo_id=<!-- D:grupo_id -->" class="buttonik"> Borrar</a></td>
+	
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<br>

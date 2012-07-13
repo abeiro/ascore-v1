@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<entity>jasperreport</entity>
+	<name>jasperreport</name>
+	<id>jasperreport</id>
+	<action>public_w_operation_save.php</action>
+	<method>post</method>
+	<target>operation</target>
+	<elements>
+		<reportname>
+			<type>text</type>
+			<attributes>
+				<maxlength>50</maxlength>
+			</attributes>
+			<format>string</format>
+			<label>Informe</label>
+		</reportname>
+		<filename>
+			<type>text</type>
+			<attributes>
+				<maxlength>50</maxlength>
+			</attributes>
+			<format>string</format>
+			<label>URL</label>
+		</filename>
+		<class>
+			<type>text</type>
+			<attributes>
+				<maxlength>50</maxlength>
+			</attributes>
+			<format>string</format>
+			<label>Clase asociada</label>
+		</class>
+		<activo>
+			<type>checkbox</type>
+			<format>boolean</format>
+			<label>Activo</label>
+		</activo>
+		<printable>
+			<type>checkbox</type>
+			<format>boolean</format>
+			<label>Imprimible</label>
+		</printable>
+	</elements>
+</form>

@@ -1,0 +1,60 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_list_users0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list_users1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list_users2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list_users3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+
+<div align="center">
+<table width="100%" cellspacing="1" border="0" cellpadding="2" align="center" bgcolor="#EAD1C6" style="border:solid 1px gray">
+<th>Nº</th>
+<th><a href="<!-- N:navvars -->&sort=username">Usuario</a></th>
+
+<th><a href="<!-- N:navvars -->&sort=nombre">Nombre</a></th>
+<th><a href="<!-- N:navvars -->&sort=apellidos">Apellidos</a></th>
+<th><a href="<!-- N:navvars -->&sort=grupos">Grupos</a></th>
+<th><a href="<!-- N:navvars -->&sort=activo">Activo</a></th>
+<th></th>
+
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><!-- D:ID --></td>
+
+	<td class="<!-- dynamic_class -->" style="text-align:left;"><A href="view_user.php?ID=<!-- D:ID -->"><!-- D:username --></A></td>
+
+
+
+	<td class="<!-- dynamic_class -->" style="text-align:left;"><!-- D:nombre --></td>
+
+	<td class="<!-- dynamic_class -->" style="text-align:left;"><!-- D:apellidos --></td>
+
+	<td class="<!-- dynamic_class -->" ><!-- D:grupos_nombre --></td>
+
+	<td class="<!-- dynamic_class -->" nowrap><!-- D:activo --></td>
+	
+	<td nowrap class="<!-- dynamic_class -->"  class="<!-- dynamic_class -->" style="padding : 2px; text-align : center;" width="220">
+	<!-- NI:lsecurity -->
+	 <div class="sexybutton"><a class="sexybutton"  target="footer"  href="action_del_user.php?ID=<!-- D:ID -->" onclick="return confirm('<!-- K:_("¿Esta usted seguro?") -->')"><!-- K:_('borrar') --></a></div>
+	 <div class="sexybutton"><a href="add_user.php?ID=<!-- D:ID -->" class="sexybutton"><!-- K:_('editar') --></a></div>
+	<div class="sexybutton"><a href="action_reset_pwd.php?ID=<!-- D:ID -->" class="sexybutton" onclick="return confirm('<!-- K:_("¿Esta usted seguro?") -->')" target="footer"><!-- K:_('resetear password') --></a></div>
+	<!-- NI:lsecurity -->
+	</td>
+    	
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="100%" cellspacing="0" border="0" cellpadding="4" align="center" >
+<tr><th align="left" width="120">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right" width="120">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+</div>
+<br>

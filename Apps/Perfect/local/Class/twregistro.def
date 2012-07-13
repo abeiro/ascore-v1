@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+	<twar_id type="ref"	option="twar:titulo">War</twar_id>
+	<user_id type="ref"	option="user:username">Player</user_id>
+	<tparty_id type="ref"	option="tparty:nombre">Party</tparty_id>
+	<activo	type="boolean"	option="Si">Confirmado</activo>
+</cpd>

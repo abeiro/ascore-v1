@@ -1,0 +1,4 @@
+03-28-11 16:32:03	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-28-11 16:32:04	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-28-11 16:32:04	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false
+03-28-11 16:32:05	127.0.0.1	INFO	No User	Disabling Public links, PUBLIC_DOWNLOAD_FOLDER is not writeable!	folder=false;is_dir=false;is_writeable=false

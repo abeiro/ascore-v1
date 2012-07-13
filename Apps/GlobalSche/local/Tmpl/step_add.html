@@ -1,0 +1,119 @@
+<!--HEAD-->
+<!--SET-->
+<script type="text/javascript" language="JavaScript1.3">
+<!--
+function checkDate(ele) {
+ dat=document.getElementById(ele).value;
+ b1=dat.search("/");
+ dat2=dat.slice(b1+1);
+ b2=dat2.search("/")+b1+1;
+ dia=parseInt(dat.slice(0,b1));
+ mes=parseInt(dat.slice(b1+1,b2));
+ an=parseInt(dat.slice(b2+1));
+ ok=0;
+ if ((dia>31)||(dia<1)||(isNaN(dia)))
+  ok=1;
+ if ((mes>12)||(mes<1)||(isNaN(mes)))
+  ok=1;
+ if ((an<2000)||(an>2030)||(isNaN(an)))
+  ok=1;
+ if (ok==1) {
+  alert("Fecha incorrecta");
+  dia="01";
+  mes="01";
+  an="2004";
+  document.getElementById(ele).value="";     
+  }
+}
+
+function checkMoney(ele) {
+
+  money=new String(document.getElementById(ele).value);
+  dot=money.indexOf(",");
+  if (dot!=-1) {
+    money2=money.slice(0,dot)+".";
+    money2+=money.slice(dot+1);
+    money=money2;
+  }
+  value=parseFloat(money);
+  if (isNaN(value)) {
+    alert("Valor monetario incorrecto");
+    money=0;
+  }
+  else
+    money=value.toString();
+
+  document.getElementById(ele).value=money;     
+}
+
+
+
+-->
+</script>
+<style  type="text/css">
+td.dynamic_class_test0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_test1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_test2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_test3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<tr>
+  <td>Tarea</td>
+
+  <td><select id="gtask_id" name="gtask_id"><!-- X:gtask_id --></select>
+  </td>
+</tr>
+<tr>
+  <td>Nombre</td>
+
+  <td><input type="text" name="titulo" maxlength="32"
+            value="<!-- D:titulo -->" size="32"/>
+  </td>
+</tr>
+<tr>
+  <td>Secuencia</td>
+
+  <td><input type="text" id="secuencia" name="secuencia" maxlength="11"
+          size="11" value="<!-- D:secuencia -->"/>
+  </td>
+</tr>
+<tr>
+  <td>Paso Activo</td>
+
+  <td><input type="checkbox" id="activo" name="activo" <!-- G:activo -->/>
+  </td>
+</tr>
+<tr>
+  <td>Comando</td>
+
+  <td><textarea name="comando" cols="50"><!-- D:comando --></textarea>
+  </td>
+</tr>
+<tr>
+  <td>Ficheros involucrados</td>
+
+  <td><textarea name="ficheros" cols="50"><!-- D:ficheros --></textarea>
+  </td>
+</tr>
+<tr>
+  <td>Tipo</td>
+
+  <td><select name="tipo">  <option value="Ejecución" <!-- O:tipoEjecución -->>Ejecución</option>
+  <option value="Espera" <!-- O:tipoEspera -->>Espera</option>
+</select>
+  </td>
+</tr>
+<tr>
+  <td>Último error/mensaje</td>
+
+  <td><textarea name="ultimoerror" cols="50"><!-- D:ultimoerror --></textarea>
+  </td>
+</tr>
+
+
+<tr>
+  <td colspan="2" align="right"><!-- D:_boton0 -->&nbsp;&nbsp;<!-- D:_boton1 -->&nbsp;&nbsp;<!-- D:_boton2 -->&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+<input type="hidden" name="ID" value="<!-- D:ID -->"/>
+<!--END-->

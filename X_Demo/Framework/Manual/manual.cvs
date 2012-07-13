@@ -1,0 +1,13 @@
+body {
+	font-family :verdana, geneva, sans-serif;
+	font-size: 11px;
+   }
+   div {
+	margin-left:20px;
+	}
+   h3 {
+	margin-left:20px;
+	}
+   p {
+	text-align:justify;
+   }

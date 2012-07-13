@@ -1,0 +1,36 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_list_prim_ult_notice0 {text-align:center;vertical-align:top;background-color:#EEEEF6}
+td.dynamic_class_list_prim_ult_notice1 {text-align:center;vertical-align:top;background-color:white}
+td.dynamic_class_list_prim_ult_notice2 {text-align:center;vertical-align:top;background-color:#F7F7F7}
+td.dynamic_class_list_prim_ult_notice3 {text-align:center;vertical-align:top;background-color:white}
+</style>
+
+<table align="center" border="0" width="100%" style="border:solid 1px gray;background-color:#EAD1C6">
+<th><a href="<!-- N:navvars -->&sort=ID">N</a></th>
+<th><a href="<!-- N:navvars -->&sort=titulo">Titulo</a></th>
+<th><a href="<!-- N:navvars -->&sort=fecha_pub">Fecha</a></th>
+<TH>Operaciones</TH>
+  
+  <!--SET-->
+  <tr>
+    <TD class="<!-- dynamic_class -->">
+      <!-- D:ID -->
+    </td>
+    <td class="<!-- dynamic_class -->" style="text-align:left">
+        <a href="view_notice.php?ID=<!-- D:ID -->" class="notice"><b><!-- D:titulo --></b></a></TD>
+    <td class="<!-- dynamic_class -->" style="text-align:left"><!-- A:fecha_pub --></TD>
+    <td class="<!-- dynamic_class -->">
+        <a href="view_notice.php?ID=<!-- D:ID -->" class="minibuttonik">Ver mas...</a> ::
+        <!-- I:isAdmin -->
+        <a href="add_notice.php?ID=<!-- D:ID -->" class="minibuttonik" >Editar</a> ::
+        <a href="add_notice_simple.php?ID=<!-- D:ID -->" class="minibuttonik" >Edicion simple</a> ::
+        <A href="delete_notice.php?ID=<!-- D:ID -->" class="minibuttonik">Borrar</a>
+        <!-- I:isAdmin -->
+    </TD>
+  </tr>
+  <!--END-->
+</table>
+
+
+

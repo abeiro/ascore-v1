@@ -1,0 +1,45 @@
+<!--HEAD-->
+<style>
+td.dynamic_class_list_children0 {text-align:left;vertical-align:middle;background-color:#EEEEF6}
+td.dynamic_class_list_children1 {text-align:left;vertical-align:middle;background-color:white}
+td.dynamic_class_list_children2 {text-align:left;vertical-align:middle;background-color:#F7F7F7}
+td.dynamic_class_list_children3 {text-align:left;vertical-align:middle;background-color:white}
+
+</style>
+<table width="95%" cellspacing="0" border="0" cellpadding="5" align="center" style="border:solid 1px gray">
+
+
+<!--SET-->
+
+<tr>
+	<TD width="2%" class="<!-- dynamic_class -->"><STRONG><!-- D:nuevo3 --></STRONG> </TD>	
+	<td align="left" class="<!-- dynamic_class -->" width="15%">
+	<b>Autor:</b>&nbsp;<!-- D:autor --><br>
+	
+	<b>Fecha:</b>&nbsp;<!-- A:fecha --><br>
+	<b>Hora:</b>&nbsp;<!-- T:fecha --> </td>
+
+	<td align="left" class="<!-- dynamic_class -->" style="text-align:left"><!-- D:msg --></td>
+        <td  width="30" class="<!-- dynamic_class -->"><a href="post.php?ID=<!-- D:ID -->&p_id=<!-- D:p_id -->&foro_id=<!-- D:foro_id -->" class="minibuttonik" >Editar</a></td><td width="30" class="<!-- dynamic_class -->" align="center"><a target="footer" class="minibuttonik" href="delete.php?ID=<!-- D:ID -->&p_id=<!-- D:p_id -->&foro_id=<!-- D:foro_id -->">Borrar</a></td>
+
+    
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%"><td align="center"><a href="post.php?p_id=<!-- D:p_id -->&foro_id=<!-- D:foro_id -->" class="minibuttonik">Responder</a></td>
+<br><br><td align="center">
+<a href="index2.php?foro_id=<!-- D:foro_id -->" class="minibuttonik">&nbsp;Volver&nbsp;</a></td>
+</table>
+<br>
+<br>
+<table width="95%" cellspacing="0" border="0" cellpadding="4" align="center" style="border:solid 1px gray">
+<tr><th align="left" width="33%">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right" width="33%">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>

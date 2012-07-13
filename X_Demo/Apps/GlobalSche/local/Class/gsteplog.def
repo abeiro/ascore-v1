@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <gtasklog_id type="ref" option="gtasklog:etiqueta">Registro</gtasklog_id>
+  <gtask_id type="ref" option="gtask:titulo">Tarea</gtask_id>
+  <gstep_id type="ref" option="gstep:titulo">Paso</gstep_id>
+  <estado type="list" option="No Iniciada|En Curso|Cancelada|Terminada">Estado</estado>
+  <rini type="date"  option="%d/%m/%Y %H:%M">Fecha/Hora Inicio Real</rini>
+  <fin type="date"  option="%d/%m/%Y %H:%M">Fecha/Hora final</fin>
+  <ultimoerror type="string" option="1024">Último error/mensaje</ultimoerror>
+  <secuencia  type="int">Secuencia</secuencia>
+  <host type="ref" option="ghost:identificador">Host</host>
+  <comando  type="text" option="1024">comando</comando>
+  <ficheros type="string" option="1024">ficheros involucrados</ficheros>
+  <path type="string" option="1024">path de ejecucion</path>
+  <tipo type="list" option="Ejecucion|Espera|Crear Script">Tipo</tipo>
+  <script type="text" option="65534">Scripting</script>
+  <maxreturnstatus type="string"  option="64">Valores de retorno admitidos</maxreturnstatus>
+  <reruninterval type="int">Si el paso falla, reprogramar tarea x minutos despues</reruninterval>
+</cpd>

@@ -1,0 +1,111 @@
+<!--HEAD-->
+<!--SET-->
+
+<script type="text/javascript" language="JavaScript1.3">
+
+function edit_selections() 
+
+{
+	formulario=document.getElementById('listForm');
+	elementos=formulario.length;
+	for (i=0;i<elementos;i++)
+		if (formulario.elements[i].checked==true) {
+			location.href="add_form.php?inode=<!-- D:inode -->&ID="+formulario.elements[i].value;
+			break;	
+		}
+
+}
+
+function del_selections() 
+
+{
+	formulario=document.getElementById('listForm');
+	elementos=formulario.length;
+	deletions="";
+	for (i=0;i<elementos;i++)
+		if (formulario.elements[i].checked==true) {
+			deletions=deletions+","+formulario.elements[i].value;
+				
+		}
+	if (confirm('Esta seguro de borrar estos elementos?'))
+		parent.footer.location.href="action_del_elements.php?IDS="+deletions+'&inode=<!-- D:inode -->';
+
+}
+
+function copy_selections() 
+
+{
+	formulario=document.getElementById('listForm');
+	elementos=formulario.length;
+	deletions="";
+	for (i=0;i<elementos;i++)
+		if (formulario.elements[i].checked==true) {
+			deletions=deletions+","+formulario.elements[i].value;
+				
+		}
+	parent.footer.location.href="action_copy_elements.php?IDS="+deletions+'&inode=<!-- D:inode -->';
+
+}
+function cut_selections() 
+
+{
+	formulario=document.getElementById('listForm');
+	elementos=formulario.length;
+	deletions="";
+	for (i=0;i<elementos;i++)
+		if (formulario.elements[i].checked==true) {
+			deletions=deletions+","+formulario.elements[i].value;
+				
+		}
+	parent.footer.location.href="action_cut_elements.php?IDS="+deletions+'&inode=<!-- D:inode -->';
+
+}
+
+function paste_selections() 
+
+{
+	parent.footer.location.href="action_cmd_paste.php?inode=<!-- D:inode -->";
+
+}
+
+
+</script>
+
+<div align="center">
+<table width="95%" cellspacing="0" border="0" cellpadding="0" align="center" bgcolor="#eeeee6" style="border : 1px solid gray">
+ <tr>
+ 	
+<td style="padding : 6px;"><A href="cmd_up.php?inode=<!-- D:inode -->"><IMG src="<!-- D:ROOT -->/Apps/Memo/local/Image/up.gif" width="22" height="22" border="0" title="subir un nivel" alt="subir un nivel"></A></td>
+
+<td style="padding : 6px;"><A href="list.php?inode=<!-- D:inode -->"><IMG src="<!-- D:ROOT -->/Apps/Memo/local/Image/back.gif" width="22" height="22" border="0"
+title="volver" alt="volver"></A></td>
+
+<td style="padding : 6px;"><A href="bookmarks.php?name=/Homes/~"><IMG src="<!-- D:ROOT -->/Apps/Memo/local/Image/gohome.gif" width="22" height="22" border="0"
+title="volver a directorio personal" alt="volver a directorio personal"></A></td>
+
+<td style="padding : 6px;"><A href="list.php?inode=<!-- D:inode -->"><IMG src="<!-- D:ROOT -->/Apps/Memo/local/Image/reload.gif" width="22" height="22" border="0" title="actualizar" alt="actualizar"></A></td>
+
+<td style="padding : 6px;"><A href="add_form.php?ID=1&inode=<!-- D:inode -->&type=folder"><IMG  
+  src="<!-- D:ROOT -->/Apps/Memo/local/Image/folder_new.gif" width="22" height="22" border="0" title="nueva carpeta" alt="nueva carpeta"></A></td>
+ 
+<td style="padding : 6px;"><A href="add_form.php?ID=1&inode=<!-- D:inode -->&type=archive"><IMG src="<!-- D:ROOT -->/Apps/Memo/local/Image/filenew.gif" width="22" height="22" border="0" title="nuevo fichero" alt="nuevo fichero"></A></td>
+
+<td style="padding : 6px;"><IMG onclick="copy_selections()" style="cursor:pointer" src="<!-- D:ROOT -->/Apps/Memo/local/Image/copy.gif" width="22" height="22" border="0" title="copiar seleccion a portapapeles" alt="copiar seleccion a portapapeles"></td>
+
+<td style="padding : 6px;"><IMG onclick="cut_selections()" style="cursor:pointer" src="<!-- D:ROOT -->/Apps/Memo/local/Image/cut.gif" width="22" height="22" border="0" title="cortar seleccion a portapapeles" alt="cortar seleccion a portapapeles"></td>
+
+<td style="padding : 6px;"><IMG onclick="paste_selections()" style="cursor:pointer" src="<!-- D:ROOT -->/Apps/Memo/local/Image/paste.gif" width="22" height="22" border="0" title="pegar contenido portapapeles aqui" alt="pegar contenido portapapeles aqui"></td>
+
+
+<td style="padding : 6px;"><IMG onclick="edit_selections()" style="cursor:pointer" src="<!-- D:ROOT -->/Apps/Memo/local/Image/edit.gif" width="22" height="22" border="0" title="editar seleccion" alt="editar seleccion"></td>
+
+<td style="padding : 6px;"><IMG onclick="del_selections()" style="cursor:pointer" src="<!-- D:ROOT -->/Apps/Memo/local/Image/del.gif" width="22" height="22" border="0" title="borrar seleccion" alt="borrar seleccion"></td>
+
+<td style="padding : 6px;" width="99%">&nbsp;</td>
+
+</tr>
+<tr>
+
+<td style="padding : 6px;" colspan="12">
+
+<!--END-->

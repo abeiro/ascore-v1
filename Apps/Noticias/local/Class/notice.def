@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<titulo type="string" option="100">Titulo</titulo>
+	<body type="longtext" option="1024">Cuerpo de la noticia</body>
+	<fecha_pub type="date">Fecha publicacion</fecha_pub>
+	<id_cat type="ref">Categoria</id_cat>
+	<resumen type="longtext" option="1024">Resumen de la noticia</resumen>
+	<adjunto type="ref">Foto adjunta</adjunto>
+	<keyword type="string" option="100">Palabras clave</keyword>
+	<visita type="int">Numero visitas</visita>
+	<fech_ult_consulta type="date">F. ultima consulta</fech_ult_consulta>
+	<notas type="string" option="100">Notas</notas>
+	<fuente type="string" option="100">fuente</fuente>
+	<extra type="string" option="100">Informacion Extra</extra>
+</cpd>
+

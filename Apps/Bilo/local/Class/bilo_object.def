@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<cpd>
+	<fecha type="date">Dia</fecha>
+	<entrada type="date">Entrada</entrada>
+	<salida type="date">Salida</salida>
+	<usuario type="xref">Usuario</usuario>
+</cpd>
+

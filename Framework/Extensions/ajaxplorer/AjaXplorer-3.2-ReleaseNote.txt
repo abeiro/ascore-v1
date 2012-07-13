@@ -1,0 +1,188 @@
+AjaXplorer Core 3.2 Release Note
+
+[Security]
+Sanitize inputs whenever possible and necessary. Do not display file/line in error message if not in Debug Mode.
+Implement password strength and password length check whenever necessary. 
+Use secure token against CSRF. Massive changes.
+Protect against brute force attack by using Captcha instead of blocking user account (can lead to denial of service).
+Detect HTTPS usage and set secure flag accordingly. Do not set user's preferences in cookie, this is useless.
+Set session cookie_httpOnly flag.
+
+[Core Bugs]
+fix crossRepositoryCopy when no users enabled (shutdown_function does not seem to properly save the session...)
+Fix ZIP default actions
+Remove the systematic "root listing" called BEFORE repository switch.
+Fix Remember me that was broken
+Fix various GUI loading issues : no need to manually call fireContextRefresh() after ajxp is loaded if the TreeView is not present. Impacted gui.mobile and widget_sample in consequence. Also, do not send context_changed event when in fact the node did not change : less call to the server for saving ls_history.
+It seems that some php version have problems with parse_url and utf8, so call utf8 decoding after getting the "realFSReference"
+In Settings : do not create "Shared Elements" from GUI / Do not display Meta Sources edition for read-only repositories
+
+[Gui]
+Do not set padding in percentage for IE
+Make sure that IE submits the form on "ENTER"
+Small touches of CSS3 - Added Modernizr library.
+Don't forget to call destroy() on protomenu to avoid multiplication of unused divs in the HTML.
+Line-height here and there for cross browser homogenisation.
+Fix this old lightbox beeing to high / Fix IE login box display bug.
+
+[Plugins]
+All textual editors : Fix the \\n problem in JS alerts, Add jsp extension to codepress and text editors
+editor.ckeditor : Bind to the proper CKEditor events instead of listening for modifications in a loop...
+conf.sql : Shared Elements were not properly implemented when using CONF.SQL driver. 
+conf.sql : Fixed Performance issue when having a huge number of users in a db. There's still some pagination to implement on the users listing.
+auth.remote : Add a checkPassword parameter to the "login" action
+meta.exif : UTF8 encode exif values
+meta.exif : Do not depend on access.fs
+meta.exif : Colspan display bug in longitude cell
+access.ssh : is now too far from the trunk, won't be supported anymore in 3.2
+meta.svn : Fix svn download : no size retrieven case / download inside an iframe.
+meta.svn : use PHP_EOL constant instead of \r\n
+
+
+-- File Changes since AjaXplorer 3.1.1
+Massive changes, as the security changes impacted every part of the code.
+
+>> svn diff -r 1791:1846 --summarize
+
+M       content.php
+D       plugins\access.ssh
+A       plugins\meta.exif\i18n\es.php
+M       plugins\meta.exif\class.ExifCellRenderer.js
+M       plugins\meta.exif\class.ExifMetaManager.php
+M       plugins\editor.diaporama\class.Diaporama.js
+M       plugins\editor.imagick\class.IMagickPreviewer.js
+M       plugins\editor.ckeditor\class.AjxpCkEditor.js
+M       plugins\access.ftp\class.ftpAccessDriver.php
+M       plugins\auth.ftp\class.ftpAuthDriver.php
+M       plugins\auth.ftp\manifest.xml
+M       plugins\gui.mobile\manifest.xml
+A       plugins\meta.svn\i18n\es.php
+M       plugins\meta.svn\class.SVNLogger.js
+M       plugins\meta.svn\class.SvnManager.php
+M       plugins\log.text\class.textLogDriver.php
+M       plugins\gui.ajax\ajxpclient_actions.xml
+M       plugins\gui.ajax\class.AJXP_ClientDriver.php
+M       plugins\gui.ajax\widget_sample.html
+M       plugins\access.ajxp_conf\class.ajxp_confAccessDriver.php
+M       plugins\access.ajxp_conf\i18n\hu.php
+M       plugins\access.ajxp_conf\i18n\fi.php
+M       plugins\access.ajxp_conf\i18n\en.php
+M       plugins\access.ajxp_conf\i18n\es.php
+M       plugins\access.ajxp_conf\i18n\fr.php
+M       plugins\access.ajxp_conf\i18n\de.php
+M       plugins\access.ajxp_conf\ajxp_confActions.xml
+M       plugins\access.ajxp_conf\class.ConfigEditor.js
+M       plugins\access.fs\class.fsAccessDriver.php
+M       plugins\access.fs\fsActions.xml
+A       plugins\editor.exif\i18n\es.php
+M       plugins\editor.exif\class.ExifEditor.js
+M       plugins\editor.exif\manifest.xml
+M       plugins\access.remote_fs\class.remote_fsAccessDriver.php
+M       plugins\conf.sql\create.sql
+M       plugins\conf.sql\class.AJXP_User.php
+M       plugins\conf.sql\class.sqlConfDriver.php
+A       plugins\editor.openlayer\i18n\es.php
+M       plugins\editor.openlayer\manifest.xml
+M       plugins\editor.openlayer\class.OLViewer.js
+M       plugins\editor.pixlr\class.PixlrEditor.php
+M       plugins\editor.pixlr\class.PixlrEditor.js
+M       plugins\editor.audio\class.AudioPreviewer.php
+M       plugins\editor.audio\class.AudioPreviewer.js
+M       plugins\access.ajxp_shared\i18n\es.php
+M       plugins\access.ajxp_shared\class.ajxpSharedAccessDriver.php
+M       plugins\access.ajxp_shared\manifest.xml
+M       plugins\auth.remote\glueCode.php
+M       plugins\editor.video\class.VideoPreviewer.js
+M       plugins\conf.serial\class.AJXP_User.php
+M       plugins\conf.serial\class.serialConfDriver.php
+A       plugins\access.mysql\resources\i18n\es.php
+A       plugins\access.wms\i18n\es.php
+M       plugins\uploader.flex\flash_tpl.html
+M       plugins\uploader.flex\manifest.xml
+M       plugins\editor.text\manifest.xml
+M       plugins\editor.text\class.TextEditor.js
+M       plugins\editor.codepress\manifest.xml
+M       plugins\uploader.jumploader\jumploader_tpl.html
+M       plugins\uploader.jumploader\manifest.xml
+M       plugins\uploader.html\class.XHRUploader.js
+M       server\xml\standard_auth_actions.xml
+A       server\tests\test.SSLEncryption.php
+M       server\tests\test.ServerEncoding.php
+M       server\conf\base.conf.php
+M       server\conf\conf.php
+M       server\classes\class.AbstractAjxpUser.php
+M       server\classes\class.AbstractConfDriver.php
+A       server\classes\securimage\LICENSE.txt
+A       server\classes\securimage\README.FONT.txt
+A       server\classes\securimage\gdfonts\automatic.gdf
+A       server\classes\securimage\gdfonts
+A       server\classes\securimage\images\refresh.gif
+A       server\classes\securimage\images
+A       server\classes\securimage\securimage.php
+A       server\classes\securimage\README.txt
+A       server\classes\securimage\AHGBold.ttf
+A       server\classes\securimage\words\words.txt
+A       server\classes\securimage\words
+A       server\classes\securimage
+M       server\classes\class.AbstractAccessDriver.php
+M       server\classes\class.AbstractAuthDriver.php
+M       server\classes\class.ConfService.php
+A       server\classes\class.CaptchaProvider.php
+M       server\classes\class.HttpClient.php
+M       server\classes\class.AJXP_XMLWriter.php
+M       server\classes\class.AuthService.php
+M       server\classes\class.AJXP_Utils.php
+M       server\classes\class.UserSelection.php
+M       client\i18n\ja.php
+M       client\i18n\eus.php
+M       client\i18n\he.php
+M       client\i18n\fi.php
+M       client\i18n\en.php
+M       client\i18n\cs.php
+M       client\i18n\es.php
+M       client\i18n\fr.php
+M       client\i18n\gr.php
+M       client\i18n\zh-tw.php
+M       client\i18n\nl.php
+M       client\i18n\pl.php
+M       client\i18n\no.php
+M       client\i18n\hu.php
+M       client\i18n\it.php
+M       client\i18n\kr.php
+M       client\i18n\zh.php
+M       client\i18n\ca.php
+M       client\i18n\da.php
+M       client\i18n\pt-br.php
+M       client\i18n\tr.php
+M       client\i18n\ru.php
+M       client\i18n\de.php
+M       client\i18n\sv.php
+M       client\html\gui.html
+M       client\html\gui_debug.html
+M       client\themes\oxygen\images\ToolbarBg.gif
+M       client\themes\oxygen\images\Toolbar.psd
+M       client\themes\oxygen\css\screen.css
+M       client\themes\oxygen\css\allz.css
+M       client\themes\oxygen\css\ajaxplorer.css
+M       client\js\scriptslist.txt
+M       client\js\ajaxplorer.js
+M       client\js\ajaxplorer_boot.js
+M       client\js\lib\leightbox\lightbox.js
+M       client\js\lib\prototype\proto.menu.js
+A       client\js\lib\prototype\protopass.js
+M       client\js\lib\prototype\shadower.js
+A       client\js\lib\modernizr\modernizr.min.js
+A       client\js\lib\modernizr
+M       client\js\lib\webfx\ajxptree.js
+M       client\js\ajaxplorer\class.Connexion.js
+M       client\js\ajaxplorer\class.AjxpAutoCompleter.js
+M       client\js\ajaxplorer\class.Ajaxplorer.js
+M       client\js\ajaxplorer\class.TreeSelector.js
+M       client\js\ajaxplorer\class.AjxpBootstrap.js
+M       client\js\ajaxplorer\class.AbstractEditor.js
+M       client\js\ajaxplorer\class.AjxpDataModel.js
+M       client\js\ajaxplorer\class.ActionsToolbar.js
+M       client\js\ajaxplorer\class.ActionsManager.js
+M       client\js\ajaxplorer\class.Modal.js
+M       client\js\ajaxplorer\class.FilesList.js
+M       client\js\bootlist.txt

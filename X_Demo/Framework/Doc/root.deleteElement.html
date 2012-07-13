@@ -1,0 +1,41 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion deleteElement</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>deleteElement</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/root.php</span>
+		<br><br><h2><b>core</b>::<b>Ente</b>::<b>deleteElement</b></h2>M�todo: pertenece a la clase <b>Ente</b><br>Clase <b>Ente</b> </i>: derivada de <b>core</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_user_pref</b>::<b>deleteElement</b></h2>M�todo: pertenece a la clase <b>Ente_user_pref</b><br>Clase <b>Ente_user_pref</b> </i>: derivada de <b>Ente</b><br><br><br><div class="desc">            
+<br>            
+<br>            FUNCION deleteElement
+<br>            
+<br>            Sintaxis  deleteElement($keyElement)
+<br>            $keyElement  Clave del elemento a borrar
+<br>            Descripción:
+<br>            Elimina el elemento identificado por $keyElement dentro de la clave
+<br>            form elements de array del formulario que se encuentra dentro del
+<br>            objeto que llama al método
+<br>            
+<br>            Transforma el array modificado en XML y lo almacena como atributo
+<br>            dentro del objeto
+<br>            
+<br>            
+<br>            
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">deleteElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$keyElement</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unset(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">[</span><span style="color: #DD0000">"form"</span><span style="color: #007700">][</span><span style="color: #DD0000">"elements"</span><span style="color: #007700">][</span><span style="color: #0000BB">$keyElement</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayToXml</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">,</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xml</span><span style="color: #007700">=</span><span style="color: #0000BB">$xml</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="root-index.html">up</a></div>
+		<br><br>
+		</body>
+		

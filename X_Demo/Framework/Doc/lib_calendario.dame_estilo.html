@@ -1,0 +1,27 @@
+
+		<html>
+		<head>
+		<title>Documentacion CoreG2 Funcion dame_estilo</title>
+		</head>
+		<style>
+		body 		{font-family:verdana,sans,serif; font-size:10px;}
+		.mini		{font-size:8px;}
+		.box		{border:1px solid gray;background:#EEEEFF;}
+		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
+		</style>
+		<body>
+		<h1>CoreG2 version 0.99.9</h1>
+		<h2>dame_estilo</h2>
+		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/Lib/lib_calendario.php</span>
+		<br><br><br><br><div class="desc">}
+<br>
+</div>
+<br><div class="box"><code><span style="color: #000000">
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">dame_estilo</span><span style="color: #007700">(</span><span style="color: #0000BB">$dia_imprimir</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$mes</span><span style="color: #007700">,</span><span style="color: #0000BB">$ano</span><span style="color: #007700">,</span><span style="color: #0000BB">$dia_solo_hoy</span><span style="color: #007700">,</span><span style="color: #0000BB">$tiempo_actual</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//dependiendo&nbsp;si&nbsp;el&nbsp;día&nbsp;es&nbsp;Hoy,&nbsp;Domigo&nbsp;o&nbsp;Cualquier&nbsp;otro,&nbsp;devuelvo&nbsp;un&nbsp;estilo<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">if&nbsp;(</span><span style="color: #0000BB">$dia_solo_hoy&nbsp;</span><span style="color: #007700">==&nbsp;</span><span style="color: #0000BB">$dia_imprimir&nbsp;</span><span style="color: #007700">&amp;&amp;&nbsp;</span><span style="color: #0000BB">$mes</span><span style="color: #007700">==</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"n"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tiempo_actual</span><span style="color: #007700">)&nbsp;&amp;&amp;&nbsp;</span><span style="color: #0000BB">$ano</span><span style="color: #007700">==</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"Y"</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$tiempo_actual</span><span style="color: #007700">)){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//si&nbsp;es&nbsp;hoy<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$estilo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"&nbsp;class='hoy'"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}else{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$fecha</span><span style="color: #007700">=</span><span style="color: #0000BB">mktime</span><span style="color: #007700">(</span><span style="color: #0000BB">12</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">0</span><span style="color: #007700">,</span><span style="color: #0000BB">$mes</span><span style="color: #007700">,</span><span style="color: #0000BB">$dia_imprimir</span><span style="color: #007700">,</span><span style="color: #0000BB">$ano</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">date</span><span style="color: #007700">(</span><span style="color: #DD0000">"w"</span><span style="color: #007700">,</span><span style="color: #0000BB">$fecha</span><span style="color: #007700">)==</span><span style="color: #0000BB">0</span><span style="color: #007700">){<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//si&nbsp;es&nbsp;domingo&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$estilo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"&nbsp;class='domingo'"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}else{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #FF8000">//si&nbsp;es&nbsp;cualquier&nbsp;dia<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$estilo&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #DD0000">"&nbsp;class='diario'"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$estilo</span><span style="color: #007700">;<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+</span>
+</code></div>
+		<br><br>
+		<div align="center"><a href="lib_calendario-index.html">up</a></div>
+		<br><br>
+		</body>
+		

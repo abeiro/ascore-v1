@@ -1,0 +1,109 @@
+<!--HEAD-->
+<!--SET-->
+<h4 align="center">Preferencias del Usuario</h4>
+<table width="75%" cellspacing="10" border="0" cellpadding="1" align="center" bgcolor="#F6F6EE" style="border:solid 1px gray">
+<tr>
+	<td width="75%" ><h4>Modo Web.</h4> <br>
+	
+	<div align="justify"><b>Si</b>: Modo de vista con menus a la izquierda y vista principal a la derecha</div>
+	<div align="justify"><b>No</b>: Modo aplicación con menús desplegables en la parte superior y vista principal en el centro</div>
+	
+	</td>
+
+	<td  width="50%" ><select name="sys_app_mode">	<option value="Si" <!-- O:sys_app_modeSi -->>Si</option>
+	<option value="No" <!-- O:sys_app_modeNo -->>No</option>
+</select>
+	</td>
+</tr>
+<tr>
+	<td colspan="2" ><hr>
+	</td>
+</tr>
+<tr>
+	<td ><h4>Modo de Zoom</h4><br>
+
+	<div align="justify"><b>popup</b>: Las selecciones avanzadas se mostrarán en una ventana nueva. Más lento pero más compatible con los navegadores</div>
+	<div align="justify"><b>iframe</b>: Las selecciones avanzadas se mostrarán en un marco dinámico en la vista principal. Más rápido pero menos compatible con los navegadores</div>
+
+	</td>
+
+	<td ><select name="zoom">	<option value="popup" <!-- O:zoompopup -->>popup</option>
+	<option value="iframe" <!-- O:zoomiframe -->>iframe</option>
+</select>
+	</td>
+</tr>
+<tr>
+	<td ><h4>Límite por defecto de los listados</h4><br>
+
+	<div align="justify">
+	Límite de entradas por página por defecto en los listados (0 significa el límite por defecto del sistema)
+	</div>
+
+	</td>
+
+	<td ><input type="text" name="rlimit" value="<!-- D:rlimit -->"></td>
+</input>
+	</td>
+</tr>
+
+<tr>
+	<td ><h4>Sistema de Impresión de informes</h4><br>
+
+	<div align="justify">
+	Sistema de Impresión de informes
+	</div>
+
+	</td>
+
+	<td >
+	<select name="spooler">	
+		<option value="Interno" <!-- O:spoolerInterno -->>Interno</option>
+		<option value="ASPooler" <!-- O:spoolerASPooler -->>ASPooler</option>
+	</select>
+	</td>
+
+
+</tr>
+
+<tr>
+	<td ><h4>Dirección IP Spooler Externo</h4><br>
+
+	<div align="justify">
+	Dirección IP Spooler Externo
+	</div>
+
+	</td>
+
+	<td ><input type="text" name="ip_spooler" value="<!-- D:ip_spooler -->"></td>
+
+
+</tr>
+<tr>
+	<td ><h4>Efecto Cortina</h4><br>
+
+	<div align="justify">
+	Dirección IP Spooler Externo
+	</div>
+
+	</td>
+<td>
+	<select name="curtain_effect">	<option value="Si" <!-- O:curtain_effectSi -->>Si</option>
+	<option value="No" <!-- O:curtain_effectNo -->>No</option>
+	</td>
+
+
+</tr>
+
+
+<tr>
+	<td colspan="2" ><hr>
+	</td>
+</tr>
+<tr>
+	<td   colspan="2" align="right"><!-- D:boton0 --></td>
+</tr>
+</table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<!--END-->
+
+

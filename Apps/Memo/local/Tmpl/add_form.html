@@ -1,0 +1,97 @@
+<!--HEAD-->
+<!--SET-->
+<div align="left">
+
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray" class="pane">
+<tr>
+	<td>Fichero</td>
+<td>
+	<input type="file" name="file_fichero" id="namefile" onfocus="getElementById('type').value='archive'"
+	onChange="parent.footer.location.href='action_autofill.php?aname='+getElementById('namefile').value">
+	</td>
+</tr>
+<tr>
+	<td>Propietario</td>
+
+	<td>
+	<select name="uid" <!-- D:security_option -->>
+	<!-- X:uid -->
+	</select>
+		
+	</td>
+</tr>
+<tr>
+	<td>Grupo</td>
+<td>
+	<select name="gid"  >
+	<!-- X:gid -->
+	</select>
+	</td>
+</tr>
+<tr>
+	<td>Permisos Usuarios</td>
+
+	<td><select name="p_owner">	<option value="..." <!-- O:p_owner... -->>...</option>
+	<option value="r.." <!-- O:p_ownerr.. -->>r..</option>
+	<option value=".w." <!-- O:p_owner.w. -->>.w.</option>
+	<option value="..x" <!-- O:p_owner..x -->>..x</option>
+	<option value="rw." <!-- O:p_ownerrw. -->>rw.</option>
+	<option value="r.x" <!-- O:p_ownerr.x -->>r.x</option>
+	<option value=".w." <!-- O:p_owner.w. -->>.w.</option>
+	<option value=".wx" <!-- O:p_owner.wx -->>.wx</option>
+	<option value="..x" <!-- O:p_owner..x -->>..x</option>
+	<option value="rwx" <!-- O:p_ownerrwx -->>rwx</option>
+</select>
+	</td>
+</tr>
+<tr>
+	<td>Permisos Grupo</td>
+
+	<td><select name="p_group">	<option value="..." <!-- O:p_group... -->>...</option>
+	<option value="r.." <!-- O:p_groupr.. -->>r..</option>
+	<option value=".w." <!-- O:p_group.w. -->>.w.</option>
+	<option value="..x" <!-- O:p_group..x -->>..x</option>
+	<option value="rw." <!-- O:p_grouprw. -->>rw.</option>
+	<option value="r.x" <!-- O:p_groupr.x -->>r.x</option>
+	<option value=".w." <!-- O:p_group.w. -->>.w.</option>
+	<option value=".wx" <!-- O:p_group.wx -->>.wx</option>
+	<option value="..x" <!-- O:p_group..x -->>..x</option>
+	<option value="rwx" <!-- O:p_grouprwx -->>rwx</option>
+</select>
+	</td>
+</tr>
+<tr>
+	<td>Permisos Otros</td>
+
+	<td><select name="p_other">	<option value="..." <!-- O:p_other... -->>...</option>
+	<option value="r.." <!-- O:p_otherr.. -->>r..</option>
+	<option value=".w." <!-- O:p_other.w. -->>.w.</option>
+	<option value="..x" <!-- O:p_other..x -->>..x</option>
+	<option value="rw." <!-- O:p_otherrw. -->>rw.</option>
+	<option value="r.x" <!-- O:p_otherr.x -->>r.x</option>
+	<option value=".w." <!-- O:p_other.w. -->>.w.</option>
+	<option value=".wx" <!-- O:p_other.wx -->>.wx</option>
+	<option value="..x" <!-- O:p_other..x -->>..x</option>
+	<option value="rwx" <!-- O:p_otherrwx -->>rwx</option>
+</select>
+	</td>
+</tr>
+<tr>
+	<td>nombre</td>
+
+	<td><input type="text" id="anombre" name="nombre" value="<!-- D:nombre -->">
+	</td>
+</tr>
+<tr>
+	<td>Descripcion</td>
+	<td><textarea name="descripcion" ><!-- D:descripcion --></textarea>
+	</td>
+</tr>
+<tr>
+	<td colspan="2" align="right"><!-- D:boton0 -->&nbsp;&nbsp;<!-- D:boton1 -->&nbsp;&nbsp;<!-- D:boton2 -->&nbsp;&nbsp;&nbsp;&nbsp;</td>
+</tr></table>
+<input type="hidden" name="ID" value="<!-- D:ID -->">
+<input type="hidden" name="inode" value="<!-- D:inode -->">
+<input type="hidden" name="type" value="archive">
+</div>
+<!--END-->

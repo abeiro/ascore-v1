@@ -1,0 +1,68 @@
+<!--HEAD-->
+<!--SET-->
+<script>
+function selTab(ele) {
+	document.getElementById('mu').style.display='none';
+	document.getElementById('te').style.display='none';
+	document.getElementById('db').style.display='none';
+	document.getElementById('sel').style.display='none';
+	document.getElementById('plt').style.display='none';
+	document.getElementById('tabmu').style.paddingBottom='0px';
+	document.getElementById('tabte').style.paddingBottom='0px';
+	document.getElementById('tabdb').style.paddingBottom='0px';
+	document.getElementById('tabsel').style.paddingBottom='0px';
+	document.getElementById('tabplt').style.paddingBottom='0px';
+	
+	document.getElementById('tabmu').style.borderBottomWidth='1px';
+	document.getElementById('tabte').style.borderBottomWidth='1px';
+	document.getElementById('tabdb').style.borderBottomWidth='1px';
+	document.getElementById('tabsel').style.borderBottomWidth='1px';
+	document.getElementById('tabplt').style.borderBottomWidth='1px';
+	
+	document.getElementById(ele).style.display='';
+	document.getElementById('tab'+ele).style.borderBottomWidth='0px';
+	document.getElementById('tab'+ele).style.paddingBottom='1px';
+}
+</script>
+<br><br>
+<div style='margin-left:20px;margin-right:20px;' >
+<a href="javascript:selTab('mu')" id='tabmu' style='border:1px solid gray;background-color:#DADADA;padding-bottom:0px;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;'>&nbsp;&nbsp;Uso de memoria&nbsp;&nbsp;</a>
+<a href="javascript:selTab('te')" id='tabte' style='border:1px solid gray;background-color:#DADADA;padding-bottom:0px;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;'>&nbsp;&nbsp;Tiempo ejecucion&nbsp;&nbsp;</a>
+<a href="javascript:selTab('db')" id='tabdb' style='border:1px solid gray;background-color:#DADADA;padding-bottom:0px;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;'>&nbsp;&nbsp;Conexion BBDD&nbsp;&nbsp;</a>
+
+<a href="javascript:selTab('sel')" id='tabsel' style='border:1px solid gray;background-color:#DADADA;padding-bottom:0px;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;'>&nbsp;&nbsp;SelectAll vs SelectA&nbsp;&nbsp;</a>
+
+<a href="javascript:selTab('plt')" id='tabplt' style='border:1px solid gray;background-color:#DADADA;padding-bottom:0px;-moz-border-radius-topleft:4px;-moz-border-radius-topright:4px;'>&nbsp;&nbsp;lib_planty rendering&nbsp;&nbsp;</a>
+</div>
+<div align="center" id="borderS" style='margin-left:20px;border:1px solid gray;background-color:#DADADA;margin-right:20px' >
+<br>
+<span id="mu">
+<img src="<!-- D:memory_usage -->" border="1" >
+
+</span>
+
+<span id="te" style="display:none">
+<img src="<!-- D:time_ellapsed -->" border="1" >
+
+</span>
+
+<span id="db" style="display:none">
+<img src="<!-- D:database -->" border="1" >
+
+</span>
+
+<span id="sel" style="display:none">
+<img src="<!-- D:select -->" border="1" >
+
+</span>
+<span id="plt" style="display:none">
+<img src="<!-- D:render -->" border="1" >
+
+</span>
+<br>
+</div>
+<script>
+selTab('mu');
+</script>
+
+<!--END-->

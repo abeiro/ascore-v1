@@ -1,0 +1,45 @@
+
+<!--HEAD-->
+<style>
+td.dynamic_class_list0 {text-align:center;vertical-align:middle;background-color:#EEEEF6}
+td.dynamic_class_list1 {text-align:center;vertical-align:middle;background-color:white}
+td.dynamic_class_list2 {text-align:center;vertical-align:middle;background-color:#F7F7F7}
+td.dynamic_class_list3 {text-align:center;vertical-align:middle;background-color:white}
+
+
+</style>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<th><a href="<!-- N:navvars -->&sort=title">Titulo</a></th>
+<th><a href="<!-- N:navvars -->&sort=autor">Autor</a></th>
+<th><a href="<!-- N:navvars -->&sort=fecha">Último mensaje</a></th>
+<th>Respuestas</th>
+<th>Visitas</th>
+<th>% de mensajes</th>
+
+<!--SET-->
+<tr>
+		
+	<td class="<!-- dynamic_class -->"><a href="view.php?ID=<!-- D:ID -->&foro_id=<!-- D:foro_id -->"><!-- D:title --></a></td>
+
+	<td class="<!-- dynamic_class -->"><!-- D:autor --></td>
+
+	<td class="<!-- dynamic_class -->"><!-- A:fecha --><!-- T:fecha --><br><!-- D:autormsg --></td>
+
+	<td class="<!-- dynamic_class -->"> <!-- M:respuestas --></td>
+	<td class="<!-- dynamic_class -->"> <!-- D:visitas --></td>
+	<td class="<!-- dynamic_class -->" width="20%"><!-- D:grafica --></td>
+	<td class="<!-- dynamic_class -->"><a href="post.php?ID=<!-- D:ID -->&foro_id=<!-- D:foro_id -->"> Editar ::<a target="footer" href="delete.php?ID=<!-- D:ID -->"> Borrar</td>
+</tr>
+<!--END-->
+</table>
+<br>
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray">
+<tr><td align="left">
+	<a href="<!-- N:prevpage -->">Página anterior</a>
+</td><td align="right">
+	<a href="<!-- N:nextpage -->">Página siguiente</a>
+</td>
+</tr>
+</table>
+<input type="hidden" name="foro_id" value= "<!-- D:foro_id -->">
+<br>

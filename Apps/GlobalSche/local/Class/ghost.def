@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <host  type="string" option="64">Identificador</host>
+  <fqdn  type="string" option="64">IP o DNS</fqdn>
+  <shakey type="string" option="1024">Clave compartida</shakey>
+  <usuario type="string" option="64">Usuario</usuario>
+  <pass type="password" option="basic">Password</pass>
+  <precomando type="string" option="1024">Precomando</precomando>
+</cpd>
