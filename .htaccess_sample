@@ -1,0 +1,36 @@
+# This line is mandatory
+#php_value include_path .:<ROOT>/Framework/:<ROOT>/Apps/
+php_value register_globals on
+php_flag register_globals On
+php_flag output_buffering on
+php_flag  short_open_tag  Off
+
+
+
+RewriteEngine on
+RewriteBase <URL>
+
+RewriteRule /Data/Img/(.*)$ Data/Img/$1 
+RewriteRule /Themes/(.*)$ Themes/$1 
+
+# This line is mandatory
+RewriteCond %{REQUEST_URI} !^<URL>/index.php(.*) 
+RewriteCond %{REQUEST_URI} !/Data/Img(.*) 
+RewriteCond %{REQUEST_URI} !/Data/flash(.*) 
+RewriteCond %{REQUEST_URI} !/local/Image/(.*) 
+RewriteCond %{REQUEST_URI} !/Themes(.*) 
+RewriteCond %{REQUEST_URI} !/UserFiles(.*) 
+RewriteCond %{REQUEST_URI} !/Pool(.*) 
+RewriteCond %{REQUEST_URI} !(.*).js$
+RewriteCond %{REQUEST_URI} !(.*).css$
+RewriteCond %{REQUEST_URI} !(.*).gif$
+RewriteCond %{REQUEST_URI} !(.*).jpg$
+RewriteCond %{REQUEST_URI} !(.*).png$
+RewriteCond %{REQUEST_URI} !^(.*)FCKeditor
+RewriteCond %{REQUEST_URI} !^(.*)Framework/Extensions
+RewriteCond %{REQUEST_URI} !^(.*)Framework/Framework
+RewriteCond %{REQUEST_URI} !^(.*)Ide/
+
+RewriteRule ^(.*)$ index.php?rewrite=on&petition=$1 [QSA]
+
+
