@@ -1,44 +1,0 @@
-
-		<html>
-		<head>
-		<title>Documentacion CoreG2 Funcion get_xref_selected_options</title>
-		</head>
-		<style>
-		body 		{font-family:verdana,sans,serif; font-size:10px;}
-		.mini		{font-size:8px;}
-		.box		{border:1px solid gray;background:#EEEEFF;}
-		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
-		</style>
-		<body>
-		<h1>CoreG2 version 0.99.9</h1>
-		<h2>get_xref_selected_options</h2>
-		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/root.php</span>
-		<br><br><h2><b>core</b>::<b>Ente</b>::<b>get_xref_selected_options</b></h2>M�todo: pertenece a la clase <b>Ente</b><br>Clase <b>Ente</b> </i>: derivada de <b>core</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_user_pref</b>::<b>get_xref_selected_options</b></h2>M�todo: pertenece a la clase <b>Ente_user_pref</b><br>Clase <b>Ente_user_pref</b> </i>: derivada de <b>Ente</b><br><br><br><div class="desc">            
-<br>            
-<br>            FUNCION get_xref_selected_options
-<br>            
-<br>            Sintaxis  get_xref_selected_options($field)
-<br>            $field    Etiqueta del atributo de tipo xref
-<br>            Descripción:
-<br>            Obtiene las properties_type del atributo de la siguiente forma:
-<br>            
-<br>            xref[0]=xref
-<br>            xref[1]=entidad donde se accederá para obtener las referencias
-<br>            seleccionadas
-<br>            
-<br>            Accede a la tabla de referencias cruzadas $table_name creada
-<br>            durante el save() y devuelve un array con las referencias
-<br>            seleccionadas como claves
-<br>            
-<br>            
-<br>            
-</div>
-<br><div class="box"><code><span style="color: #000000">
-<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">get_xref_selected_options</span><span style="color: #007700">(</span><span style="color: #0000BB">$field</span><span style="color: #007700">)&nbsp;{&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$prefix</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$xref</span><span style="color: #007700">=array();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$selected&nbsp;</span><span style="color: #007700">=&nbsp;array();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$xref</span><span style="color: #007700">=</span><span style="color: #0000BB">explode</span><span style="color: #007700">(</span><span style="color: #DD0000">":"</span><span style="color: #007700">,</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties_type</span><span style="color: #007700">[</span><span style="color: #0000BB">$field</span><span style="color: #007700">]);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$table_name</span><span style="color: #007700">=</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">.</span><span style="color: #DD0000">"_"</span><span style="color: #007700">.</span><span style="color: #0000BB">$xref</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">];<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$field2</span><span style="color: #007700">=</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">name</span><span style="color: #007700">.</span><span style="color: #DD0000">"_id"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$field3</span><span style="color: #007700">=</span><span style="color: #0000BB">$xref</span><span style="color: #007700">[</span><span style="color: #0000BB">1</span><span style="color: #007700">].</span><span style="color: #DD0000">"_id"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$q</span><span style="color: #007700">=</span><span style="color: #DD0000">"SELECT&nbsp;`</span><span style="color: #0000BB">$field3</span><span style="color: #DD0000">`&nbsp;FROM&nbsp;`</span><span style="color: #007700">{</span><span style="color: #0000BB">$prefix</span><span style="color: #007700">}</span><span style="color: #DD0000">_"</span><span style="color: #007700">.</span><span style="color: #0000BB">$table_name</span><span style="color: #007700">.</span><span style="color: #DD0000">"`&nbsp;WHERE&nbsp;`</span><span style="color: #0000BB">$field2</span><span style="color: #DD0000">`=</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">ID</span><span style="color: #DD0000">"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$bdres</span><span style="color: #007700">=</span><span style="color: #0000BB">_query</span><span style="color: #007700">(</span><span style="color: #0000BB">$q</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$af_rows</span><span style="color: #007700">=</span><span style="color: #0000BB">_affected_rows</span><span style="color: #007700">();<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(</span><span style="color: #0000BB">$af_rows</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">$af_rows</span><span style="color: #007700">;</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$rawres</span><span style="color: #007700">=</span><span style="color: #0000BB">_fetch_array</span><span style="color: #007700">(</span><span style="color: #0000BB">$bdres</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$selected</span><span style="color: #007700">[</span><span style="color: #0000BB">$rawres</span><span style="color: #007700">[</span><span style="color: #0000BB">$field3</span><span style="color: #007700">]]&nbsp;=&nbsp;</span><span style="color: #DD0000">""</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;</span><span style="color: #0000BB">$selected</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
-</span>
-</code></div>
-		<br><br>
-		<div align="center"><a href="root-index.html">up</a></div>
-		<br><br>
-		</body>
-		

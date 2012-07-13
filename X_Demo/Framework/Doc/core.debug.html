@@ -1,28 +1,0 @@
-
-		<html>
-		<head>
-		<title>Documentacion CoreG2 Funcion debug</title>
-		</head>
-		<style>
-		body 		{font-family:verdana,sans,serif; font-size:10px;}
-		.mini		{font-size:8px;}
-		.box		{border:1px solid gray;background:#EEEEFF;}
-		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
-		</style>
-		<body>
-		<h1>CoreG2 version 0.99.9</h1>
-		<h2>debug</h2>
-		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/core.php</span>
-		<br><br>Funcion<br><br><br><br><div class="desc">}
-<br>
-<br>
-</div>
-<br><div class="box"><code><span style="color: #000000">
-<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">debug</span><span style="color: #007700">(</span><span style="color: #0000BB">$var</span><span style="color: #007700">,</span><span style="color: #0000BB">$color</span><span style="color: #007700">=</span><span style="color: #DD0000">"blue"</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;global&nbsp;</span><span style="color: #0000BB">$core</span><span style="color: #007700">,</span><span style="color: #0000BB">$TrazaStatus</span><span style="color: #007700">,</span><span style="color: #0000BB">$nodebug</span><span style="color: #007700">,</span><span style="color: #0000BB">$DEBUGHANDLER</span><span style="color: #007700">;<br />&nbsp;&nbsp;if&nbsp;(</span><span style="color: #0000BB">$TrazaStatus</span><span style="color: #007700">&amp;&amp;(!</span><span style="color: #0000BB">$nodebug</span><span style="color: #007700">))&nbsp;{<br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$colors</span><span style="color: #007700">=array(<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"black"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[30;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"red"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[31;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"green"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[32;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"yellow"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[33;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"blue"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[34;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"magenta"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[35;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"cyan="</span><span style="color: #007700">&gt;</span><span style="color: #DD0000">'[36;40;1m'</span><span style="color: #007700">,<br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #DD0000">"white"</span><span style="color: #007700">=&gt;</span><span style="color: #DD0000">'[37;40;1m'<br />&nbsp;&nbsp;</span><span style="color: #007700">);<br /><br /><br />&nbsp;&nbsp;</span><span style="color: #0000BB">$data</span><span style="color: #007700">=</span><span style="color: #0000BB">$colors</span><span style="color: #007700">[</span><span style="color: #DD0000">"</span><span style="color: #0000BB">$color</span><span style="color: #DD0000">"</span><span style="color: #007700">].</span><span style="color: #0000BB">$var</span><span style="color: #007700">.</span><span style="color: #DD0000">"&nbsp;\n\r"</span><span style="color: #007700">;<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fputs</span><span style="color: #007700">(</span><span style="color: #0000BB">$DEBUGHANDLER</span><span style="color: #007700">,</span><span style="color: #0000BB">$data</span><span style="color: #007700">);<br />&nbsp;&nbsp;</span><span style="color: #0000BB">fputs</span><span style="color: #007700">(</span><span style="color: #0000BB">$DEBUGHANDLER</span><span style="color: #007700">,</span><span style="color: #0000BB">$colors</span><span style="color: #007700">[</span><span style="color: #DD0000">"black"</span><span style="color: #007700">]);<br />&nbsp;&nbsp;</span><span style="color: #FF8000">//echo&nbsp;"$var&lt;br&gt;";<br />&nbsp;&nbsp;</span><span style="color: #007700">return&nbsp;</span><span style="color: #0000BB">$var</span><span style="color: #007700">;<br />&nbsp;&nbsp;}<br />}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
-</span>
-</code></div>
-		<br><br>
-		<div align="center"><a href="core-index.html">up</a></div>
-		<br><br>
-		</body>
-		

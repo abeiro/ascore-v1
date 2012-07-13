@@ -1,40 +1,0 @@
-
-		<html>
-		<head>
-		<title>Documentacion CoreG2 Funcion disabledFields</title>
-		</head>
-		<style>
-		body 		{font-family:verdana,sans,serif; font-size:10px;}
-		.mini		{font-size:8px;}
-		.box		{border:1px solid gray;background:#EEEEFF;}
-		.desc		{font-size:12px;border:1px solid gray; padding:5px;}   
-		</style>
-		<body>
-		<h1>CoreG2 version 0.99.9</h1>
-		<h2>disabledFields</h2>
-		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/root.php</span>
-		<br><br><h2><b>core</b>::<b>Ente</b>::<b>disabledFields</b></h2>M�todo: pertenece a la clase <b>Ente</b><br>Clase <b>Ente</b> </i>: derivada de <b>core</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_user_pref</b>::<b>disabledFields</b></h2>M�todo: pertenece a la clase <b>Ente_user_pref</b><br>Clase <b>Ente_user_pref</b> </i>: derivada de <b>Ente</b><br><br><br><div class="desc">            
-<br>            
-<br>            FUNCION disabledFields
-<br>            
-<br>            Sintaxis  disabledFields()
-<br>            
-<br>            Descripción:
-<br>            Desactiva todos los campos del formulario salvo los especificados en
-<br>            $reserved
-<br>            Para ello, se modifica el arrayForm de tal forma que para cada atributo
-<br>            de la clase salvo los especificados en $reserved, se añade la propiedad
-<br>            disabled=true
-<br>            
-<br>            
-<br>            
-</div>
-<br><div class="box"><code><span style="color: #000000">
-<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">disabledFields</span><span style="color: #007700">()&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$reserved</span><span style="color: #007700">=array(</span><span style="color: #DD0000">"ID"</span><span style="color: #007700">,</span><span style="color: #DD0000">"S_UserID_CB"</span><span style="color: #007700">,</span><span style="color: #DD0000">"S_UserID_MB"</span><span style="color: #007700">,</span><span style="color: #DD0000">"S_Date_C"</span><span style="color: #007700">,</span><span style="color: #DD0000">"S_Date_M"</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">reset</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for(</span><span style="color: #0000BB">$i</span><span style="color: #007700">=</span><span style="color: #0000BB">0</span><span style="color: #007700">;</span><span style="color: #0000BB">$i</span><span style="color: #007700">&lt;</span><span style="color: #0000BB">sizeof</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties</span><span style="color: #007700">);</span><span style="color: #0000BB">$i</span><span style="color: #007700">++)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if(</span><span style="color: #0000BB">in_array</span><span style="color: #007700">(</span><span style="color: #0000BB">key</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties</span><span style="color: #007700">),</span><span style="color: #0000BB">$reserved</span><span style="color: #007700">))&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">next</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;continue;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">[</span><span style="color: #DD0000">"form"</span><span style="color: #007700">][</span><span style="color: #DD0000">"elements"</span><span style="color: #007700">][</span><span style="color: #0000BB">key</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties</span><span style="color: #007700">)][</span><span style="color: #DD0000">"attributes"</span><span style="color: #007700">][</span><span style="color: #DD0000">"disabled"</span><span style="color: #007700">]=</span><span style="color: #DD0000">"true"</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">next</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">properties</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
-</span>
-</code></div>
-		<br><br>
-		<div align="center"><a href="root-index.html">up</a></div>
-		<br><br>
-		</body>
-		
