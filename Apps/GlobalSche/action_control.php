@@ -14,13 +14,12 @@ require_once("gspanel_class.php");
 /* Desktop */
 
 if ($_GET["desktop_id"])
-    $GLOBALS["desktop_id"]=$_GET["desktop_id"];
+    $GLOBALS["desktop_id"] = $_GET["desktop_id"];
 else
-    $GLOBALS["desktop_id"]=md5(time().rand(1,1000));
+    $GLOBALS["desktop_id"] = md5(time() . rand(1, 1000));
 
 $xajax = new xajax();
-$xajax->configure("requestURI",$xajax->aSettings["requestURI"]."&desktop_id={$GLOBALS["desktop_id"]}");
-
+$xajax->configure("requestURI", $xajax->aSettings["requestURI"] . "&desktop_id={$GLOBALS["desktop_id"]}");
 
 function ManageEtiqueta($source, $event, $on) {
     debug("ENTRANDO EN MANAGE  ManageEtiqueta $on", "green");
@@ -34,7 +33,7 @@ function ManageEtiqueta($source, $event, $on) {
     unset($_SESSION["desktopaxot"]);
     $ControlWindow->setQuery();
     $ControlWindow->updateCache();
-    
+
     session_write_close();
     $objResponse->script("tableGrid_{$ControlWindow->GSPAnel->dGrid->id}.refresh()");
     $objResponse->script("xajax_wForm.requestloadFromId({$task->ID},'{$ControlWindow->GSPAnel->aForms[0]->id}','gtasklog')");
@@ -53,7 +52,7 @@ function ManageResponsable($source, $event, $on) {
         $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["responsable"] = $on;
     } else
         $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["responsable"] = "";
-$ControlWindow->setQuery();
+    $ControlWindow->setQuery();
     $ControlWindow->updateCache();
     session_write_close();
 
@@ -73,7 +72,7 @@ function ManageCheckActivadas($source, $event, $on) {
         $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showfinished"] = true;
     } else
         $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showfinished"] = false;
-   $ControlWindow->setQuery();
+    $ControlWindow->setQuery();
     $ControlWindow->updateCache();
     session_write_close();
 
@@ -81,7 +80,7 @@ function ManageCheckActivadas($source, $event, $on) {
 
     $objResponse->script("xajax_wForm.requestloadFromId({$task->ID},'{$ControlWindow->GSPAnel->aForms[0]->id}','gtasklog')");
 
-    
+
 
     return $objResponse;
 }
@@ -103,7 +102,7 @@ function ManageCheckManual($source, $event, $on) {
 
     $objResponse->script("xajax_wForm.requestloadFromId({$task->ID},'{$ControlWindow->GSPAnel->aForms[0]->id}','gtasklog')");
 
-    
+
 
     return $objResponse;
 }
@@ -255,14 +254,12 @@ class StubClass {
 
 class MyApp extends wDesktop {
 
-    
-
     function __construct() {
 
         parent::__construct();
 
         $this->FormWindow = new wWindow("FormWindow", $this);
-        $this->FormWindow->type = WINDOW.NORMAL;
+        $this->FormWindow->type = WINDOW . NORMAL;
         $this->FormWindow->title = "Tareas";
         $this->FormWindow->setCSS("width", "1000px");
 
@@ -342,11 +339,8 @@ class MyApp extends wDesktop {
         $this->checkStatus->label = "Estado";
         $this->checkStatus->addListener("onclick", "checkStatus");
         $this->checkStatus->Listener["onclick"]->addParameter(XAJAX_FORM_VALUES, $this->GSPAnel->dForm->id);
-        
-        
-        
     }
-    
+
     function setQuery() {
         $additionalCond = " (estado<>'Terminada') ";
 
@@ -377,9 +371,7 @@ class MyApp extends wDesktop {
 
         $this->GSPAnel->SQL_CONDS["gtasklog"] = "$additionalCond";
         $this->GSPAnel->SQL_SORT["gtasklog"] = "inicio DESC,estado ASC";
-
     }
-    
 
 }
 
@@ -391,8 +383,7 @@ class MyApp extends wDesktop {
 if ((empty($_POST)) && (!$_GET["oDataRequest"])) {
     debug("Building real version", "red");
     $ControlWindow = new MyApp(false);
-    wDesktop::ObjCacheSave($ControlWindow,$GLOBALS["desktop_id"]);
-    
+    wDesktop::ObjCacheSave($ControlWindow, $GLOBALS["desktop_id"]);
 } else {
     debug("Using serialized version", "red");
     $ControlWindow = wDesktop::ObjCacheRestore($GLOBALS["desktop_id"]);
@@ -407,9 +398,6 @@ if ((empty($_POST)) && (!$_GET["oDataRequest"])) {
     $ControlWindow->FormWindow->render();
     $xajax->printJavascript($SYS["ROOT"] . "/Framework/Extensions/xajax");
     jsAction("$('{$ControlWindow->FormWindow->id}_max').onclick()");
-
-    
-    
 } else if ($_GET["oDataRequest"]) {
     /* Data Request */
 
@@ -419,6 +407,4 @@ if ((empty($_POST)) && (!$_GET["oDataRequest"])) {
     $xajax->processRequest();
     debug("End", "red");
 }
-
-
 ?>
