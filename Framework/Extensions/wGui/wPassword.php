@@ -5,7 +5,7 @@ class wPassword extends wInput implements wRenderizable {
     function render() {
 
         global $SYS;
-        parent::render();
+        
         foreach ($this->Listener as $k => $v) {
             if (!is_array($v))
                 $eventCode.=" $k='" . $v->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
