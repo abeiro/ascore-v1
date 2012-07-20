@@ -95,6 +95,14 @@ class wObject implements wRenderizable  {
             
         }
         
+        public function renderS() {
+            ob_start();
+            $this->render();
+            $code=ob_get_contents();
+            ob_end_clean();
+            return $code;
+        }
+        
 
 	
 }

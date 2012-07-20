@@ -1,4 +1,5 @@
 <?php
+
 class wDesktop extends wObject {
 
     function __createObjectHashMap(&$obj) {
@@ -62,36 +63,51 @@ class wDesktop extends wObject {
         //die();
     }
 
-           
-    
     function updateCache() {
-          $_SESSION["desktopaxot"]["panel"][$GLOBALS["desktop_id"]] = serialize($this);
-        
+        $_SESSION["desktopaxot"]["panel"][$GLOBALS["desktop_id"]] = serialize($this);
     }
 
     public static function ObjCacheRestore($id) {
-        
-            debug("Using object caching","blue");
-            $obj=unserialize($_SESSION["desktopaxot"]["panel"][$id]);
-            if (is_object($obj))
-                return $obj;
-            else  {
-                debug("Cached object is invalid","red");
-                return null;
-            }
-        
-        
+
+        debug("Using object caching", "blue");
+        $obj = unserialize($_SESSION["desktopaxot"]["panel"][$id]);
+        if (is_object($obj))
+            return $obj;
+        else {
+            debug("Cached object is invalid", "red");
+            debug(print_r($_SESSION["desktopaxot"]["panel"][$id],true), "red");
+            return null;
+        }
     }
-    public static function ObjCacheSave(&$obj,$id) {
-        
-        $_SESSION["desktopaxot"]["panel"][$id]=serialize($obj);
-            
+
+    public static function ObjCacheSave(&$obj, $id) {
+
+        $_SESSION["desktopaxot"]["panel"][$id] = serialize($obj);
     }
-    
+
     function __construct() {
         
-        
     }
+
+    public static function prepareForDesktop() {
+        if ($_GET["desktop_id"])
+            $GLOBALS["desktop_id"] = $_GET["desktop_id"];
+        else
+            $GLOBALS["desktop_id"] = md5(time() . rand(1, 1000));
+    }
+
+    public static function createApp($classname) {
+        if ((empty($_POST)) && (!$_GET["oDataRequest"])) {
+            debug("Building real version: {$GLOBALS["desktop_id"]}", "magenta");
+            $obj = new $classname(false);
+            wDesktop::ObjCacheSave($obj, $GLOBALS["desktop_id"]);
+        } else {
+            debug("Using serialized version of {$GLOBALS["desktop_id"]}", "magenta");
+            $obj = wDesktop::ObjCacheRestore($GLOBALS["desktop_id"]);
+        }
+        return $obj;
+    }
+
 }
 
 ?>

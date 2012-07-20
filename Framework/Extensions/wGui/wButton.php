@@ -4,6 +4,7 @@ class wButton extends wObject implements wRenderizable {
 
     var $name = "";
     var $label = "Button";
+    var $disabled=false;
 
     function __construct($name=null, &$parent, $label="Button") {
         parent::__construct($name, $parent);
@@ -14,6 +15,7 @@ class wButton extends wObject implements wRenderizable {
     function render() {
         global $SYS;
         parent::render();
+        $disabledlabel=($this->disabled)?"disabled readonly":"";
         foreach ($this->Listener as $k => $v) {
             if (!is_array($v))
                 $eventCode.=" $k='" . $v->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
@@ -21,7 +23,7 @@ class wButton extends wObject implements wRenderizable {
                 $eventCode.=" $k='" . $v[$this->ListenerAux[$k]]->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
             }
         }
-        echo "<input type='button' $eventCode name='{$this->name}' id='{$this->id}' value='{$this->label}' size='" . (strlen($this->label) * 5) . "' style='{$this->cssStyle}'>\n";
+        echo "<input type='button' $disabledlabel $eventCode name='{$this->name}' id='{$this->id}' value='{$this->label}' size='" . (strlen($this->label) * 5) . "' style='{$this->cssStyle}'>\n";
     }
 
     /* Some default properties */
@@ -36,6 +38,10 @@ class wButton extends wObject implements wRenderizable {
 
     function setSelectedValue($data) {
         $this->value = $data;
+    }
+    
+    function setDisabled($bool) {
+        $this->disabled=$bool;
     }
 
 }

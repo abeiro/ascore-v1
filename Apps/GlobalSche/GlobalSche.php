@@ -64,6 +64,12 @@
       return $newDate;
   }
   
+  function lastlastMonth($timestamp) {
+      
+      $newDate=strtotime(date("m",$timestamp)."/1/".date("Y",$timestamp)." -1 day");
+      return $newDate;
+  }
+  
   function evaluateExpression($expression,$timestamp,$withSTRFTIME=false) {
       $currentLocale=setlocale(LC_ALL,0);
 

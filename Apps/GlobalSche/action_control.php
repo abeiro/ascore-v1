@@ -94,6 +94,7 @@ function ManageCheckManual($source, $event, $on) {
         $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showOnlyManual"] = true;
     } else
         $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showOnlyManual"] = false;
+    
     $ControlWindow->setQuery();
     $ControlWindow->updateCache();
     session_write_close();
@@ -106,6 +107,30 @@ function ManageCheckManual($source, $event, $on) {
 
     return $objResponse;
 }
+
+
+function ManageDescatalogadas($source, $event, $on) {
+    debug("ENTRANDO EN ManageDescatalogadas $on", "green");
+    global $ControlWindow;
+    $objResponse = new xajaxResponse();
+
+    if ($on == "on") {
+        $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showdescatalogadas"] = true;
+    } else
+        $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showdescatalogadas"] = false;
+    
+    debug(print_r($_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id],true),"green");
+    $ControlWindow->setQuery();
+    $ControlWindow->updateCache();
+    session_write_close();
+
+    $objResponse->script("tableGrid_{$ControlWindow->GSPAnel->dGrid->id}.refresh()");
+
+    $objResponse->script("xajax_wForm.requestloadFromId({$task->ID},'{$ControlWindow->GSPAnel->aForms[0]->id}','gtasklog')");
+
+    return $objResponse;
+}
+
 
 function runTarea($source, $event, $formData) {
     global $ControlWindow;
@@ -265,14 +290,21 @@ class MyApp extends wDesktop {
 
         $this->label = new wLabel("Mostrar terminadas", $this->FormWindow, "Mostrar terminadas");
         $this->ShowTerminadas = new wCheckBox("Terminadas", $this->FormWindow);
-        $this->ShowTerminadas->setChecked(true);
+        $this->ShowTerminadas->setChecked(false);
         $this->ShowTerminadas->addListener("onclick", "ManageCheckActivadas");
         $this->ShowTerminadas->Listener["onclick"]->addParameter(XAJAX_JS_VALUE, '$("' . $this->ShowTerminadas->id . '").checked');
 
         $this->label = new wLabel("Mostrar sólo manuales", $this->FormWindow, "Mostrar sólo manuales");
         $this->ShowManuales = new wCheckBox("Solo manuales", $this->FormWindow);
         $this->ShowManuales->addListener("onclick", "ManageCheckManual");
+        $this->ShowManuales->setChecked(true);
         $this->ShowManuales->Listener["onclick"]->addParameter(XAJAX_JS_VALUE, '$("' . $this->ShowManuales->id . '").checked');
+        
+        
+        $this->label = new wLabel("Mostrar descatalogadas", $this->FormWindow, "Mostrar descatalogadas");
+        $this->ShowDescatalogadas = new wCheckBox("MostrarDescatalogadas", $this->FormWindow);
+        $this->ShowDescatalogadas->addListener("onclick", "ManageDescatalogadas");
+        $this->ShowDescatalogadas->Listener["onclick"]->addParameter(XAJAX_JS_VALUE, '$("' . $this->ShowDescatalogadas->id . '").checked');
 
 
         $this->label = new wLabel("Responsable ppal.", $this->FormWindow, "Responsable ppal.");
@@ -292,6 +324,7 @@ class MyApp extends wDesktop {
 
 
         $this->GSPAnel = new GSControlPanel($this->FormWindow, "Registros", "gtasklog");
+        $_SESSION[$GLOBALS["desktop_id"]][$ControlWindow->GSPAnel->id]["showdescatalogadas"] = true;
 
         /*
          * 
@@ -355,6 +388,13 @@ class MyApp extends wDesktop {
             $this->ShowManuales->setChecked(true);
         } else
             $this->ShowManuales->setChecked(false);
+        
+        if ($_SESSION[$GLOBALS["desktop_id"]][$this->GSPAnel->id]["showdescatalogadas"]===true) {
+            $this->ShowDescatalogadas->setChecked(true);
+        } else {
+            $this->ShowDescatalogadas->setChecked(false);
+            $additionalCond.=" AND estado<>'Descatalogada'";
+        }
 
 
         if ($_SESSION[$GLOBALS["desktop_id"]][$this->GSPAnel->id]["responsable"]) {

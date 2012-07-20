@@ -389,6 +389,22 @@ function c_filesize($filename) {
   return filesize($serach_name);
 }
 
+
+/* 
+_safe_strftime(string $format,int $timestamp)
+
+Uses strftime if timestamp>3600
+  
+*/
+function _safe_strftime($format,$timestamp) {
+    
+    if ($timestamp>3600)
+        return strftime($format,$timestamp);
+    else
+        return "--";
+    
+}
+
 /* 
 _fixed(string cade, int size)
 

@@ -163,7 +163,6 @@ function _waitfor($connection) {
     $filetowaitfor = evaluateExpression("{$this->path}/{$this->ficheros}", $fechadeevaluacion, true);
     $fp = $filetowaitfor;
 
-
     $comando = "if [ -f $fp ]; then echo true;else echo false;fi";
     if (!($stream = ssh2_exec($connection, $comando))) {
         $this->ERROR = "Error al ejecutar el comando";
@@ -179,7 +178,8 @@ function _waitfor($connection) {
 
     if (trim($data) == "true") {
         $this->ultimoerror = "$fp existe. " . strftime("%d-%m-%Y %H:%M:%S");
-        ;
+        if (strlen($this->comando)>0)
+                return $this->_run_command($connection);
         return true;
     } else {
 

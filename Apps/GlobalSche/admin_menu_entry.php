@@ -22,6 +22,7 @@
         "Maestros","Maestros"
       ),
       array("GlobalSche/action_control.php","fbody","Panel de Control"),
+        array("GlobalSche/action_monitor.php","fbody","Seguimiento"),
       array("GlobalSche/action_definitions.php","fbody","Definiciones"),
       array(
         array(

@@ -30,10 +30,17 @@ function run() {
                 break;
 
             case 'Espera':
-
-                while (!$this->_waitfor($connection))
+                $START_TIME = time();
+                while (!$this->_waitfor($connection)) {
                     sleep(30);
+                    if ((time() - TASK_TIMEOUT) > $START_TIME) {
+                        /* Timed out */
+                            return false;
+                        
+                    }
+                }
 
+                
                 break;
 
             case 'Crear Script':
@@ -115,6 +122,8 @@ function _waitfor($connection) {
 
     if (trim($data) == "true") {
         $this->ERROR = "$fp existe";
+        if (strlen($this->comando)>0)
+                return $this->_run_command($connection);
         return true;
     } else {
         $this->ERROR = "$fp no existe ($data)";

@@ -7,6 +7,7 @@ function WordWrapping($string,$words) {
   
   
 }
+class asTemplate extends plantilla {}
 
 class plantilla {
 
@@ -655,9 +656,9 @@ function plParseTemplateFast($dat,$external="") {
     
     $res=preg_replace("/<!-- M:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
     $res=preg_replace("/<!-- V:([^\{]{1,100}?) -->/e",'$dat[$1]',$res);
-    $res=preg_replace("/<!-- A:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y &nbsp;",(int)$dat[$1])',$res);
-    $res=preg_replace("/<!-- T:([^\{]{1,100}?) -->/e",'strftime("%H:%M &nbsp;",(int)$dat[$1])',$res);
-    $res=preg_replace("/<!-- H:([^\{]{1,100}?) -->/e",'strftime("%d/%m/%Y %H:%M",(int)$dat[$1])',$res);
+    $res=preg_replace("/<!-- A:([^\{]{1,100}?) -->/e",'_safe_strftime("%d/%m/%Y &nbsp;",(int)$dat[$1])',$res);
+    $res=preg_replace("/<!-- T:([^\{]{1,100}?) -->/e",'_safe_strftime("%H:%M &nbsp;",(int)$dat[$1])',$res);
+    $res=preg_replace("/<!-- H:([^\{]{1,100}?) -->/e",'_safe_strftime("%d/%m/%Y %H:%M",(int)$dat[$1])',$res);
     $res=preg_replace("/<!-- C:([^\{]{1,100}?) -->/e",'echo "CHECKED"',$res);
     $res=preg_replace("/<!-- R:([^\{]{1,100}?) -->/e",'int_to_text_ex($dat[$1])"',$res);
     $res=preg_replace("/<!-- L:([^\{]{1,100}?) -->/e",'substr($dat[$1]),0,300)."..."',$res);
