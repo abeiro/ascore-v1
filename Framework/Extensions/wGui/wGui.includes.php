@@ -2,6 +2,7 @@
 <html>
   <head>
      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
+     <META HTTP-EQUIV="Content-Language" Content="<?php echo $SYS["LANG"]?>">
     <link href="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//wGui.css" rel="stylesheet"  type="text/css" />
     <link type="text/css" href="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//grid/css/mtg/mytablegrid.css" rel="stylesheet">
     <link type="text/css" href="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//grid/css/mtg/calendar.css" rel="stylesheet">

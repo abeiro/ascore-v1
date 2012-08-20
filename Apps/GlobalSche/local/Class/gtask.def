@@ -10,4 +10,5 @@
   <diasderetraso type="int" option="Si">Modificador de dias en evaluaciones</diasderetraso>
   <responsable type="ref" option="user:NameSurname">Responsable principal</responsable>
   <seguimiento type="list" option="Sin seguimiento|Diario|Mensual">Seguimiento</seguimiento>
+  <comentarios  type="string" option="256">Comentarios</comentarios>
 </cpd>

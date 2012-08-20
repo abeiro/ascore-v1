@@ -15,7 +15,7 @@ class wDesktop extends wObject {
             }
     }
 
-    function __restoreListeners(&$obj) {
+    function __restoreListeners(&$obj,&$counter=0) {
         global $xajax;
         //debug("Checking object {$obj->name}. Childs: ".array_keys(get_object_vars($obj->wChildren)),"yellow");
 
@@ -30,35 +30,37 @@ class wDesktop extends wObject {
                 else
                     $cList = $obj->addListener($n, $singleListener->sourceData["function"]);
 
-
+                $counter++;
 
                 foreach ($singleListener->sourceData["parameters"] as $sp)
                     $cList->addParameter($sp[0], $sp[1]);
             }
         } else {
-            debug(get_class($objC) . " has no listeners", "yellow");
+            nodebug(get_class($objC) . " has no listeners", "yellow");
         }
 
         if (is_array($obj->wChildren)) {
             foreach ($obj->wChildren as $name => $objC)
                 if (is_object($objC))
                     if (is_subclass_of($objC, "wObject"))
-                        $this->__restoreListeners($objC);
+                        $this->__restoreListeners($objC,$counter);
                     else
-                        debug(get_class($objC) . " no subclass of wObject", "red");
+                        nodebug(get_class($objC) . " no subclass of wObject", "red");
                 else
-                    debug(get_class($objC) . " is not an object", "red");
+                    nodebug(get_class($objC) . " is not an object", "red");
         }
         else {
-            debug("{$obj->wChildren} is no an array ", "red");
+            nodebug("{$obj->wChildren} is no an array ", "red");
         }
     }
 
     function __wakeup() {
         debug("wake up called", "red");
+        $counter=0;
         //$this->restoreListeners($this->FormWindow);
         $this->__createObjectHashMap($this);
-        $this->__restoreListeners($this);
+        $this->__restoreListeners($this,$counter);
+        debug("Total listeners $counter", "magenta");
 
         //die();
     }
@@ -74,8 +76,8 @@ class wDesktop extends wObject {
         if (is_object($obj))
             return $obj;
         else {
-            debug("Cached object is invalid", "red");
-            debug(print_r($_SESSION["desktopaxot"]["panel"][$id],true), "red");
+            nodebug("Cached object is invalid", "red");
+            nodebug(print_r($_SESSION["desktopaxot"]["panel"][$id],true), "red");
             return null;
         }
     }

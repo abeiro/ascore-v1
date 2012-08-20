@@ -29,13 +29,15 @@
     }
 </style>
 
-<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray;background-color:lightgray">
+<table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray;background-color:lightgray;overflow: scroll">
     <th>Tarea</th>
     <th>Cola</th>
     <th>Estado</th>
     <th>Fecha</th>
     <th>Planificación</th>
-    <th></th>
+    <th>Progreso</th>
+    <th>Operaciones</th>
+    <th>Comentarios</th>
 
 <!--SET-->
 <tr class="monitorrow <!-- D:sclass -->">
@@ -46,7 +48,9 @@
   <td class="monitorcell "><!-- D:estado --></td>
   <td class="monitorcell "><!-- H:fecha --></td>
   <td class="monitorcell "><!-- D:plan --></td>
-  <td class="monitorcell " style="background-color:white"><!-- D:boton --></td>
+  <td class="monitorcell "><!-- D:stepstatus --></td>
+  <td class="monitorcell " nowrap ><!-- D:boton --><!-- D:boton2 --></td>
+  <td class="monitorcell "><!-- D:comentarios --></td>
   
 </tr>
 <!--END-->

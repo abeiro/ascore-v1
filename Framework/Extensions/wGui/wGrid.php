@@ -30,10 +30,10 @@ class wGrid extends wObject implements wRenderizable {
         parent::render();
 
         echo '<div style="position:relative">
-        <span onclick=\'$("' . $this->id . '").style.width="90px"\' style="cursor:pointer;font-size:19px;margin-right:5px"> . </span>
-        <span onclick=\'$("' . $this->id . '").style.width="595px"\' style="cursor:pointer;font-size:19px;margin-right:5px"> .. </span>';
-        echo "<span onclick=\"tableGrid_{$this->id}.tableModel.options.width='1000px';$('{$this->id}').style.width='1000px';tableGrid_{$this->id}_restart()\" style='cursor:pointer;font-size:19px;'> ... </span>";
-        echo "<span onclick='tableGrid_{$this->id}_restart()' style='cursor:pointer;font-size:19px;right:0px;position:absolute'>O</span>
+        <span onclick=\'$("' . $this->id . '").style.width="90px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer1"> . </span>
+        <span onclick=\'$("' . $this->id . '").style.width="595px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer2"> .. </span>';
+        echo "<span onclick=\"tableGrid_{$this->id}.tableModel.options.width='1000px';$('{$this->id}').style.width='1000px';tableGrid_{$this->id}_restart()\" style='cursor:pointer;font-size:19px;' class='gridsizer3'> ... </span>";
+        echo "<span onclick='tableGrid_{$this->id}_restart()' style='cursor:pointer;font-size:19px;right:0px;position:absolute' class='gridrefresh'>O</span>
         </div>";
         echo "<!-- START OF GRID -->\n<div id='{$this->id}' style='{$this->cssStyle}'>";
         echo "<script>\n";

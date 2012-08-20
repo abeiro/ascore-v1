@@ -19,10 +19,7 @@ class wObject implements wRenderizable  {
 			$this->id=md5(get_class($parent).get_class($this));
 			
 		
-		if ($parent) {
-			$this->wParent=&$parent;
-			$parent->add($this);
-		}
+		
 		
 		if (method_exists($this,"_setDefaults")) {
 			$this->_setDefaults();
@@ -43,6 +40,11 @@ class wObject implements wRenderizable  {
                     $GLOBALS["objhash"][$n]=&$this;
                     $this->__internalid=$n;
                 }
+                
+                if ($parent) {
+			$this->wParent=&$parent;
+			$parent->add($this);
+		}
                 debug("Obj $name {$this->__internalid}","blue");
                 //$this->addListener("onclick","actionperformed",$this);
 		
@@ -58,7 +60,7 @@ class wObject implements wRenderizable  {
 	}
 	function add(&$object) {
 		
-		$this->wChildren[]=&$object;
+		$this->wChildren[$object->__internalid]=&$object;
 		$object->wParent=&$this;
 	
 	}
@@ -70,7 +72,7 @@ class wObject implements wRenderizable  {
 			$listenerPointer=&$this->Listener[$event];
 			}
 		else {
-			$this->Listener[$event]=pseudoListener::register(XAJAX_CALLABLE_OBJECT,$function,&$object);
+			$this->Listener[$event]=pseudoListener::register(XAJAX_CALLABLE_OBJECT,$function,$object);
 			$this->ListenerAux[$event]=strtolower($function);
 			$listenerPointer=&$this->Listener[$event];
 			$this->Listener[$event]->realListener=&$this->Listener[$event]->realListener[$this->ListenerAux[$event]];
@@ -101,6 +103,11 @@ class wObject implements wRenderizable  {
             $code=ob_get_contents();
             ob_end_clean();
             return $code;
+        }
+        
+        public function getMyClassName() {
+            return get_class($this);
+            
         }
         
 

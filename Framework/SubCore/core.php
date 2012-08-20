@@ -58,6 +58,9 @@ class core
   }
 }
 
+function nodebug($var,$color) {
+    return;
+}
 
 function debug($var,$color="blue") {
   global $core,$TrazaStatus,$nodebug,$DEBUGHANDLER;

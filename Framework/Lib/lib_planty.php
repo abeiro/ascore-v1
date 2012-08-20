@@ -128,7 +128,7 @@ class plantilla {
       if (is_object($dat))
         $dat=get_object_vars($dat);
       //
-      debug("total pages:".$dat["totalPages"]." vs ".$dat["nextP"],"green");
+      //debug("total pages:".$dat["totalPages"]." vs ".$dat["nextP"],"green");
       /* Navvars patch */
 
         
@@ -593,7 +593,7 @@ function plParseTemplateFast($dat,$external="") {
       if (is_object($dat))
         $dat=get_object_vars($dat);
       //
-      debug("total pages:".$dat["totalPages"]." vs ".$dat["nextP"],"green");
+     // debug("total pages:".$dat["totalPages"]." vs ".$dat["nextP"],"green");
       /* Navvars patch */
 
         

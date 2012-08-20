@@ -12,12 +12,12 @@ ACTION
 ************************/
 ini_set("include_path",".:".dirname(__FILE__)."/Framework/:".dirname(__FILE__)."/Apps/");
 require_once("coreg2.php");
-setlocale(LC_COLLATE,"es_ES@euro");
-setlocale(LC_CTYPE,"es_ES@euro");
-setlocale(LC_MONETARY,"es_ES@euro");
-setlocale(LC_TIME,"es_ES@euro");
 
 
+debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
+
+
+$petition=$_GET["petition"];
 
 $PET=ereg_replace("^/*","",$petition);
 debug("EURI Petition: $PET from $petition","white");
@@ -57,7 +57,14 @@ if ((is_file($MODULE."/main.php"))||(is_file("X_".$MODULE."/main.php"))) {
 	$MODULE=($MODULE=="Backend")?"Backend":"X_".$MODULE;
 	$MODULE=($MODULE=="X_Ide")?"Ide":$MODULE;
 	$MODULE=($MODULE=="X_.")?".":$MODULE;
-	include($MODULE."/main.php");
+        
+        debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
+        
+        try {
+            require($MODULE."/main.php");
+        } catch (Exception $e) {
+            echo($e);
+        }
 	
 		
 	$THIS_PAGE=ob_get_contents();
@@ -70,7 +77,9 @@ if ((is_file($MODULE."/main.php"))||(is_file("X_".$MODULE."/main.php"))) {
 	else
 		$FINAL_DATA=ltrim($THIS_PAGE);
 	
+        
 	echo $FINAL_DATA;
+        
 }
 else {
 	header("HTTP/1.0 404 Not Found");

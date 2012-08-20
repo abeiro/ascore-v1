@@ -1,5 +1,5 @@
 <?php
-
+debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 if (!ini_set("session.use_trans_sid","0")) {
 		debug("Problema: session.use_trans_sid","red");
 		
@@ -17,8 +17,9 @@ $DOMAIN=$_SERVER["SERVER_NAME"];
 session_set_cookie_params ( 0 , $PATH,'',0);
 debug("Cookie params: ".ini_get('session.cookie_path')." ".ini_get('session.name')." ".$DOMAIN,"red");
 if (!session_start())
-	$debug("No se pudo iniciar la sesión con cookie","red");
+	$debug("No se pudo iniciar la sesion con cookie","red");
 
 
+debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 	
 ?>

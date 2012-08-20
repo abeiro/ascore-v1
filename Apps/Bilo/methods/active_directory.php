@@ -4,7 +4,8 @@
     
     global $SYS;
     
- 
+    if (!function_exists("ldap_connect")) 
+        return false;
  
     $adServer=$SYS["AUTH"]["activedirectory"]["server"];
     $basedn=$SYS["AUTH"]["activedirectory"]["basedn"];

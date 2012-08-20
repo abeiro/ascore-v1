@@ -65,7 +65,7 @@ ini_set("session.save_path",dirname(__FILE__)."/../Sessions");
 
 include("SubCore/core.php");			// Core main class
 
-
+debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 
 
 
@@ -149,6 +149,8 @@ Do not comment ant SubCore include
 include("SubCore/".$SYS["DBDRIVER"].".inc.php");// DB driver
 include("SubCore/root.php");			// Root class, root of evil ;)
 
+debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
+
 /* Includes : Libraries */
 
 include("Lib/lib_planty.php");				// Template library
@@ -160,7 +162,7 @@ require("Lib/lib_gfx.php");					// GFX library
 require("Lib/lib_session.php");				// Session library
 require("Lib/lib_zoom.php");				// Session library
 require("Lib/lib_monitor.php");				// Session library
-require("Lib/lib_class_xml_to_array.php");	// Aditional XML library
+require("Lib/lib_class_xml_to_array.php");              // Aditional XML library
 
 /* fileh class Initializer. VNH Soon to be removed*/
 $SYS["thumbsize"]="128";
@@ -198,6 +200,6 @@ if ($_SERVER["SERVER_PORT"]==80) {
 }
 
 
-
+debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 require("post-init.php");
 ?>
