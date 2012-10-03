@@ -228,7 +228,7 @@ class wForm extends wObject implements wRenderizable {
             debug(__FILE__ . " Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $fjid);
+                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $fjid);
                 break;
             }
             else
@@ -259,7 +259,7 @@ class wForm extends wObject implements wRenderizable {
             debug("Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
+                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
                 break;
             }
             else
@@ -286,7 +286,7 @@ class wForm extends wObject implements wRenderizable {
             debug("Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
+                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
                 break;
             }
             else
@@ -304,7 +304,7 @@ class wForm extends wObject implements wRenderizable {
             debug(__FILE__ . "Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $data, $fjid);
+                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $data, $fjid);
                 break;
             }
             else

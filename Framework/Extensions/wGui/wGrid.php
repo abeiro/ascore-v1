@@ -52,7 +52,8 @@ class wGrid extends wObject implements wRenderizable {
                 "rowClass" => "#ChangeRowStyle#"
             ),
             "columnModel" => "#columnaT_{$this->id}#",
-            "url" => "{$this->DataURL}"
+            "url" => "{$this->DataURL}",
+            "customID"=>"tgInternal{$this->id}"        
                 //,"afterRender"=>"#new function() {alert('{$this->id}')}#"
         );
         echo ";\nvar tableModel_{$this->id}=" . javascript_encode($tableModel) . ";\n";
@@ -84,28 +85,30 @@ class wGrid extends wObject implements wRenderizable {
         echo "\nvar tableGrid_{$this->id}=null;\nvar tableGrid_{$this->id}_storedvalue=1;";
         echo "  
         EventHandlers[cEventHandlers]=function() {
-        parNode=document.getElementById('{$this->id}');
-        if (parNode.offsetHeight>0) {
-        if (tableGrid_{$this->id}!=null) {
-        tableGrid_{$this->id}.refresh();
-        
-        setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
-        //tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true);
-        }
-        else {
-        tableGrid_{$this->id} = new MyTableGrid(tableModel_{$this->id});
-        tableGrid_{$this->id}.render('{$this->id}');
-        
-        }
-        }
+            parNode=document.getElementById('{$this->id}');
+            if (parNode.offsetHeight>0) {
+                if (tableGrid_{$this->id}!=null) {
+                    console.log('Loading grid tableGrid_{$this->id}');
+                    tableGrid_{$this->id}_restart();
+                    setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
+                    //tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true);
+                }
+                else {
+                    tableGrid_{$this->id} = new MyTableGrid(tableModel_{$this->id});
+                    //tableGrid_{$this->id}._mtgId=new Date().getTime();    
+                    tableGrid_{$this->id}.render('{$this->id}');
+                }
+            }
         }
         cEventHandlers++;
         
         function tableGrid_{$this->id}_restart() {
-        
-        tableGrid_{$this->id} = new MyTableGrid(tableModel_{$this->id});
-        tableGrid_{$this->id}.render('{$this->id}');
-        setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
+            targetDiv=$('{$this->id}');
+            for (i=0;i<targetDiv.childElements().length;i++) {targetDiv.removeChild(targetDiv.childElements()[i]);console.log('Element removed');}
+            tableGrid_{$this->id} = new MyTableGrid(tableModel_{$this->id});
+            //tableGrid_{$this->id}._mtgId=new Date().getTime();
+            tableGrid_{$this->id}.render('{$this->id}');
+            setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
         }
         ";
 

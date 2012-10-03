@@ -77,11 +77,13 @@
       /* Replacementes en español */
       $buffer=preg_replace("/__FECHA{([^\{]{1,100}?)}/e",'strftime("$1",'.$timestamp.')',$expression);
       $buffer=preg_replace("/__ULTIMODIAMESPASADO{([^\{]{1,100}?)}/e", 'strftime("$1",' . lastMonth($timestamp) . ')', $buffer);
+      $buffer=preg_replace("/__ULTIMODIADOSMESPASADO{([^\{]{1,100}?)}/e", 'strftime("$1",' . lastMonth(lastMonth($timestamp)) . ')', $buffer);
       
       setlocale(LC_ALL,$currentLocale);
       /* Replacementes en guiri */
       $buffer=preg_replace("/__FECHA_AME{([^\{]{1,100}?)}/e",'strftime("$1",'.$timestamp.')',$buffer);
       $buffer=preg_replace("/__ULTIMODIAMESPASADO_AME{([^\{]{1,100}?)}/e", 'strftime("$1",' . lastMonth($timestamp) . ')', $buffer);
+      $buffer=preg_replace("/__ULTIMODIADOSMESPASADO_AME{([^\{]{1,100}?)}/e", 'strftime("$1",' . lastMonth(lastMonth($timestamp)) . ')', $buffer);
       if ($withSTRFTIME) {
               $buffer=strftime($buffer,$timestamp);
       }
