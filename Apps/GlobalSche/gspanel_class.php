@@ -52,7 +52,7 @@
       $LayOut->fixedSizes=array("","100%");
       /* Grid */
       
-      $grid=new wGrid("grid{$class}{$this->id}",&$LayOut);
+      $grid=new wGrid("grid{$class}{$this->id}",$LayOut);
       $grid->DataURL="?oDataRequest=".get_class($this)."&instance={$this->MainClass}&desktop_id={$GLOBALS["desktop_id"]}";
       $grid->setWidth(595);
       $this->addListener("noevent","updateURIS",$this);
@@ -117,7 +117,7 @@
       /* Nasty hook */
       if (isset($this->formatGridData)) {
         $func=$this->formatGridData;
-        $func(&$a->seachResults);
+        $func($a->seachResults);
       }
       
       wGrid::prepareGridData($a->seachResults,$a->totalPages,$_POST["page"]);

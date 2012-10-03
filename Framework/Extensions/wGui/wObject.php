@@ -126,7 +126,7 @@ class pseudoListener {
             $t=new pseudoListener();
             
             if ($a==XAJAX_CALLABLE_OBJECT) {
-                $t->realListener=$xajax->register($a,&$class);
+                $t->realListener=$xajax->register($a,$class);
                 $t->sourceData["objid"]=$class->__internalid;
                 $t->sourceData["objclass"]=get_class($class);
             }

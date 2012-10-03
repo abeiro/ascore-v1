@@ -52,7 +52,8 @@ loading: 'Cargando...'
 * MyTableGrid constructor
 */
 initialize : function(tableModel) {
-this._mtgId = $$('.myTableGrid').length + 1;
+//this._mtgId = $$('.myTableGrid').length + 1;
+this._mtgId = tableModel.customID;
 this.tableModel = tableModel;
 this.columnModel = tableModel.columnModel || [];
 this.rows = tableModel.rows || [];

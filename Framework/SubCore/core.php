@@ -54,7 +54,7 @@ class core
   
   function __clone() {
 
-    debug("Object cloning","green");
+    //debug("Object cloning","green");
   }
 }
 
@@ -456,7 +456,7 @@ function _closeSystem() {
     }
   
   //$monitor->MonClose();
-  ob_start();print_r(error_get_last());$err=ob_get_contents();ob_end_clean();
+  $err=print_r(error_get_last(),true);
   debug("Debug: $err","red");
   debug("Ending System: Total ms of ASCore:$CORETIME","white");
   fflush($DEBUGHANDLER);
