@@ -253,18 +253,37 @@ class wForm extends wObject implements wRenderizable {
         if ($this->coreObject->ID < 2) {
             $objResponse->script("alert('{$this->coreObject->ERROR}')");
         }
-        $MethodtoCall = $this->afterSaveMethod;
-        $cParent = &$this->wParent;
-        while ($cParent) {
-            debug("Calling parent: " . get_class($cParent), "white");
-            if (method_exists($cParent, $MethodtoCall)) {
-                debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
-                break;
-            }
-            else
-                $cParent = &$cParent->wParent;
-        }
+        
+		debug("Calling parent: " . print_r($this->afterSaveMethod,true), "white");
+		if (is_array($this->afterSaveMethod)) {
+			foreach ($this->afterSaveMethod as $singleMethod) {
+				$MethodtoCall = $singleMethod;
+				$cParent = &$this->wParent;
+				while ($cParent) {
+					debug("Calling parent: $singleMethod " . get_class($cParent), "white");
+					if (method_exists($cParent, $MethodtoCall)) {
+						debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+						call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
+						break;
+					}
+					else
+						$cParent = &$cParent->wParent;
+				}
+			}
+		} else {
+			$MethodtoCall = $this->afterSaveMethod;
+			$cParent = &$this->wParent;
+			while ($cParent) {
+				debug("Calling parent: " . get_class($cParent), "white");
+				if (method_exists($cParent, $MethodtoCall)) {
+					debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+					call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
+					break;
+				}
+				else
+					$cParent = &$cParent->wParent;
+			}
+		}
         if ($this->coreObject->__isNew) {
 //xajax_wForm.requestNewForm("Nuevo", "onclick", "formgtasklogRegistros", "gtasklog")
             $objResponse->script("xajax_wForm.requestloadFromId({$this->coreObject->ID},'{$this->id}','$classname')");
@@ -335,7 +354,7 @@ class wForm extends wObject implements wRenderizable {
 
     public function doAfterSave($method) {
 
-        $this->afterSaveMethod = $method;
+        $this->afterSaveMethod[] = $method;
     }
 
     public function doAfterDelete($method) {
