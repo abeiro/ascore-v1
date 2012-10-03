@@ -529,6 +529,21 @@ function css_collector($buffer) {
   return $jpos;
 }
 
+
+function reArrangeMetas($buffer) {
+
+
+  
+ $ptn = "/<link.*>/i";
+  $ptnh = "/<head>/i";
+  preg_match_all($ptn, $buffer, $matches);
+  $toInsert=implode("\n",$matches[0]);
+  $newBuffer=preg_replace($ptn, "", $buffer);
+  $buffer=preg_replace($ptnh, "<head>\n$toInsert", $newBuffer);
+  
+  return $buffer;
+}
+
 if (!function_exists("http_build_query")) {
 
   function http_build_query($data) {
