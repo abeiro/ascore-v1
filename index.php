@@ -11,6 +11,9 @@ APP
 ACTION
 ************************/
 ini_set("include_path",".:".dirname(__FILE__)."/Framework/:".dirname(__FILE__)."/Apps/");
+
+extract($_GET);
+extract($_POST);
 require_once("coreg2.php");
 
 
@@ -19,8 +22,8 @@ debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".
 
 $petition=$_GET["petition"];
 
-$PET=ereg_replace("^/*","",$petition);
-debug("EURI Petition: $PET from $petition","white");
+$PET=preg_replace("/^\/./","",$petition);
+debug("EURI Petition: $PET from $petition (".implode(":",$_GET).")","white");
 ;
 if ($PET==="index.php")
 	$PET="";

@@ -165,7 +165,7 @@ class plantilla {
     //echo "-".($dat["parset"])."#";
     if (($dat["parset"]==True)) {
         debug("Using parset","red");
-        $res=ereg_replace("<!--STARTPARSET-->.*<!--ENDPARSET-->","<!--*-->",$res);
+        $res=preg_replace("/<!--STARTPARSET-->.*<!--ENDPARSET-->/","<!--*-->",$res);
       }
     
       
@@ -174,14 +174,14 @@ class plantilla {
       
       //debug(key($SYS["GLOBAL"])."-".current($SYS["GLOBAL"])."- $i");
       if (current($SYS["GLOBAL"])==FALSE) {
-        $res=ereg_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+        $res=preg_replace('/<!-- I:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
 
       /* Patch 20070501 */
       if (current($SYS["GLOBAL"])<1) {
-        $res=ereg_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+        $res=preg_replace('/<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- NI:'.key($SYS["GLOBAL"]).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
@@ -196,14 +196,14 @@ class plantilla {
       //debug(key($dat)."-".current($dat)."- $i");
 
       if (current($dat)==False) {
-        $res=ereg_replace('<!-- I:'.key($dat).' -->.*<!-- I:'.key($dat).' -->','',$res);
+        $res=preg_replace('/<!-- I:'.key($dat).' -->.*<!-- I:'.key($dat).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- I:'.key($dat).' -->','',$res);
 
       /* Patch 20070501 */
       if (current($dat)<1) {
-        $res=ereg_replace('<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->','',$res);
+        $res=preg_replace('/<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- NI:'.key($dat).' -->','',$res);
@@ -382,13 +382,13 @@ class plantilla {
       
       //debug(key($SYS["GLOBAL"])."-".current($SYS["GLOBAL"])."- $i");
       if (current($SYS["GLOBAL"])==FALSE) {
-        $res=ereg_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+        $res=preg_replace('/<!-- I:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
       /* Patch 20070501 */
       if (current($SYS["GLOBAL"])<1) {
-        $res=ereg_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
+        $res=preg_replace('/<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- NI:'.key($SYS["GLOBAL"]).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
@@ -402,21 +402,21 @@ class plantilla {
     //echo "<pre>";print_r($dat);echo "</pre>";
     //echo "{$dat["nextP"]}>={$dat["totalPages"]}:{$dat["offset"]}";
     if ($dat["nextP"]<1) {
-        $res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
-        $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+        $res=preg_replace('/<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->/','',$res);
+        $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
       }
     else if (($dat["nextP"]>0)&&($dat["offset"]<1)) {
-        $res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
+        $res=preg_replace('/<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->/','',$res);
       if  ($dat["nextP"]==$dat["totalPages"]) 
-            $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+            $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
         
     }
                 else if (($dat["nextP"]==$dat["offset"])) {
-            $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+            $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
         
       }
     else if (($dat["nextP"]==$dat["totalPages"])) {
-            $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+            $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
         
       }
     /* Smart pag links */
@@ -424,14 +424,14 @@ class plantilla {
     for ($i;$i<sizeof($dat);$i++) {
 
       if (current($dat)==False) {
-        $res=ereg_replace('<!-- I:'.key($dat).' -->.*<!-- I:'.key($dat).' -->','',$res);
+        $res=preg_replace('/<!-- I:'.key($dat).' -->.*<!-- I:'.key($dat).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- I:'.key($dat).' -->','',$res);
 
       /* Patch 20070501 */
       if (current($dat)<1) {
-        $res=ereg_replace('<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->','',$res);
+        $res=preg_replace('/<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- NI:'.key($dat).' -->','',$res);
@@ -493,21 +493,21 @@ class plantilla {
     //echo "<pre>";print_r($dat);echo "</pre>";
     //echo "{$dat["nextP"]}>={$dat["totalPages"]}:{$dat["offset"]}";
     if ($dat["nextP"]<1) {
-        $res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
-        $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+        $res=preg_replace('/<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->/','',$res);
+        $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
       }
     else if (($dat["nextP"]>0)&&($dat["offset"]<1)) {
-        $res=ereg_replace('<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->','',$res);
+        $res=preg_replace('/<!-- IFPAGER1 -->.*<!-- FIPAGER1 -->/','',$res);
       if  ($dat["nextP"]==$dat["totalPages"]) 
-            $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+            $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
         
     }
                 else if (($dat["nextP"]==$dat["offset"])) {
-            $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+            $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
         
       }
     else if (($dat["nextP"]==$dat["totalPages"])) {
-            $res=ereg_replace('<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->','',$res);
+            $res=preg_replace('/<!-- IFPAGER2 -->.*<!-- FIPAGER2 -->/','',$res);
         
       }
     /* Smart pag links */
@@ -516,14 +516,14 @@ class plantilla {
       
       //debug(key($SYS["GLOBAL"])."-".current($SYS["GLOBAL"])."- $i");
       if (current($SYS["GLOBAL"])==FALSE) {
-        $res=ereg_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+        $res=preg_replace('/<!-- I:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
       next($SYS["GLOBAL"]);
 
       if (current($SYS["GLOBAL"])<1) {
-        $res=ereg_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->','',$res);
+        $res=preg_replace('/<!-- NI:'.key($SYS["GLOBAL"]).' -->.*<!-- I:'.key($SYS["GLOBAL"]).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- NI:'.key($SYS["GLOBAL"]).' -->','',$res);
@@ -537,14 +537,14 @@ class plantilla {
   
     
       if (current($dat)==False) {
-        $res=ereg_replace('<!-- I:'.key($dat).' -->.*<!-- I:'.key($dat).' -->','',$res);
+        $res=preg_replace('/<!-- I:'.key($dat).' -->.*<!-- I:'.key($dat).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- I:'.key($dat).' -->','',$res);
 
       /* Patch 20070501 */
       if (current($dat)<1) {
-        $res=ereg_replace('<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->','',$res);
+        $res=preg_replace('/<!-- NI:'.key($dat).' -->.*<!-- NI:'.key($dat).' -->/','',$res);
       }
       else
         $res=str_replace('<!-- NI:'.key($dat).' -->','',$res);
@@ -630,7 +630,7 @@ function plParseTemplateFast($dat,$external="") {
     //echo "-".($dat["parset"])."#";
     if (($dat["parset"]==True)) {
         debug("Using parset","red");
-        $res=ereg_replace("<!--STARTPARSET-->.*<!--ENDPARSET-->","<!--*-->",$res);
+        $res=preg_replace("/<!--STARTPARSET-->.*<!--ENDPARSET-->","<!--*-->/",$res);
       }
     
     if (!function_exists("__int_check_")) {

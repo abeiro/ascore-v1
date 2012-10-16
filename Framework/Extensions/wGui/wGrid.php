@@ -89,8 +89,8 @@ class wGrid extends wObject implements wRenderizable {
             if (parNode.offsetHeight>0) {
                 if (tableGrid_{$this->id}!=null) {
                     console.log('Loading grid tableGrid_{$this->id}');
-                    tableGrid_{$this->id}_restart();
-                    setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
+                    tableGrid_{$this->id}_softrefresh();
+                    //setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
                     //tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true);
                 }
                 else {
@@ -109,6 +109,16 @@ class wGrid extends wObject implements wRenderizable {
             //tableGrid_{$this->id}._mtgId=new Date().getTime();
             tableGrid_{$this->id}.render('{$this->id}');
             setTimeout('tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true)', 500);
+        }
+        
+
+        function tableGrid_{$this->id}_softrefresh() {
+            tableGrid_{$this->id}._retrieveDataFromUrl(tableGrid_{$this->id}.pager.currentPage,false);
+            tableGrid_{$this->id}.afterRender=function() {
+                try {
+                    tableGrid_{$this->id}.setValueAt(true,0,parseInt(tableGrid_{$this->id}_storedvalue),true);
+                } catch (idontcare){}
+            };
         }
         ";
 
@@ -139,7 +149,7 @@ class wGrid extends wObject implements wRenderizable {
 
         $columns[] = array(
             "id" => "grid_ID", 'title' => 'id', 'width' => '30', 'editable' => true, 'editor' =>
-            "#new MyTableGrid.CellRadioButton({onClickCallbackAlt:function(a,b,c) {tableGrid_{$this->id}_storedvalue=c.substr(12)},onClick: function(value, checked) {{$this->actionOnSelectID}}})#"
+            "#new MyTableGrid.CellRadioButton({onClickCallbackAlt:function(a,b,c) { tableGrid_{$this->id}_storedvalue=c.substr(c.indexOf(',')+1)},onClick: function(value, checked) {{$this->actionOnSelectID}}})#"
         );
         foreach ($object->properties_type as $name => $desc) {
             $width = 0;
