@@ -58,11 +58,11 @@ class wLayout extends wObject implements wRenderizable {
     }
 
     function setVertical() {
-        $this->type = LAYOUT . VERTICAL;
+        $this->type = LAYOUT.VERTICAL;
     }
 
     function setHorizontal() {
-        $this->type = LAYOUT . HORIZONTAL;
+        $this->type = LAYOUT.HORIZONTAL;
     }
 
     function _setDefaults() {

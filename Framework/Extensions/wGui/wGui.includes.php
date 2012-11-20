@@ -28,6 +28,7 @@
   
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions/wGui//TabbedPane/SpryTabbedPanels.js" type="text/javascript"></script> 
   
+  <?php echo $GLOBALS["WGUI"]["ADDITIONALHEADERS"] ?>
   <body>
     
     

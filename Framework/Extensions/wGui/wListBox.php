@@ -36,7 +36,11 @@ class wListBox extends wObject implements wRenderizable {
         } else {
             echo "<select {$this->moreHTMLproperties}  disabled   id='faked_{$this->id}'  style='{$this->cssStyle}'>\n";
             foreach ($this->dataModel as $k => $v) {
-                $addSel = ($this->value == $k) ? "selected" : "";
+				if (is_array($this->value))
+					$addSel = (in_array($this->value,$k)) ? "selected" : "";
+                else
+					$addSel = ($this->value == $k) ? "selected" : "";
+
                 echo "\t<option value='$k' label='$v' $addSel>$v</option>\n";
             }
             echo "</select>\n";

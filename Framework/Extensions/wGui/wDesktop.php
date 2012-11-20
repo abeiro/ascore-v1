@@ -17,7 +17,7 @@ class wDesktop extends wObject {
 
     function __restoreListeners(&$obj,&$counter=0) {
         global $xajax;
-        //debug("Checking object {$obj->name}. Childs: ".array_keys(get_object_vars($obj->wChildren)),"yellow");
+        debug("Checking object {$obj->name}. Childs: ".array_keys(get_object_vars($obj->wChildren)),"yellow");
 
         if (is_array($obj->Listener)) {
             foreach ($obj->Listener as $n => $singleListener) {
@@ -36,7 +36,7 @@ class wDesktop extends wObject {
                     $cList->addParameter($sp[0], $sp[1]);
             }
         } else {
-            nodebug(get_class($objC) . " has no listeners", "yellow");
+            debug(get_class($objC) . " has no listeners", "yellow");
         }
 
         if (is_array($obj->wChildren)) {
@@ -71,13 +71,13 @@ class wDesktop extends wObject {
 
     public static function ObjCacheRestore($id) {
 
-        debug("Using object caching", "blue");
+        debug("OBJCACHE: Using object caching", "magenta");
         $obj = unserialize($_SESSION["desktopaxot"]["panel"][$id]);
         if (is_object($obj))
             return $obj;
         else {
-            nodebug("Cached object is invalid", "red");
-            nodebug(print_r($_SESSION["desktopaxot"]["panel"][$id],true), "red");
+            debug("OBJCACHE: ERR: Cached object is invalid", "red");
+            debug(print_r($_SESSION["desktopaxot"]["panel"][$id],true), "red");
             return null;
         }
     }
@@ -100,12 +100,18 @@ class wDesktop extends wObject {
 
     public static function createApp($classname) {
         if ((empty($_POST)) && (!$_GET["oDataRequest"])) {
-            debug("Building real version: {$GLOBALS["desktop_id"]}", "magenta");
+            debug("OBJCACHE: Building real version: {$GLOBALS["desktop_id"]}", "magenta");
             $obj = new $classname(false);
             wDesktop::ObjCacheSave($obj, $GLOBALS["desktop_id"]);
         } else {
-            debug("Using serialized version of {$GLOBALS["desktop_id"]}", "magenta");
+            debug("OBJCACHE: Using serialized version of {$GLOBALS["desktop_id"]}", "magenta");
             $obj = wDesktop::ObjCacheRestore($GLOBALS["desktop_id"]);
+			if ($obj==null) {
+				 debug("OBJCACHE: Rebuilding {$GLOBALS["desktop_id"]}", "magenta");
+				$obj = new $classname(false);
+				wDesktop::ObjCacheSave($obj, $GLOBALS["desktop_id"]);
+			}
+				
         }
         return $obj;
     }
