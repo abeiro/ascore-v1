@@ -448,12 +448,27 @@
                 $res.=",`$str`";
             }
           }
+		  
             if (!function_exists("dsadd")) {
               /* Funcion dinamica */
-              function dsadd(&$str,$key) {
+              function dsadd(&$str,$key,&$object) {
                 global $res;
                 if ($key!="ID")
-                  $res.=",'".addslashes($str)."'";
+					if (empty($str))
+						if (
+								(strpos($object->properties_type[$key],"date")===0) ||
+								(strpos($object->properties_type[$key],"int")===0) ||
+								(strpos($object->properties_type[$key],"datex")===0) ||
+								(strpos($object->properties_type[$key],"ref")===0) ||
+								(strpos($object->properties_type[$key],"xref")===0) 
+								)
+							$res.=",0";
+						else
+							$res.=",''";
+					else if (strval(intval($str)) == strval($str))
+						$res.=",".addslashes($str)."";
+					else
+					  $res.=",'".addslashes($str)."'";
               }
             }
               $this->S_UserID_CB=$_SESSION["__auth"]["uid"];
@@ -461,12 +476,16 @@
               
               $this->_flat();
               array_walk(array_keys($this->properties),"fsadd");
-              $q="INSERT INTO `{$prefix}_".$this->name."`( `ID` ".$res.")";
+              $q="INSERT INTO `{$prefix}_".$this->name."`(".substr($res,1).")";
               $res="";
               reset($this->properties);
-              array_walk($this->properties,"dsadd");
-              $q.=" VALUES (''$res)";
+              array_walk($this->properties,"dsadd",$this);
+              $q.=" VALUES (".substr($res,1).")";
               
+			  if ($GLOBALS["SYS"]["DBDRIVER"] == "postgres") {
+				$q.= " RETURNING `ID` ";
+			  }
+				  
               $bdres=_query($q);
               $this->ID=_last_id();
               //----------------------------------------------------------------------------------
@@ -485,8 +504,8 @@
                   if(!empty($this->$pk)) {
                     // Rellenamos la tabla de referencias externas
                     foreach ($this->$pk as $k=>$v) {
-                      $q="INSERT INTO `{$prefix}_".$table_name."`( `ID` ".",`$field2`".",`$field3`".")";
-                      $q.=" VALUES (''".",'$this->ID'".",'$v'".")";
+                      $q="INSERT INTO `{$prefix}_".$table_name."`(`$field2`".",`$field3`".")";
+                      $q.=" VALUES ($this->ID'".",'$v'".")";
                       $bdres=_query($q);
                       
                       $q2="SELECT `$xref[2]` FROM `{$prefix}_".$xref[1]."` WHERE `ID`=$v";
@@ -570,7 +589,7 @@
             
             if ($id==0)
               return array();  
-            $q="SELECT * from {$prefix}_".$this->name." WHERE ID=$id";
+            $q="SELECT * from {$prefix}_".$this->name." WHERE `ID`=$id";
             $bdres=_query($q);
             $rawres=_fetch_array($bdres);
             if ($rawres===False)
@@ -598,7 +617,8 @@
             if (!function_exists("fadd")) {
               function fadd(&$val,&$key) {
                 global $res;
-                $res.=" `$key`='".addslashes($val)."' , ";
+                if ($val)
+                    $res.=" `$key`='".addslashes($val)."' , ";
               }
             }
               //------------------------------------------------------------------------------------------
@@ -637,7 +657,7 @@
               //------------------------------------------------------------------------------------------
               array_walk($this->properties,"fadd");
               $q="UPDATE `{$prefix}_".$this->name."` SET ";
-              $q.=substr($res,0,strlen(sizeof($res))-3)."  WHERE `ID`=".$this->ID. " LIMIT 1";
+              $q.=substr($res,0,strlen(sizeof($res))-3)."  WHERE `ID`=".$this->ID. "";
               $bdres=_query($q);    
               $this->nRes=_affected_rows();    
               if ($this->nRes>-1)
@@ -651,16 +671,16 @@
             Function selectAll
             *********************/
             
-            function selectAll($offset=0,$sort="ID") {
+            function selectAll($offset=0,$sort="`ID`") {
               
               global $prefix,$SYS;
               debug($SYS["DEFAULTROWS"]);
               if ((empty($sort)))
-                $sort="ID";
+                $sort="`ID`";
               $All=array();
               if ((empty($offset))||($offset<0))
                 $offset=0;
-              $q="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE ID>1";
+              $q="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE `ID`>1";
               $q.=" ORDER BY $sort LIMIT $offset,".$SYS["DEFAULTROWS"];
               
               $bdres=_query($q);
@@ -693,17 +713,17 @@
             Function select
             *********************/
             
-            function select($q,$offset=0,$sort="ID",$groupby='',$addfields='') {
+            function select($q,$offset=0,$sort="`ID`",$groupby='',$addfields='') {
               
               global $prefix,$SYS;
               
               $All=array();
               if ((empty($sort)))
-                $sort="ID";
+                $sort="`ID`";
               if ((empty($offset))||($offset<0))
                 $offset=0;
               
-              $q="SELECT SQL_CALC_FOUND_ROWS *$addfields from {$prefix}_".$this->name." WHERE $q AND ID>1 $groupby";
+              $q="SELECT SQL_CALC_FOUND_ROWS *$addfields from {$prefix}_".$this->name." WHERE $q AND `ID`>1 $groupby";
               $q.=" ORDER BY $sort LIMIT $offset,".$SYS["DEFAULTROWS"];
               
               $bdres=_query($q);
@@ -734,13 +754,13 @@
             Function select
             *********************/
             
-            function query($q,$offset=0,$sort="ID") {
+            function query($q,$offset=0,$sort="`ID`") {
               
               global $prefix,$SYS;
               
               $All=array();
               if ((empty($sort)))
-                $sort="{$prefix}{$this->name}.ID";
+                $sort="`{$prefix}{$this->name}.ID`";
               if ((empty($offset))||($offset<0))
                 $offset=0;
               
@@ -786,7 +806,7 @@
             *********************/
             
             
-            function listAll($field,$addVoidValue=True,$more="",$offset=0,$sort="ID ASC") {
+            function listAll($field,$addVoidValue=True,$more="",$offset=0,$sort="`ID` ASC") {
               
               setLimitRows(15000);
               if (empty($more))
@@ -974,249 +994,8 @@
             function sqlGenesis() {
               
               global $prefix;
-              
-              debug("Prefijo $prefix tabla $this->name","red");
-              $q="SHOW TABLES";
-              $bdres=_query($q);
-              $exists=False;
-              
-              while ($rawres=_fetch_array($bdres)) {
-                if (current($rawres)=="{$prefix}_{$this->name}")
-                  $exists=True;
-              }
-              if ($exists) {
-                $q="";
-                /* La tabla  existe */
-                $q="SHOW FIELDS FROM `{$prefix}_{$this->name}`";
-                $bdres=_query($q);
-                $j=0;
-                while ($rawres=_fetch_array($bdres)) {
-                  $fieldlst[$j]=current($rawres);
-                  $j++;
-                }
-                $q="";
-                reset($this->properties_type);
-                reset($this->properties);
-                for ($i=0,$loop_c=sizeof($this->properties);$i<$loop_c;$i++) {
-                  //echo "-".current($this->properties_type).".<br>";
-                  if (in_array(key($this->properties),$fieldlst))
-                    $action="ALTER TABLE `{$prefix}_".$this->name."` CHANGE `".key($this->properties)."` `".key($this->properties)."` ";
-                  else
-                    $action="ALTER TABLE `{$prefix}_".$this->name."` ADD `".key($this->properties)."` ";
-                  
-                  if (strstr(current($this->properties_type),"string")) {  
-                    $len=explode(":",current($this->properties_type));
-                    $q.= $action."VARCHAR( $len[1] ) NOT NULL ;\n";
-                  }
-                  else if (strstr(current($this->properties_type),"longtext")) {
-                    $len=explode(":",current($this->properties_type));
-                    $q.= $action."BLOB  NOT NULL ;\n";
-                  }
-                  elseif (strstr(current($this->properties_type),"text")) {
-                    $q.=$action." TEXT  NOT NULL ;\n";
-                  }
-                  elseif (strstr(current($this->properties_type),"password")) {
-                    $q.=$action." TEXT  NOT NULL ;\n";
-                  }
-                  else if (strstr(current($this->properties_type),"list")) {
-                    $len=explode(":",current($this->properties_type));
-                    $options=explode("|",$len[1]);
-                    $enum="'".$options[0]."'";
-                    for ($j=1,$options_size=sizeof($options);$j<$options_size;$j++) {
-                      $enum.=",'".$options[$j]."'";
-                    }
-                    $q.=$action." ENUM ( ".$enum." ) NOT NULL;\n";
-                    
-                  }
-                  
-                  elseif (strstr(current($this->properties_type),"nulo")) {
-                    $q.="";
-                  }
-                  //------------------------------------------------------------------------------------------
-                  
-                  else if (strstr(current($this->properties_type),"xref")) {
-                    $q.=$action." INT;\n";
-                    
-                    $xref=explode(":",current($this->properties_type));
-                    $table_name=$this->name."_".$xref[1];
-                    
-                    $field2=$this->name."_id";
-                    $field3=$xref[1]."_id";
-                    
-                    $q2="SHOW TABLES";
-                    $bdres=_query($q2);
-                    $exists=False;
-                    while ($rawres=_fetch_array($bdres)) {
-                      if (current($rawres)=="{$prefix}_{$table_name}")
-                        $exists=True;
-                    }
-                    if (!$exists) { // Si no existe, creamos la tabla de referencias externas
-                      $q2="CREATE TABLE `{$prefix}_".$table_name."` (\n";
-                      $q2.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
-                      $q2.="`".$field2."` INT NOT NULL ,\n";
-                      $q2.="`".$field3."` INT NOT NULL ,\n";
-                      $q2.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
-                      $bdres=_query($q2);
-                      $warning="La tabla de referencias externas creada anteriormente deberá ser borrada manualmente de la base de datos";
-                    }        
-                    
-                  }
-                  
-                  //------------------------------------------------------------------------------------------
-                  else if (strstr(current($this->properties_type),"ref")) {
-                    $q.=$action." INT;\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"int")) {
-                    $q.=$action." INT;\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"date")) {
-                    $q.=$action." INT;\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"datex")) {
-                    $q.=$action." INT;\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"time")) {
-                    $q.=$action." INT;\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"money")) {
-                    $q.=$action." DECIMAL(15,5);\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"float")) {
-                    $q.=$action." DECIMAL(15,5);\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"boolean")) {
-                    $len=explode(":",current($this->properties_type));
-                    $q.=$action." ENUM('Si','No') ";
-                    $q.="DEFAULT '{$len[1]}' NOT NULL;\n";
-                    
-                  }
-                  
-                  next($this->properties_type);
-                  next($this->properties);
-                }
-                //      LIMPIEZA
-                print_r($fieldlst);
-                for ($i=0,$fieldlst_options=sizeof($fieldlst);$i<$fieldlst_options;$i++)
-                     if ((in_array($fieldlst[$i],array_keys($this->properties)))||($fieldlst[$i]=="ID"))
-                       echo "";
-                else {
-                  $q.="ALTER TABLE `{$prefix}_{$this->name}` DROP `".$fieldlst[$i]."`;\n";
-                }
-                echo "<pre>$q</pre>";
-                //------------------------------------------------------------------------------------------
-                
-                echo $warning;
-                
-                //------------------------------------------------------------------------------------------
-                return $q;
-                
-              }
-              else
-              {
-                //------------------------------------------------------------------------------------------
-                
-                // Creamos previamente la tabla de referencias externas
-                foreach ($this->properties as $pk=>$pv) {
-                  if (strpos($this->properties_type[$pk],"xref")!==False) {
-                    $xref=explode(":",$this->properties_type[$pk]);
-                    $table_name=$this->name."_".$xref[1];
-                    
-                    
-                    $field2=$this->name."_id";
-                    $field3=$xref[1]."_id";
-                    
-                    $q="CREATE TABLE `{$prefix}_".$table_name."` (\n";
-                    $q.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
-                    $q.="`".$field2."` INT NOT NULL ,\n";
-                    $q.="`".$field3."` INT NOT NULL ,\n";
-                    $q.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
-                    $bdres=_query($q);
-                  }
-                }
-                
-                //------------------------------------------------------------------------------------------
-                $q ="CREATE TABLE `{$prefix}_".$this->name."` (\n";
-                $q.="`ID` INT NOT NULL AUTO_INCREMENT ,\n";
-                reset($this->properties_type);
-                reset($this->properties);
-                for ($i=0,$properties_size=sizeof($this->properties);$i<$properties_size;$i++) {
-                  //echo "-".current($this->properties_type).".<br>";
-                  if (strstr(current($this->properties_type),"string")) {
-                    $len=explode(":",current($this->properties_type));
-                    $q.="`".key($this->properties)."` VARCHAR( $len[1] ) NOT NULL ,\n";
-                  }
-                  else if (strstr(current($this->properties_type),"longtext")) {
-                    $len=explode(":",current($this->properties_type));
-                    $q.="`".key($this->properties)."` BLOB NOT NULL ,\n";
-                  }
-                  
-                  elseif (strstr(current($this->properties_type),"text")) {
-                    $q.="`".key($this->properties)."` TEXT  NOT NULL ,\n";
-                  }
-                  else if (strstr(current($this->properties_type),"list")) {
-                    $len=explode(":",current($this->properties_type));
-                    $options=explode("|",$len[1]);
-                    
-                    $enum="'".$options[0]."'";
-                    for ($j=1,$options_size=sizeof($options);$j<$options_size;$j++) {
-                      $enum.=",'".$options[$j]."'";
-                    }
-                    
-                    $q.="`".key($this->properties)."` ENUM ( ".$enum." ) NOT NULL,\n";
-                    
-                  }
-                  
-                  else if (strstr(current($this->properties_type),"ref")) {
-                    $q.="`".key($this->properties)."` INT,\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"int")) {
-                    $q.="`".key($this->properties)."` INT,\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"date")) {
-                    $q.="`".key($this->properties)."` INT,\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"datex")) {
-                    $q.="`".key($this->properties)."` INT,\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"time")) {
-                    $q.="`".key($this->properties)."` INT,\n";
-                    
-                  }
-                  elseif (strstr(current($this->properties_type),"nulo")) {
-                    $q.="";
-                  }
-                  else if (strstr(current($this->properties_type),"money")) {
-                    $q.="`".key($this->properties)."` DECIMAL(15,5),\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"float")) {
-                    $q.="`".key($this->properties)."` DECIMAL(15,5),\n";
-                    
-                  }
-                  else if (strstr(current($this->properties_type),"boolean")) {
-                    $len=explode(":",current($this->properties_type));
-                    $q.="`".key($this->properties)."` ENUM('Si','No') ";
-                    $q.="DEFAULT '{$len[1]}' NOT NULL,\n";
-                    
-                  }
-                  next($this->properties_type);
-                  next($this->properties);
-                }
-                $q.="INDEX ( `ID` ), PRIMARY KEY ( `ID` )\n)\n";
-                echo "<pre>$q</pre>";
-                return $q;
-              }
+              require(dirname(__FILE__)."/sqlgenerator_{$GLOBALS["SYS"]["DBDRIVER"]}.php");
+              return $q;
             }
             
             function makeTemplate($name) {
@@ -1501,7 +1280,7 @@
               
               global $prefix,$SYS;
               
-              $q="SELECT ID from {$prefix}_".$this->name." WHERE ID>1";
+              $q="SELECT ID from {$prefix}_".$this->name." WHERE `ID`>1";
               
               $bdres=_query($q);
               /*$rawres=fetch_array($bdres);
@@ -1535,14 +1314,14 @@
             
             *********************/
             
-            function selectA($q="") {
+            function selectA($q="",$more='') {
               
               global $prefix,$SYS;
               
               if (!empty($q))
-                $qry="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE ID>1 AND $q";
+                $qry="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE `ID`>1 AND $q $more";
               else
-                $qry="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE ID>1";
+                $qry="SELECT SQL_CALC_FOUND_ROWS * from {$prefix}_".$this->name." WHERE `ID`>1 $more";
               
               $bdres=_query($qry);
               /*$rawres=fetch_array($bdres);
@@ -1582,7 +1361,7 @@
               }
               
               
-              $qry="SELECT ID from {$prefix}_".$this->name." WHERE ID>$ID AND ID>1 ORDER BY ID ASC";
+              $qry="SELECT `ID` from {$prefix}_".$this->name." WHERE `ID`>$ID AND `ID`>1 ORDER BY `ID` ASC";
               
               $bdres=_query($qry);
               /*$rawres=fetch_array($bdres);
@@ -1614,7 +1393,7 @@
               }
               
               
-              $qry="SELECT ID from {$prefix}_".$this->name." WHERE ID<$ID AND ID>1 ORDER BY ID DESC";
+              $qry="SELECT `ID` from {$prefix}_".$this->name." WHERE `ID`<$ID AND `ID`>1 ORDER BY `ID` DESC";
               
               $bdres=_query($qry);
               /*$rawres=fetch_array($bdres);

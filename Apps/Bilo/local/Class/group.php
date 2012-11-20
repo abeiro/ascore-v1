@@ -1,6 +1,6 @@
 <?php
 
-/* Extensión de la clase grupo */
+/* Extensioon de la clase grupo */
 
 function donothing() {
 	return True;

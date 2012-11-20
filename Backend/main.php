@@ -17,9 +17,14 @@ set_include_dir(dirname(__FILE__)."/Bilo/-");
 require_once("Lib/lib_session.php");
 
 //setLimitRows(20);
-$up=newobject("user_pref");
-$up->getPrefByUser(BILO_uid());
-$up->setPrefs();
+$GLOBALS["sqlexceptions"]=true;
+try {
+	$up=newobject("user_pref");
+	$up->getPrefByUser(BILO_uid());
+	$up->setPrefs();
+} catch (Exception $idontcare) {}
+
+$GLOBALS["sqlexceptions"]=false;
 
 if ((!$isLoginScreen)&&(!$SYS["GLOBAL"]["void_login"])) {
 		if (BILO_isLogged()==false) {
@@ -58,17 +63,20 @@ if (is_file(dirname(__FILE__)."/../Apps/$APP/$ACTION")) {
 	if (strpos($ACTION,"action_")!==false)
 		include(dirname(__FILE__)."/../Apps/$APP/$ACTION");
 	else if (($SYS["GLOBAL"]["DEV_MODE"])&&(strpos($ACTION,"dev.php"))) {
-		die("dev");
+		//die("dev");
 		include(dirname(__FILE__)."/../Apps/$APP/$ACTION");
 	
 	}
 	else {
 		if ($print_mode)
 			plantHTML(array("PATH"=>$SYS["ROOT"]),"f_menu");
-		else
+		else if ($_GET["noheader"])
+			$_noop=1;
+		else 			
 			plantHTML(array("PATH"=>$SYS["ROOT"]),"f_menu_curtain");
 		include(dirname(__FILE__)."/../Apps/$APP/$ACTION");
-		plantHTML(array("PATH"=>$SYS["ROOT"]),"footer");
+		if (!$_GET["noheader"])
+			plantHTML(array("PATH"=>$SYS["ROOT"]),"footer");
 	}
 }
 else if (empty($APP)){

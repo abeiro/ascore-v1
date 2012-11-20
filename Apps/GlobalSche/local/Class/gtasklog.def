@@ -10,7 +10,7 @@
   <rini type="date" option="%d/%m/%Y %H:%M">Fecha/Hora Inicio Real</rini>
   <fin type="date" option="%d/%m/%Y %H:%M">Fecha/Hora final</fin>
   <ejecutor type="ref" option="user:username">Usuario ejecuta</ejecutor>
-  <departamento type="ref" option="group:groupname:active='Si' and ID>">Departamento</departamento>
+  <departamento type="ref" option="group:groupname:active='Si' and `ID`>">Departamento</departamento>
   <notas type="string" option="1024">Anotaciones</notas>
   <emailconfirmacion type="boolean" option="Si">E-mail de confirmacion</emailconfirmacion>
   <diasderetraso type="int" option="Si">Modificador de dias en evaluaciones</diasderetraso>

@@ -143,11 +143,13 @@ class MyApp extends wDesktop {
         }
 
          $steps = newObject("gsteplog");
-         $buffer2=$steps->select("gtasklog_id IN (" . implode(",", $gtasklogCollection) . ") ");
-         foreach ($buffer2 as $steplog) {
-            $cachedResults[$v->gtask_id] = $v;
-            $cachedsStepsLogs[$steplog->gtasklog_id][$steplog->ID]=$steplog;
-        }
+         if (sizeof($gtasklogCollection)>0) {
+            $buffer2=$steps->select("gtasklog_id IN (" . implode(",", $gtasklogCollection) . ") ");
+            foreach ($buffer2 as $steplog) {
+                $cachedResults[$v->gtask_id] = $v;
+                $cachedsStepsLogs[$steplog->gtasklog_id][$steplog->ID]=$steplog;
+            }   
+         }
         //print_r($buffer);
         //die();
         
@@ -248,7 +250,7 @@ class MyApp extends wDesktop {
 
 
         $tmpl = new asTemplate("monitor");
-        $buffer = $tmpl->plParseTemplateHeader();
+        $buffer = $tmpl->plParseTemplateHeader(array("date"=>date("d/M/y H:i:s")));
         foreach ($templateSet as $set) {
             $buffer.=$tmpl->plParseTemplateFast($set);
         }
@@ -349,7 +351,7 @@ class MyApp extends wDesktop {
 
 debug("Timestamp:" . (getmicrotime() - $GLOBALS["CODEINITTIME"]), "green");
 $ControlWindow = wDesktop::createApp("MyApp");
-debug("Timestamp asfter created app:" . (getmicrotime() - $GLOBALS["CODEINITTIME"]), "green");
+debug("Timestamp after created app:" . (getmicrotime() - $GLOBALS["CODEINITTIME"]), "green");
 
 
 /* Flow */

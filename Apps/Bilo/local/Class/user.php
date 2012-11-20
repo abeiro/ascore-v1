@@ -19,7 +19,7 @@
     // userExist($user)
 ?>
 <?php
-    /* Extensión de la clase inventarios_muestrarios */
+    /* Extensiï¿½n de la clase inventarios_muestrarios */
     function donothing()
     {
         return True;
@@ -116,7 +116,7 @@
             if ($user->password == md5($password))
                 return True;
             else
-                $AUTH["error"] = _("Contraseña errónea");
+                $AUTH["error"] = _("Contraseï¿½a errï¿½nea");
         }
         else
             $AUTH["error"] = _("usuario desconocido");
@@ -147,15 +147,15 @@
         else
             return False;
     }
-    function selectUser($q, $offset = 0, $sort = "ID")
+    function selectUser($q, $offset = 0, $sort = "`ID`")
     {
         global $prefix, $SYS;
         $All = array();
         if ((empty($sort)))
-            $sort = "ID";
+            $sort = "`ID`";
         if ((empty($offset)) || ($offset < 0))
             $offset = 0;
-        $q = "SELECT SQL_CALC_FOUND_ROWS *,CONCAT(nombre,' ',apellidos) as fullname from {$prefix}_".$this->name." WHERE $q AND ID>1";
+        $q = "SELECT SQL_CALC_FOUND_ROWS *,CONCAT(nombre,' ',apellidos) as fullname from {$prefix}_".$this->name." WHERE $q AND `ID`>1";
         $q .= " ORDER BY $sort LIMIT $offset,".$SYS["DEFAULTROWS"];
         $bdres = _query($q);
         /*$rawres=fetch_array($bdres);
@@ -200,7 +200,7 @@
         global $prefix;
         if ($id == 0)
             return array();
-        $q = "SELECT *,CONCAT(nombre,' ',apellidos) as fullname from {$prefix}_".$this->name." WHERE ID=$id";
+        $q = "SELECT *,CONCAT(nombre,' ',apellidos) as fullname from {$prefix}_".$this->name." WHERE `ID`=$id";
         $bdres = _query($q);
         $rawres = _fetch_array($bdres);
         if ($rawres === False)
@@ -213,7 +213,7 @@
     function userExist($user)
     {
         global $prefix;
-        $q = "SELECT ID FROM {$prefix}_".$this->name." WHERE username='$user'";
+        $q = "SELECT `ID` FROM {$prefix}_".$this->name." WHERE username='$user'";
         $bdres = _query($q);
         $this->nRes = _affected_rows();
         if ($this->nRes > 0)
@@ -283,7 +283,7 @@
     function mailExist($email = '', $ID = 1)
     {
         global $prefix;
-        $q = "SELECT ID FROM {$prefix}_".$this->name." WHERE email='$email' AND ID <> $ID";
+        $q = "SELECT ID FROM {$prefix}_".$this->name." WHERE email='$email' AND `ID` <> $ID";
         $bdres = _query($q);
         $this->nRes = _affected_rows();
         if ($this->nRes > 0)
@@ -303,7 +303,7 @@
             $texthash = "$SECRETKEY".time();
             $action->hash = md5($texthash);
             $action_id = $action->save();
-            $link = "Hemos recibido una solicitud para el cambio de contraseña para el usuario <b>{$user->username}</b>, si desea realizar este cambio, haga click en el siguiente enlace:<br><br><a href=\"{$URL}hash={$action->hash}\">{$URL}hash={$action->hash}</a><br><br>
+            $link = "Hemos recibido una solicitud para el cambio de contraseï¿½a para el usuario <b>{$user->username}</b>, si desea realizar este cambio, haga click en el siguiente enlace:<br><br><a href=\"{$URL}hash={$action->hash}\">{$URL}hash={$action->hash}</a><br><br>
                 Si su cliente de correo no permite el acceso a enlaces, copie y pegue esta URL en el navegador:<br><br>{$URL}hash={$action->hash}";
             require_once("Lib/lib_phpmailer.php");
             $mail = new PHPMailer();
@@ -313,7 +313,7 @@
             $mail->FromName = $SYS["admin_realm"];
             $mail->Attached = $mail->AddAttachment($path, $name = "", $encoding = "base64",
                 $type = "application/octet-stream");
-            $mail->Subject = $SYS["SITENAME"]."::Solicitud de confirmación de cambio de contraseña";
+            $mail->Subject = $SYS["SITENAME"]."::Solicitud de confirmaciï¿½n de cambio de contraseï¿½a";
             $mail->Body = $link;
             if (!$mail->Send())
                 echo $mail->ErrorInfo();
@@ -344,9 +344,9 @@
                 {
                     $temp->completed = 'Si';
                     $temp->save();
-                    $link = "Se ha generado una nueva contraseña para su usuario, a continuación le informamos de sus nuevos datos para conectarse:<br><br>
+                    $link = "Se ha generado una nueva contraseï¿½a para su usuario, a continuaciï¿½n le informamos de sus nuevos datos para conectarse:<br><br>
                         Usuario: $user->username<br><br>
-                        Contraseña: $pass";
+                        Contraseï¿½a: $pass";
                     require_once("Lib/lib_phpmailer.php");
                     $mail = new PHPMailer();
                     $mail->AddAddress($user->email);
@@ -355,7 +355,7 @@
                     $mail->FromName = $SYS["admin_realm"];
                     $mail->Attached = $mail->AddAttachment($path, $name = "", $encoding = "base64",
                         $type = "application/octet-stream");
-                    $mail->Subject = $SYS["SITENAME"]._("::Nueva contraseña de usuario");
+                    $mail->Subject = $SYS["SITENAME"]._("::Nueva contraseï¿½a de usuario");
                     $mail->Body = $link;
                     if (!$mail->Send()) {
                         $this->ERROR=$mail->ErrorInfo();

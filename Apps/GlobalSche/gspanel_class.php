@@ -90,8 +90,10 @@
     
     */
     
-    function aj_RequestData($class) {
+    function aj_RequestData($class,$uselast=false) {
       global $SYS;
+      
+      if (!$uselast) {
       $a=newObject($class);
       $calculatedOffset=floor(($_POST["page"]-1)*$SYS["DEFAULTROWS"]);
       if (isset($this->hierarchyClass["$class"])) {
@@ -110,9 +112,19 @@
       else
         $sortDriver=$this->SQL_SORT["$class"];
       debug("Grid sorting request: $sortDriver","green");
+      
+      } else {
+          $sqlcond=$_SESSION["cache"]["gspanel"]["$class"]["lastsql"];
+          $calculatedOffset=$_SESSION["cache"]["gspanel"]["$class"]["calculatedOffset"];
+          $sortDriver=$_SESSION["cache"]["gspanel"]["$class"]["sortDriver"];
+          
+      }
+      
       $a->seachResults=$a->select($sqlcond,$calculatedOffset,$sortDriver);
       
-      
+      $_SESSION["cache"]["gspanel"]["$class"]["lastsql"]=$sqlcond;
+      $_SESSION["cache"]["gspanel"]["$class"]["calculatedOffset"]=$calculatedOffset;
+      $_SESSION["cache"]["gspanel"]["$class"]["sortDriver"]=$sortDriver;
       
       /* Nasty hook */
       if (isset($this->formatGridData)) {

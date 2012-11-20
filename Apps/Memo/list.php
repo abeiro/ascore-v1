@@ -11,7 +11,7 @@ else
 	$inode=$inode+0;
 	
 if (!isset($sort))
-	$sort="type DESC";
+	$sort="`type` DESC";
 
 $aux=newObject("data_object",$inode);	
 $aux2=newObject("data_object",0);	

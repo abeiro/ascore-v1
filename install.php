@@ -167,7 +167,7 @@ if (empty($_POST["step"])) {
 	
 	<br clear="all" />
 	<input type="hidden" name="step" value="2" />
-	<div align="right"><input type="submit" name="Confirmar" value="Confirmar" /><7div>
+	<div align="right"><input type="submit" name="Confirmar" value="Confirmar" /></div>
 	</form>
 	</div>
 	<!--PASO UNO -->

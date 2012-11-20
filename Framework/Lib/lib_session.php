@@ -1,20 +1,15 @@
 <?php
 
-
-
 /*
- memcached
-$session_save_path = "localhost:11211";
+ * $session_save_path = "localhost:11211";
 ini_set('session.save_handler', 'memcached');
 ini_set('session.save_path', $session_save_path);
-*/
+
 
 ini_set('session.save_handler', 'memcache');
 ini_set('session.save_path', "tcp://127.0.0.1:11211");
 
-
-
-
+ */
 debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 if (!ini_set("session.use_trans_sid","0")) {
 		debug("Problema: session.use_trans_sid","red");
