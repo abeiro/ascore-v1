@@ -610,4 +610,20 @@ function dataDumpS($array) {
 	return str_replace(">",">\n",print_a( $array, 1,True));
 }
 
+function jInspect($o) {
+  global $TrazaStatus;
+  if (!$TrazaStatus) 
+    return (debug("jInspect only available with TrazaStatus = true ","white"));
+  
+  if (isset($GLOBALS["jInspect"]))
+    return;
+  else
+    $GLOBALS["jInspect"]=debug_backtrace();
+
+  $file=fopen(dirname(__FILE__)."/../../logs/jInspect_".$_SERVER["REMOTE_ADDR"].".json","wt");
+  $data=json_encode($o, JSON_UNESCAPED_UNICODE|JSON_FORCE_OBJECT);
+  fwrite($file,$data,strlen($data));
+  fclose($file);
+}
+
 ?>

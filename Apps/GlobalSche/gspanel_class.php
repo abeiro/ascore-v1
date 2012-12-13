@@ -12,7 +12,7 @@
     var $aForms=array();
     var $SQL_CONDS=array();
     var $statusBox=null;
-    
+    var $mainPane=null;
     /* 
     Constructor and first tab
     */
@@ -29,13 +29,14 @@
       $this->setElementStyle("float","none");
       $this->setElementStyle("width","100%");
       
-      $F=new wPane("{$class}gspane",$this);
-      $F->visibility="visible";
-      $F->setElementStyle("float","none");
-      $F->setElementStyle("width","100%");
+      
+      $this->mainPane=new wPane("{$class}gspane",$this);
+      $this->mainPane->visibility="visible";
+      $this->mainPane->setElementStyle("float","none");
+      $this->mainPane->setElementStyle("width","100%");
 
       
-      $this->statusBox=new wMutableLabel("statusBox",$F,"-----");
+      $this->statusBox=new wMutableLabel("statusBox",$this->mainPane,"-----");
       $this->statusBox->setCSS("text-align","left");
       $this->statusBox->setCSS("width","600px");
       $this->statusBox->setCSS("padding-top","10px");
@@ -44,7 +45,7 @@
       
       
       
-      $this->tabPane=new wTabbedPane("name",$F);
+      $this->tabPane=new wTabbedPane("name",$this->mainPane);
       
       $LayOut=new wLayoutTable("$name",$this->tabPane);
       //$LayOut->setCSS("width","100%");

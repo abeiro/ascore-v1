@@ -11,6 +11,8 @@ class wObject implements wRenderizable  {
 	var $cssStyle='';				// String storing static css styles
 	var $staticCSS=array();			// Array of static css styles
 	var $__internalid;
+	var $className;
+	
 	function __construct($name=null,&$parent=null) {
 		global $xajax;
 		if ($name)
@@ -46,6 +48,12 @@ class wObject implements wRenderizable  {
 			$parent->add($this);
 		}
                 debug("Obj $name {$this->__internalid}","blue");
+		try {
+		  $this->className=$this->getMyClassName();
+      
+		} catch (Exception $idontcare) {
+
+		}
                 //$this->addListener("onclick","actionperformed",$this);
 		
 	

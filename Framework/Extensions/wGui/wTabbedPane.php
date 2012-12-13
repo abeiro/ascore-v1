@@ -17,7 +17,7 @@ class wTabbedPane extends wObject implements wRenderizable {
         $counter = 0;
         foreach ($this->wChildren as $k => $c) {
             echo "<ul class='TabbedPanelsTabGroup'>
-			<li onclick='TabPanShow(\"{$this->id}_{$c->id}\")' id='{$this->id}_{$c->id}_selector'class='TabbedPanelsTab'>{$c->name}</li> 
+			<li onclick='TabPanShow(\"{$this->id}_{$c->id}\")' id='{$this->id}_{$c->id}_selector' class='TabbedPanelsTab'>{$c->name}</li> 
 		     </ul>";
         }
         echo "<div id='{$this->id}_parent_node'>";
