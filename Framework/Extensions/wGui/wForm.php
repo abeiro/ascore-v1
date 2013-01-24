@@ -7,7 +7,7 @@ class wForm extends wObject implements wRenderizable {
     var $afterSaveMethod = null;
     var $buttonPane = null;
     var $components = array();
-
+    var $LineByLine=false;
     function __construct($name=null, &$parent) {
         global $xajax;
 
@@ -51,16 +51,21 @@ class wForm extends wObject implements wRenderizable {
         //     $cssWidth="width:25%";
 
         foreach ($this->wChildren as $c) {
-
-            $count++;
-            if ($count % 2 == 0) {
-                echo "<div style='float:left;width:73%;padding:2px'>";
+            if ($this->LineByLine) {
+                echo "<div style='width:100%;padding:2px;break:all'>";
                 $c->render();
-                echo '</div>';
+                   echo "</div>";
             } else {
-                echo "<div style='float:left;width:25%;min-width:175px;border:1px;padding:2px'>";
-                $c->render();
-                echo '</div>';
+                $count++;
+                if ($count % 2 == 0) {
+                    echo "<div style='float:left;width:73%;padding:2px'>";
+                    $c->render();
+                    echo '</div>';
+                } else {
+                    echo "<div style='float:left;width:25%;min-width:175px;border:1px;padding:2px'>";
+                    $c->render();
+                    echo '</div>';
+                }
             }
         }
         echo "<br clear=\"both\" />";
@@ -144,6 +149,8 @@ class wForm extends wObject implements wRenderizable {
                             $options = substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1);
                             $ops = explode("|", $options);
                             $o = null;
+                            if ($object->properties_properties[$k1]["mandatory"])
+                                $o["-"] = "-";
                             foreach ($ops as $minikey => $minival)
                                 $o["$minival"] = $minival;
                             $inputs["$k1"]->setSelectedIndex($object->$k1);

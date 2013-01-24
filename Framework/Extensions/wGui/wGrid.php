@@ -33,6 +33,7 @@ class wGrid extends wObject implements wRenderizable {
         <span onclick=\'$("' . $this->id . '").style.width="90px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer1"> . </span>
         <span onclick=\'$("' . $this->id . '").style.width="595px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer2"> .. </span>';
         echo "<span onclick=\"tableGrid_{$this->id}.tableModel.options.width='1000px';$('{$this->id}').style.width='1000px';tableGrid_{$this->id}_restart()\" style='cursor:pointer;font-size:19px;' class='gridsizer3'> ... </span>";
+        
         echo "<span onclick='tableGrid_{$this->id}_restart()' style='cursor:pointer;font-size:19px;right:0px;position:absolute' class='gridrefresh'>O</span>
         </div>";
         echo "<!-- START OF GRID -->\n<div id='{$this->id}' style='{$this->cssStyle}'>";
@@ -120,6 +121,8 @@ class wGrid extends wObject implements wRenderizable {
                 } catch (idontcare){}
             };
         }
+        
+        
         ";
 
         echo "</script></div>";
@@ -187,7 +190,7 @@ class wGrid extends wObject implements wRenderizable {
 
      */
 
-    static function prepareGridData($resultados, $nRes, $pagina=1) {
+    static function prepareGridData($resultados, $nRes, $pagina=1,$donotprint=false) {
         error_reporting(E_ERROR);
         global $SYS;
         while (@ob_end_clean());
@@ -245,7 +248,10 @@ class wGrid extends wObject implements wRenderizable {
             "rows" => $result
         );
 
-        echo json_encode(($response));
+        if ($donotprint)
+            return json_encode(($response));
+        else
+            echo json_encode(($response));
     }
 
 }

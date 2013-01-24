@@ -7,6 +7,7 @@ class wInput extends wObject implements wRenderizable {
 	var $name="";
 	var $value="";
 	var $maxlenght="";
+        var $legend;
 	function __construct($name=null,&$parent,$addPrefix=true) {
 		parent::__construct($name,$parent);
 		$this->name=$name;
@@ -27,7 +28,7 @@ class wInput extends wObject implements wRenderizable {
 				}
 			
 		}
-		echo "<input type='text' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}'>\n";
+		echo "{$this->legend}<input type='text' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}'>\n";
 	}
 	
 	/* Some default properties */

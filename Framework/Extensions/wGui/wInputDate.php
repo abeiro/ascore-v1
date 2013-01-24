@@ -32,7 +32,7 @@ class wInputDate extends wInput implements wRenderizable {
             }
         }
         /* JSCalendar includes */
-        echo "<input type='text' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}' >\n";
+        echo "<input type='text' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}' >\n<br/>";
 
         if ($GLOBALS["jscalendaralreadyincluded"] == false) {
             echo "

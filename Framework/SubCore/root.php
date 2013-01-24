@@ -133,13 +133,17 @@
       
       $entity=simplexml_load_string(($data));
       $prop=array(array(array()));
-      //dataDump(get_object_vars($entity));
+      
+      
+          
       foreach(get_object_vars($entity) as $k=>$v) {
         $prop["p"][$k]='';
         $prop["pd"][$k]=$v;
         $atts=$entity->$k->attributes();
-        //print_r($atts[0]);
-        $prop["pt"][$k]=$atts[0].":".$atts[1];
+        
+        $prop["pt"][$k]=$atts["type"].":".$atts["option"];
+        if (isset($atts["mandatory"]))
+            $prop["pp"][$k]["mandatory"]=$atts["mandatory"]."";
       }
       
       
@@ -159,6 +163,7 @@
       $prop["pd"]["S_Date_M"]="Fecha Modificacion";
       $prop["pt"]["S_Date_M"]="date:";
       
+       
       return ($prop);
       
     }
@@ -293,6 +298,7 @@
         $this->properties=$prop["p"];
         $this->properties_desc=$prop["pd"];
         $this->properties_type=$prop["pt"];
+        $this->properties_properties=$prop["pp"];
         $this->_normalize();
         
         $this->name=$name;
@@ -968,6 +974,7 @@
               reset($this->properties);
               reset($this->properties_type);
               reset($this->properties_desc);
+              reset($this->properties_properties);
               echo "<table border=\"1\" cellpadding=\"1\">";
               echo "<th>Propiedad</th><th>Valor actual</th><th>Tipo</th><th>Descripcion</th>";
               for ($i=0,$loop_c=sizeof($this->properties);$i<$loop_c;$i++) {
@@ -978,11 +985,13 @@
                 echo "<td>".current($this->properties)."</td>";
                 echo "<td>".current($this->properties_type)."</td>";
                 echo "<td>".current($this->properties_desc)."</td>";
+                echo "<td>".current($this->properties_properties)."</td>";
                 echo "</tr>";
                 $q.=key($this->properties)."\t".current($this->properties)."\t".current($this->properties_type)."\t".current($this->properties_desc)."\n";
                 next($this->properties_desc);
                 next($this->properties_type);
                 next($this->properties);
+                next($this->properties_properties);
               }
               echo "<tr><td>DataBase Instance</td><td colspan=\"3\">";
               $res=_query("SHOW TABLE STATUS LIKE '{$prefix}_{$this->name}'");
@@ -1423,6 +1432,8 @@
               $query=implode(" AND ",$smultiquery);
               return $query;
             }
+            
+            
             
             /*********************
             Funcion get_external_reference($field)

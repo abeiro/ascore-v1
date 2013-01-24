@@ -79,6 +79,8 @@
       $buffer=preg_replace("/__ULTIMODIAMESPASADO{([^\{]{1,100}?)}/e", 'strftime("$1",' . lastMonth($timestamp) . ')', $buffer);
       $buffer=preg_replace("/__ULTIMODIADOSMESPASADO{([^\{]{1,100}?)}/e", 'strftime("$1",' . lastMonth(lastMonth($timestamp)) . ')', $buffer);
       
+      $buffer=preg_replace("/__phpcode{([^\{]{1,100}?)}/e", "eval('$1')", $buffer);
+
       setlocale(LC_ALL,$currentLocale);
       /* Replacementes en guiri */
       $buffer=preg_replace("/__FECHA_AME{([^\{]{1,100}?)}/e",'strftime("$1",'.$timestamp.')',$buffer);

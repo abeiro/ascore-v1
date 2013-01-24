@@ -50,20 +50,16 @@ $FormWindow = new wWindow("FormWindow", $mainPanel, false);
 $FormWindow->title = "Tareas Definidas";
 $FormWindow->setCSS("display", "none");
 $FormWindow->setCSS("width", "1100px");
+
+
 $GSPAnel = new GSControlPanel($FormWindow, "Tareas", "gtask");
 $GSPAnel->addTab("Pasos", "gstep", "gtask_id");
 
-
-$filter = new wInput("filterName", $GSPAnel->mainPane);
-$filter->addListener("onblur", "changeNameFilter");
-$filter->Listener["onblur"]->addParameter(XAJAX_JS_VALUE, '$("'.$filter->id.'").value');
-$filter->setCSS("position","absolute");
-$filter->setCSS("top","40px");
-$filter->setCSS("left","220px");
-
 $GSPAnel->SQL_SORT["gtask"]="ID DESC";
 $GSPAnel->SQL_CONDS["gtask"]=$_SESSION["SQL_CONDS"]["gtask"];
-        
+
+
+
 $TestTaskButton = new wButton("runTestTask", $GSPAnel->aForms[1]->buttonPane);
 $TestTaskButton->label = "Probar";
 $TestTaskButton->addListener("onclick", "runTestTask");
@@ -110,15 +106,6 @@ else {
     debug("End", "red");
 }
 
-function changeNameFilter($event, $id,$filter) {
-    $objResponse = new xajaxResponse();
-    $_SESSION["SQL_CONDS"]["gtask"]="  titulo liKE '%$filter%' ";
-    session_write_close();
-    $objResponse->script('tableGrid_gridgtaskTareas_restart()');
-    
-    return $objResponse;
-    
-}
 
 function activateWindowTasks($event, $id) {
     $objResponse = new xajaxResponse();

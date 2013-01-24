@@ -290,7 +290,7 @@ class MyApp extends wDesktop {
         /* */
         $o = newObject("gtask", $sourceid);
         $tl = newObject("gtasklog");
-        $TSTAMP = $timeStampOfRun = time();
+        $TSTAMP = $timeStampOfRun = text_to_int($fecha);
 
         $tl->etiqueta = $o->titulo . "@" . strftime("%Y%m%d", $TSTAMP);
         $tl->tipo = 'Desde Definición';
@@ -312,6 +312,7 @@ class MyApp extends wDesktop {
         $this->updateCache();
         $objResponse->script("a=$('htmlVisor');a.innerHTML=" . json_encode($this->customHtml->renderS()));
 
+	$objResponse->script("showPopup()");
         return $objResponse;
     }
 

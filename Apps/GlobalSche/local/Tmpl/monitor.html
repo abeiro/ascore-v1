@@ -28,7 +28,7 @@
         color:green;
     }
 </style>
-<div>Ultimo query:<!-- D:date --></div>
+<div>Ultimo query:<!-- D:date --> :: <a onclick='showPopup("notificaciones activadas")'>activar notificaciones</a></div>
 <table width="95%" cellspacing="1" border="0" cellpadding="1" align="center" style="border:solid 1px gray;background-color:lightgray;overflow: scroll">
     <th>Tarea</th>
     <th>Cola</th>
@@ -57,3 +57,7 @@
 </table>
 
 <br />
+
+<script>
+body.onload=showPopup("notificaciones activadas");
+</script>
