@@ -6,13 +6,14 @@ $dbpass = $SYS["postgres"]["DBPASS"];
 $dbname = $SYS["postgres"]["DBNAME"];
 $dbport = ($SYS["postgres"]["DBPORT"]) ? ($SYS["postgres"]["DBPORT"]) : "5432";
 
+
 $GLOBALS["pgconnection"] = pg_connect("host=$dbhost port=$dbport dbname=$dbname user=$dbuser password=$dbpass")
         or debug(_("Postgres Driver: Failed connect: " . pg_errormessage($GLOBALS["pgconnection"])), "red");
 
 debug(_("Postgres Driver: Connected succesfully") . ":encoding: " . pg_client_encoding($GLOBALS["pgconnection"]), "green");
 pg_set_client_encoding($GLOBALS["pgconnection"], "UNICODE");
 debug(_("Postgres Driver: Connected succesfully") . ":encoding: " . pg_client_encoding($GLOBALS["pgconnection"]), "green");
-
+debug(print_r(pg_version ($GLOBALS["pgconnection"]),true),"green");
 
 function qdie($msg) {
 	
@@ -63,7 +64,14 @@ function _fetch_array($bdid) {
 }
 
 function _last_id() {
-    return current(pg_fetch_assoc($GLOBALS["__pglastres"]));
+    //$lastId=current(pg_fetch_assoc($GLOBALS["__pglastres"]));
+	/* This is very wrong. You should use postgres 8.2 or above */
+	debug(" SQL: SELECT MAX(\"ID\") as lid FROM {$GLOBALS["SYS"]["LASTPGTABLE"]}", "green");
+	$pres=pg_query($GLOBALS["pgconnection"],"SELECT MAX(\"ID\") as lid FROM {$GLOBALS["SYS"]["LASTPGTABLE"]}") ;
+	$data=pg_fetch_assoc($pres);
+	$lastId=$data["lid"];
+	debug("POSTGRESQL last inserted id $lastId","red");
+	return $lastId;
 }
 
 function _affected_rows() {

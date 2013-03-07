@@ -1,5 +1,5 @@
 div.myTableGrid {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
     font-size: 11px;
 }
 
@@ -26,15 +26,15 @@ div.mtgToolbar {
 }
 
 span.addbutton {
-    background: url(images/add.png) left center no-repeat;
+    background: url('../../images/mtg/add.png') left center no-repeat;
 }
 
 span.delbutton {
-    background: url(images/close.png) left center no-repeat;
+    background: url('../../images/mtg/close.png') left center no-repeat;
 }
 
 span.savebutton {
-    background: url(images/save.png) left center no-repeat;
+    background: url('../../images/mtg/save.png') left center no-repeat;
 }
 
 a.toolbarbtn {
@@ -66,7 +66,7 @@ div.toolbarsep  {
  * Header definition
  ********************************/
 div.mtgHeaderRow  {
-    background: #ccc url(images/hrow.gif) repeat-x;
+    background: #ccc url('../../images/mtg/hrow.gif') repeat-x;
     border-top: solid 1px #ccc;
     border-left: solid 1px #ccc;
     border-right: solid 1px #ccc;
@@ -80,14 +80,13 @@ table.mtgHeaderRowTable {
 }
 
 table.mtgHeaderRowTable tr {
-    /*background: #ccc url(images/mtg/hrow.gif) repeat-x;*/
+    /*background: #ccc url('../../images/mtg/hrow.gif') repeat-x;*/
 }
 
 th.mtgHeaderCell {
-    border: 1px solid transparent;
+    border: 1px solid #fff;
     border-right-color: #ddd;
     border-bottom-color: #ddd;
-    color: dimgray;
 }
 
 th div.mtgInnerHeaderCell {
@@ -95,45 +94,23 @@ th div.mtgInnerHeaderCell {
     white-space: nowrap;
     font-size: 11px;
     height: 18px;
-    overflow: hidden;
 }
 
 div.mtgHS {
-    cursor: col-resize !important;
     cursor: w-resize;
+    cursor: col-resize !important;
     overflow: hidden;
-    background-color: transparent;
+    background-color: #ddd;
 }
 
 div.mtgHeaderButton {
     position: absolute;
-    background: url(images/ddn.png) center no-repeat;
-    border-left: solid #ddd 1px;
+    background: url('../../images/mtg/ddn.png') center no-repeat;
+    border-left: solid #eee 1px;
     visibility: hidden;
     z-index: 50;
 }
 
-div.mtgColMoveTop {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    width: 9px;
-    height: 9px;
-    background: url(images/col-move-top.gif) center no-repeat transparent;
-    visibility: hidden
-}
-
-div.mtgColMoveBottom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 50;
-    width:  9px;
-    height: 9px;
-    background: url(images/col-move-bottom.gif) center no-repeat transparent;
-    visibility: hidden
-}
 /********************************
  * Body definition
  ********************************/
@@ -155,7 +132,7 @@ table.mtgBodyTable td  {
 }
 
 td.mtgCell {
-    border-left: 1px solid transparent;
+    border-left: 1px solid white;
     /*border-left: 1px solid transparent;*/
     border-right: 1px solid #ddd;
 }
@@ -164,7 +141,6 @@ td div.mtgInnerCell {
     position: relative;
     white-space: nowrap;
     font-size: 11px;
-    overflow: hidden;
 }
 
 tr.hightlight {
@@ -185,7 +161,7 @@ td.focus div.mtgInnerCell {
 }
 
 td div.more {
-   background: url(images/more.gif) no-repeat right bottom;
+   background: url('../../images/mtg/more.gif') no-repeat right bottom;
 }
 
 div.mtgResizeMarker {
@@ -199,7 +175,7 @@ div.mtgResizeMarker {
 
 div.dragColumn {
     position: absolute;
-    background: url(images/hrow.gif) repeat-x;
+    background: url('../../images/mtg/hrow.gif') repeat-x;
     padding: 3px;
     z-index: 0;
     border: solid 1px #ccc;
@@ -214,7 +190,7 @@ div.drop-no {
     right: 3px;
     width: 16px;
     height: 16px;
-    background: url(images/no.gif) no-repeat center;
+    background: url('../../images/mtg/no.gif') no-repeat center;
 }
 
 div.drop-yes {
@@ -223,7 +199,7 @@ div.drop-yes {
     right: 3px;
     width: 16px;
     height: 16px;
-    background: url(images/yes.gif) no-repeat center;
+    background: url('../../images/mtg/yes.gif') no-repeat center;
 }
 
 /***********************************************
@@ -251,7 +227,7 @@ div.mtgComboBoxBtn {
     position: absolute;
     top: 2px;
     right: 0;
-    background: url(images/cbb.png) no-repeat;
+    background: url('../../images/mtg/cbb.png') no-repeat;
     border: 0;
     border-left: 2px solid  #609;
     width: 16px;
@@ -267,7 +243,7 @@ div.mtgCalendarBtn {
     position: absolute;
     top: 2px;
     right: 0;
-    background: url(images/calb.png) no-repeat;
+    background: url('../../images/mtg/calb.png') no-repeat;
     border: 0;
     border-left: 2px solid  #609;
     width: 20px;
@@ -280,7 +256,7 @@ div.mtgBrowseBtn {
     position: absolute;
     top: 2px;
     right: 0;
-    background: url(images/magb.png) no-repeat;
+    background: url('../../images/mtg/magb.png') no-repeat;
     border: 0;
     border-left: 2px solid  #609;
     width: 20px;
@@ -291,9 +267,9 @@ div.mtgBrowseBtn {
 
 div.mtgMenu {
     position: absolute;
-    width: 130px;
+    width: 200px;
     overflow: auto;
-    background: #ddd url(images/menu.gif) repeat-y;
+    background: #ddd url('../../images/mtg/menu.gif') repeat-y;
     z-index: 100;
     visibility : hidden;
     border: 1px solid #609;
@@ -318,10 +294,11 @@ a.mtgMenuItem {
     cursor: default;
     font-weight: bold;
     line-height: 20px;
+
 }
 
 a.mtgMenuItem:hover {
-    background-color: #90c;
+    background-color: #609;
     text-decoration: none;
     color: white;
 }
@@ -334,7 +311,7 @@ a.mtgMenuItem:hover {
     padding: 0;
 }
 
-span.mtgMenuItemChk {
+.mtgMenuItemChk {
     margin: 0;
     padding: 0;
 }
@@ -345,21 +322,17 @@ div.mtgSettingButton {
     /*right: 3px;*/
     width: 16px;
     height: 16px;
-    background: url(images/settings.gif) center no-repeat;
+    background: url('../../images/mtg/settings.gif') center no-repeat;
     z-index: 100;
     padding: 1px;
 }
 
-span.mtgSortAscendingIcon {
-    background: url(images/sort_ascending.png) no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgSortAscendingIcon {
+
 }
 
-span.mtgSortDescendingIcon {
-    background: url(images/sort_descending.png) no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgSortDescendingIcon {
+
 }
 
 /***********************************************
@@ -368,7 +341,7 @@ span.mtgSortDescendingIcon {
 div.autocomplete {
     position: absolute;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Myriad Pro", Arial, Helvetica, sans-serif;
     font-size: 11px;
     color: black;
 
@@ -434,103 +407,44 @@ table.mtgPagerTable td {
 
 a.mtgPagerCtrl {
     cursor: pointer;
-    text-decoration: none;
 }
 
-div.mtgFirstPage {
-    background: url(images/first.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgFirstPage {
+    background: url(../../images/mtg/first.gif) no-repeat center;
 }
 
-div.mtgLoader {
-    background: url(images/mtg-loader.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgPrevPage {
+    background: url(../../images/mtg/prev.gif) no-repeat center;
 }
 
-div.mtgFirstPageDisabled {
-    background: url(images/first-disabled.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgNextPage {
+    background: url(../../images/mtg/next.gif) no-repeat center;
 }
 
-div.mtgPrevPage {
-    background: url(images/prev.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgLastPage {
+    background: url(../../images/mtg/last.gif) no-repeat center;
 }
 
-div.mtgPrevPageDisabled {
-    background: url(images/prev-disabled.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+img.mtgSep {
+    background: url(../../images/mtg/y-sep.png) no-repeat center;
 }
 
-div.mtgNextPage {
-    background: url(images/next.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+/*
+.dropshadow {
+    background: url(../../images/mtg/shadowAlpha.png) no-repeat bottom right !important;
+    background: url(../../images/mtg/shadow.gif) no-repeat bottom right;
+    margin: 10px 0 10px 10px !important;
+    margin: 10px 0 10px 5px;
 }
 
-div.mtgNextPageDisabled {
-    background: url(images/next-disabled.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
+.dropshadow div {
+    position:relative;
+    bottom:6px;
+    right: 6px;
+    border: 1px solid dimgray;
+    padding:4px;
+    font-size:14px;
+    margin: 0px;
+    background-color:white;
 }
-
-div.mtgLastPage {
-    background: url(images/last.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
-}
-
-div.mtgLastPageDisabled {
-    background: url(images/last-disabled.gif) center no-repeat transparent;
-    width: 16px;
-    height: 16px;
-}
-
-div.mtgSep {
-    background: url(images/y-sep.png) center no-repeat transparent;
-    width: 2px;
-    height: 13px;
-}
-
-span.mtgSortAscIcon {
-    background: url(images/sort-arrow-asc.png) center no-repeat transparent;
-}
-
-span.mtgSortDescIcon {
-    background: url(images/sort-arrow-desc.png) center no-repeat transparent;
-}
-
-div.modifiedCell {
-    background : url(images/m.png) no-repeat 0 0;
-}
-
-div.loadingBox {
-    background: #609 url(images/ajax-loader.gif) no-repeat 6px 4px;
-    width: 80px;
-	height: 20px;
-	padding:4px 5px 2px 8px;
-    color: white;
-    text-align: right;
-    font-weight: bold;
-    font-size: 12px;
-    border: solid 1px dimgray;
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    margin: auto;
-}
-
-div.overlay {
-    position: absolute;
-    background-color: dimgray;
-    filter:alpha(opacity=60);
-    -moz-opacity: 0.6;
-    opacity: 0.6;
-    visibility: hidden;
-    z-index: 20;
-}
+*/

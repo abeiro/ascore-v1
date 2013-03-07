@@ -144,6 +144,8 @@
         $prop["pt"][$k]=$atts["type"].":".$atts["option"];
         if (isset($atts["mandatory"]))
             $prop["pp"][$k]["mandatory"]=$atts["mandatory"]."";
+		if (isset($atts["nodisplay"]))
+            $prop["pp"][$k]["nodisplay"]=$atts["nodisplay"]."";
       }
       
       
@@ -466,6 +468,7 @@
 								(strpos($object->properties_type[$key],"int")===0) ||
 								(strpos($object->properties_type[$key],"datex")===0) ||
 								(strpos($object->properties_type[$key],"ref")===0) ||
+								(strpos($object->properties_type[$key],"time")===0) ||
 								(strpos($object->properties_type[$key],"xref")===0) 
 								)
 							$res.=",0";
@@ -489,7 +492,8 @@
               $q.=" VALUES (".substr($res,1).")";
               
 			  if ($GLOBALS["SYS"]["DBDRIVER"] == "postgres") {
-				$q.= " RETURNING `ID` ";
+				//$q.= " RETURNING `ID` ";
+				$GLOBALS["SYS"]["LASTPGTABLE"]="{$prefix}_".$this->name;
 			  }
 				  
               $bdres=_query($q);
@@ -621,11 +625,28 @@
             $this->S_Date_M=time();
             $this->_flat();
             if (!function_exists("fadd")) {
-              function fadd(&$val,&$key) {
+              function fadd(&$val,&$key,&$object) {
                 global $res;
-                if ($val)
-                    $res.=" `$key`='".addslashes($val)."' , ";
+				debug("$val $key","red");
+				if ($key!="ID")
+					if (empty($val))
+						if (
+								(strpos($object->properties_type[$key],"date")===0) ||
+								(strpos($object->properties_type[$key],"int")===0) ||
+								(strpos($object->properties_type[$key],"datex")===0) ||
+								(strpos($object->properties_type[$key],"ref")===0) ||
+								(strpos($object->properties_type[$key],"time")===0) ||
+								(strpos($object->properties_type[$key],"xref")===0) 
+								)
+							$res.="`$key`=".($val+0).",";
+						else
+							$res.="`$key`='',";
+					else if (strval(intval($val)) == strval($val))
+						$res.="`$key`=".addslashes($val).",";
+					else
+					  $res.="`$key`='".addslashes($val)."',";
               }
+              
             }
               //------------------------------------------------------------------------------------------
               
@@ -661,7 +682,7 @@
               }    
               
               //------------------------------------------------------------------------------------------
-              array_walk($this->properties,"fadd");
+              array_walk($this->properties,"fadd",$this);
               $q="UPDATE `{$prefix}_".$this->name."` SET ";
               $q.=substr($res,0,strlen(sizeof($res))-3)."  WHERE `ID`=".$this->ID. "";
               $bdres=_query($q);    
@@ -994,8 +1015,8 @@
                 next($this->properties_properties);
               }
               echo "<tr><td>DataBase Instance</td><td colspan=\"3\">";
-              $res=_query("SHOW TABLE STATUS LIKE '{$prefix}_{$this->name}'");
-              dataDump(_fetch_array($res));
+              /*$res=_query("SHOW TABLE STATUS LIKE '{$prefix}_{$this->name}'");
+              dataDump(_fetch_array($res));*/
               
               echo "</td></tr></table>";
               

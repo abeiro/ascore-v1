@@ -5,6 +5,7 @@ class wForm extends wObject implements wRenderizable {
     var $name = "";
     var $coreObject = null;
     var $afterSaveMethod = null;
+	var $afterDeleteMethod = null;
     var $buttonPane = null;
     var $components = array();
     var $LineByLine=false;
@@ -76,11 +77,19 @@ class wForm extends wObject implements wRenderizable {
     function setDataModelFromCore($object) {
 
         $this->coreObject = $object;
-        $object->createFormFromEntity();
-        $xmldata = $object->_arrayForm;
+		if (!$object->_arrayForm) {
+			$object->createFormFromEntity();
+			
+		}
+		$xmldata = $object->_arrayForm;
 
         foreach ($xmldata["form"]["elements"] as $k1 => $v1) {
-            switch ($v1["type"]) {
+			if ($object->properties_properties[$k1]["nodisplay"]==="true") {
+				$labels["$k1"] = new wLabel("", $this,"");
+				$inputs["$k1"] = new wHidden($k1, $this);
+			}
+            else
+				switch ($v1["type"]) {
 
                 /* TEXT MODE */
                 case "text":
@@ -146,16 +155,22 @@ class wForm extends wObject implements wRenderizable {
                     switch ($v1["format"]) {
                         case "list":
                             $inputs["$k1"] = new wListBox($k1, $this);
-                            $options = substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1);
-                            $ops = explode("|", $options);
-                            $o = null;
-                            if ($object->properties_properties[$k1]["mandatory"])
-                                $o["-"] = "-";
-                            foreach ($ops as $minikey => $minival)
-                                $o["$minival"] = $minival;
-                            $inputs["$k1"]->setSelectedIndex($object->$k1);
-                            $inputs["$k1"]->setDataModel($o);
+                            $options = trim(substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1));
+							
+							if (method_exists($object,$options)) {
+								$inputs["$k1"]->setSelectedIndex($object->$k1);
+								$inputs["$k1"]->setDataModel($object->$options());
 
+							} else {
+								$ops = explode("|", $options);
+							    $o = null;
+								if ($object->properties_properties[$k1]["mandatory"])
+									$o["-"] = "-";
+								foreach ($ops as $minikey => $minival)
+									$o["$minival"] = $minival;
+								$inputs["$k1"]->setSelectedIndex($object->$k1);
+								$inputs["$k1"]->setDataModel($o);
+							}
                             /* if(isset($v1["attributes"]))
                               foreach($v1["attributes"] as $k3=>$v3)
                               $q.="$k3=\"$v3\" ";
@@ -235,7 +250,7 @@ class wForm extends wObject implements wRenderizable {
             debug(__FILE__ . " Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $fjid);
+                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $fjid);
                 break;
             }
             else
@@ -250,17 +265,18 @@ class wForm extends wObject implements wRenderizable {
      */
 
     public function requestSaveForm($id, $fjid, $data, $classname, $jsorig) {
+        
         $this->coreObject = newObject("$classname", $id);
         $this->coreObject->setAll($data);
         $objResponse = new xajaxResponse();
         if ($id < 2)
             $this->coreObject->__isNew = true;
 
+        
         $this->coreObject->ID = $this->coreObject->save();
-        if ($this->coreObject->ID < 2) {
-            $objResponse->script("alert('{$this->coreObject->ERROR}')");
+        if ($this->coreObject->ID===false) {
+            $objResponse->script("alert('Error: {$this->coreObject->ID} {$this->coreObject->ERROR}')");
         }
-
         
 		debug("Calling parent: " . print_r($this->afterSaveMethod,true), "white");
 		if (is_array($this->afterSaveMethod)) {
@@ -271,7 +287,7 @@ class wForm extends wObject implements wRenderizable {
 					debug("Calling parent: $singleMethod " . get_class($cParent), "white");
 					if (method_exists($cParent, $MethodtoCall)) {
 						debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-						call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
+						call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
 						break;
 					}
 					else
@@ -285,7 +301,7 @@ class wForm extends wObject implements wRenderizable {
 				debug("Calling parent: " . get_class($cParent), "white");
 				if (method_exists($cParent, $MethodtoCall)) {
 					debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-					call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
+					call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
 					break;
 				}
 				else
@@ -321,18 +337,36 @@ class wForm extends wObject implements wRenderizable {
         if (!$this->coreObject->delete()) {
             $objResponse->script("alert('{$this->ERROR}')");
         }
-        $MethodtoCall = $this->afterDeleteMethod;
-        $cParent = &$this->wParent;
-        while ($cParent) {
-            debug("Calling parent: " . get_class($cParent), "white");
-            if (method_exists($cParent, $MethodtoCall)) {
-                debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
-                break;
-            }
-            else
-                $cParent = &$cParent->wParent;
-        }
+       if (is_array($this->afterDeleteMethod)) {
+			foreach ($this->afterDeleteMethod as $singleMethod) {
+				$MethodtoCall = $singleMethod;
+				$cParent = &$this->wParent;
+				while ($cParent) {
+					debug("Calling parent: $singleMethod " . get_class($cParent), "white");
+					if (method_exists($cParent, $MethodtoCall)) {
+						debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+						call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
+						break;
+					}
+					else
+						$cParent = &$cParent->wParent;
+				}
+			}
+		} else {
+			$MethodtoCall = $this->afterDeleteMethod;
+			$cParent = &$this->wParent;
+			while ($cParent) {
+				debug("Calling parent: " . get_class($cParent), "white");
+				if (method_exists($cParent, $MethodtoCall)) {
+					debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+					call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
+					break;
+				}
+				else
+					$cParent = &$cParent->wParent;
+			}
+		}
+
         $objResponse->script("$('{$this->id}').reset()");
         return $objResponse;
     }
@@ -345,7 +379,7 @@ class wForm extends wObject implements wRenderizable {
             debug(__FILE__ . "Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $data, $fjid);
+                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $data, $fjid);
                 break;
             }
             else
@@ -381,7 +415,7 @@ class wForm extends wObject implements wRenderizable {
 
     public function doAfterDelete($method) {
 
-        $this->afterDeleteMethod = $method;
+        $this->afterDeleteMethod[] = $method;
     }
 
 }

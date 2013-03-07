@@ -8,6 +8,7 @@
     <link type="text/css" href="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//grid/css/mtg/calendar.css" rel="stylesheet">
   </head>
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//scriptaculous/lib/prototype.js" type="text/javascript"></script>
+  <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui/autocomplete.js" type="text/javascript"></script>
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//scriptaculous/src/scriptaculous.js" type="text/javascript"></script>
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//wGui.js" type="text/javascript"></script>
   
@@ -22,13 +23,16 @@
   
   <script src='<?php echo $SYS["ROOT"]?>/Framework/Extensions//FileUpload/client/fileuploader.js' type='text/javascript'></script>
   
-  <link href='<?php echo $SYS["ROOT"]?>/Framework/Extensions//FileUpload/client/fileuploader.css' rel='stylesheet' type='text/css'>  
-  
-  <link href="<?php echo $SYS["ROOT"]?>/Framework/Extensions/wGui//TabbedPane/SpryTabbedPanels.css" rel="stylesheet" type="text/css" />
+ <link href='<?php echo $SYS["ROOT"]?>/Framework/Extensions//FileUpload/client/fileuploader.css' rel='stylesheet' type='text/css'>  
+ <link href="<?php echo $SYS["ROOT"]?>/Framework/Extensions/wGui//TabbedPane/SpryTabbedPanels.css" rel="stylesheet" type="text/css" >
   
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions/wGui//TabbedPane/SpryTabbedPanels.js" type="text/javascript"></script> 
   
   <?php echo $GLOBALS["WGUI"]["ADDITIONALHEADERS"] ?>
+
+<script> 
+	var DOCUMENTROOT="<?php echo $SYS["ROOT"]?>";
+</script>
   <body>
     
     

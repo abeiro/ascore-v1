@@ -439,3 +439,96 @@ if (window.webkitNotifications) {
 
 } 
 
+
+
+function jsPrint(jsonData) {
+	
+	printCanvas=window.open('','');
+	d=printCanvas.document;
+	
+	d.write('<head></head>');
+	headHTML = d.getElementsByTagName('head')[0].innerHTML;
+	headHTML    += '<link type="text/css" rel="stylesheet" href="'+DOCUMENTROOT+'/Framework/Extensions/wGui/printer.css">';
+	d.getElementsByTagName('head')[0].innerHTML = headHTML;
+
+	d.write("<table border='1'>");
+	for (i=0;i<jsonData.length;i++) {
+		d.write("<tr>");
+		for (j=0;j<jsonData[i].length;j++) {
+			d.write("<td>");
+			printCanvas.document.write(jsonData[i][j]);
+			d.write("</td>");
+		}
+		d.write("</tr>");
+	}
+	d.write("</table>");
+	printCanvas.print();
+}
+
+function jsCsv(jsonData) {
+	
+	a="";
+	for (i=0;i<jsonData.length;i++) {
+		for (j=0;j<jsonData[i].length;j++) {
+			a+=jsonData[i][j];
+			a+=";";
+		}
+		a+="\n";
+	}
+	
+	
+	window.open("data:text/plain;content-disposition:attachment,"+escape(a));;
+}
+
+function ElementCenter(element) {
+			element = $(element);
+			var limitX=0;
+			var limitY=0;
+			var elementDims = element.getDimensions();
+			var viewPort = document.viewport.getDimensions();
+			var offsets = document.viewport.getScrollOffsets();
+			var centerX = viewPort.width / 2 + offsets.left - elementDims.width / 2;
+			var centerY = viewPort.height / 2 + offsets.top - elementDims.height / 2;
+			if ( limitX && centerX < limitX )
+			{
+				centerX = parseInt(limitX);
+			}
+			if ( limitY && centerY < limitY )
+			{
+				centerY = parseInt(limitY);
+			}
+			
+			element.setStyle( { position: 'absolute', top: Math.floor(centerY) + 'px', left: Math.floor(centerX) + 'px' } );
+			
+			return element;			
+		}
+	
+function autoCompleteShowOptions(opts,id,targetid,targettext) {
+
+		var o="<ul style='margin-left:20px'>";
+		c=0;
+		for(i in opts) {
+			o+="<li><a tabindex="+c+" style='cursor:pointer' onclick=\"autoCompleteSelect('"+id+"','"+targetid+"','"+targettext+"','"+i+"','"+opts[i]+"')\">"+opts[i]+"</a></li>";
+			c++;
+		}
+		o+="</ul>";
+		$(id).update(o);
+
+}
+
+function autoCompleteSelect(divid,targetid,targettext,destid,desttext) {
+		$(targetid).value=destid;
+		$(targettext).value=desttext;
+		$(divid).update("");
+
+}
+
+
+function changeComboModel(element,jdata) {
+		var select = document.getElementById(element);
+		select.options.length = 0; // clear out existing items
+		for (var i in jdata) {
+			select.options.add(new Option(jdata[i],i));
+		}
+
+}

@@ -1,5 +1,5 @@
 <?php
-
+ 
 debug("Prefijo $prefix tabla $this->name", "red");
 if ($GLOBALS["SYS"]["DBDRIVER"] == "mysql")
     $q = "SHOW TABLES";
