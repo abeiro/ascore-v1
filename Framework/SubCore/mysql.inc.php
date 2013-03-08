@@ -1,6 +1,6 @@
 <?php
 
-
+define("DBOPERAND_ILIKE","LIKE");
 
 $dbhost=$SYS["mysql"]["DBHOST"];
 $dbuser=$SYS["mysql"]["DBUSER"];
@@ -21,7 +21,7 @@ debug(_("MySQL Driver: charset:").mysql_client_encoding(),"green");
 function _query ($q,$multi=False) {
 	
 
-
+        debug(" PRESQL: <$q>","green");
 	if ($multi) {
 		$sentences=array();
 		$sentences=explode(";",$q);

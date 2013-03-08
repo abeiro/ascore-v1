@@ -532,3 +532,10 @@ function changeComboModel(element,jdata) {
 		}
 
 }
+
+
+function expandHeightElement(element,reference) {
+    var h = reference.innerHeight;
+    element.style.height = h + "px";
+    
+}

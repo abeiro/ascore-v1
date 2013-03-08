@@ -5,11 +5,12 @@ class wForm extends wObject implements wRenderizable {
     var $name = "";
     var $coreObject = null;
     var $afterSaveMethod = null;
-	var $afterDeleteMethod = null;
+    var $afterDeleteMethod = null;
     var $buttonPane = null;
     var $components = array();
-    var $LineByLine=false;
-    function __construct($name=null, &$parent) {
+    var $LineByLine = false;
+
+    function __construct($name = null, &$parent) {
         global $xajax;
 
         parent::__construct($name, $parent);
@@ -53,17 +54,17 @@ class wForm extends wObject implements wRenderizable {
 
         foreach ($this->wChildren as $c) {
             if ($this->LineByLine) {
-                echo "<div style='width:100%;padding:2px;break:all'>";
+                echo "<div style='width:100%;padding:2px;clear:both'>";
                 $c->render();
-                   echo "</div>";
+                echo "</div>";
             } else {
                 $count++;
                 if ($count % 2 == 0) {
-                    echo "<div style='float:left;width:73%;padding:2px'>";
+                    echo "<div style='width:73%;padding:2px;display:table'>";
                     $c->render();
-                    echo '</div>';
+                    echo '</div></div>';
                 } else {
-                    echo "<div style='float:left;width:25%;min-width:175px;border:1px;padding:2px'>";
+                    echo "<div style='width:100%;clear:both;padding-top:3px;border-bottom:1px solid lightgray'><div style='float:left;width:25%;min-width:175px;border:1px;padding:2px'>";
                     $c->render();
                     echo '</div>';
                 }
@@ -77,147 +78,145 @@ class wForm extends wObject implements wRenderizable {
     function setDataModelFromCore($object) {
 
         $this->coreObject = $object;
-		if (!$object->_arrayForm) {
-			$object->createFormFromEntity();
-			
-		}
-		$xmldata = $object->_arrayForm;
+        if (!$object->_arrayForm) {
+            $object->createFormFromEntity();
+        }
+        $xmldata = $object->_arrayForm;
 
         foreach ($xmldata["form"]["elements"] as $k1 => $v1) {
-			if ($object->properties_properties[$k1]["nodisplay"]==="true") {
-				$labels["$k1"] = new wLabel("", $this,"");
-				$inputs["$k1"] = new wHidden($k1, $this);
-			}
-            else
-				switch ($v1["type"]) {
-
-                /* TEXT MODE */
-                case "text":
-                    switch ($v1["format"]) {
-                        case "string":
-                            $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                            $inputs["$k1"] = new WInput($k1, $this);
-                            $options = substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1);
-                            $inputs["$k1"]->setCSS("width", ($options * 2.5) . "px");
-                            break;
-
-                        case "date":
-                            $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                            $inputs["$k1"] = new wInputDate($k1, $this);
-                            if (strlen($object->properties_type[$k1]) > 5)
-                                $inputs["$k1"]->setFormat(substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1));
-
-                            if ($object->$k1 > 3600)
-                                $inputs["$k1"]->setTime($object->$k1);
-
-                            break;
-
-                        case "password":
-                            $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                            $inputs["$k1"] = new wPassword($k1, $this);
-                            break;
-                        case "int":
-                            $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                            $inputs["$k1"] = new WInput($k1, $this);
-                            break;
-
-
-                        case "float":
-                            $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                            $inputs["$k1"] = new WInput($k1, $this);
-
-                            break;
-
-                        case "money":
-                            $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                            $inputs["$k1"] = new WInput($k1, $this);
-                            break;
-                        default:
-                            break;
-                    }
-                    break;
-
-                /* TEXTAREA  MODE */
-
-                case "textarea":
-                    $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                    $inputs["$k1"] = new wTextArea($k1, $this);
-                    $inputs["$k1"]->setCSS("width", "100%");
-                    $inputs["$k1"]->setCSS("height", "50px");
-
-
-                    break;
-
-                /* SELECT  MODE */
-                case "select":
-                    $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-
-                    switch ($v1["format"]) {
-                        case "list":
-                            $inputs["$k1"] = new wListBox($k1, $this);
-                            $options = trim(substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1));
-							
-							if (method_exists($object,$options)) {
-								$inputs["$k1"]->setSelectedIndex($object->$k1);
-								$inputs["$k1"]->setDataModel($object->$options());
-
-							} else {
-								$ops = explode("|", $options);
-							    $o = null;
-								if ($object->properties_properties[$k1]["mandatory"])
-									$o["-"] = "-";
-								foreach ($ops as $minikey => $minival)
-									$o["$minival"] = $minival;
-								$inputs["$k1"]->setSelectedIndex($object->$k1);
-								$inputs["$k1"]->setDataModel($o);
-							}
-                            /* if(isset($v1["attributes"]))
-                              foreach($v1["attributes"] as $k3=>$v3)
-                              $q.="$k3=\"$v3\" ";
-                              $q.=">"; */
-
-                            break;
-
-                        case "ref":
-                            $inputs["$k1"] = new wListBox($k1, $this);
-                            $references = $object->get_references($k1);
-                            $inputs["$k1"]->setSelectedIndex($object->$k1);
-                            $inputs["$k1"]->setDataModel($references);
-
-
-                            break;
-
-                        default:
-                            if (isset($v1["attributes"]["multiple"])) {
-                                $q.="\n\t<td>{$v1["label"]}<select name=\"" . $k1 . "[]\" id=\"" . $k1 . "\" ";
-                            } else
-                                $q.="\n\t<td>{$v1["label"]}<select name=\"" . $k1 . "\" id=\"" . $k1 . "\" ";
-                            if (isset($v1["attributes"]))
-                                foreach ($v1["attributes"] as $k3 => $v3)
-                                    $q.="$k3=\"$v3\" ";
-                            $q.="><!-- X:" . $k1 . " --></select>";
-                            break;
-                    }
-                    break;
-
-                case "checkbox":
-                    $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                    $inputs["$k1"] = new wCheckBox($k1, $this);
-                    break;
-
-                case "hidden":
-                    $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                    $inputs["$k1"] = new wHidden($k1, $this);
-                    break;
-
-                case "image":
-                    $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
-                    $inputs["$k1"] = new WInput($k1, $this);
-                    break;
-
-                default:
-                    break;
+            if ($object->properties_properties[$k1]["nodisplay"] === "true") {
+                $labels["$k1"] = new wLabel("", $this, "");
+                $inputs["$k1"] = new wHidden($k1, $this);
             }
+            else
+                switch ($v1["type"]) {
+
+                    /* TEXT MODE */
+                    case "text":
+                        switch ($v1["format"]) {
+                            case "string":
+                                $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                                $inputs["$k1"] = new WInput($k1, $this);
+                                $options = substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1);
+                                $inputs["$k1"]->setCSS("width", ($options * 2.5) . "px");
+                                break;
+
+                            case "date":
+                                $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                                $inputs["$k1"] = new wInputDate($k1, $this);
+                                if (strlen($object->properties_type[$k1]) > 5)
+                                    $inputs["$k1"]->setFormat(substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1));
+
+                                if ($object->$k1 > 3600)
+                                    $inputs["$k1"]->setTime($object->$k1);
+
+                                break;
+
+                            case "password":
+                                $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                                $inputs["$k1"] = new wPassword($k1, $this);
+                                break;
+                            case "int":
+                                $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                                $inputs["$k1"] = new WInput($k1, $this);
+                                break;
+
+
+                            case "float":
+                                $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                                $inputs["$k1"] = new WInput($k1, $this);
+
+                                break;
+
+                            case "money":
+                                $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                                $inputs["$k1"] = new WInput($k1, $this);
+                                break;
+                            default:
+                                break;
+                        }
+                        break;
+
+                    /* TEXTAREA  MODE */
+
+                    case "textarea":
+                        $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                        $inputs["$k1"] = new wTextArea($k1, $this);
+                        $inputs["$k1"]->setCSS("width", "100%");
+                        $inputs["$k1"]->setCSS("height", "50px");
+
+
+                        break;
+
+                    /* SELECT  MODE */
+                    case "select":
+                        $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+
+                        switch ($v1["format"]) {
+                            case "list":
+                                $inputs["$k1"] = new wListBox($k1, $this);
+                                $options = trim(substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1));
+
+                                if (method_exists($object, $options)) {
+                                    $inputs["$k1"]->setSelectedIndex($object->$k1);
+                                    $inputs["$k1"]->setDataModel($object->$options());
+                                } else {
+                                    $ops = explode("|", $options);
+                                    $o = null;
+                                    if ($object->properties_properties[$k1]["mandatory"])
+                                        $o["-"] = "-";
+                                    foreach ($ops as $minikey => $minival)
+                                        $o["$minival"] = $minival;
+                                    $inputs["$k1"]->setSelectedIndex($object->$k1);
+                                    $inputs["$k1"]->setDataModel($o);
+                                }
+                                /* if(isset($v1["attributes"]))
+                                  foreach($v1["attributes"] as $k3=>$v3)
+                                  $q.="$k3=\"$v3\" ";
+                                  $q.=">"; */
+
+                                break;
+
+                            case "ref":
+                                $inputs["$k1"] = new wListBox($k1, $this);
+                                $references = $object->get_references($k1);
+                                $inputs["$k1"]->setSelectedIndex($object->$k1);
+                                $inputs["$k1"]->setDataModel($references);
+
+
+                                break;
+
+                            default:
+                                if (isset($v1["attributes"]["multiple"])) {
+                                    $q.="\n\t<td>{$v1["label"]}<select name=\"" . $k1 . "[]\" id=\"" . $k1 . "\" ";
+                                } else
+                                    $q.="\n\t<td>{$v1["label"]}<select name=\"" . $k1 . "\" id=\"" . $k1 . "\" ";
+                                if (isset($v1["attributes"]))
+                                    foreach ($v1["attributes"] as $k3 => $v3)
+                                        $q.="$k3=\"$v3\" ";
+                                $q.="><!-- X:" . $k1 . " --></select>";
+                                break;
+                        }
+                        break;
+
+                    case "checkbox":
+                        $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                        $inputs["$k1"] = new wCheckBox($k1, $this);
+                        break;
+
+                    case "hidden":
+                        $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                        $inputs["$k1"] = new wHidden($k1, $this);
+                        break;
+
+                    case "image":
+                        $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+                        $inputs["$k1"] = new WInput($k1, $this);
+                        break;
+
+                    default:
+                        break;
+                }
         }
         $inputs["ID"] = new wHidden("ID", $this);
         $inputs["ID"]->setSelectedValue($object->ID);
@@ -250,7 +249,7 @@ class wForm extends wObject implements wRenderizable {
             debug(__FILE__ . " Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $fjid);
+                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $fjid);
                 break;
             }
             else
@@ -265,49 +264,49 @@ class wForm extends wObject implements wRenderizable {
      */
 
     public function requestSaveForm($id, $fjid, $data, $classname, $jsorig) {
-        
+
         $this->coreObject = newObject("$classname", $id);
         $this->coreObject->setAll($data);
         $objResponse = new xajaxResponse();
         if ($id < 2)
             $this->coreObject->__isNew = true;
 
-        
+
         $this->coreObject->ID = $this->coreObject->save();
-        if ($this->coreObject->ID===false) {
+        if ($this->coreObject->ID === false) {
             $objResponse->script("alert('Error: {$this->coreObject->ID} {$this->coreObject->ERROR}')");
         }
-        
-		debug("Calling parent: " . print_r($this->afterSaveMethod,true), "white");
-		if (is_array($this->afterSaveMethod)) {
-			foreach ($this->afterSaveMethod as $singleMethod) {
-				$MethodtoCall = $singleMethod;
-				$cParent = &$this->wParent;
-				while ($cParent) {
-					debug("Calling parent: $singleMethod " . get_class($cParent), "white");
-					if (method_exists($cParent, $MethodtoCall)) {
-						debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-						call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
-						break;
-					}
-					else
-						$cParent = &$cParent->wParent;
-				}
-			}
-		} else {
-			$MethodtoCall = $this->afterSaveMethod;
-			$cParent = &$this->wParent;
-			while ($cParent) {
-				debug("Calling parent: " . get_class($cParent), "white");
-				if (method_exists($cParent, $MethodtoCall)) {
-					debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-					call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
-					break;
-				}
-				else
-					$cParent = &$cParent->wParent;
-			}
-		}
+
+        debug("Calling parent: " . print_r($this->afterSaveMethod, true), "white");
+        if (is_array($this->afterSaveMethod)) {
+            foreach ($this->afterSaveMethod as $singleMethod) {
+                $MethodtoCall = $singleMethod;
+                $cParent = &$this->wParent;
+                while ($cParent) {
+                    debug("Calling parent: $singleMethod " . get_class($cParent), "white");
+                    if (method_exists($cParent, $MethodtoCall)) {
+                        debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+                        call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
+                        break;
+                    }
+                    else
+                        $cParent = &$cParent->wParent;
+                }
+            }
+        } else {
+            $MethodtoCall = $this->afterSaveMethod;
+            $cParent = &$this->wParent;
+            while ($cParent) {
+                debug("Calling parent: " . get_class($cParent), "white");
+                if (method_exists($cParent, $MethodtoCall)) {
+                    debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+                    call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
+                    break;
+                }
+                else
+                    $cParent = &$cParent->wParent;
+            }
+        }
 
         $MethodtoCall = $this->afterSaveMethod;
         $cParent = &$this->wParent;
@@ -323,7 +322,7 @@ class wForm extends wObject implements wRenderizable {
         }
 
         if ($this->coreObject->__isNew) {
-        //xajax_wForm.requestNewForm("Nuevo", "onclick", "formgtasklogRegistros", "gtasklog")
+            //xajax_wForm.requestNewForm("Nuevo", "onclick", "formgtasklogRegistros", "gtasklog")
             $objResponse->script("xajax_wForm.requestloadFromId({$this->coreObject->ID},'{$this->id}','$classname')");
         }
         return $objResponse;
@@ -337,35 +336,35 @@ class wForm extends wObject implements wRenderizable {
         if (!$this->coreObject->delete()) {
             $objResponse->script("alert('{$this->ERROR}')");
         }
-       if (is_array($this->afterDeleteMethod)) {
-			foreach ($this->afterDeleteMethod as $singleMethod) {
-				$MethodtoCall = $singleMethod;
-				$cParent = &$this->wParent;
-				while ($cParent) {
-					debug("Calling parent: $singleMethod " . get_class($cParent), "white");
-					if (method_exists($cParent, $MethodtoCall)) {
-						debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-						call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
-						break;
-					}
-					else
-						$cParent = &$cParent->wParent;
-				}
-			}
-		} else {
-			$MethodtoCall = $this->afterDeleteMethod;
-			$cParent = &$this->wParent;
-			while ($cParent) {
-				debug("Calling parent: " . get_class($cParent), "white");
-				if (method_exists($cParent, $MethodtoCall)) {
-					debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-					call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $jsorig);
-					break;
-				}
-				else
-					$cParent = &$cParent->wParent;
-			}
-		}
+        if (is_array($this->afterDeleteMethod)) {
+            foreach ($this->afterDeleteMethod as $singleMethod) {
+                $MethodtoCall = $singleMethod;
+                $cParent = &$this->wParent;
+                while ($cParent) {
+                    debug("Calling parent: $singleMethod " . get_class($cParent), "white");
+                    if (method_exists($cParent, $MethodtoCall)) {
+                        debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+                        call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
+                        break;
+                    }
+                    else
+                        $cParent = &$cParent->wParent;
+                }
+            }
+        } else {
+            $MethodtoCall = $this->afterDeleteMethod;
+            $cParent = &$this->wParent;
+            while ($cParent) {
+                debug("Calling parent: " . get_class($cParent), "white");
+                if (method_exists($cParent, $MethodtoCall)) {
+                    debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
+                    call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
+                    break;
+                }
+                else
+                    $cParent = &$cParent->wParent;
+            }
+        }
 
         $objResponse->script("$('{$this->id}').reset()");
         return $objResponse;
@@ -379,7 +378,7 @@ class wForm extends wObject implements wRenderizable {
             debug(__FILE__ . "Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, $data, $fjid);
+                call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $data, $fjid);
                 break;
             }
             else
