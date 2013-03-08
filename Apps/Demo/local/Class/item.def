@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <extension type="string" option="64">Label</extension>
+  <defaultuser type="string" option="128" nodisplay="true">Custom Hidden Label</defaultuser>
+  <context type="ref" option="category:label:active='Si' and `ID`>">External Reference</context>
+  <active type="boolean" option="Si">Is active</active>
+</cpd>

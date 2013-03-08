@@ -34,6 +34,6 @@ $FAMILYLABEL=array(
 set_include_dir(dirname(__FILE__)."/../local/Tmpl/-");
 
 
-$SYS["DBDRIVER"]="postgres";
+$SYS["DBDRIVER"]="mysql";
 
 ?>
