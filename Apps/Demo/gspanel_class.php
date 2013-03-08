@@ -1,4 +1,3 @@
-<<<<<<< HEAD:Apps/GlobalSche/gspanel_class.php
 <?php
 
 class GSControlPanel extends wPane {
@@ -1087,4 +1086,3 @@ class GSControlPanel extends wPane {
 }
 
 ?>
->>>>>>> 5b20e4a23a4ef1ff1d6130326227b543b0d32d87:Apps/Demo/gspanel_class.php
