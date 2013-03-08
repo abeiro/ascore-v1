@@ -411,8 +411,16 @@ EOFSCRIPT;
 
         /* Nasty hook */
         if (isset($this->formatGridData)) {
-            $func = $this->formatGridData;
-            $func($a->seachResults);
+	    if (is_array($this->formatGridData)) {
+	      if (method_exists($this->formatGridData["class"],$this->formatGridData["method"])) {
+		$class=$this->formatGridData["class"];
+		$method=$this->formatGridData["method"];
+		$class::$method($a->seachResults);
+	      }
+	    } else if (function_exists($this->formatGridData)) {
+	      $func = $this->formatGridData;
+	      $func($a->seachResults);
+	  }
         }
 
         wGrid::prepareGridData($a->seachResults, $a->totalPages, $_POST["page"]);
