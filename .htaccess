@@ -9,7 +9,7 @@ php_flag  short_open_tag  Off
 
 
 RewriteEngine on
-RewriteBase /globalscheduler
+RewriteBase /ascore-v1
 
 RewriteRule /Data/Img/(.*)$ Data/Img/$1 
 RewriteRule /Themes/(.*)$ Themes/$1 
