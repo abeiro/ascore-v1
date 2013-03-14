@@ -1,0 +1,16 @@
+body, #content, #container {
+	width: 100%;
+	margin: 0;
+	float: none;
+	background: #fff url(none);
+}
+
+* {
+	font-size:10px;
+	font-family:Verdana;
+}
+table tr:first-child {
+	background-color:black;
+	color:white;
+
+} 
