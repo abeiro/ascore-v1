@@ -52,7 +52,8 @@ function wGuiWindowMaximize(obj) {
 
     content = document.getElementById(obj.parentNode.parentNode.id + '_content');
     mwindow = document.getElementById(obj.parentNode.parentNode.id);
-    if (wGuiStatuses[mwindow.id] == "collapsed") return;
+    if (wGuiStatuses[mwindow.id] == "collapsed")
+        return;
     if (wGuiStatuses[mwindow.id] == "maximized") {
         mwindow.style.height = wGuiSizes[mwindow.id].h;
         mwindow.style.width = wGuiSizes[mwindow.id].w;
@@ -88,10 +89,10 @@ function setSelectReadonly(selectElementId) {
 
     var selectElement = document.getElementById(selectElementId);
     if (selectElement) {
-        selectElement.onfocus = function () {
+        selectElement.onfocus = function() {
             hackedSelectedValue = selectElement.value
         };
-        selectElement.onblur = function () {
+        selectElement.onblur = function() {
             selectElement.value = hackedSelectedValue
         };
     }
@@ -141,7 +142,7 @@ function CallAllHandlers() {
 }
 
 
-window.onload = function () {
+window.onload = function() {
 
     CallAllHandlers();
 
@@ -173,9 +174,9 @@ function base64_decode(data) {
 
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
-        ac = 0,
-        dec = "",
-        tmp_arr = [];
+            ac = 0,
+            dec = "",
+            tmp_arr = [];
 
     if (!data) {
         return data;
@@ -225,11 +226,11 @@ function utf8_decode(str_data) {
     // *     returns 1: 'Kevin van Zonneveld'
 
     var tmp_arr = [],
-        i = 0,
-        ac = 0,
-        c1 = 0,
-        c2 = 0,
-        c3 = 0;
+            i = 0,
+            ac = 0,
+            c1 = 0,
+            c2 = 0,
+            c3 = 0;
 
     str_data += '';
 
@@ -274,9 +275,9 @@ function base64_encode(data) {
 
     var b64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
     var o1, o2, o3, h1, h2, h3, h4, bits, i = 0,
-        ac = 0,
-        enc = "",
-        tmp_arr = [];
+            ac = 0,
+            enc = "",
+            tmp_arr = [];
 
     if (!data) {
         return data;
@@ -332,8 +333,8 @@ function utf8_encode(argString) {
     var string = (argString + ''); // .replace(/\r\n/g, "\n").replace(/\r/g, "\n");
 
     var utftext = "",
-        start, end,
-        stringl = 0;
+            start, end,
+            stringl = 0;
 
     start = end = 0;
     stringl = string.length;
@@ -415,7 +416,7 @@ if (window.webkitNotifications) {
     }
 
     function showPopup() {
-	
+
         if (window.webkitNotifications.checkPermission() > 0) {
             requestingPopupPermission(showPopup);
         } else {
@@ -430,112 +431,186 @@ if (window.webkitNotifications) {
             popup.show();
 
             //set timeout to hide it
-            setTimeout(function () {
+            setTimeout(function() {
                 popup.cancel();
             }, '10000');
 
         }
     }
 
-} 
+}
 
 
 
 function jsPrint(jsonData) {
-	
-	printCanvas=window.open('','');
-	d=printCanvas.document;
-	
-	d.write('<head></head>');
-	headHTML = d.getElementsByTagName('head')[0].innerHTML;
-	headHTML    += '<link type="text/css" rel="stylesheet" href="'+DOCUMENTROOT+'/Framework/Extensions/wGui/printer.css">';
-	d.getElementsByTagName('head')[0].innerHTML = headHTML;
 
-	d.write("<table border='1'>");
-	for (i=0;i<jsonData.length;i++) {
-		d.write("<tr>");
-		for (j=0;j<jsonData[i].length;j++) {
-			d.write("<td>");
-			printCanvas.document.write(jsonData[i][j]);
-			d.write("</td>");
-		}
-		d.write("</tr>");
-	}
-	d.write("</table>");
-	printCanvas.print();
+    printCanvas = window.open('', '');
+    d = printCanvas.document;
+
+    d.write('<head></head>');
+    headHTML = d.getElementsByTagName('head')[0].innerHTML;
+    headHTML += '<link type="text/css" rel="stylesheet" href="' + DOCUMENTROOT + '/Framework/Extensions/wGui/printer.css">';
+    d.getElementsByTagName('head')[0].innerHTML = headHTML;
+
+    d.write("<table border='1'>");
+    for (i = 0; i < jsonData.length; i++) {
+        d.write("<tr>");
+        for (j = 0; j < jsonData[i].length; j++) {
+            d.write("<td>");
+            printCanvas.document.write(jsonData[i][j]);
+            d.write("</td>");
+        }
+        d.write("</tr>");
+    }
+    d.write("</table>");
+    printCanvas.print();
 }
 
 function jsCsv(jsonData) {
-	
-	a="";
-	for (i=0;i<jsonData.length;i++) {
-		for (j=0;j<jsonData[i].length;j++) {
-			a+=jsonData[i][j];
-			a+=";";
-		}
-		a+="\n";
-	}
-	
-	
-	window.open("data:text/plain;content-disposition:attachment,"+escape(a));;
+
+    a = "";
+    for (i = 0; i < jsonData.length; i++) {
+        for (j = 0; j < jsonData[i].length; j++) {
+            a += jsonData[i][j];
+            a += ";";
+        }
+        a += "\n";
+    }
+
+
+    window.open("data:text/plain;content-disposition:attachment," + escape(a));
+    ;
 }
 
-function ElementCenter(element) {
-			element = $(element);
-			var limitX=0;
-			var limitY=0;
-			var elementDims = element.getDimensions();
-			var viewPort = document.viewport.getDimensions();
-			var offsets = document.viewport.getScrollOffsets();
-			var centerX = viewPort.width / 2 + offsets.left - elementDims.width / 2;
-			var centerY = viewPort.height / 2 + offsets.top - elementDims.height / 2;
-			if ( limitX && centerX < limitX )
-			{
-				centerX = parseInt(limitX);
-			}
-			if ( limitY && centerY < limitY )
-			{
-				centerY = parseInt(limitY);
-			}
-			
-			element.setStyle( { position: 'absolute', top: Math.floor(centerY) + 'px', left: Math.floor(centerX) + 'px' } );
-			
-			return element;			
-		}
-	
-function autoCompleteShowOptions(opts,id,targetid,targettext) {
+var defaultWaitMilliSecs=500;
+var autoCompleteWaitLock=null;
 
-		var o="<ul style='margin-left:20px'>";
-		c=0;
-		for(i in opts) {
-			o+="<li><a tabindex="+c+" style='cursor:pointer' onclick=\"autoCompleteSelect('"+id+"','"+targetid+"','"+targettext+"','"+i+"','"+opts[i]+"')\">"+opts[i]+"</a></li>";
-			c++;
-		}
-		o+="</ul>";
-		$(id).update(o);
+function delayedKeyUp(sourceObj,targetId) {
+	
+	if (sourceObj.autoCompleteWaitLock!=null)
+		clearTimeout(sourceObj.autoCompleteWaitLock);
+	sourceObj.autoCompleteWaitLock=setTimeout(function() {
+		console.log("Launching ondelayedchange on "+targetId);
+		$(targetId).simulate("delayedchange");
+
+	},defaultWaitMilliSecs);
 
 }
 
-function autoCompleteSelect(divid,targetid,targettext,destid,desttext) {
-		$(targetid).value=destid;
-		$(targettext).value=desttext;
-		$(divid).update("");
+function autoCompleteShowOptions(opts, id, targetid, targettext) {
+
+
+
+    var o = "<ul style='margin-left:20px' >";
+    c = 100;
+    if (opts == null)
+        return;
+    for (i in opts) {
+        o += "<li style='padding:3px'><a tabindex=" + c + " style='cursor:pointer' onclick=\"autoCompleteSelect('" + id + "','" + targetid + "','" + i + "')\">" + opts[i] + "</a></li>";
+        c++;
+    }
+    o += "</ul>";
+    $(id).update(o);
+
+
+
+}
+
+function autoCompleteShowOpts(opts, id, targetid, targettext) {
+
+    var o = "<ul style='margin-left:20px'>";
+    c = 0;
+    if (opts != null)
+        for (i = 0; i < opts.length; i++) {
+            o += "<li style='padding:3px'><a tabindex=" + c + " style='cursor:pointer' onclick=\"autoCompleteSelect('" + id + "','" + targetid + "','" + opts[i].id + "')\">" + opts[i].label + "</a></li>";
+            c++;
+        }
+    o += "</ul>";
+    $(id).update(o);
+
+
+}
+
+function autoCompleteSelect(divid, targetid, selectedvalue) {
+    if (selectedvalue > 0) {
+        $(targetid).value = selectedvalue;
+        $(targetid).simulate("change");
+    }
+    $(divid).update("");
 
 }
 
 
-function changeComboModel(element,jdata) {
-		var select = document.getElementById(element);
-		select.options.length = 0; // clear out existing items
-		for (var i in jdata) {
-			select.options.add(new Option(jdata[i],i));
-		}
-
-}
-
-
-function expandHeightElement(element,reference) {
+function expandHeightElement(element, reference) {
     var h = reference.innerHeight;
     element.style.height = h + "px";
-    
+
 }
+
+/**
+ * Event.simulate(@element, eventName[, options]) -> Element
+ * 
+ * - @element: element to fire event on
+ * - eventName: name of event to fire (only MouseEvents and HTMLEvents interfaces are supported)
+ * - options: optional object to fine-tune event properties - pointerX, pointerY, ctrlKey, etc.
+ *
+ *    $('foo').simulate('click'); // => fires "click" event on an element with id=foo
+ *
+ **/
+(function() {
+
+    var eventMatchers = {
+        'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll|delayedchange)$/,
+        'MouseEvents': /^(?:click|mouse(?:down|up|over|move|out))$/
+    }
+    var defaultOptions = {
+        pointerX: 0,
+        pointerY: 0,
+        button: 0,
+        ctrlKey: false,
+        altKey: false,
+        shiftKey: false,
+        metaKey: false,
+        bubbles: true,
+        cancelable: true
+    }
+
+    Event.simulate = function(element, eventName) {
+        var options = Object.extend(defaultOptions, arguments[2] || {});
+        var oEvent, eventType = null;
+
+        element = $(element);
+
+        for (var name in eventMatchers) {
+            if (eventMatchers[name].test(eventName)) {
+                eventType = name;
+                break;
+            }
+        }
+
+        if (!eventType)
+            throw new SyntaxError('Only HTMLEvents and MouseEvents interfaces are supported');
+
+        if (document.createEvent) {
+            oEvent = document.createEvent(eventType);
+            if (eventType == 'HTMLEvents') {
+                oEvent.initEvent(eventName, options.bubbles, options.cancelable);
+            }
+            else {
+                oEvent.initMouseEvent(eventName, options.bubbles, options.cancelable, document.defaultView,
+                        options.button, options.pointerX, options.pointerY, options.pointerX, options.pointerY,
+                        options.ctrlKey, options.altKey, options.shiftKey, options.metaKey, options.button, element);
+            }
+            element.dispatchEvent(oEvent);
+        }
+        else {
+            options.clientX = options.pointerX;
+            options.clientY = options.pointerY;
+            oEvent = Object.extend(document.createEventObject(), options);
+            element.fireEvent('on' + eventName, oEvent);
+        }
+        return element;
+    }
+
+    Element.addMethods({simulate: Event.simulate});
+})()

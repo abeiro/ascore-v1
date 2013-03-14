@@ -78,6 +78,12 @@ class wObject implements wRenderizable {
         $object->wParent = &$this;
     }
 
+    function replace(&$object, $index) {
+
+        $this->wChildren[$index] = &$object;
+        $object->wParent = &$this;
+    }
+
     function addListener($event, $function, $object = null) {
         global $xajax;
         if ($object == null) {

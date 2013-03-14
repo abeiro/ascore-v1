@@ -189,7 +189,8 @@ class wForm extends wObject implements wRenderizable {
                             default:
                                 if (isset($v1["attributes"]["multiple"])) {
                                     $q.="\n\t<td>{$v1["label"]}<select name=\"" . $k1 . "[]\" id=\"" . $k1 . "\" ";
-                                } else
+                                }
+                                else
                                     $q.="\n\t<td>{$v1["label"]}<select name=\"" . $k1 . "\" id=\"" . $k1 . "\" ";
                                 if (isset($v1["attributes"]))
                                     foreach ($v1["attributes"] as $k3 => $v3)
@@ -395,7 +396,8 @@ class wForm extends wObject implements wRenderizable {
             if ($value > 10000) {
                 $format = substr($type, strpos($type, ":") + 1);
                 return utf8_encode(strftime(($format) ? $format : "%d/%m/%Y", $value));
-            } else
+            }
+            else
                 return "";
         } else if (strpos($type, "boolean") === 0) {
             /* Date */
@@ -415,6 +417,15 @@ class wForm extends wObject implements wRenderizable {
     public function doAfterDelete($method) {
 
         $this->afterDeleteMethod[] = $method;
+    }
+
+    public function getChildByName($name) {
+        $target = $this->components[$name];
+        foreach ($this->wChildren as $nk => $c)
+            if ($c->id == $target->id)
+                return $this->wChildren[$nk];
+
+        return false;
     }
 
 }

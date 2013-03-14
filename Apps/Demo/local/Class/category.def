@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <cpd>
-  <extension type="string" option="16">Label</extension>
+  <label type="string" option="64">Label</label>
   <active type="boolean" option="Si">Is active</active>
 </cpd>
