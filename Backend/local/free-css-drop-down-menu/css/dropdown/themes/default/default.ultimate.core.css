@@ -35,8 +35,9 @@ ul.dropdown span {
  */
 
 ul.dropdown li {
- padding: 0;
+ padding: 2px;
  border: none;
+ text-shadow: 1px 1px white, -1px -1px #FFFFFF
  
  
 }
