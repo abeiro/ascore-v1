@@ -1,6 +1,6 @@
 <?php
 
-/* Extensión de la clase inventarios_muestrarios */
+/* Extensiï¿½n de la clase inventarios_muestrarios */
 
 function donothing() {
 	return True;
@@ -116,7 +116,7 @@ function delete() {
 	}
 }
 
-function mdp($mdp_text) {
+function mdp(&$mdp_text) {
 
  	if (($this->inode==0)||(empty($this->inode))) {
 		$mdp_text.=$this->nombre."\\";
@@ -124,7 +124,7 @@ function mdp($mdp_text) {
 	}
 	else {
 		$r=newObject("data_object",$this->inode);
-		$r->mdp(&$mdp_text);
+		$r->mdp($mdp_text);
 		$mdp_text.=$this->nombre."\\";
 		return;
 	}

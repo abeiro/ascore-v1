@@ -110,8 +110,8 @@ if (empty($_POST["step"])) {
 	<!--PASO PREVIO -->
 	<div align="justify" id="dtarget" class="tbox">
         <h3 align="center">Paso 1/3</h3>
-	<p align="justify">Bienvenido al sistema de instalación automatizado de ASCore.</p>
-	<p align="justify">Recuerde que una vez instalado el sistema deberá de borrar el fichero <strong>install.php</strong> de su servidor.</p>
+	<p align="justify">Bienvenido al sistema de instalaciï¿½n automatizado de ASCore.</p>
+	<p align="justify">Recuerde que una vez instalado el sistema deberï¿½ de borrar el fichero <strong>install.php</strong> de su servidor.</p>
 	<p align="justify">Por favor, confirme que los siguientes valores son correctos...</p>
 	<form method="post">
 	<?php
@@ -146,8 +146,8 @@ if (empty($_POST["step"])) {
 	<div align="justify" id="dtarget" class="tbox">
 
 	<h3 align="center">Paso 2/3</h3>
-	<p align="justify">Se ha generado un fichero .htaccess con la configuración especificada anteriormente</p>
-	<p align="justify">Ahora necesito crear la base de datos inicial, para ello necesitamos la contraseña de administrador de MySQL. El usuario administrador usualmente es "root" en sistemas Linux</p>
+	<p align="justify">Se ha generado un fichero .htaccess con la configuraciï¿½n especificada anteriormente</p>
+	<p align="justify">Ahora necesito crear la base de datos inicial, para ello necesitamos la contraseï¿½a de administrador de MySQL. El usuario administrador usualmente es "root" en sistemas Linux</p>
 	<p align="justify">Por favor, rellene los siguientes valores...</p>
 	<form method="post">
 
@@ -155,15 +155,15 @@ if (empty($_POST["step"])) {
 
 	<div class="cell2">Usuario administrador MySQL:</div> <input type="text" name="DBAUSER" value="root" size="15"><br clear="all" />
 	
-	<div class="cell2">Contraseña administrador MySQL:</div> <input type="password" name="DBAPASS" value="" size="15"><br clear="all" />
+	<div class="cell2">Contraseï¿½a administrador MySQL:</div> <input type="password" name="DBAPASS" value="" size="15"><br clear="all" />
 
-	<p align="justify">Note que puede crear el usuario y la base de datos "a mano". Si escoge esta opción, marque la siguiente casilla y sólo especifique la base de datos y el usuario de la misma para este proyecto</p>
+	<p align="justify">Note que puede crear el usuario y la base de datos "a mano". Si escoge esta opciï¿½n, marque la siguiente casilla y sï¿½lo especifique la base de datos y el usuario de la misma para este proyecto</p>
 
-	<div class="cell2">Sí, ya he creado la base de datos</div> <input type="checkbox" name="ALREADYCREATED" size="15"><br clear="all" />	
+	<div class="cell2">Sï¿½, ya he creado la base de datos</div> <input type="checkbox" name="ALREADYCREATED" size="15"><br clear="all" />	
 
 	<div class="cell2">Nombre de la base de datos de este proyecto:</div> <input type="text" name="DBDBNAME" value="ascore" size="15"><br clear="all" />
 	<div class="cell2">Nombre del usuario BBDD para este proyecto:</div> <input type="text" name="DBDBUSER" value="ascore" size="15"><br clear="all" />
-	<div class="cell2">Contraseña del usuario BBDD para este proyecto (solo necesario si el usuario ya existe):</div> <input type="password" name="DBDBPASS" value="" size="15"><br clear="all" />
+	<div class="cell2">Contraseï¿½a del usuario BBDD para este proyecto (solo necesario si el usuario ya existe):</div> <input type="password" name="DBDBPASS" value="" size="15"><br clear="all" />
 	
 	<br clear="all" />
 	<input type="hidden" name="step" value="2" />
@@ -199,13 +199,13 @@ if (empty($_POST["step"])) {
 				die(" INCORRECTO!!<br /></div>".mysql_error()."</div></div></body></html>");
 			
 			echo "* Creando base de datos....";
-			mysql_query("DROP DATABASE {$_POST["DBDBNAME"]}");		
-			if (mysql_query("CREATE DATABASE {$_POST["DBDBNAME"]}"))
+			mysql_query("DROP DATABASE {$_POST["DBDBNAME"]}");		
+			if (mysql_query("CREATE DATABASE {$_POST["DBDBNAME"]}"))
 				echo " <strong>OK</strong><br />";
 			else
 				die(" INCORRECTO!!<br /></div>".mysql_error()."</div></div></body></html>");
 	
-			echo "* Creando usuario....(contraseña generada)";
+			echo "* Creando usuario....(contraseï¿½a generada)";
 			$DATA["DBDBPASS"]=crypt(time(),'rl');
 			if (mysql_query("GRANT ALL ON  {$_POST["DBDBNAME"]}.* TO {$_POST["DBDBUSER"]}@{$_POST["DBAHOST"]} IDENTIFIED BY '{$DATA["DBDBPASS"]}'"))
 				echo " <strong><strong>OK</strong></strong><br />";
@@ -232,20 +232,20 @@ if (empty($_POST["step"])) {
 	else
 		die(" INCORRECTO!!<br /></div>".mysql_error()."</div></div></body></html>");
 
-	echo "* Creando fichero de configuración..";
-	$CONF_SAMPLE=file_get_contents("Framework/conf_sample.php");
+	echo "* Creando fichero de configuraciï¿½n..";
+	$CONF_SAMPLE=file_get_contents(dirname(__FILE__)."/Framework/conf_sample.php");
 	$CONF_SAMPLE=preg_replace("/<([^\{]{1,100}?)>/e",'$DATA[$1]',$CONF_SAMPLE);
-	fwrite(fopen("Framework/conf.php","w"),   $CONF_SAMPLE);
+	fwrite(fopen(dirname(__FILE__)."/Framework/conf.php","w"),   $CONF_SAMPLE);
 
 
 ?>
-	<p>Por favor, revise el fichero de configuración <strong>Framework/conf.php</strong></p>
+	<p>Por favor, revise el fichero de configuraciï¿½n <strong>Framework/conf.php</strong></p>
 
-	<p>Ahora necesitamos hacer una importación inicial de la base de datos. Puede que quiera saltarse este paso si solo está reconfigurando una instalación existente o simplemente lo va a hacer por su cuenta</strong></p>
+	<p>Ahora necesitamos hacer una importaciï¿½n inicial de la base de datos. Puede que quiera saltarse este paso si solo estï¿½ reconfigurando una instalaciï¿½n existente o simplemente lo va a hacer por su cuenta</strong></p>
 
 	<form method="post">
 	
-	<div class="cell2">Sí, deseo hacer la imporación inicial</div><input type="checkbox" name="IMPORTPLEASE" size="15"><br clear="all" />	
+	<div class="cell2">Sï¿½, deseo hacer la imporaciï¿½n inicial</div><input type="checkbox" name="IMPORTPLEASE" size="15"><br clear="all" />	
         <br clear="all" />
 	<input type="hidden" name="_DBDATA" value="<?php echo urlencode(serialize($DATA))?>" />
 	<input type="hidden" name="step" value="3" />

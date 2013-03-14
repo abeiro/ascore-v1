@@ -16,7 +16,7 @@ if (!isset($sort))
 $aux=newObject("data_object",$inode);	
 $aux2=newObject("data_object",0);	
 $mdptext="";
-$aux->mdp(&$mdptext);
+$aux->mdp($mdptext);
 $dir->path=$mdptext;
 $dir->current_inode=$inode;
 	

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <cpd>
 	<user_id type="ref" >Usuario</user_id>
-	<SYS_APP_MODE type="list" option="Si|No">Modo Aplicación</SYS_APP_MODE>
-	<ZOOM type="list" option="popup|iframe">Modo de Zoom</ZOOM>
+	<sys_app_mode type="list" option="Si|No">Modo Aplicación</sys_app_mode>
+	<zoom type="list" option="popup|iframe">Modo de Zoom</zoom>
 	<rlimit type="int">Límite por defecto de los listados</rlimit>
 	<spooler type="list" option="Interno|ASPooler">Spooler de impresión</spooler>
 	<curtain_effect type="list" option="Si|No">Efecto cortina</curtain_effect>

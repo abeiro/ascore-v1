@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<cpd>
+  <name type="string" option="64">Name</name>
+  <surname type="string" option="128">Surname</surname>
+  <active type="boolean" option="Si">Is active</active>
+</cpd>
