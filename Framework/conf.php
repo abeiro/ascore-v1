@@ -22,8 +22,9 @@ $SYS["ROOT"]="http://".$_SERVER["SERVER_NAME"].dirname($_SERVER["SCRIPT_NAME"]).
 $SYS["DBDRIVER"]=($SYS["DBDRIVER"])?$SYS["DBDRIVER"]:"mysql";
 $SYS["mysql"]["DBUSER"]=($SYS["mysql"]["DBUSER"])?$SYS["mysql"]["DBUSER"]:"ascore";
 $SYS["mysql"]["DBHOST"]=($SYS["mysql"]["DBHOST"])?$SYS["mysql"]["DBHOST"]:"localhost";
-$SYS["mysql"]["DBNAME"]=($SYS["mysql"]["DBNAME"])?$SYS["mysql"]["DBNAME"]:"ascore_dev";
-$SYS["mysql"]["DBPASS"]=($SYS["mysql"]["DBPASS"])?$SYS["mysql"]["DBPASS"]:"test";
+$SYS["mysql"]["DBNAME"]=($SYS["mysql"]["DBNAME"])?$SYS["mysql"]["DBNAME"]:"ascore";
+$SYS["mysql"]["DBPASS"]=($SYS["mysql"]["DBPASS"])?$SYS["mysql"]["DBPASS"]:"rlyAMQYnLR12I";
+
 $SYS["DBDRIVER_CONFIGURED"]=true;
 //
 //	Default rows returned by selects
@@ -41,7 +42,7 @@ if (!isset($TrazaStatus))
 	$TrazaStatus=True;
 
 // Enable/Disable Authentication
-$SYS["config"]["authentication"]=true;
+$SYS["config"]["authentication"]=false;
 
 $SYS["GLOBAL"]["DEV_MODE"]=true;
 
@@ -53,21 +54,6 @@ $SYS["config"]["zoom"]="iframe";
 $SYS["bcompiler_extension"]=false;
 
 /* Acces for myself */
-$SECRETKEY="6e3fa0aa75e90b271f7688500c3bd690";
-
-// Active Directory
-   
-$SYS["AUTH"]["activedirectory"]["server"]="172.24.81.1";
-$SYS["AUTH"]["activedirectory"]["basedn"]="DC=crs3187,DC=rural";
-$SYS["AUTH"]["activedirectory"]["domain"]="crs3187";
-$SYS["AUTH"]["activedirectory"]["searchdn"]=array(
-      "CN=Users",
-      "OU=Usuarios",
-      "OU=Administrativos,OU=Usuarios");
- 
-
-$SYS["admin_email"]="operador@helpdesk.ruralsur.es";
-$SYS["admin_realm"]="Agente de Planificación";
-
+$SECRETKEY="a5db1d78a9ac47f36da71a20f5b25de7";
 
 ?>

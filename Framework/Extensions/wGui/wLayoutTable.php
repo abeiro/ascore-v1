@@ -8,7 +8,7 @@ class wLayoutTable extends wObject implements wRenderizable {
     var $free = false;
     private $counter = 0;
 
-    function __construct($name=null, &$parent) {
+    function __construct($name = null, &$parent) {
         parent::__construct($name, $parent);
         $this->name = $name;
 
@@ -41,7 +41,7 @@ class wLayoutTable extends wObject implements wRenderizable {
                     $partSize = $this->fixedSizes[$counter];
                 if ($this->free)
                     $partSize = "";
-                echo "<!-- START OF LAYOUT PART-->\n<td valign='top' style='{$this->cssStyle};' width='$partSize'>";
+                echo "<!-- START OF LAYOUT PART-->\n<td valign='top' align='left' style='align:left' width='$partSize'>";
                 $c->render();
                 echo "</td>\n<!-- END OF LAYOUT PART-->\n";
             }
@@ -50,7 +50,7 @@ class wLayoutTable extends wObject implements wRenderizable {
                     $partSize = $this->fixedSizes[$counter];
                 if ($this->free)
                     $partSize = "";
-                echo "<tr><td valign='top'  style='{$this->cssStyle}' width='$partSize'>\n\t";
+                echo "<tr><td valign='top'  align='left' style='' width='$partSize'>\n\t";
                 $c->render();
                 echo "</td></tr>\n<!-- END OF LAYOUT PART-->\n";
             }
@@ -76,9 +76,10 @@ class wLayoutTable extends wObject implements wRenderizable {
         $this->setCSS("overflow", "hidden");
         $this->setCSS("margin", "0px");
         $this->setCSS("padding", "0px");
+        $this->setCSS("width", "100%");
     }
 
-    function setFree($free=true) {
+    function setFree($free = true) {
         $this->free = $free;
     }
 

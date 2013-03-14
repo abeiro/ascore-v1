@@ -66,7 +66,9 @@ class wDesktop extends wObject {
     }
 
     function updateCache() {
+		debug("Updating cache {$GLOBALS["desktop_id"]}", "red");
         $_SESSION["desktopaxot"]["panel"][$GLOBALS["desktop_id"]] = serialize($this);
+		
     }
 
     public static function ObjCacheRestore($id) {

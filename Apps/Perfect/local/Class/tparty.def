@@ -1,5 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<cpd>
-	<twar_id type="ref"	option="twar:titulo">War</twar_id>
-	<nombre	type="string" option="128">Titulo</nombre>
-</cpd>
