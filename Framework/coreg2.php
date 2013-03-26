@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ALL ^ E_NOTICE);
+error_reporting(E_ERROR);
 ini_set("include_path",".:".dirname(__FILE__)."/../Framework/:".dirname(__FILE__)."/../Apps/");
 
 define("_COREVER","0.99.9");
