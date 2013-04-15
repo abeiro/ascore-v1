@@ -414,6 +414,17 @@ class Ente extends core {
         /* Normalizamos datos */
 
         $this->data_normalize();
+		foreach ($this->properties_properties as $field=>$prop) {
+				if ($prop["mandatory"]==true) {
+					
+					if (strlen($this->properties["$field"])==0) {
+						debug("($field) Must be setted ".$this->properties["$field"]."","red");
+						$this->ERROR=_("{$this->properties_desc["$field"]} es obligatorio");
+						return false;
+					}
+				}
+
+			}
 
         $res = "";
         if (($this->ID > 1) && !empty($this->ID)) {
@@ -435,7 +446,7 @@ class Ente extends core {
 
                 function dsadd(&$str, $key, &$object) {
                     global $res;
-                    if ($key != "ID")
+                    if ($key != "ID") 
                         if (empty($str))
                             if (
                                     (strpos($object->properties_type[$key], "date") === 0) ||
@@ -460,6 +471,7 @@ class Ente extends core {
 
             $this->_flat();
             array_walk(array_keys($this->properties), "fsadd");
+		
             $q = "INSERT INTO `{$prefix}_" . $this->name . "`(" . substr($res, 1) . ")";
             $res = "";
             reset($this->properties);

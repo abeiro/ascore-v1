@@ -8,7 +8,7 @@
     <link type="text/css" href="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//grid/css/mtg/calendar.css" rel="stylesheet">
   </head>
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//scriptaculous/lib/prototype.js" type="text/javascript"></script>
-  <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui/autocomplete.js" type="text/javascript"></script>
+  
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//scriptaculous/src/scriptaculous.js" type="text/javascript"></script>
   <script src="<?php echo $SYS["ROOT"]?>/Framework/Extensions//wGui//wGui.js" type="text/javascript"></script>
   

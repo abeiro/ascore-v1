@@ -80,7 +80,7 @@ function save($force=false) {
 			$this->md5=md5("$force".time()."-1");
 			$secure_new_name=$SYS["BASE"]."/Pool/".$FAMILYLABEL[$this->familia_id]."/".$this->md5.".".$this->ext;
 			if (file_exists($secure_new_name))
-				echo "File name Collision!!!!!!";
+				debug("File name Collision!!!!!!","red");;
 		}
 		if (copy($force,
 		$secure_new_name))
@@ -89,6 +89,8 @@ function save($force=false) {
 			debug("fileh: fichero almacenado correctamente:".$this->localname(),"red");
 			return $par->save();
 	
+		} else {
+			debug("Copy failed $secure_new_name !!!!!!","red");;
 		}
 	
 	}

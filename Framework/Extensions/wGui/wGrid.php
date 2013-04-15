@@ -191,7 +191,7 @@ class wGrid extends wObject implements wRenderizable {
      */
 
     static function prepareGridData($resultados, $nRes, $pagina=1,$donotprint=false) {
-        error_reporting(E_ERROR);
+        
         global $SYS;
         while (@ob_end_clean());
         header('Content-Type: application/json');

@@ -591,7 +591,7 @@ EOFSCRIPT;
       ACTIONS TO DO AFTER SELECT AN ITEM
      */
 
-    public function afterrequestloadFromId($ajaxresponse, $object, $jid) {
+    public function afterrequestloadFromId(&$ajaxresponse, $object, $jid) {
         debug("I'm still alive {$object->name}", "green");
         $class = $object->coreObject->name;
         foreach ($this->hierarchyClass as $name => $field) {
@@ -599,6 +599,19 @@ EOFSCRIPT;
                 $ajaxresponse->assign("{$this->MainClass}_driver", "value", $object->coreObject->ID);
             else
                 $ajaxresponse->script("\$(\"faked_$jid.$field\").value=\$(\"$jid.$field\").value");
+        }
+
+		$MethodtoCall = "afterrequestloadFromId";
+        $cParent = &$this->wParent;
+        while ($cParent) {
+            debug(__FILE__ . " Calling parent: " . get_class($cParent), "white");
+            if (method_exists($cParent, $MethodtoCall)) {
+                debug(basename(__FILE__)." :: Parent component method exists $MethodtoCall: " . get_class($cParent), "blue");
+                call_user_func(array($cParent, $MethodtoCall), $ajaxresponse, $object, $jid);
+                break;
+            }
+            else
+                $cParent = &$cParent->wParent;
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ERROR);
 require(dirname(__FILE__)."/../../coreg2.php");
 
 /**
@@ -89,7 +89,7 @@ class qqFileUploader {
     function handleUpload($uploadDirectory, $replaceOldFile = FALSE){
     	global $SYS;
         if (!is_writable($uploadDirectory)){
-            return array('error' => "Server error. Upload directory isn't writable. {$SYS["DOCROOT"]}");
+            return array('error' => "Server error. Upload directory isn't writable. $uploadDirectory");
         }
         
         if (!$this->file){
@@ -142,17 +142,27 @@ $uploader = new qqFileUploader($allowedExtensions, $sizeLimit);
 $result = $uploader->handleUpload($SYS["DOCROOT"].'/../Pool/Tmp/');
 
 if($_GET["type"]){
+	
+	$newFile=newObject("fileh");
+	//$newFile->familia_id=_NOTICIAS;
+	$result['newId']=$newFile->save($SYS["DOCROOT"].'/../Pool/Tmp/'.$uploader->file->getName());
 
-$newFile=newObject("fileh");
-$newFile->familia_id=_NOTICIAS;
-$result['newId']=$newFile->save($SYS["DOCROOT"].'/../Pool/Tmp/'.$uploader->file->getName());
+	debug("Saving fileh object {$SYS["DOCROOT"]}/../Pool/Tmp/ ".$uploader->file->getName(),"green");
+
+	if ($_GET["type"]=="data_object") {
+		$do=newObject("data_object");
+		$do->fileh=$result['newId'];
+		$do->type="archive";
+		$do->mime=$newFile->mime;
+		$do->nombre=$_GET["qqfile"];
+
+		$result['newId']=$do->save();
+	}
 
 }else{
-
-$newImage=newObject("foto");
-$newImage->forceUpload=$SYS["DOCROOT"].'/../Pool/Tmp/'.$uploader->file->getName();
-$result['newId']=$newImage->save();
-
+	$newImage=newObject("foto");
+	$newImage->forceUpload=$SYS["DOCROOT"].'/../Pool/Tmp/'.$uploader->file->getName();
+	$result['newId']=$newImage->save();
 }
 echo htmlspecialchars(json_encode($result), ENT_NOQUOTES);
 

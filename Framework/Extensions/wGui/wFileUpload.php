@@ -30,6 +30,7 @@ class wFileUpload extends wObject implements wRenderizable {
                 action: '{$SYS["ROOT"]}/Framework/Extensions/FileUpload2/upload.php?sourceid=${$this->id}&type={$this->tipo}',
 		onComplete: function(id, fileName, responseJSON){
 				document.getElementById('{$this->id}').value=responseJSON.newId;
+				document.getElementById('{$this->id}').simulate('change');
 				alert('Guarde el formulario para hacer efectivo el cambio');
 				//document.getElementById('file_{$this->id}').style.display='none';
 				}

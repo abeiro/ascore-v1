@@ -7,6 +7,7 @@ class wImage extends wObject implements wRenderizable {
     var $src = "";
     var $click = "";
     var $id;
+	var $showLoader=false;
 
     function __construct($name=null, $parent, $addPrefix=true) {
         parent::__construct($name, $parent);
@@ -25,14 +26,15 @@ class wImage extends wObject implements wRenderizable {
                 $eventCode.=" $k='" . $v[$this->ListenerAux[$k]]->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
             }
         }
-        echo "<input type='image' $eventCode name='{$this->name}' id='{$this->id}' value='{$this->label}' class='icon' src='{$this->src}' title='{$this->label}' onClick='{$this->click}' />\n";
+        echo "<input type='image' style='{$this->cssStyle}' name='{$this->name}' id='{$this->id}'  class='icon' src='{$this->src}' title='{$this->label}' />";
+	
     }
 
     /* Some default properties */
 
     function _setDefaults() {
 
-        $this->setCSS("width", (strlen($this->label) * 12) . "px");
+        
     }
 
     function setSelectedValue($data) {

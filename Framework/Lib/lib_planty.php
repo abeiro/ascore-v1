@@ -220,7 +220,7 @@ class plantilla {
 			$res = str_replace('<!-- V:' . key($dat) . ' -->', current($dat), $res);
 			/* A bug here */
 
-			$res = str_replace('<!-- E:' . key($dat) . ' -->', number_format(current($dat)+0, 2, ',', '.'), $res);
+			$res = str_replace('<!-- E:' . key($dat) . ' -->', number_format(current($dat), 2, ',', '.'), $res);
 
 
 
@@ -424,7 +424,7 @@ class plantilla {
 
 			$res = str_replace('<!-- D:' . key($dat) . ' -->', current($dat), $res);
 			if (is_numeric(current($dat)))
-				$res = str_replace('<!-- S:' . key($dat) . ' -->', number_format(current($dat)+0, 2, ',', '.') . "&euro;", $res);
+				$res = str_replace('<!-- S:' . key($dat) . ' -->', number_format(current($dat), 2, ',', '.') . "&euro;", $res);
 			else
 				$res = str_replace('<!-- S:' . key($dat) . ' -->', current($dat), $res);
 			$res = str_replace('<!-- F:' . key($dat) . ' -->', sprintf("%.5f", current($dat)), $res);
