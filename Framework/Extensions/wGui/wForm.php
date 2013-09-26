@@ -9,10 +9,10 @@ class wForm extends wObject implements wRenderizable {
     var $buttonPane = null;
     var $components = array();
     var $LineByLine = false;
-	var $itemsPerLine=2;
+    var $itemsPerLine = 2;
 
     function __construct($name = null, &$parent) {
-         global $xajax;
+        global $xajax;
 
         parent::__construct($name, $parent);
         $this->name = $name;
@@ -50,7 +50,7 @@ class wForm extends wObject implements wRenderizable {
 
     function render() {
         parent::render();
-		$count=0;
+        $count = 0;
         echo "<form name='{$this->name}' id='{$this->id}' action='#' style='{$this->cssStyle}'>\n";
         //     $cssWidth="width:25%";
 
@@ -60,30 +60,30 @@ class wForm extends wObject implements wRenderizable {
                 $c->render();
                 echo "</div>";
             } else {
-                if ($count%2==0)
-						$minWidth="width:125px;padding-left:5px;overflow:hidden";
-					else
-						$minWidth="min-width;175px";
+                if ($count % 2 == 0)
+                    $minWidth = "width:125px;padding-left:5px;overflow:hidden";
+                else
+                    $minWidth = "min-width;175px";
 
                 if ($count % $this->itemsPerLine != 0) {
                     echo "<div style='float:left;padding:2px;min-width:$minWidth;'>";
                     $c->render();
                     echo '</div>';
-					$this->__divOpen--;
+                    $this->__divOpen--;
                 } else {
-					if ($count>0)
-						echo "</div>";
-					
-					echo "<div style='width:100%;clear:both;padding-top:3px;border-bottom:1px solid lightgray;display:table'><div style='$minWidth;border:1px;padding:2px;float:left;'>";
+                    if ($count > 0)
+                        echo "</div>";
+
+                    echo "<div style='width:100%;clear:both;padding-top:3px;border-bottom:1px solid lightgray;display:table'><div style='$minWidth;border:1px;padding:2px;float:left;'>";
                     $c->render();
                     echo '</div>';
-					$this->__divOpen++;
+                    $this->__divOpen++;
                 }
-				$count++;
+                $count++;
             }
         }
-		if ($this->__divOpen>0)
-			echo "</div>";
+        if ($this->__divOpen > 0)
+            echo "</div>";
         echo "<br clear=\"both\" />";
         //$this->buttonPane->render();
         echo "</form>";
@@ -112,7 +112,7 @@ class wForm extends wObject implements wRenderizable {
                                 $labels["$k1"] = new wLabel("-", $this, $v1["label"]);
                                 $inputs["$k1"] = new WInput($k1, $this);
                                 $options = substr($object->properties_type[$k1], strpos($object->properties_type[$k1], ":") + 1);
-                                $inputs["$k1"]->setCSS("width", ((($options * 2.5)>50)?($options * 2.5):($options * 10)) . "px");
+                                $inputs["$k1"]->setCSS("width", ((($options * 2.5) > 50) ? ($options * 2.5) : ($options * 10)) . "px");
                                 break;
 
                             case "date":
@@ -263,15 +263,17 @@ class wForm extends wObject implements wRenderizable {
         while ($cParent) {
             debug(__FILE__ . " Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
-                debug("Parent component mehtod exists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, &$fjid);
+                debug("Parent component method afterrequestloadFromId exists $MethodtoCall: " . get_class($cParent), "blue");
+                debug("Will :: call_user_func(array(cParent, $MethodtoCall), objResponse, this, fjid) ::", "blue");
+                if (!call_user_func_array(array($cParent, $MethodtoCall), array($objResponse, $this, $fjid)))
+                        debug("Call didnt work!!".print_r(error_get_last(),true),"red");
                 break;
             }
             else
                 $cParent = &$cParent->wParent;
         }
 
-		debug("Trying to call parent: " . print_r($this->afterRequestFromId, true), "white");
+        debug("Trying to call parent: " . print_r($this->afterRequestFromId, true), "white");
         if (is_array($this->afterRequestFromId)) {
             foreach ($this->afterRequestFromId as $singleMethod) {
                 $MethodtoCall = $singleMethod;
@@ -279,9 +281,9 @@ class wForm extends wObject implements wRenderizable {
                 while ($cParent) {
                     debug("Calling parent: $singleMethod " . get_class($cParent), "white");
                     if (method_exists($cParent, $MethodtoCall)) {
-                        debug(__FILE__.":: Parent component method exists $MethodtoCall: " . get_class($cParent), "blue");
-                        if (!call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, &$jsorig))
-							debug(__FILE__.":: Error calling or function returned false ".get_class($cParent)." $MethodtoCall", "blue");
+                        debug(__FILE__ . ":: Parent component method exists $MethodtoCall: " . get_class($cParent), "blue");
+                        if (!call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig))
+                            debug(__FILE__ . ":: Error calling or function returned false " . get_class($cParent) . " $MethodtoCall", "blue");
                         break;
                     }
                     else
@@ -334,8 +336,8 @@ class wForm extends wObject implements wRenderizable {
                 while ($cParent) {
                     debug("Calling parent: $singleMethod " . get_class($cParent), "white");
                     if (method_exists($cParent, $MethodtoCall)) {
-                        debug(__FILE__.":: Parent component method exists $MethodtoCall: " . get_class($cParent), "blue");
-                        call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, &$jsorig);
+                        debug(__FILE__ . ":: Parent component method exists $MethodtoCall: " . get_class($cParent), "blue");
+                        call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
                         break;
                     }
                     else
@@ -349,7 +351,7 @@ class wForm extends wObject implements wRenderizable {
                 debug("Calling parent: " . get_class($cParent), "white");
                 if (method_exists($cParent, $MethodtoCall)) {
                     debug("Parent component mehtod exsists $MethodtoCall: " . get_class($cParent), "blue");
-                    call_user_func(array($cParent, $MethodtoCall), &$objResponse, &$this, &$jsorig);
+                    call_user_func(array($cParent, $MethodtoCall), $objResponse, $this, $jsorig);
                     break;
                 }
                 else
@@ -357,7 +359,7 @@ class wForm extends wObject implements wRenderizable {
             }
         }
 
- 
+
 
         if ($this->coreObject->__isNew) {
             //xajax_wForm.requestNewForm("Nuevo", "onclick", "formgtasklogRegistros", "gtasklog")
@@ -456,7 +458,7 @@ class wForm extends wObject implements wRenderizable {
         $this->afterDeleteMethod[] = $method;
     }
 
-	public function doAfterRequestFromId($method) {
+    public function doAfterRequestFromId($method) {
 
         $this->afterRequestFromId[] = $method;
     }

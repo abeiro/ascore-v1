@@ -591,7 +591,7 @@ EOFSCRIPT;
       ACTIONS TO DO AFTER SELECT AN ITEM
      */
 
-    public function afterrequestloadFromId(&$ajaxresponse, $object, $jid) {
+    public function afterrequestloadFromId(&$ajaxresponse, &$object, &$jid) {
         debug("I'm still alive {$object->name}", "green");
         $class = $object->coreObject->name;
         foreach ($this->hierarchyClass as $name => $field) {
