@@ -1,8 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<cpd>
-  <extension type="string" option="64">Label</extension>
-  <defaultuser type="string" option="128" nodisplay="true">Custom Hidden Label</defaultuser>
-  <category_id type="ref" option="category:label:active='Si' and `ID`>">External Reference</category_id>
-  <people_id type="ref" option="people:namesurname:active='Si' and `ID`>">Person Reference</people_id>
-  <active type="boolean" option="Si">Is active</active>
-</cpd>
