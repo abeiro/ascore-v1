@@ -11,6 +11,8 @@ class wGrid extends wObject implements wRenderizable {
     var $title;
     var $width;
     var $actionOnSelectID = "a=1";
+	var $showControlButtons=true;
+	var $ChangeRowStyle="#ChangeRowStyle#";
 
     function __construct($name=null, &$parent) {
         parent::__construct($name, $parent);
@@ -28,14 +30,18 @@ class wGrid extends wObject implements wRenderizable {
 
     function render() {
         parent::render();
+		if ($this->showControlButtons==true) {
+			echo '<div style="position:relative">
+			<span onclick=\'$("' . $this->id . '").style.width="90px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer1"> . </span>
+			<span onclick=\'$("' . $this->id . '").style.width="595px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer2"> .. </span>';
+			echo "<span onclick=\"tableGrid_{$this->id}.tableModel.options.width='1000px';$('{$this->id}').style.width='1000px';tableGrid_{$this->id}_restart()\" style='cursor:pointer;font-size:19px;' class='gridsizer3'> ... </span>";
 
-        echo '<div style="position:relative">
-        <span onclick=\'$("' . $this->id . '").style.width="90px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer1"> . </span>
-        <span onclick=\'$("' . $this->id . '").style.width="595px"\' style="cursor:pointer;font-size:19px;margin-right:5px" class="gridsizer2"> .. </span>';
-        echo "<span onclick=\"tableGrid_{$this->id}.tableModel.options.width='1000px';$('{$this->id}').style.width='1000px';tableGrid_{$this->id}_restart()\" style='cursor:pointer;font-size:19px;' class='gridsizer3'> ... </span>";
-        
-        echo "<span onclick='tableGrid_{$this->id}_restart()' style='cursor:pointer;font-size:19px;right:0px;position:absolute' class='gridrefresh'>O</span>
-        </div>";
+			// TO-DO Save serialized version of tableModel_{$this->id} via savePreference
+			
+			echo "<span onclick='tableGrid_{$this->id}_restart()' style='cursor:pointer;font-size:19px;right:0px;position:absolute' class='gridrefresh'>O</span>
+			</div>";
+		}
+
         echo "<!-- START OF GRID -->\n<div id='{$this->id}' style='{$this->cssStyle}'>";
         echo "<script>\n";
         echo "var datos_{$this->id} = new Array();\n";
@@ -50,7 +56,7 @@ class wGrid extends wObject implements wRenderizable {
                     "pageParameter" => 'page'
                 ),
                 "addSettingBehavior" => false,
-                "rowClass" => "#ChangeRowStyle#"
+                "rowClass" => "{$this->ChangeRowStyle}"
             ),
             "columnModel" => "#columnaT_{$this->id}#",
             "url" => "{$this->DataURL}",
@@ -160,11 +166,18 @@ class wGrid extends wObject implements wRenderizable {
                 continue;
             if (strpos($name, "S_") === 0)
                 continue;
+	
+			if (strpos($desc, "inlineimage") === 0)
+                continue;
+
             if (strpos($desc, "string:") === 0) {
                 $width = ceil(substr($desc, 7) * 2.5);
             }
             if ($width > 500)
                 continue;
+			
+			if ($object->properties_properties[$name]["nodisplay"]==true)
+				continue;
 
             $columns[] = array(
                 "id" => "grid_$name",
@@ -216,7 +229,9 @@ class wGrid extends wObject implements wRenderizable {
                     }
                     else
                         $result[$linea]["grid_$nombreCampo"] = "";
-                }
+                } else if (strpos($tipoCampo, "inlineimage") === 0) {
+					continue;
+				}
                 else {
                     $result[$linea]["grid_$nombreCampo"] = ($row->$nombreCampo);
                 }
@@ -226,6 +241,8 @@ class wGrid extends wObject implements wRenderizable {
         if (!$result)
             $result = array();
 
+		$CORETIME=getmicrotime()-$GLOBALS["CODEINITTIME"];
+		
         $Gfrom = ($pagina - 1) * $SYS["DEFAULTROWS"] + 1;
         $Gto = $Gfrom + $SYS["DEFAULTROWS"] - 1;
         if ($Gto > $nRes)
@@ -248,10 +265,15 @@ class wGrid extends wObject implements wRenderizable {
             "rows" => $result
         );
 
+		debug("So far before json encode $CORETIME","white");
         if ($donotprint)
             return json_encode(($response));
-        else
+        else {
             echo json_encode(($response));
+			debug("So far after json encode $CORETIME","white");
+		}
+
+
     }
 
 }

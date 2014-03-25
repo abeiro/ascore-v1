@@ -17,7 +17,7 @@ class wObject implements wRenderizable {
         if ($name)
             $this->id = $name;
         else
-            $this->id = md5(get_class($parent) . get_class($this));
+            $this->id = md5(get_class($parent) . get_class($this) . (++$GLOBALS["__sequencer"]));
 
 
 
@@ -45,7 +45,7 @@ class wObject implements wRenderizable {
             $this->wParent = &$parent;
             $parent->add($this);
         }
-        debug("Obj $name {$this->__internalid}", "blue");
+        //debug("Obj $name {$this->__internalid}", "blue");
         try {
             $this->className = $this->getMyClassName();
         } catch (Exception $idontcare) {
@@ -68,6 +68,7 @@ class wObject implements wRenderizable {
             $pairs = explode(":", trim($singlecss));
             $this->staticCSS[$pairs[0]] = $pairs[1];
         }
+        $this->cssStyle = "";
         foreach ($this->staticCSS as $k => $v)
             $this->cssStyle.="$k:$v;";
     }
@@ -82,6 +83,88 @@ class wObject implements wRenderizable {
 
         $this->wChildren[$index] = &$object;
         $object->wParent = &$this;
+    }
+
+    function replaceSelf(&$object) {
+		$object->wParent=$this->wParent;
+        $this->wParent->wChildren[$this->__internalid] = &$object;
+		
+    }
+
+    function getChildElementByName($name) {
+        $possible = null;
+
+        foreach ($this->wChildren as $idx => $child) {
+            debug("Checking {$child->name}", "blue");
+            if ($child->name == $name) {
+
+                return $this->wChildren[$idx];
+            } else {
+
+                if (sizeof($child->wChildren) > 0) {
+
+                    $possible = $child->getChildElementByName($name);
+                    if ($possible != null)
+                        return $possible;
+                }
+            }
+        }
+        return null;
+    }
+
+    function getChildElementByID($DOM_ID) {
+        $possible = null;
+        debug("Checking {$this->id} {$this->name} ", "green");
+        foreach ($this->wChildren as $idx => $child) {
+            debug("Checking {$this->id} {$this->name}: {$child->id} {$child->name} ", "blue");
+            if ($child->id == $DOM_ID) {
+
+                return $this->wChildren[$idx];
+            } else {
+
+                if (sizeof($child->wChildren) > 0) {
+                    debug("Checking into {$child->id} {$child->name}", "blue");
+                    $possible = $child->getChildElementByID($DOM_ID);
+                    if ($possible != null)
+                        return $possible;
+                }
+            }
+        }
+        return null;
+    }
+
+	function autoSetDataModel($field, $object, &$control) {
+		
+        if (strpos($object->properties_type[$field], "list") !== false) {
+            $options = trim(substr($object->properties_type[$field], strpos($object->properties_type[$field], ":") + 1));
+            if (method_exists($object, $options)) {
+                $control->setSelectedValue($object->$field);
+                $control->setDataModel($object->$options());
+            } else {
+                $ops = explode("|", $options);
+                $o = null;
+                if ($object->properties_properties[$field]["mandatory"])
+                    $o["-"] = "-";
+                foreach ($ops as $minikey => $minival)
+                    $o["$minival"] = $minival;
+                $control->setSelectedValue($object->$field);
+                $control->setDataModel($o);
+            }
+        } else if (strpos($object->properties_type[$field], "ref") !== false) {
+			$options = trim(substr($object->properties_type[$field], strpos($object->properties_type[$field], ":") + 1));
+            $references = $object->get_references($field);
+			if (sizeof($references)>5000) {		// too Big
+				$control->setSelectedValue($object->$field);
+				$control->setDataModel("{$object->name}|$field|$options");
+				debug("Dynamic Data Model for {$object->name}|$field|$options","red");
+				//die("{$object->name}|$field|$options");
+				unset($references);
+			} else {
+				$control->setSelectedValue($object->$field);
+				$control->setDataModel($references);
+			}
+        }
+		
     }
 
     function addListener($event, $function, $object = null) {
@@ -121,6 +204,114 @@ class wObject implements wRenderizable {
 
     public function getMyClassName() {
         return get_class($this);
+    }
+
+    public function renderAsPseudoCode() {
+
+        $ret = "<{$this->className} id='{$this->id}' style='{$this->cssStyle}' value='{$this->value}' name='{$this->name}' label='{$this->label}'";
+        if (sizeof($this->wChildren) > 0) {
+            $ret.=">\n";
+            foreach ($this->wChildren as $nodeName => $node)
+                $ret.=$node->renderAsPseudoCode();
+            $ret.="</{$this->className}>";
+        } else {
+            $ret.="/>\n";
+        }
+
+        return $ret;
+    }
+
+    function wObjectWalk($wnode, &$lastParent, &$parentObject) {
+        foreach ($wnode->children() as $nodeName => $node) {
+            if (in_array($nodeName, array("wCheckBox", "wInput", "wForm", "wPassword", "wLabel", "wButton", "wInputDate", "wListBox", "wTextArea", "wHidden", "wGrid", "wInlineImage","wInputSearchable","wListBoxSearch"))) {
+                $atts = $node->attributes();
+
+                //debug("Registering Class: $nodeName Name: {$atts["name"]} Parent: {$lastParent->id}", "green");
+                //if (strlen("{$atts["id"]}") == 0) {
+					if (strlen("{$atts["name"]}") > 0)
+						$obj = new $nodeName("{$atts["name"]}", $lastParent);
+					else
+						$obj = new $nodeName(null, $lastParent);
+				//} else {
+					//$obj = new $nodeName("{$atts["id"]}", $lastParent,false);
+
+				//}
+
+                /* Custom object optimizations */
+                if ($nodeName == "wForm")
+                    $obj->LineByLine = true;
+
+
+                foreach ($node->attributes() as $attName => $attValue) {
+                    if ($attName !== "name") {
+
+                        $methHack = "set" . ucFirst($attName);
+
+                        if (method_exists($obj, $methHack))
+                            $obj->$methHack("$attValue");
+                        else
+                            $obj->$attName = "$attValue";
+                    }
+                }
+
+                if (strlen("{$atts["name"]}") > 0) {
+                    $parentObject->formComponents["{$atts["name"]}"] = $obj;
+                    if (!isset($parentObject->_fc))
+                        $parentObject->_fc = new stdClass();
+                    $_np = "{$atts["name"]}";
+                    $parentObject->_fc->$_np = $obj;
+                }
+				if (method_exists($obj,"__postInit"))
+					$obj->__postInit();
+				
+
+                if (sizeof($node->children()) > 0) {
+                    $this->wObjectWalk($node, $obj, $parentObject);
+                }
+            } else {
+                $atts = $node->attributes();
+                if (strlen("{$atts["id"]}") > 0)
+                    $obj = new wHTMLComponent("{$atts["id"]}", $lastParent);
+                else
+                    $obj = new wHTMLComponent(null, $lastParent);
+                $obj->setHTML($nodeName);
+				if ($nodeName!="br")
+					$obj->htmlContent = (string) $node;
+
+                foreach ($node->attributes() as $attName => $attValue)
+                    if (!is_object($attValue))
+                        $obj->setAtt($attName, $attValue);
+                    else
+                        $obj->setAtt($attName, "$attValue");
+
+				if (method_exists($obj,"__postInit")) 
+					$obj->__postInit();
+				
+                if (sizeof($node->children()) > 0) {
+                    $this->wObjectWalk($node, $obj, $parentObject);
+                }
+            }
+        }
+        return $code;
+    }
+
+    function parseFromTemplate($file, &$targetwObject) {
+
+        if (!($fp = c_fopen($file, "r"))) {
+            die(debug("could not open XML input $file", "red"));
+        }
+        while ($tdata = fread($fp, 4096))
+            $data.=$tdata;
+
+        $parsedData=preg_replace("/###([a-zA-Z_]+)###/e",'$GLOBALS["SYS"][$1]',$data);
+        try {
+            $xml = new SimpleXMLElement($parsedData);
+        } catch (Exception $e) {
+            die("XML ERROR<pre>$e</pre>");
+        }
+		debug("before parseFromTemplate Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
+        $this->wObjectWalk($xml, $this, $targetwObject);
+		debug("after parseFromTemplate Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
     }
 
 }

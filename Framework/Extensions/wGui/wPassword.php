@@ -13,7 +13,10 @@ class wPassword extends wInput implements wRenderizable {
                 $eventCode.=" $k='" . $v[$this->ListenerAux[$k]]->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
             }
         }
-        echo "<input type='password' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}'>\n";
+
+        echo "<input type='password' name='{$this->name}' $eventCode id='{$this->id}' 
+            value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}' placeholder='{$this->placeholder}' 
+                onkeypress='checkKeyPresssEnter(event,\"{$this->id}\")'>\n";
     }
 
 }

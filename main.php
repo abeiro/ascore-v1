@@ -2,7 +2,8 @@
 
 /* Bloques */
 /********** Construccion de la portada */
-
+header("Location: Ok/");
+die();
 $SYS["MSG"]=" . asCore Development. ";
 require_once("Bilo.php");
 BILO_login();
@@ -18,7 +19,7 @@ if (!BILO_isLogged()) {
 }
 else  {
 	
-	header("Location: Backend/");
+	
 }
 		
 

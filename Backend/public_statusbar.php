@@ -33,12 +33,12 @@ function URLencode(sStr) {
     return escape(sStr).replace(/\+/g, '%2B').replace(/\"/g,'%22').replace(/\'/g, '%27');
   }
 function dev_go() {
-  current=new String(parent.fbody.location.href);
+  current=new String(parent.document.getElementById(parent.currentView).src);
   pos=current.lastIndexOf("/");
   go=new String(current.slice(0,pos+1));
   go=go+"dev.php";
   
-  parent.fbody.location.href=go;
+  parent.dev_go(go);
 }
 function help_go() {
   current=new String(parent.fbody.location.href);
@@ -70,18 +70,18 @@ function gobookmarks() {
 
 function fReload() {
 
-  parent.fbody.location.reload();
+  parent.fReload();
   
 }
 
 function fPrint() {
 
-  parent.fbody.print();
+  parent.fPrint();
   
 }
 function fBack() {
 
-  parent.fbody.history.go(-1);
+  parent.fBack();
   
 }
 </script>
@@ -91,11 +91,6 @@ function fBack() {
 
   
 ?>
-<table width="100%">
-  <tr>
-    
-    
-    <td nowrap valign="bottom">
     
     <?php if ($SYS["GLOBAL"]["DEV_MODE"]) {?>
     <a href="javascript:dev_go()"><img class="icon" src="Data/Img/Icons/develop.png" alt="Panel de Desarrollo" title="Panel de Desarrollo" width="16" height="16" border="0"></a>&nbsp;
@@ -116,25 +111,13 @@ function fBack() {
     <a href="javascript:logOut()" ><img   class="icon" src="Data/Img/Icons/unlock.png" border="0" alt="Cerrar sesion" title="Cerrar sesion"></a>&nbsp;
 
         
-    </td>
-    <td nowrap>&nbsp;</td>
-    <td  width="50%" align="center" nowrap><strong><?php echo BILO_username()._(' conectado')?></strong></td>    
+    <br />
+    <strong><?php echo BILO_username()._(' conectado')?>
     
-    
-    
-    
-
-    
-    
-    <td nowrap width="104" align="left" style="border:1px solid lightgray">
-        <span id="progress" style="background-color:#EEEAEE;">&nbsp;</span>
-    
-    </td>
-    <td align="right" nowrap>
-      
-      <img src="Data/Img/Icons/ok.gif" width="16" height="16" align="right" border="" style="border:1px solid lightgray" id="semaforo">
-    </td>
-  </tr>
-</table>
+  
+<!-- DEPRECATED -->
+<img src="Data/Img/Icons/ok.gif" width="16" height="16" align="right" border="" style="border:1px solid lightgray;display:none" id="semaforo">
+<span id="progress" style="background-color:#EEEAEE;display:none">&nbsp;</span>
+<!-- DEPRECATED -->
 </body>
 </html>

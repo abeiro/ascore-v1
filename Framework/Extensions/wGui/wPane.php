@@ -57,4 +57,16 @@ class wPane extends wObject implements wRenderizable {
 
 }
 
+class wSimplePane extends wObject implements wRenderizable {
+   
+	function render() {
+        parent::render();
+    
+        echo "<div id='{$this->id}' style='{$this->cssStyle}'>\n";
+        foreach ($this->wChildren as $k => $c) 
+            $c->render();
+        echo "</div><!-- END OF PANE -->";
+    }
+
+}
 ?>

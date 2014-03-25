@@ -104,13 +104,18 @@ function frameWriteTextA($frame,$text) {
 Send operation to frame
 */
 
-function jsAction($action) {
-	echo '
-
+function jsAction($action,$priority=false) {
+	if ($priority===false)
+echo '
 <script type="text/javascript" language="JavaScript1.3">
 	'.$action.';
 </script>
-
-	';
+';
+else
+echo "
+<script priority=\"true\">
+$action;
+</script>
+";
 }
 ?>

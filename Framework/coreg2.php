@@ -1,6 +1,6 @@
 <?php
 
-error_reporting(E_ERROR);
+//error_reporting(E_ERROR);
 ini_set("include_path",".:".dirname(__FILE__)."/../Framework/:".dirname(__FILE__)."/../Apps/");
 
 define("_COREVER","0.99.9");
@@ -199,7 +199,17 @@ if ($_SERVER["SERVER_PORT"]==80) {
 	$SYS["PROTO"]="http://";
 }
 
-
+/* wGui Desktop SESSIONS maintenance */
 debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
+foreach ($_SESSION["desktopaxot"]["ttl"] as $k=>$v) {
+	if ( (time()-$v)>600) {
+		unset($_SESSION["desktopaxot"]["ttl"][$k]);
+		unset($_SESSION["desktopaxot"]["panel"]);
+		unset($_SESSION["permastore"][$k]);
+		unset($_SESSION["permastorettl"][$k]);
+	}
+}
+
+debug("Timestamp after wGui Desktop SESSIONS maintenance  : ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 require("post-init.php");
 ?>

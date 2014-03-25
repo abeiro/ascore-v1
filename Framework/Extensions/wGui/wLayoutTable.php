@@ -41,7 +41,7 @@ class wLayoutTable extends wObject implements wRenderizable {
                     $partSize = $this->fixedSizes[$counter];
                 if ($this->free)
                     $partSize = "";
-                echo "<!-- START OF LAYOUT PART-->\n<td valign='top' align='left' style='align:left' width='$partSize'>";
+                echo "<!-- START OF LAYOUT PART-->\n<td valign='top' align='left' style='align:left;{$this->childCssStyle}' width='$partSize'>";
                 $c->render();
                 echo "</td>\n<!-- END OF LAYOUT PART-->\n";
             }

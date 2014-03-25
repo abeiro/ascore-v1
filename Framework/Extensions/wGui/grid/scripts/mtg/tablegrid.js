@@ -542,7 +542,8 @@ var innerElement = $('mtgIC'+id + '_' + i + ',' + y);
 element.onclick = (function(editor, element, innerElement) {
 return function() {
 if (editor.selectable == undefined || !editor.selectable) {
-var coords = element.id.substring(element.id.indexOf('_') + 1, element.id.length).split(',');
+//var coords = element.id.substring(element.id.indexOf('_') + 1, element.id.length).split(',');
+var coords = element.id.substring(element.id.lastIndexOf('_') + 1, element.id.length).split(',');
 var x = coords[0];
 var y = coords[1];
 var value = element.checked;
@@ -704,7 +705,7 @@ var self = this;
 var leftPos = 0;
 $$('.mtgHS' + this._mtgId).each(function(separator, index) {
 Event.observe(separator, 'mousemove', function() {
-columnIndex = parseInt(separator.id.substring(separator.id.indexOf('_') + 1, separator.id.length));
+columnIndex = parseInt(separator.id.substring(separator.id.lastIndexOf('_') + 1, separator.id.length));
 if (columnIndex >= 0) {
 leftPos = $('mtgHC' + id + '_' + columnIndex).offsetLeft - self.scrollLeft;
 leftPos += $('mtgHC' + id + '_' + columnIndex).offsetWidth - 1;
@@ -786,7 +787,7 @@ cell.setStyle({width: newWidth + 'px'});
 
 $$('.mtgIC' + id + '_' + index).each(function(cell) {
 var cellId = cell.id;
-var coords = cellId.substring(cellId.indexOf('_') + 1, cellId.length).split(',');
+var coords = cellId.substring(cellId.lastIndexOf('_') + 1, cellId.length).split(',');
 var y = coords[1];
 var value = self.getValueAt(index, y);
 cell.setStyle({width: (newWidth - 6 - ((gap == 0) ? 2 : 0)) + 'px'});
@@ -1319,7 +1320,8 @@ var hbHeight = null;
 Event.observe(element, 'mousemove', function() {
 var cm = self.columnModel;
 if (!element.id) return;
-selectedHCIndex = parseInt(element.id.substring(element.id.indexOf('_') + 1, element.id.length));
+//selectedHCIndex = parseInt(element.id.substring(element.id.indexOf('_') + 1, element.id.length));
+selectedHCIndex = parseInt(element.id.substring(element.id.lastIndexOf('_') + 1, element.id.length));
 editor = cm[selectedHCIndex].editor;
 sortable = cm[selectedHCIndex].sortable;
 hbHeight = cm[selectedHCIndex].height;
@@ -1350,7 +1352,7 @@ self._sortData(selectedHCIndex, 'DESC');
 // Sorting when click on header column
 Event.observe(element, 'click', function() {
 if (!element.id) return;
-selectedHCIndex = parseInt(element.id.substring(element.id.indexOf('_') + 1, element.id.length));
+selectedHCIndex = parseInt(element.id.substring(element.id.lastIndexOf('_') + 1, element.id.length));
 self._toggleSortData(selectedHCIndex);                
 });
 });
@@ -1766,7 +1768,12 @@ return value;
 setValueAt : function(value, x, y, refreshValueFlg) {
 var cm = this.columnModel;
 var id = this._mtgId;
-var editor = cm[x].editor;
+try {
+	var editor = cm[x].editor;
+} catch (dnw) {
+	console.log(dnw);
+	return;
+}
 if(refreshValueFlg == undefined || refreshValueFlg) {
 if (editor != null && (editor == 'checkbox' || editor instanceof MyTableGrid.CellCheckbox || editor == 'radio' || editor instanceof MyTableGrid.CellRadioButton)) {
 var input = $('mtgInput'+id+'_'+x+','+y);

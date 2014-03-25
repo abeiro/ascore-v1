@@ -32,7 +32,7 @@ class wInputDate extends wInput implements wRenderizable {
             }
         }
         /* JSCalendar includes */
-        echo "<input type='text' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}' >\n<br/>";
+        echo "<input type='text' name='{$this->name}' $eventCode id='{$this->id}' value='{$this->value}' style='{$this->cssStyle}' maxlength='{$this->maxlenght}' onkeyup='this.value=this.value.replace(\"-\",\"/\")' >\n<br/>";
 
         if ($GLOBALS["jscalendaralreadyincluded"] == false) {
             echo "
@@ -57,6 +57,9 @@ class wInputDate extends wInput implements wRenderizable {
 
     function ValidateDate($id, $event, $myDate) {
         global $xajax;
+
+		$myDate=strtr($myDate,array("-"=>"/"));
+
         $objResponse = new xajaxResponse();
         if ($this->ifFormat == "%d/%m/%Y") {
             if (text_to_int($myDate) == 3600) {

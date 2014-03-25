@@ -41,6 +41,9 @@ if ($exists) {
         } else if (strstr(current($this->properties_type), "longtext")) {
             $len = explode(":", current($this->properties_type));
             $q.= $action . "BLOB  NOT NULL ;\n";
+        } else if (strstr(current($this->properties_type), "inlineimage")) {
+            $len = explode(":", current($this->properties_type));
+            $q.= $action . "BLOB  NOT NULL ;\n";
         } elseif (strstr(current($this->properties_type), "text")) {
             $q.=$action . " TEXT  NOT NULL ;\n";
         } elseif (strstr(current($this->properties_type), "password")) {

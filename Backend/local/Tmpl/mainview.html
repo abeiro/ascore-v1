@@ -81,114 +81,62 @@ td.tmenuitem:hover {
   }
 /* MENU STYLES */
 
+div.windowListTab {
+	background-color: #415482;
+	padding: 5px;
+	padding-right: 15px;
+	font-size: 12px;
+	
+	color: white;
+	text-decoration: none;
+	border: 1px solid lightgray;
+	float:right;
+	position:relative;
+	border-top-left-radius:5px;
+	border-top-right-radius:5px;
+	
+}
+div.windowListTab a  {
+	text-decoration: none;
+	color: white;
+}
+
+div.windowListTab:active,div.windowListTabActive ,div.windowListTabActive a{
+	background-color: white;
+	color:black;
+}
+div.windowListTabActive a{
+	font-weight: bold;
+}
+div.windowListTab a.windowCloseLink {
+	vertical-align: top;
+	font-size: 10px;
+	right: 0px;
+	top: 0px;
+	position: absolute;
+}
+
+div#windowlist {
+	position: absolute;
+	top: 40px;
+	right: 5px;
+}
 </style>
-<script>
-function getBodyLocation() {
-
-	return fbody.location.href;
-	
-}
-function setBodyLocation(url) {
-
-	fbody.location.href=url;
-	
-}
-
-function SizeH() {
-  var myWidth = 0, myHeight = 0;
-  if( typeof( window.innerWidth ) == 'number' ) {
-    //Non-IE
-    myWidth = window.innerWidth;
-    myHeight = window.innerHeight;
-  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-    //IE 6+ in 'standards compliant mode'
-    myWidth = document.documentElement.clientWidth;
-    myHeight = document.documentElement.clientHeight;
-  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-    //IE 4 compatible
-    myWidth = document.body.clientWidth;
-    myHeight = document.body.clientHeight;
-  }
-  //window.alert( 'Width = ' + myWidth );
-  //window.alert( 'Height = ' + myHeight );
-  return myHeight;
-}
-
-function SizeW() {
-  var myWidth = 0, myHeight = 0;
-  if( typeof( window.innerWidth ) == 'number' ) {
-    //Non-IE
-    myWidth = window.innerWidth;
-    myHeight = window.innerHeight;
-  } else if( document.documentElement && ( document.documentElement.clientWidth || document.documentElement.clientHeight ) ) {
-    //IE 6+ in 'standards compliant mode'
-    myWidth = document.documentElement.clientWidth;
-    myHeight = document.documentElement.clientHeight;
-  } else if( document.body && ( document.body.clientWidth || document.body.clientHeight ) ) {
-    //IE 4 compatible
-    myWidth = document.body.clientWidth;
-    myHeight = document.body.clientHeight;
-  }
-  //window.alert( 'Width = ' + myWidth );
-  //window.alert( 'Height = ' + myHeight );
-  return myWidth;
-}
-
-function wResizeAll() {
-		var s;
-		var r;
-		
-		
-		
-		s=SizeH()-22-22-34;
-		
-		try{f=document.getElementById("fbody").style.height=s+"px";}
-		catch(e){alert(s+' '+e)};
-		
-		r=SizeW()-5;
-		try{
-			f=document.getElementById("statusbar").style.width=r+"px";
-		    f=document.getElementById("fbody").style.width=r+"px";
-			f=document.getElementById("footer").style.width=r+"px";
-		
-		}
-		catch(e){alert(r+' '+e)};
-		window.onresize=wResizeAll;
- 	}
-	
-
-var _opa_i=0;
-var sw=0;
-
-function setOpacity(elemento,value) {
-		testObj=document.getElementById(elemento);
-		testObj.style.opacity = value/10;
-		testObj.style.KhtmlOpacity = value/10;
-		testObj.style.filter = 'alpha(opacity=' + value*10 + ')';
-}
-function opaShow(elemento) {
-	
-	//if ((!sw)||(sw==0)) {
-		if (_opa_i<=10) {
-			setOpacity(elemento,_opa_i);
-			_opa_i++;
-			setTimeout("opaShow('"+elemento+"')", 25);
-		}
-		else
-			_opa_i=0;
-		
-}
-
+<script src="<!-- D:ROOT -->Backend/backend.js">
 </script>
 <body style="overflow:hidden;">
 <ul id="nav" class="dropdown dropdown-horizontal" style="font-size:12px;z-index:50">
 <!-- D:menu_entrys -->
 </ul>
-<br clear="all">
-		
-<iframe name="statusbar" id="statusbar" height="22" width="100%" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;height:22px;"></iframe>
+<div id="windowlist" style="">
 
-<iframe name="footer"  width="100%" height="22" id="footer" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;height:22px;"></iframe>
+</div>
+<br clear="all">
+
+<iframe name="statusbar" id="statusbar" height="32" width="100%" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;height:32px;"></iframe>
+
+<iframe name="footer"  width="100%" height="22" id="footer" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;height:22px;">
+</iframe>
 				
 <iframe src="<!-- D:page -->" width="100%"  height="100%" scrolling="auto" frameborder="0" name="fbody" id="fbody" style="border:1px solid gray;padding:0px;margin:0px;" ></iframe>
 

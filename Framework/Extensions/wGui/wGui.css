@@ -84,14 +84,7 @@ span.wWindowCssButtomMax {
     background-color:white;
 
 }
-input[type='button'] {
 
-    background-color:white;
-    cursor:pointer;
-    -moz-border-radius: 2px;
-    border-radius: 2px;
-    border:1px solid gray;
-}
 
 input[disabled] {
 
@@ -160,4 +153,16 @@ span.gridrefresh {
 
 span.gridsizer1:hover,span.gridsizer2:hover,span.gridsizer3:hover,span.gridrefresh:hover {
     opacity:0.5;
+}
+
+a.autotabindex:selected;a.autotabindex:active {
+	text-decoration:underline
+}
+
+input.inputdate {
+	width:150px;
+	float:left;
+	background-image:url("jscalendar/img/date.png");
+	background-position:top right;
+	background-repeat:no-repeat;
 }

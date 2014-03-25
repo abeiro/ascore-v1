@@ -1,3 +1,10 @@
+<style>
+div.clase:hover {
+	background-color:lightgray;
+	color:black;
+
+}
+</style>
 <?php
 $info=new core();
 ?>
@@ -20,17 +27,17 @@ Fecha: <?php echo strftime("%d/%m/%Y",$info->release());?></div>
 </div>
 
 
-<pre style="font : 9px Arial, Helvetica, Sans, 'Sans Serif';">
+
 <?php
 
 $dir=$SYS["DOCROOT"].$SYS["DATADEFPATH"];
-echo "Analizando Directorio $dir\n\n";
+echo "<h2>Analizando Directorio $dir</h2>";
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
 
 			if ((filetype($dir . $file)!="dir")&&(strpos($file,".def")!==False)) {
-				echo "[ <a href=\"".$_SERVER["SCRIPT_URI"]."?command=make_class&class=".str_replace(".def","",$file)."\">Generar</a>] ";
+				echo "<div class='clase'>[ <a href=\"".$_SERVER["SCRIPT_URI"]."?command=make_class&class=".str_replace(".def","",$file)."\">Generar</a>] ";
 				echo "[ <a href=\"".$_SERVER["SCRIPT_URI"]."?command=test&module=".$SYS["PROJECT"]."&class=".str_replace(".def","",$file)."\">Propiedades</a>] ";
 				
 				
@@ -47,6 +54,8 @@ if (is_dir($dir)) {
 				echo "[  <a  href=\"".$_SERVER["SCRIPT_URI"]."?command=change_type&class=".str_replace(".def","",$file)."\">Cambiar tipo</a> ] ";
 
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=delete_class&class=".str_replace(".def","",$file)."\">Borrar Clase</a> ] ";
+				
+				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=form&class=".str_replace(".def","",$file)."\">XHTML WUI FORM</a> ] ";
 
 
 	            
@@ -63,7 +72,7 @@ if (is_dir($dir)) {
 						echo '<b style="color:red">KO  ';
 				}
 
-				print " $file\n" ;
+				print " $file</div>" ;
 
 				
 				
@@ -77,13 +86,13 @@ if (is_dir($dir)) {
 }
 
 $dir=$SYS["BASE"]."/Apps/".$SYS["PROJECT"]."/local/Class/";
-echo "<br>Analizando Directorio $dir\n\n";
+echo "<h2>Analizando Directorio $dir</h2>";
 if (is_dir($dir)) {
     if ($dh = opendir($dir)) {
         while (($file = readdir($dh)) !== false) {
 
 			if ((filetype($dir . $file)!="dir")&&(strpos($file,".def")!==False)) {
-				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=make_class&class=".str_replace(".def","",$file)."\">Generar</a> ] ";
+				echo "<div  class='clase'>[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=make_class&class=".str_replace(".def","",$file)."\">Generar</a> ] ";
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=test&module=".$SYS["PROJECT"]."&class=".str_replace(".def","",$file)."\">Propiedades</a> ] ";
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_class&class=".str_replace(".def","",$file)."\">Editar</a> ] ";
 				echo "[  <a target=\"_blank\" href=\"".$_SERVER["SCRIPT_URI"]."?command=edit_template&void_framming=yes&class=".str_replace(".def","",$file)."&nodebug=1&action=yes\">Pl.Edicion</a> ] ";
@@ -95,6 +104,7 @@ if (is_dir($dir)) {
 				echo "[  <a  href=\"".$_SERVER["SCRIPT_URI"]."?command=change_type&class=".str_replace(".def","",$file)."\">Cambiar tipo</a> ] ";
 			
 				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=delete_class&class=".str_replace(".def","",$file)."\">Borrar Clase</a> ] ";	
+				echo "[  <a href=\"".$_SERVER["SCRIPT_URI"]."?command=form&class=".str_replace(".def","",$file)."\">XHTML WUI FORM</a> ] ";
 
 
 	            
@@ -111,7 +121,7 @@ if (is_dir($dir)) {
 						echo '<b style="color:red">KO  ';
 				}
 
-				print " $file\n" ;
+				print " $file</div>" ;
 
 				
 				
@@ -124,7 +134,7 @@ if (is_dir($dir)) {
     }
 }
 ?>
-</pre>
+
 <br>
 <form action="?command=asistente" method="POST" enctype="multipart/form-data">
 <div align="center">Nueva clase: <input type="text" name="class"><input type="submit">  </div>

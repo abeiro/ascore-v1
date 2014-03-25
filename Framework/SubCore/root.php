@@ -250,6 +250,10 @@ class Ente extends core {
                 fclose($fd);
                 $prop = unserialize($buffer);
                 unset($buffer);
+				if ($prop==false) {
+					debug("Error loading serialized class","red");
+					die("Error loading serialized class");
+				}
             } else {
 
                 /* Establece las propiedades desde un fichero XML */
@@ -362,11 +366,16 @@ class Ente extends core {
 
         foreach ($arraydata as $k => $v)
             if (in_array($k, array_keys($this->properties)))
-                $this->properties[$k] = $arraydata["$k"];
+                if (strpos($this->properties_type[$k], "boolean:") !== False) {
+					if (($arraydata["$k"]=="true")||($arraydata["$k"]=="Si"))
+						$this->properties[$k] = 'Si';
+					else if (($arraydata["$k"]=="false")||($arraydata["$k"]=="No"))
+						$this->properties[$k] = 'No';
+				}
+				else
+					$this->properties[$k] = $arraydata["$k"];
 
         foreach ($this->properties as $pk => $pv) {
-            if (strpos($this->properties_type[$pk], "boolean:") !== False)
-                $this->properties[$pk] = (($arraydata["$pk"] == "on") || ($arraydata["$pk"] == "Si") || ($arraydata["$pk"] == "1")) ? 'Si' : 'No';
             if (strpos($this->properties_type[$pk], "money:") !== False)
                 $this->properties[$pk] = str_replace(",", ".", str_replace(".", "", $arraydata["$pk"]));
         }
@@ -404,27 +413,29 @@ class Ente extends core {
       Syntax:    save()
 
       Saves the current object
-      if ID<2, it will create a new elemente in the table
+      if ID<2, it will create a new element 
 
      * ******************* */
 
-    function save() {
+    function save($force=False) {
         global $res, $prefix;
 
         /* Normalizamos datos */
 
         $this->data_normalize();
-		foreach ($this->properties_properties as $field=>$prop) {
-				if ($prop["mandatory"]==true) {
-					
-					if (strlen($this->properties["$field"])==0) {
-						debug("($field) Must be setted ".$this->properties["$field"]."","red");
-						$this->ERROR=_("{$this->properties_desc["$field"]} es obligatorio");
-						return false;
+		if ($force===False) {
+			foreach ($this->properties_properties as $field=>$prop) {
+					if ($prop["mandatory"]==true) {
+						
+						if (strlen($this->properties["$field"])==0) {
+							debug("($field) Must be setted ".$this->properties["$field"]."","red");
+							$this->ERROR=_("{$this->properties_desc["$field"]} es obligatorio");
+							return false;
+						}
 					}
-				}
 
-			}
+				}
+		}
 
         $res = "";
         if (($this->ID > 1) && !empty($this->ID)) {
@@ -647,6 +658,9 @@ class Ente extends core {
                 $xref = explode(":", $this->properties_type[$pk]);
                 $table_name = $this->name . "_" . $xref[1];
 
+				if (empty($this->$pk)) {
+					continue;
+				}
                 $field2 = $this->name . "_id";
                 $field3 = $xref[1] . "_id";
 
@@ -694,6 +708,7 @@ class Ente extends core {
     function selectAll($offset = 0, $sort = "`ID`") {
 
         global $prefix, $SYS;
+		
         debug($SYS["DEFAULTROWS"]);
         if ((empty($sort)))
             $sort = "`ID`";
@@ -707,12 +722,13 @@ class Ente extends core {
         /* $rawres=fetch_array($bdres);
           $this->ID=$rawres["ID"];
           $this->properties=array_slice($rawres,1); */
-
+		
         for ($i = 0, $af_rows = _affected_rows(); $i < $af_rows; $i++) {
             $rawres = _fetch_array($bdres);
             //$p=array_slice($rawres,1);
             $All[$i] = $this->_clone($rawres);
         }
+		
         $this->nRes = _affected_rows();
         if ($this->nRes < $SYS["DEFAULTROWS"])
             $this->nextP = $offset;
@@ -723,7 +739,7 @@ class Ente extends core {
         $bdres = _query("SELECT FOUND_ROWS()");
         $aux = _fetch_array($bdres);
         $this->totalPages = $aux["FOUND_ROWS()"];
-
+		
         return $All;
     }
 
@@ -734,7 +750,7 @@ class Ente extends core {
     function select($q, $offset = 0, $sort = "`ID`", $groupby = '', $addfields = '') {
 
         global $prefix, $SYS;
-
+		
         $All = array();
         if ((empty($sort)))
             $sort = "`ID`";
@@ -744,6 +760,7 @@ class Ente extends core {
         $q = "SELECT SQL_CALC_FOUND_ROWS *$addfields from {$prefix}_" . $this->name . " WHERE $q AND `ID`>1 $groupby";
         $q.=" ORDER BY $sort LIMIT $offset," . $SYS["DEFAULTROWS"];
 
+		$GLOBALS["__lastquery"]=$q;
         $bdres = _query($q);
         /* $rawres=fetch_array($bdres);
           $this->ID=$rawres["ID"];
@@ -822,15 +839,22 @@ class Ente extends core {
      * ******************* */
 
     function listAll($field, $addVoidValue = True, $more = "", $offset = 0, $sort = "`ID` ASC") {
+	
+		$queryCache=md5($this->name.$field.$addVoidValue.$more.$offset.$sort);
+		if (isset($GLOBALS["cachedreferences"]["list"][$queryCache])) {
+			debug("listAll: Using cached for {$this->name} $field as $queryCache","white");
+			return $GLOBALS["cachedreferences"]["list"][$queryCache];
+		} else
+			debug("listAll Creating cache for {$this->name} $field as $queryCache","white");
 
-        setLimitRows(15000);
+        setLimitRows(5000);
         if (empty($more))
-            $all = $this->selectAll();
+            $all = $this->selectAll($offset,$sort);
         else
             $all = $this->select($more, $offset, $sort);
 
         resetLimitRows();
-
+	
         if ($addVoidValue)
             $list[1] = "--";
         foreach ($all as $k => $o)
@@ -840,6 +864,8 @@ class Ente extends core {
             }
             else
                 $list[$o->ID] = $o->$field;
+
+		$GLOBALS["cachedreferences"]["list"][$queryCache]=$list;
         return $list;
     }
 
@@ -928,7 +954,7 @@ class Ente extends core {
                             $ftime['tm_hour'], $ftime['tm_min'], $ftime['tm_sec'], 1, $ftime['tm_yday'] + 1, $ftime['tm_year'] + 1900
                     );
                     $fecha = $unxTimestamp;
-                    debug("DATA NORM  {$arrFecha['errors'][0]} -$format- Fecha #" . $this->$k . "# {$k} : $fecha :" . strftime($format, $fecha), "white");
+                    //debug("DATA NORM  {$arrFecha['errors'][0]} -$format- Fecha #" . $this->$k . "# {$k} : $fecha :" . strftime($format, $fecha), "white");
                     $this->$k = $fecha;
                 }
             } else if (strpos($v, "password") === 0) {
@@ -1484,8 +1510,9 @@ class Ente extends core {
         $obj = newObject($xref[1]);
 
         $cond = (!empty($xref[3])) ? "{$xref[3]}={$this->ID}" : "";
+		$sort = (!empty($xref[4])) ? "{$xref[4]}"  : "";
 
-        return $obj->listAll($xref[2], True, $cond);
+        return $obj->listAll($xref[2], True, $cond,0,$sort);
     }
 
     /*
@@ -1645,6 +1672,14 @@ class Ente extends core {
 
                     case "list":
                         $arrayForm["form"]["elements"][$k2]["type"] = "select";
+                        $arrayForm["form"]["elements"][$k2]["format"] = $v2["type"];
+                        $arrayForm["form"]["elements"][$k2]["label"] = $v2["value"];
+                        break;
+					
+					case "inlineimage":
+                        $arrayForm["form"]["elements"][$k2]["type"] = "inlineimage";
+                        $arrayForm["form"]["elements"][$k2]["attributes"]["cols"] = $v2["option"] / 2;
+                        $arrayForm["form"]["elements"][$k2]["attributes"]["rows"] = $v2["option"] / 10;
                         $arrayForm["form"]["elements"][$k2]["format"] = $v2["type"];
                         $arrayForm["form"]["elements"][$k2]["label"] = $v2["value"];
                         break;

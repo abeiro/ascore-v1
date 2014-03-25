@@ -107,8 +107,10 @@ function localname() {
 function uriname() {
 
 	global $SYS,$FAMILYLABEL;
-
- 	return ($SYS["ROOT"]."/Pool/".$FAMILYLABEL[$this->familia_id]."/".$this->md5.".".$this->ext);
+	if (!$this->md5)
+		return ($SYS["ROOT"]."/Pool/nopic.png"); 
+	else
+		return ($SYS["ROOT"]."/Pool/".$FAMILYLABEL[$this->familia_id]."/".$this->md5.".".$this->ext);
 }
 
 function delete() {

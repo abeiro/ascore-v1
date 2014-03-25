@@ -7,7 +7,9 @@ class wImage extends wObject implements wRenderizable {
     var $src = "";
     var $click = "";
     var $id;
+	var $cssclass="icon";
 	var $showLoader=false;
+	var $tag="input";
 
     function __construct($name=null, $parent, $addPrefix=true) {
         parent::__construct($name, $parent);
@@ -19,7 +21,6 @@ class wImage extends wObject implements wRenderizable {
     function render() {
         global $SYS;
         parent::render();
-        debug(">>>>>>>>>>>>>>>>>>>>> this image <{$this->name}> <{$this->id}> has  ".sizeof($this->Listener ). " listeners" );
         foreach ($this->Listener as $k => $v) {
             if (!is_array($v))
                 $eventCode.=" $k='{$this->preEvents[$k]}" . $v->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
@@ -27,7 +28,11 @@ class wImage extends wObject implements wRenderizable {
                 $eventCode.=" $k='" . $v[$this->ListenerAux[$k]]->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
             }
         }
-        echo "<input type='image' $eventCode style='{$this->cssStyle}' name='{$this->name}' id='{$this->id}'  class='icon' src='{$this->src}' title='{$this->label}' />";
+		if ($this->tag=="input")
+			echo "<input type='image' style='{$this->cssStyle}' $eventCode name='{$this->name}' id='{$this->id}'  class='{$this->cssclass}' src='{$this->src}' title='{$this->label}' />";
+		else if ($this->tag=="a") {
+			echo "<a  style='{$this->cssStyle}' $eventCode name='{$this->name}' id='{$this->id}'  class='{$this->cssclass}' title='{$this->label}'><img src='{$this->src}' title='{$this->label}' /></a>";
+		}
 	
     }
 

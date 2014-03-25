@@ -19,6 +19,7 @@ var EventHandlers = new Array();
 var cEventHandlers = 0;
 var topIndex = 0;
 
+
 function wGuiWindowMinimize(obj) {
 
 
@@ -141,11 +142,12 @@ function CallAllHandlers() {
 
 }
 
+var NotificationBox=null;
 
 window.onload = function() {
 
     CallAllHandlers();
-
+	NotificationBox=new Growler({'location': 'br'});
 
 }
 
@@ -392,16 +394,20 @@ function openTextHelper(element, subelement) {
         element.style.position = "relative";
         element.style.height = "50px";
         subelement.style.position = "absolute";
-        element.style.zIndex -= 50;
-        subelement.style.zIndex -= 50;
+        element.style.zIndex -= 65535;
+        subelement.style.zIndex -= 65535;
+		element.style.border="1px solid gray";
+		element.style.width="100%";
     } else {
         element.style.position = "fixed";
         subelement.style.position = "fixed";
         element.style.top = "0px";
         element.style.left = "0px";
-        element.style.height = "800px";
-        element.style.zIndex += 50;
-        subelement.style.zIndex += 50;
+        element.style.height = "400px";
+		element.style.border="10px solid gray";
+        element.style.zIndex += 65535;
+        subelement.style.zIndex += 65535;
+		element.style.width="98%";
     }
 
     subelement.style.top = "1px";
@@ -491,35 +497,57 @@ function delayedKeyUp(sourceObj,targetId) {
 		clearTimeout(sourceObj.autoCompleteWaitLock);
 	sourceObj.autoCompleteWaitLock=setTimeout(function() {
 		console.log("Launching ondelayedchange on "+targetId);
+		$(targetId).value="";
 		$(targetId).simulate("delayedchange");
 
 	},defaultWaitMilliSecs);
+}
 
+
+function _delayedKeyUp(sourceObj,targetId) {
+	
+	if (sourceObj.autoCompleteWaitLock!=null)
+		clearTimeout(sourceObj.autoCompleteWaitLock);
+	sourceObj.autoCompleteWaitLock=setTimeout(function() {
+		console.log("Launching ondelayedchange on "+targetId);
+		//$(targetId).value="";
+		$(targetId).simulate("delayedchange");
+
+	},defaultWaitMilliSecs);
 }
 
 function autoCompleteShowOptions(opts, id, targetid, targettext) {
-
-
-
-    var o = "<ul style='margin-left:20px' >";
+	
+    var o = "<ul style='margin-left:20px;min-height:100px' >";
     c = 100;
-    if (opts == null)
+    if ((opts == null) || (opts.length==0) ){
+		
+		$(id).update("");
         return;
+	}
+	
+    
     for (i in opts) {
-        o += "<li style='padding:3px'><a tabindex=" + c + " style='cursor:pointer' onclick=\"autoCompleteSelect('" + id + "','" + targetid + "','" + i + "')\">" + opts[i] + "</a></li>";
+		if (opts[i]!=0)
+        o += "<li style='padding:3px'><a class='autotabindex' tabindex=" + c + " style='cursor:pointer' onclick=\"autoCompleteSelect('" + id + "','" + targetid + "','" + i + "')\">" + opts[i] + "</a></li>";
         c++;
     }
     o += "</ul>";
     $(id).update(o);
 
-
-
 }
+
+
 
 function autoCompleteShowOpts(opts, id, targetid, targettext) {
 
     var o = "<ul style='margin-left:20px'>";
     c = 0;
+    if (opts==null) {
+		$(id).update("");
+		return;
+	}	
+
     if (opts != null)
         for (i = 0; i < opts.length; i++) {
             o += "<li style='padding:3px'><a tabindex=" + c + " style='cursor:pointer' onclick=\"autoCompleteSelect('" + id + "','" + targetid + "','" + opts[i].id + "')\">" + opts[i].label + "</a></li>";
@@ -531,8 +559,29 @@ function autoCompleteShowOpts(opts, id, targetid, targettext) {
 
 }
 
+
+function autoCompleteShowOptionsExt(opts, id, targetid, targettext) {
+	
+    var o = "<ul style='margin-left:20px' >";
+    c = 100;
+    if ((opts == null) || (opts.length==0) ){
+		
+		$(id).update("");
+        return;
+	}
+	
+    for (i=0;i<opts.length;i++) {
+		if (opts[i][0]!=0)
+        o += "<li style='padding:3px'><a class='autotabindex' tabindex=" + c + " style='cursor:pointer' onclick=\"autoCompleteSelect('" + id + "','" + targetid + "','" + opts[i][0] + "')\">" + opts[i][1] + "</a></li>";
+        c++;
+    }
+    o += "</ul>";
+    $(id).update(o);
+
+}
+
 function autoCompleteSelect(divid, targetid, selectedvalue) {
-    if (selectedvalue > 0) {
+    if ((selectedvalue != 0) || (selectedvalue.length>0)) {
         $(targetid).value = selectedvalue;
         $(targetid).simulate("change");
     }
@@ -545,6 +594,28 @@ function expandHeightElement(element, reference) {
     var h = reference.innerHeight;
     element.style.height = h + "px";
 
+}
+
+
+function SetMultiSelect(multiSltCtrl, values)
+{
+	debugger;
+   //here, the 1th param multiSltCtrl is a html select control or its jquery object, and the 2th param values is an array
+    var $sltObj = $(multiSltCtrl) || multiSltCtrl;
+    var opts = $sltObj.childNodes; //
+    for (var i = 0; i < opts.length; i++)
+    {
+        opts[i].selected = false;//don't miss this sentence
+        for (var j = 0; j < values.length; j++)
+        {
+            if (opts[i].value == values[j])
+            {
+                opts[i].selected = true;
+                break;
+            }
+        }
+    }
+    //$sltObj.multiselect("refresh");//don't forget to refresh!
 }
 
 /**
@@ -560,7 +631,7 @@ function expandHeightElement(element, reference) {
 (function() {
 
     var eventMatchers = {
-        'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll|delayedchange)$/,
+        'HTMLEvents': /^(?:load|unload|abort|error|select|change|submit|reset|focus|blur|resize|scroll|delayedchange|customevent)$/,
         'MouseEvents': /^(?:click|mouse(?:down|up|over|move|out))$/
     }
     var defaultOptions = {
@@ -614,3 +685,137 @@ function expandHeightElement(element, reference) {
 
     Element.addMethods({simulate: Event.simulate});
 })()
+
+
+
+
+/* 
+Select Populating via JavaScript
+*/
+function changeListModel(element,newopts) {
+	removeAllChilds(element);
+	i=0;
+	for (var k in newopts) {
+		element.options[i++] = new Option(newopts[k],k);
+	}
+
+}
+
+/* 
+Select Populating via JavaScript
+*/
+function changeListModel2(element,newopts) {
+	removeAllChilds(element);
+	i=0;
+	
+	for (i=0;i<newopts.length;i++) {
+		element.options[i] = new Option(newopts[i][1],newopts[i][0]);
+	}
+
+}
+/*
+Helper for input forms
+*/
+function checkKeyPresssEnter(e,sourceid) {
+    if (e.keyCode == 13) {
+        $(sourceid).simulate("change");
+    }
+}
+
+function checkKeyPressTabIS(e) {
+     if (e.keyCode == 13) {
+		debugger;
+		a=$$('a[tabindex=100]')[0];
+		a.focus();
+	 }
+	 return true;
+}
+
+/* Geolocation API */
+
+function helperGetLocation(callback) {
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(callback);
+    }
+}
+
+
+/* AJAX File upload. Inline Images */
+
+function  AjaxUploadInlineImage (destination) {
+
+	this.client=new XMLHttpRequest(),
+	
+	_this=this;
+	this.warningshown=false;
+	this.upload=function(element,posturl) {
+      var file = document.getElementById(element);
+      
+      
+	  _this.client.open("post", posturl, true);
+	  _this.client.setRequestHeader("X_FILENAME", file.files[0].name);
+	  _this.client.setRequestHeader("X_TYPE", file.files[0].type);
+      _this.client.send(file.files[0]);  /* Send to server */ 
+   }
+   this.client.onreadystatechange = function() 
+   {
+      if (_this.client.readyState == 4 && _this.client.status == 200) 
+      {
+		
+		document.getElementById(destination).value=_this.client.responseText;
+		document.getElementById(destination+"_viewer").src=_this.client.responseText;
+      } else if (_this.client.status == 404){
+			if (_this.warningshown==false) {
+				alert('La imagen es demasiado grande');
+				_this.warningshown=true;
+			}
+		}
+	else if (_this.client.status == 415){
+		alert('No se reconoce el formato');
+		_this.warningshown=true;
+	  
+	}
+   }
+}
+
+function UploadInlineimage(element,destination) {
+
+	a=new AjaxUploadInlineImage(destination);
+	a.upload(element,DOCUMENTROOT+'/Framework/Extensions/wGui/helpers/public_action_upload.php');
+
+}
+
+function savePreference(skey,svalue) {	// TODO
+
+	a=new AjaxUploadInlineImage(destination);
+	a.upload(element,DOCUMENTROOT+'/Framework/Extensions/wGui/helpers/public_action_upload.php');
+
+}
+
+function getHiddenProp(){
+    var prefixes = ['webkit','moz','ms','o'];
+    
+    // if 'hidden' is natively supported just return it
+    if ('hidden' in document) return 'hidden';
+    
+    // otherwise loop over all the known prefixes until we find one
+    for (var i = 0; i < prefixes.length; i++){
+        if ((prefixes[i] + 'Hidden') in document) 
+            return prefixes[i] + 'Hidden';
+    }
+
+    // otherwise it's not supported
+    return null;
+}
+
+var visProp = getHiddenProp();
+if (visProp) {
+  var evtname = visProp.replace(/[H|h]idden/,'') + 'visibilitychange';
+  document.addEventListener(evtname, visChange);
+}
+
+function visChange() {
+  
+
+}

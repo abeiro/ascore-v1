@@ -22,9 +22,11 @@ class wFileUpload extends wObject implements wRenderizable {
                 $eventCode.=" $k='" . $v[$this->ListenerAux[$k]]->getScript($SYS["ROOT"] . "/Framework/Extensions/xajax") . "'";
             }
         }
-        echo "<div id='file_{$this->id}' style='{$this->cssStyle}'><noscript></noscript></div>
+		$functionName=strtr($this->id,array("."=>"_"));
+
+        echo "<div id='file_{$this->id}' style='{$this->cssStyle}'></div>
 	<script>        
-        function {$this->id}_createUploader(){            
+        function {$functionName}_createUploader(){            
             var uploader = new qq.FileUploader({
                 element: document.getElementById('file_{$this->id}'),
                 action: '{$SYS["ROOT"]}/Framework/Extensions/FileUpload2/upload.php?sourceid=${$this->id}&type={$this->tipo}',
@@ -38,7 +40,7 @@ class wFileUpload extends wObject implements wRenderizable {
             });           
         }
         
-	EventHandlers[cEventHandlers]={$this->id}_createUploader;
+	EventHandlers[cEventHandlers]={$functionName}_createUploader;
 	cEventHandlers++;
         </script>
 	<input type='hidden' name='{$this->name}' $eventCode name='{$this->name}' id='{$this->id}' value='{$this->value}'>

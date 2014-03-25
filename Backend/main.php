@@ -41,8 +41,8 @@ if ((!$isLoginScreen)&&(!$SYS["GLOBAL"]["void_login"])) {
 */
 	}
 
-/*if ((!BILO_isAdmin())&&(!BILO_isOperator()))
-	 die(_("Sin privilegios"));*/
+if ((!BILO_isAdmin())&&(!BILO_isOperator()))
+	 die(_("Sin privilegios"));
 	
 $EURI=explode("/",$petition);
 
@@ -135,8 +135,14 @@ function build_submenus($data,$app) {
 		if (!is_array($item[0]))
 			if (empty($item["0"]))
 				$res.="\n\t<li style=\"cursor:arrow\"><span style=\"height:2px\"><a ></a>\n";
-			else
-				$res.="\n\t<li><a href=\"{$item["0"]}\" target=\"{$item["1"]}\">$icon {$item["2"]}</a></li>\n";
+			else {
+				if ($item["1"]=="window") 
+					$res.="\n\t<li><a onclick=\"javascript:openWindow('{$item["0"]}','fbody{$item["2"]}')\" id='{$item["2"]}{$item["1"]}' target=\"{$item["1"]}\">$icon {$item["2"]}</a></li>\n";
+				else if ($item["1"]=="fbody") 
+					$res.="\n\t<li><a onclick=\"javascript:openWindow('{$item["0"]}','fbody{$item["2"]}')\" id='{$item["2"]}{$item["1"]}' target=\"{$item["1"]}\">$icon {$item["2"]}</a></li>\n";
+				else
+					$res.="\n\t<li><a href=\"{$item["0"]}\" id='{$item["2"]}{$item["1"]}' target=\"{$item["1"]}\">$icon {$item["2"]}</a></li>\n";
+			}
 		else {
 			$res.="\n\t<li><span class=\"dir\">$icon {$item["2"]} </span>".build_submenus($item["0"],$app);
 			

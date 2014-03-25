@@ -2,8 +2,10 @@
 
 function WordWrapping($string, $words) {
 
+        if (str_word_count($string,0)<$words)
+                return $string;
 	$data = explode(" ", $string);
-	return implode(" ", array_slice($data, 0, $words));
+	return implode(" ", array_slice($data, 0, $words))."...";
 }
 
 class asTemplate extends plantilla {
@@ -230,7 +232,7 @@ class plantilla {
 			$res = str_replace('<!-- C:' . key($dat) . ' -->', "checked", $res);
 			$res = str_replace('<!-- R:' . key($dat) . ' -->', int_to_text_ex(current($dat)), $res);
 
-			$res = str_replace('<!-- L:' . key($dat) . ' -->', substr(current($dat), 0, 300) . "...", $res);
+			$res = str_replace('<!-- L:' . key($dat) . ' -->', WordWrapping(current($dat), 20) , $res);
 			$res = str_replace('<!-- W:' . key($dat) . ' -->', WordWrapping(strip_tags(current($dat), "<strong>"), 50) . "...", $res);
 			$res = str_replace('<!-- NR:' . key($dat) . ' -->', number_format(sprintf("%.2f", current($dat)), 2, ',', ''), $res);
 
@@ -643,7 +645,7 @@ class plantilla {
 		$res = preg_replace("/<!-- H:([^\{]{1,100}?) -->/e", '_safe_strftime("%d/%m/%Y %H:%M",(int)$dat[$1])', $res);
 		$res = preg_replace("/<!-- C:([^\{]{1,100}?) -->/e", 'echo "CHECKED"', $res);
 		$res = preg_replace("/<!-- R:([^\{]{1,100}?) -->/e", 'int_to_text_ex($dat[$1])"', $res);
-		$res = preg_replace("/<!-- L:([^\{]{1,100}?) -->/e", 'substr($dat[$1]),0,300)."..."', $res);
+		$res = preg_replace("/<!-- L:([^\{]{1,100}?) -->/e", 'WordWrapping($dat[$1],32)', $res);
 		$res = preg_replace("/<!-- W:([^\{]{1,100}?) -->/e", 'WordWrapping(strip_tags($dat[$1],"<strong>"),50)."..."', $res);
 		$res = preg_replace("/<!-- NR:([^\{]{1,100}?) -->/e", 'number_format(sprintf("%.2f",$dat[$1]),2,",","")', $res);
 

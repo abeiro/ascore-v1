@@ -25,6 +25,7 @@
     require_once("wFileUpload.php");
     require_once("wFileUploadtwo.php");
     require_once("wImage.php");
+	require_once("wInlineImage.php");
     require_once("wTabbedPane.php");
     require_once("wTabbedPanelsTab.php");
     require_once("wPane.php");

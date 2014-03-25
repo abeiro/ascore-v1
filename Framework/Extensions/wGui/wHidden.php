@@ -31,6 +31,10 @@ class wHidden extends wObject implements wRenderizable {
         $this->value = $data;
     }
 
+	function setDataModel() {
+        return;
+    }
+
 }
 
 ?>

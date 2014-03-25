@@ -12,27 +12,27 @@
 		<body>
 		<h1>CoreG2 version 0.99.9</h1>
 		<h2>insertElement</h2>
-		<span class="mini">Fichero /home/operador/public_html/globalscheduler/Framework/../Framework/SubCore/root.php</span>
-		<br><br><h2><b>core</b>::<b>Ente</b>::<b>insertElement</b></h2>M�todo: pertenece a la clase <b>Ente</b><br>Clase <b>Ente</b> </i>: derivada de <b>core</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_user_pref</b>::<b>insertElement</b></h2>M�todo: pertenece a la clase <b>Ente_user_pref</b><br>Clase <b>Ente_user_pref</b> </i>: derivada de <b>Ente</b><br><br><br><div class="desc">            
-<br>            
-<br>            FUNCION insertElement
-<br>            
-<br>            Sintaxis  insertElement($keyElement,$valueElement)
-<br>            $keyElement  Clave del nuevo elemento
-<br>            $valueElement  Valor del nuevo elemento
-<br>            Descripción:
-<br>            Añade un nuevo elemento <$keyElement,$valueElement> dentro de la clave
-<br>            form elements del array del formulario que se encuentra como atributo
-<br>            dentro del objeto que llama al método
-<br>            
-<br>            Transforma el array modificado en XML y lo almacena como atributo
-<br>            dentro del objeto
-<br>            
-<br>            
-<br>            
+		<span class="mini">Fichero /var/www/okclasses/Framework/../Framework/SubCore/root.php</span>
+		<br><br><h2><b>core</b>::<b>Ente</b>::<b>insertElement</b></h2>M�todo: pertenece a la clase <b>Ente</b><br>Clase <b>Ente</b> </i>: derivada de <b>core</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_user_pref</b>::<b>insertElement</b></h2>M�todo: pertenece a la clase <b>Ente_user_pref</b><br>Clase <b>Ente_user_pref</b> </i>: derivada de <b>Ente</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_user</b>::<b>insertElement</b></h2>M�todo: pertenece a la clase <b>Ente_user</b><br>Clase <b>Ente_user</b> </i>: derivada de <b>Ente</b><br><h2><b>core</b>::<b>Ente</b>::<b>Ente_group</b>::<b>insertElement</b></h2>M�todo: pertenece a la clase <b>Ente_group</b><br>Clase <b>Ente_group</b> </i>: derivada de <b>Ente</b><br><br><br><div class="desc">    
+<br>
+<br>      FUNCION insertElement
+<br>
+<br>      Sintaxis  insertElement($keyElement,$valueElement)
+<br>      $keyElement  Clave del nuevo elemento
+<br>      $valueElement  Valor del nuevo elemento
+<br>      Descripción:
+<br>      Añade un nuevo elemento <$keyElement,$valueElement> dentro de la clave
+<br>      form elements del array del formulario que se encuentra como atributo
+<br>      dentro del objeto que llama al método
+<br>
+<br>      Transforma el array modificado en XML y lo almacena como atributo
+<br>      dentro del objeto
+<br>
+<br>     
+<br>
 </div>
 <br><div class="box"><code><span style="color: #000000">
-<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">insertElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$keyElement</span><span style="color: #007700">,</span><span style="color: #0000BB">$valueElement</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">[</span><span style="color: #DD0000">"form"</span><span style="color: #007700">][</span><span style="color: #DD0000">"elements"</span><span style="color: #007700">][</span><span style="color: #0000BB">$keyElement</span><span style="color: #007700">]=</span><span style="color: #0000BB">$valueElement</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayToXml</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">,</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xml</span><span style="color: #007700">=</span><span style="color: #0000BB">$xml</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
+<span style="color: #0000BB">&lt;?php<br /><br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #007700">function&nbsp;</span><span style="color: #0000BB">insertElement</span><span style="color: #007700">(</span><span style="color: #0000BB">$keyElement</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$valueElement</span><span style="color: #007700">)&nbsp;{<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">[</span><span style="color: #DD0000">"form"</span><span style="color: #007700">][</span><span style="color: #DD0000">"elements"</span><span style="color: #007700">][</span><span style="color: #0000BB">$keyElement</span><span style="color: #007700">]&nbsp;=&nbsp;</span><span style="color: #0000BB">$valueElement</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayToXml</span><span style="color: #007700">(</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_arrayForm</span><span style="color: #007700">,&nbsp;</span><span style="color: #0000BB">$xml</span><span style="color: #007700">);<br />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">$this</span><span style="color: #007700">-&gt;</span><span style="color: #0000BB">_xml&nbsp;</span><span style="color: #007700">=&nbsp;</span><span style="color: #0000BB">$xml</span><span style="color: #007700">;<br />&nbsp;&nbsp;&nbsp;&nbsp;}<br /><br /><br />&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="color: #0000BB">?&gt;</span>
 </span>
 </code></div>
 		<br><br>

@@ -12,17 +12,17 @@ class wDesktop extends wObject {
                     foreach ($obj->wChildren as $name => $objC)
                         $this->__createObjectHashMap($objC);
                 }
-            }
+            } else {
+					debug("Object not a subclass of wObject!!!!!!!!!!!!","red");
+			}
     }
 
     function __restoreListeners(&$obj,&$counter=0) {
         global $xajax;
-        debug("Checking object {$obj->name}. Childs: ".array_keys(get_object_vars($obj->wChildren)),"yellow");
+        //debug("Checking object {$obj->name}. Childs: ".array_keys(get_object_vars($obj->wChildren)),"yellow");
 
         if (is_array($obj->Listener)) {
             foreach ($obj->Listener as $n => $singleListener) {
-                //debug("Register Listener $n : " . print_r($singleListener->sourceData, true), "green");
-                //debug("Confirmation {$singleListener->sourceData["objid"]}: " . $GLOBALS["ObjectHashMap"][$singleListener->sourceData["objid"]]->__internalid, "red");
                 $currentObject = &$GLOBALS["ObjectHashMap"][$singleListener->sourceData["objid"]];
 
                 if ($singleListener->sourceData["type"] == XAJAX_CALLABLE_OBJECT)
@@ -31,6 +31,8 @@ class wDesktop extends wObject {
                     $cList = $obj->addListener($n, $singleListener->sourceData["function"]);
 
                 $counter++;
+
+				//debug("Register Listener $n : ".print_r($singleListener->sourceData,true), "green");
 
                 foreach ($singleListener->sourceData["parameters"] as $sp)
                     $cList->addParameter($sp[0], $sp[1]);
@@ -58,16 +60,21 @@ class wDesktop extends wObject {
         debug("wake up called", "red");
         $counter=0;
         //$this->restoreListeners($this->FormWindow);
+		debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
         $this->__createObjectHashMap($this);
+		debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
         $this->__restoreListeners($this,$counter);
         debug("Total listeners $counter", "magenta");
+		debug("Timestamp: ". (getmicrotime()-$GLOBALS["CODEINITTIME"])." ".__FILE__." ".__LINE__,"green");
 
         //die();
     }
 
     function updateCache() {
 		debug("Updating cache {$GLOBALS["desktop_id"]}", "red");
+		
         $_SESSION["desktopaxot"]["panel"][$GLOBALS["desktop_id"]] = serialize($this);
+		$_SESSION["desktopaxot"]["ttl"][$GLOBALS["desktop_id"]]=time();
 		
     }
 
@@ -75,6 +82,7 @@ class wDesktop extends wObject {
 
         debug("OBJCACHE: Using object caching", "magenta");
         $obj = unserialize($_SESSION["desktopaxot"]["panel"][$id]);
+		$_SESSION["desktopaxot"]["ttl"][$id]=time();
         if (is_object($obj))
             return $obj;
         else {
@@ -85,7 +93,7 @@ class wDesktop extends wObject {
     }
 
     public static function ObjCacheSave(&$obj, $id) {
-
+		$_SESSION["desktopaxot"]["ttl"][$id]=time();
         $_SESSION["desktopaxot"]["panel"][$id] = serialize($obj);
     }
 
@@ -98,6 +106,9 @@ class wDesktop extends wObject {
             $GLOBALS["desktop_id"] = $_GET["desktop_id"];
         else
             $GLOBALS["desktop_id"] = md5(time() . rand(1, 1000));
+
+		
+
     }
 
     public static function createApp($classname) {
@@ -115,9 +126,61 @@ class wDesktop extends wObject {
 			}
 				
         }
+		$_SESSION["desktopaxot"]["ttl"][$GLOBALS["desktop_id"]]=time();
         return $obj;
     }
 
+
+	public static function set($key,$obj) {
+		nodebug("Setting data for $key ".print_r($obj,true),"green");
+        $_SESSION["permastore"][$GLOBALS["desktop_id"]][$key]=json_encode($obj);
+		$_SESSION["permastorettl"][$GLOBALS["desktop_id"]]=time();
+            
+    }
+	public static function get($key) {
+		nodebug("Getting data for $key","green");
+		$_SESSION["permastorettl"][$GLOBALS["desktop_id"]]=time();
+        return json_decode($_SESSION["permastore"][$GLOBALS["desktop_id"]][$key],true);
+    }
+
+	public function render() {
+		$time=time();
+		echo <<<SCRIPT
+<script>
+function removeDesktop(arg) {
+	console.log('Purging desktop {$GLOBALS["desktop_id"]}');
+	xmlhttp=new XMLHttpRequest();
+	xmlhttp.onreadystatechange=function()
+	{
+		console.log(xmlhttp.readyState);
+		if (xmlhttp.readyState==4 && xmlhttp.status==200)    {
+			
+			if (arg!=undefined) {
+				console.log("Evaluating: "+arg);
+				eval(arg);
+			}
+		}
+	}
+	xmlhttp.open("GET","{$GLOBALS["SYS"]["ROOT"]}/Framework/Extensions/wGui/helpers/action_dspurge.php?did={$GLOBALS["desktop_id"]}",false);
+	xmlhttp.send();
+	
+}
+function showDesktop() {
+	console.log('Showing desktop {$GLOBALS["desktop_id"]}');
+	new Ajax.Request('{$GLOBALS["SYS"]["ROOT"]}/Framework/Extensions/wGui/helpers/action_dscheck.php?did={$GLOBALS["desktop_id"]}', { 
+		method:'get',
+		onSuccess: function(response) {
+			alert("Esta ventana ha expirado y la información puede no estar actualizada");
+		}
+	});
+}
+
+
+</script>
+SCRIPT;
+
+	}
+	
 }
 
 ?>

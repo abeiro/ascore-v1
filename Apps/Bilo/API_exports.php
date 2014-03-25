@@ -223,6 +223,39 @@ function BILO_void_login() {
     }
   }
 
+function BILO_login_simple($u,$p) {
 
+  global $SYS;
+  $user=newObject("user");
+  
+  if (Ente_user::checkPassword($u,$p)) {
+    
+    if ($user->GetIdFromName($u)) {
+      if ($user->activo=='No') {
+        $SYS["MESSAGES"].=_("Usuario no activo");
+        return false;
+        }
+		$reg=newObject("registro");
+		$reg->user_id=$user->ID;
+		$reg->dia=dateTodayStamp();
+		$reg->save();
+        $_SESSION["__auth"]["username"]=$user->username;
+        $_SESSION["__auth"]["uid"]=$user->ID;
+        
+        return true;
+      }
+  } else {
+	$SYS["MESSAGES"]="Contraseña invalida.".time();
+	return falsE;
+	}
+}
+
+function BILO_nombre() {
+
+	$o=newObject("user",$_SESSION["__auth"]["uid"]);
+	return $o->nombre;
+  
+  
+}
 
 ?>

@@ -31,4 +31,37 @@ class wHTML extends wObject implements wRenderizable {
 
 }
 
+
+class wHTMLComponent extends wObject implements wRenderizable {
+	function setHTML($HTML) {
+        $this->content = $HTML;
+    }
+
+    function render() {
+        global $SYS;
+        parent::render();
+		
+			
+		if ($this->attributes["style"] ) {
+			$this->setStyle($this->attributes["style"]);
+			unset($this->attributes["style"]);
+		}
+		foreach ($this->attributes as $attname=>$attvalue) 
+			$attstring[]="$attname='$attvalue'";
+		if ($this->content=="br")
+			echo "<{$this->content} style='{$this->cssStyle}' ".implode(" ",$attstring)." id='{$this->id}'/>";
+		else {
+			echo "<{$this->content} style='{$this->cssStyle}' ".implode(" ",$attstring)." id='{$this->id}'> {$this->htmlContent}";
+			foreach ($this->wChildren as $k => $c) 
+				$c->render();
+			echo "</{$this->content}>\n";
+		}
+        
+    }
+
+	function setAtt($attname,$attvalue) {
+		$this->attributes[$attname]=$attvalue;
+
+	}
+}
 ?>

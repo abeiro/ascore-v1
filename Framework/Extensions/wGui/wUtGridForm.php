@@ -60,11 +60,13 @@ class wUtGridForm extends wPane {
         $this->tabPane = new wTabbedPane("name", $this->mainPane);
 
         $LayOut = new wLayoutTable("$name", $this->tabPane);
+		$LayOut->label=strtr($name,array("_"=>" "));
+
         //$LayOut->setCSS("width","100%");
         $LayOut->setHorizontal();
         $LayOut->fixedSizes = array("", "100%");
         /* Grid */
-
+		
         $grid = new wGrid("grid{$class}{$this->id}", $LayOut);
         $grid->DataURL = "?oDataRequest=" . get_class($this) . "&instance={$this->MainClass}&desktop_id={$GLOBALS["desktop_id"]}";
         $grid->setWidth(595);
@@ -101,23 +103,13 @@ class wUtGridForm extends wPane {
 <script>
 function jsonDisplay(parent, data){
 	
-	/**
-	 * table 을 만들어 반환함.
-	 * @param {Element} parent
-	 * @return {Element}
-	 */
+
     function createTable(parent){
         var table = document.createElement("table");
         table.border = "1";
         return parent.appendChild(table);
     }
-    
-	/**
-	 * array 타입의 데이타를 가지고 row를 생성.
-	 * @param {Element} table
-	 * @param {Array} array
-	 * @return {void}
-	 */
+
     function tableByArray(table, array){
         if (table._rowCount == null) {
             table._rowCount = 0;
@@ -128,14 +120,7 @@ function jsonDisplay(parent, data){
         }
     }
     
-	/**
-	 * object 타입의 데이타를 가지고 table이나 cell을 생성.
-	 * object 의 멤버중 object는 새로운 table을 만들고,
-	 * object 가 아닌 멤버들은 cell로 만든다.
-	 * @param {Element} tr
-	 * @param {Object} obj
-	 * @return {void}
-	 */
+
     function tableByObject(tr, obj){
         if (tr._cellCount == null) {
             tr._cellCount = 0;
@@ -159,12 +144,7 @@ function jsonDisplay(parent, data){
         }
     }
     
-	/**
-	 * 테이블의 헤더를 만든다. (thead와 비슷.)
-	 * @param {Element} table
-	 * @param {string} name
-	 * @return {void}
-	 */
+
     function tableHeaderCreate(table, name){
         if (table._rowCount == null) {
             table._rowCount = 0;
@@ -204,43 +184,52 @@ EOFSCRIPT;
     }
 
     function MainToolbar() {
-
+		
+		
         $this->searchForm = new wForm("searchForm", $this);
-        $obj = newObject($this->MainClass);
-        $this->searchForm->setDataModelFromCore($obj);
-        $this->searchForm->setStyle("
-    display:none;
-    position:absolute;
-    top:50px;
-    right:5px;
-    width:800px;
-    min-height:500px;
-    z-index:10;
-    background-color:white;
-    color:black;
-    padding:10px;
-     -webkit-box-shadow: 0 0 10px rgb(0,0,0);  
-    -moz-box-shadow: 0 0 10px rgb(0,0,0);  
-    box-shadow: 0 0 10px rgb(0,0,0); 
-    -moz-border-radius: 3px 3px 3px 3px;
-    border-radius: 3px 3px 3px 3px;
-    ");
-        $this->searchForm->LineByLine = false;
-        $searchButtonPanel = new wLayoutTable("", $this->searchForm);
+		$searchButtonPanel = new wLayoutTable("", $this->searchForm);
+		
         $doSearchButton = new wButton("doSearchButton", $searchButtonPanel);
         $doSearchButton->label = "Buscar";
         $doSearchButton->addListener("onclick", "doSearch", $this);
         $doSearchButton->Listener["onclick"]->addParameter(XAJAX_FORM_VALUES, $this->searchForm->id);
         $doSearchButton->Listener["onclick"]->addParameter(XAJAX_QUOTED_VALUE, $this->MainClass);
-
-        $doCancelButton = new wButton("doCancelButton", $searchButtonPanel);
-        $doCancelButton->label = "Cancelar";
+		$doCancelButton = new wButton("doCancelButton", $searchButtonPanel);
+        $doCancelButton->label = "Cerrar";
         $doCancelButton->addListener("onclick", "activateSearchWindow", $this);
         $doCancelButton->Listener["onclick"]->addParameter(XAJAX_JS_VALUE, '$("' . $this->searchForm->id . '").style.display');
 
         $doResetButton = new wButton("doResetButton", $searchButtonPanel);
         $doResetButton->label = "Limpiar";
         $doResetButton->addListener("onclick", "resetSearchForm", $this);
+		$doResetButton->Listener["onclick"]->addParameter(XAJAX_QUOTED_VALUE, $this->MainClass);
+		new wLabel("", $this->searchForm);
+
+        $obj = newObject($this->MainClass);
+        $this->searchForm->setDataModelFromCore($obj,true);
+        $this->searchForm->setStyle("
+    display:none;
+    position:absolute;
+    top:50px;
+    right:5px;
+    width:800px;
+    height:500px;
+    z-index:10;
+    background-color:white;
+    color:black;
+    padding:10px;
+	margin:5px;
+     -webkit-box-shadow: 0 0 10px rgb(0,0,0);  
+    -moz-box-shadow: 0 0 10px rgb(0,0,0);  
+    box-shadow: 0 0 10px rgb(0,0,0); 
+    -moz-border-radius: 3px 3px 3px 3px;
+    border-radius: 3px 3px 3px 3px;
+	overflow-y:scroll;
+    ");
+        $this->searchForm->LineByLine = false;
+        
+
+ 
 
         $this->toolBar = new wLayout("toolBar", $this);
         $this->toolBar->setFree();
@@ -296,7 +285,9 @@ EOFSCRIPT;
             }
         }
         $dquery.=")";
-
+		
+		debug("$dquery","red");
+		
         return $dquery;
     }
 
@@ -321,9 +312,13 @@ EOFSCRIPT;
         return $objResponse;
     }
 
-    function resetSearchForm($event, $id) {
+    function resetSearchForm($event, $id,$class) {
         $objResponse = new xajaxResponse();
         $objResponse->script('$("searchForm").reset()');
+		$objResponse->script('$$("#searchForm input[type=hidden]").each(function(item) { item.value=""})');
+		unset($this->SQL_CONDS["$class"]["searchForm"]);
+		$this->updateParentCache();
+		debug("DOM parent: ".print_r($this->SQL_CONDS["$class"],true)." {$this->SQL_CONDS["$class"]["searchForm"]}","green");
         return $objResponse;
     }
 
@@ -333,7 +328,8 @@ EOFSCRIPT;
             if (strpos($t, "string") === 0)
                 break;
         $objResponse = new xajaxResponse();
-        $this->SQL_CONDS[$this->MainClass]["filter"] = "  $p " . DBOPERAND_ILIKE . " '%$filter%' ";
+        $this->SQL_CONDS[$this->MainClass]["filter"] =$o->buildMultiquery($filter);
+		debug("{$this->SQL_CONDS[$this->MainClass]["filter"]}","red");
         //$this->filters["SQL_CONDSI"][$this->MainClass]["filter"] = array($p,$filter);
         //debug("DOM parent: ".$this->realParent->getMyClassName."\n".print_r(get_class_methods($this->realParent),true),"green");
 
@@ -411,7 +407,12 @@ EOFSCRIPT;
             $objResponse->script("test=$data;jsPrint(test)");
         else {
 
-            $objResponse->script("test=$data;jsCsv(test)");
+            //$objResponse->script("test=$data;jsCsv(test)");
+			$id=uniqid();
+			$_SESSION["cacheexpordata"][$id]=$data;
+			$_SESSION["cacheexpordata"]["owner"]=BILO_uid();
+			$objResponse->script("window.open('{$GLOBALS["SYS"]["ROOT"]}/Framework/Extensions/wGui/helpers/action_export.php?uid=$id')");
+
         }
         return $objResponse;
     }
@@ -450,6 +451,7 @@ EOFSCRIPT;
             $sortDriver = $_SESSION["cache"]["gspanel"]["$class"]["sortDriver"];
         }
 
+		debug("Query a->select($sqlcond, $calculatedOffset, $sortDriver); ", "green");
         $a->seachResults = $a->select($sqlcond, $calculatedOffset, $sortDriver);
 
         $_SESSION["cache"][$GLOBALS["desktop_id"]]["$class"]["lastsql"] = $sqlcond;
@@ -480,7 +482,7 @@ EOFSCRIPT;
     public function aj_ReloadGrid($ajaxresponse, $objectsaved, $jid) {
 
 
-        $gridOfsavedObject = str_replace("form", "grid", $jid);
+        $gridOfsavedObject = preg_replace("/^form/", "grid", $jid);
         debug(__FILE__ . " I'm alive, $gridOfsavedObject {$objectsaved->coreObject->ID} $jid", "yellow");
 
         /* If adding a new element, must updated related select boxes in child tabs */
@@ -501,7 +503,7 @@ EOFSCRIPT;
             }
         }
 
-
+		debug("Adding a new element, $jid vs $gridOfsavedObject", "yellow");
         $ajaxresponse->script("tableGrid_{$gridOfsavedObject}_softrefresh()");
     }
 
@@ -591,14 +593,16 @@ EOFSCRIPT;
       ACTIONS TO DO AFTER SELECT AN ITEM
      */
 
-    public function afterrequestloadFromId(&$ajaxresponse, &$object, &$jid) {
+    public function afterrequestloadFromId(&$ajaxresponse, $object, $jid) {
         debug("I'm still alive {$object->name}", "green");
         $class = $object->coreObject->name;
         foreach ($this->hierarchyClass as $name => $field) {
             if ($class == $this->MainClass)
                 $ajaxresponse->assign("{$this->MainClass}_driver", "value", $object->coreObject->ID);
-            else
+            else {
                 $ajaxresponse->script("\$(\"faked_$jid.$field\").value=\$(\"$jid.$field\").value");
+				$ajaxresponse->script('$$("[name='.$this->MainClass.'_id_dropdown]").each (function (a,b) {a.disabled="disabled"})');
+			}
         }
 
 		$MethodtoCall = "afterrequestloadFromId";
@@ -623,8 +627,10 @@ EOFSCRIPT;
         debug("I'm still alive {$object->name} $jid", "green");
         foreach ($this->hierarchyClass as $classname => $fieldname)
             if ($object->coreObject->name == $classname) {
-                $ajaxresponse->script('$("' . $jid . '.' . $fieldname . '").value=$("' . "{$this->MainClass}_driver" . '").value');
+                $ajaxresponse->script('$("' . $jid . '.' . $fieldname . '").value=$("' . "{$this->MainClass}_driver" . '").value;setTimeout(function() {$("' . $jid . '.' . $fieldname . '").simulate("change")},300)');
                 $ajaxresponse->script("setSelectReadonly('$jid.$fieldname')");
+				$ajaxresponse->assign("$jid.{$fieldname}_dropdown","disabled","true");
+				//$ajaxresponse->script('$("' . $jid . '.' . $fieldname . '").simulate("change")');
                 // $ajaxresponse->script('alert($("'."{$this->MainClass}_driver".'").value)');
             }
     }
