@@ -50,7 +50,7 @@ else{
 if ((!is_file($MODULE."/main.php"))&&(!is_file("X_".$MODULE."/main.php"))) {
 	$ACTION="$APP";
 	$APP="$MODULE";
-	$MODULE="Ok";
+	$MODULE=$GLOBALS["SYS"]["defaultmodule"];
 	debug("CHANGED! Module $MODULE APP $APP ACTION $ACTION ");
 }
 

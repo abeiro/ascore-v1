@@ -2,7 +2,7 @@
 
 /* Bloques */
 /********** Construccion de la portada */
-header("Location: Ok/");
+header("Location: {$GLOBALS["SYS"]["defaultmodule"]}");
 die();
 $SYS["MSG"]=" . asCore Development. ";
 require_once("Bilo.php");

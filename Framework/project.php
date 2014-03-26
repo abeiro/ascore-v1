@@ -36,4 +36,6 @@ set_include_dir(dirname(__FILE__)."/../local/Tmpl/-");
 
 $SYS["DBDRIVER"]="mysql";
 
+$GLOBALS["SYS"]["defaultmodule"]="Demo";
+
 ?>
