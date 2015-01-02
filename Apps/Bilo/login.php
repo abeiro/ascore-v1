@@ -6,7 +6,7 @@ if (!BILO_isLogged()) {
 	plantHTML(
 	array (
 		"ROOT"=>$SYS["ROOT"],
-		"MSG"=>($SYS["MSG"])?$SYS["MSG"]:"Entrada al Sistema",
+		"MSG"=>($SYS["MSG"])?$SYS["MSG"]:_("Site Login"),
 		"SMSG"=>$SYS["MESSAGES"],
 		"REFERER"=>$_SERVER["HTTP_REFERER"]
 		),"entrada");

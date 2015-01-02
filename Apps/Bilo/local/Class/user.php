@@ -27,6 +27,10 @@
     function save()
     {
         debug("Info: Calling Extended save");
+
+	if (empty($this->password))
+	  unset($this->properties["password"]);
+
         unset($this->properties["fullname"]);
         if ($this->password == md5(""))
         {
@@ -122,10 +126,10 @@
             if ($user->password == md5($password))
                 return True;
             else
-                $AUTH["error"] = _("Contrase�a err�nea");
+                $AUTH["error"] = _("Wrong password");
         }
         else
-            $AUTH["error"] = _("usuario desconocido");
+            $AUTH["error"] = _("Unknown user");
         return False;
     }
     function GetIdFromName($name = '')

@@ -13,7 +13,7 @@ if ($_POST["proceder"])
 	}
 else {
 	//PlantHTML(array("location"=>$_POST["REFERER"]),"redirect");
-	$SYS["MESSAGES"]="Error, su usuario o contraseña no es correcta";
+	$SYS["MESSAGES"]=_("Error, user/password wrong (".$AUTH["error"].")");
 	include("Apps/Bilo/login.php");
 	
 }
