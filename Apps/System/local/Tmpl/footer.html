@@ -1,9 +1,14 @@
 <!--HEAD-->
 <!--SET-->
-</body>
-<script type="text/javascript" language="JavaScript1.3">
-endLoad();
+<script>
+if ( typeof removeDesktop=='undefined') {
+	removeDesktop=function(arg) {
+		console.log("Evaluating: "+arg);
+		eval(arg);
+	}
+}
 </script>
+</body>
 </html>
 
 <!--END-->

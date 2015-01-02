@@ -3,7 +3,7 @@
 //error_reporting(E_ERROR);
 ini_set("include_path",".:".dirname(__FILE__)."/../Framework/:".dirname(__FILE__)."/../Apps/");
 
-define("_COREVER","0.99.9");
+define("_COREVER","1.0.0");
 
 
 /********* SECTION 0:		MAIN CONFIGURATION 

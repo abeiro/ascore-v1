@@ -82,7 +82,7 @@ td.tmenuitem:hover {
 /* MENU STYLES */
 
 div.windowListTab {
-	background-color: #415482;
+	background-color: lightgray;
 	padding: 5px;
 	padding-right: 15px;
 	font-size: 12px;
@@ -94,28 +94,34 @@ div.windowListTab {
 	position:relative;
 	border-top-left-radius:5px;
 	border-top-right-radius:5px;
-	
 }
 div.windowListTab a  {
 	text-decoration: none;
 	color: white;
+	opacity:0.5;
 }
 
 div.windowListTab:active,div.windowListTabActive ,div.windowListTabActive a{
 	background-color: white;
 	color:black;
+	opacity:1;
 }
 div.windowListTabActive a{
 	font-weight: bold;
 }
 div.windowListTab a.windowCloseLink {
-	vertical-align: top;
-	font-size: 10px;
-	right: 0px;
-	top: 0px;
-	position: absolute;
+  vertical-align: super;
+  font-size: 16px;
+  right: 0px;
+  top: 0px;
+  position: absolute;
+  line-height: 12px;
 }
 
+div.windowListTab a:first-child {
+  padding-left: 15px;
+  padding-right: 15px;
+}
 div#windowlist {
 	position: absolute;
 	top: 40px;
@@ -133,7 +139,7 @@ div#windowlist {
 </div>
 <br clear="all">
 
-<iframe name="statusbar" id="statusbar" height="32" width="100%" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;height:32px;"></iframe>
+<iframe name="statusbar" id="statusbar" height="64" width="100%" src="public_statusbar.php" frameborder="0" scrolling="no" style="border:1px solid #D8E6F2;height:64px;"></iframe>
 
 <iframe name="footer"  width="100%" height="22" id="footer" src="public_footer.php" frameborder="0" scrolling="no" style="bottom:0px;border:1px solid #D8E6F2;height:22px;">
 </iframe>

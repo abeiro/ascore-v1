@@ -1,7 +1,5 @@
 # This line is mandatory
 php_value include_path .:<ROOT>/Framework/:<ROOT>/Apps/
-php_value register_globals on
-php_flag register_globals On
 php_flag output_buffering on
 php_flag  short_open_tag  Off
 

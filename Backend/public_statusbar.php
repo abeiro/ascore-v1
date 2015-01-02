@@ -93,30 +93,31 @@ function fBack() {
 ?>
     
     <?php if ($SYS["GLOBAL"]["DEV_MODE"]) {?>
-    <a href="javascript:dev_go()"><img class="icon" src="Data/Img/Icons/develop.png" alt="Panel de Desarrollo" title="Panel de Desarrollo" width="16" height="16" border="0"></a>&nbsp;
+    <a href="javascript:dev_go()"><img class="icon" src="Data/Img/Icons/develop.png" alt="Panel de Desarrollo" title="Panel de Desarrollo" width="32" height="32" border="0"></a>&nbsp;
     <?php }?>
-          <a href="javascript:help_go()"><img  class="icon"  src="Data/Img/Icons/help.png" alt="Ayuda" title="Ayuda" width="16" height="16" border="0"></a>&nbsp;
+          <a href="javascript:help_go()"><img  class="icon"  src="Data/Img/Icons/help.png" alt="Ayuda" title="Ayuda" width="32" height="32" border="0"></a>&nbsp;
 
     
-    <a href="javascript:gobookmarks()"><img  class="icon"  src="Data/Img/Icons/bookmark.png" alt="Ver favoritos" title="Ver favoritos" width="16" height="16" border="0"></a>&nbsp;
+    <a href="javascript:gobookmarks()"><img  class="icon"  src="Data/Img/Icons/bookmark.png" alt="Ver favoritos" title="Ver favoritos" width="32" height="32" border="0"></a>&nbsp;
 
-    <a href="javascript:addbookmarks()"><img  class="icon"  src="Data/Img/Icons/bookmark_add.png" alt="A&#6244;ir a favoritos" title="A&#6244;ir a favoritos" width="16" height="16" border="0"></a>&nbsp;
+    <a href="javascript:addbookmarks()"><img  class="icon"  src="Data/Img/Icons/bookmark_add.png" alt="A&#6244;ir a favoritos" title="A&#6244;ir a favoritos" width="32" height="32" border="0"></a>&nbsp;
     
-    <a href="javascript:fReload()" ><img  class="icon"  src="Data/Img/Icons/reload.png" border="0" alt="Recargar" title="Recargar"></a>&nbsp;
+    <a href="javascript:fReload()" ><img  class="icon"  src="Data/Img/Icons/reload.png" border="0" alt="Recargar" title="Recargar" width="32" height="32"></a>&nbsp;
     
-    <a href="javascript:fBack()" ><img   class="icon" src="Data/Img/Icons/back.png" border="0" alt="Retroceder" title="Retroceder"></a>&nbsp;
+    <a href="javascript:fBack()" ><img   class="icon" src="Data/Img/Icons/back.png" border="0" alt="Retroceder" title="Retroceder" width="32" height="32"></a>&nbsp;
     
-    <a href="javascript:fPrint()" ><img   class="icon" src="Data/Img/Icons/print.png" border="0" alt="Imprimir" title="Imprimir"></a>&nbsp;
+    <a href="javascript:fPrint()" ><img   class="icon" src="Data/Img/Icons/print.png" border="0" alt="Imprimir" title="Imprimir" width="32" height="32"></a>&nbsp;
     
-    <a href="javascript:logOut()" ><img   class="icon" src="Data/Img/Icons/unlock.png" border="0" alt="Cerrar sesion" title="Cerrar sesion"></a>&nbsp;
+    <a href="javascript:logOut()" ><img   class="icon" src="Data/Img/Icons/unlock.png" border="0" alt="Cerrar sesion" title="Cerrar sesion" width="32" height="32"></a>&nbsp;
 
         
-    <br />
-    <strong><?php echo BILO_username()._(' conectado')?>
+    <div align="right" style="position:absolute;bottom:0px;right:0px">
+      <strong><?php echo BILO_username()._(' connected')?>
+    </div>
     
   
 <!-- DEPRECATED -->
-<img src="Data/Img/Icons/ok.gif" width="16" height="16" align="right" border="" style="border:1px solid lightgray;display:none" id="semaforo">
+<img src="Data/Img/Icons/ok.gif" width="32" height="32" align="right" border="" style="border:1px solid lightgray;display:none" id="semaforo">
 <span id="progress" style="background-color:#EEEAEE;display:none">&nbsp;</span>
 <!-- DEPRECATED -->
 </body>

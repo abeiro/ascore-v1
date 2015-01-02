@@ -38,6 +38,12 @@
             $this->ERROR = _("Usuario existente");
             return FALSE;
         }
+
+	if (is_array($this->grupos)) {
+	  $gCode=$this->setGroupCode($this->grupos);
+
+	}
+	$this->grupos=$gCode;
         //dataDump($this);
         $par = new Ente($this->name);
         $par = typecast($this, "Ente");

@@ -7,7 +7,7 @@ if (ini_get("output_buffering"))
    ob_end_flush();
 
 
-$M=100;
+$M=500;
 $N=$M/25;
 echo "<span style='margin-left:20px'>Test '$M Clases' ";
 if (function_exists("memory_get_usage"))
@@ -26,7 +26,7 @@ for ($i=0;$i<=$M;$i+=$N) {
   
   $p=round($i/$M*100);
   if (($p!=$oldp)&&(($p%10)==0)) {
-    jsAction("setProgress('$p');");
+    
     flush();
   
   }
@@ -37,7 +37,7 @@ for ($i=0;$i<=$M;$i+=$N) {
   $oldp=$p;
 }
 $OBJECT_TIME=$bm-$OBJECT_TIME;
-jsAction("setProgress('0');");
+
 echo "<span style='color:green'>OK</span> ::";
 
 /* Memory Usage */
@@ -48,9 +48,9 @@ $g->x_data=array_keys($memory);
 
 $g->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/memory_usage";
 $g->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
-$g->parameter['title'] = _("Uso de memoria");
-$g->parameter['x_label'] = _("Objetos creados (x".($M/100).")");
-$g->parameter['y_label_left'] = _("Consumo memoria (KB)");
+$g->parameter['title'] = _("Memory footprint");
+$g->parameter['x_label'] = _("Created objects (x".($M/100).")");
+$g->parameter['y_label_left'] = _("Memory footprint (KB)");
 $g->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
 $g->y_format['linea'] =
@@ -69,8 +69,8 @@ $t->x_data=array_keys($time_ellapsed);
 $t->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/time_ellapsed";
 $t->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
 $t->parameter['title'] = _("newObject() (".number_format($OBJECT_TIME,5)." )");
-$t->parameter['x_label'] = _("Objetos creados (x".($M/100).")");
-$t->parameter['y_label_left'] = _("Tiempo de creacion (milisegundos)");
+$t->parameter['x_label'] = _("Created objects (x".($M/100).")");
+$t->parameter['y_label_left'] = _("Creation time (msecs)");
 $t->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
 $t->y_format['linea'] =
@@ -97,7 +97,6 @@ for ($i=0;$i<=$M*2;$i+=$N) {
   $p=round($i/$M*100);
 
   if (($p!=$oldp)&&(($p%10)==0)) {
-    jsAction("setProgress('$p');");
     flush();
     
   }
@@ -106,7 +105,6 @@ for ($i=0;$i<=$M*2;$i+=$N) {
   $oldp=$p;
 }
 $DB_TIME=$bm-$DB_TIME;
-jsAction("setProgress('0');");
 echo "<span style='color:green'>OK</span> ::";
 
 
@@ -117,8 +115,8 @@ $db_tg->x_data=array_keys($db_tgime_ellapsed);
 $db_tg->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/database";
 $db_tg->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
 $db_tg->parameter['title'] = _("root->save() (".number_format($DB_TIME,5).")");
-$db_tg->parameter['x_label'] = _("Objetos guardados (x".($M/100).")");
-$db_tg->parameter['y_label_left'] = _("Tiempo (milisegundos)");
+$db_tg->parameter['x_label'] = _("Saved objects (x".($M/100).")");
+$db_tg->parameter['y_label_left'] = _("Time (msec)");
 $db_tg->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
 $db_tg->y_format['linea'] =
@@ -139,7 +137,7 @@ setLimitRows(6500);
 $a->searchResults=$a->selectAll();  
 $list_time_ellapsed["selectAll"]=(getmicrotime()-$bm);
 $memories["selectAll"]=(memory_get_usage()/(1024*1024))-$MINIT;
-jsAction("setProgress('50');");
+
 flush();
 
 
@@ -151,12 +149,12 @@ $bm=getmicrotime();
 $a->searchResults=$a->selectA();  
 $list_time_ellapsed["selectA"]=(getmicrotime()-$bm);
 $memories["selectA"]=(memory_get_usage()/(1024*1024))-$MINIT;
-jsAction("setProgress('100');");
+
 flush();
 $bm=getmicrotime();
 
 $LIST_TIME=$bm-$LIST_TIME;
-jsAction("setProgress('0');");
+
 echo "<span style='color:green'>OK</span> ::";
 
 
@@ -167,8 +165,8 @@ $db_tg->x_data=array_keys($list_time_ellapsed);
 $db_tg->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/select";
 $db_tg->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
 $db_tg->parameter['title'] = _("selectAll vs. SelectA ( ".number_format($LIST_TIME,5)." )");
-$db_tg->parameter['x_label'] = _("Tipo select");
-$db_tg->parameter['y_label_left'] = _("Tiempo/Memoria)");
+$db_tg->parameter['x_label'] = _("Select type");
+$db_tg->parameter['y_label_left'] = _("Time/Memory)");
 $db_tg->y_format['barras'] =
   array('colour' => 'green', 'line' => 'line', 'point' => 'square-open','bar' => 'fill');
 $db_tg->y_format['mbarras'] =
@@ -246,7 +244,7 @@ $db_tg->x_data=array_keys($cplist_time_ellapsed);
 $db_tg->parameter["file_name"]=$SYS["BASE"]."/Data/Img/Tmp/render";
 $db_tg->parameter["path_to_fonts"]=$SYS["DOCROOT"]."/Data/Fonts/";
 if ($SYS["bcompiler_extension"])
-  $db_tg->parameter['title'] = _("lib_planty Compiled  vs Source")."($totaltime)";
+  $db_tg->parameter['title'] = _("plParseTemplateFast vs plParseTemplate")."($totaltime)";
 else
   $db_tg->parameter['title'] = _("lib_planty")."($totaltime)";
 
