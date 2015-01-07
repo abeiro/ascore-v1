@@ -45,8 +45,8 @@
 
 	if (is_array($this->grupos)) {
 	  $gCode=$this->setGroupCode($this->grupos);
-
-	}
+	} else
+	  $gCode=$this->grupos;
 	$this->grupos=$gCode;
         //dataDump($this);
         $par = new Ente($this->name);
@@ -139,6 +139,7 @@
         if ($u->nRes > 0)
         {
             $user = current($res);
+			
             $this->setAll($user->properties);
             return True;
             ;
