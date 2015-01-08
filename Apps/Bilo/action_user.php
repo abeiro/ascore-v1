@@ -62,6 +62,11 @@ class UserApp extends wDesktop
 		$this->changePassword->addListener("onclick", "ChangePassword",$this);
 		$this->changePassword->Listener["onclick"]->addParameter(XAJAX_FORM_VALUES, $this->GSPAnel->aForms[0]->id);
 
+		$this->changeto = new wButton("changeto", $this->GSPAnel->aForms[0]->buttonPane,_("Login as"));
+		$this->changeto->_setDefaults();
+		$this->changeto->addListener("onclick", "ChangeTo",$this);
+		$this->changeto->Listener["onclick"]->addParameter(XAJAX_FORM_VALUES, $this->GSPAnel->aForms[0]->id);
+
 		/*$this->resetPassword = new wButton("resetPassword", $this->GSPAnel->aForms[0]->buttonPane,_("Reset Password"));
 		$this->resetPassword->_setDefaults();
 		$this->resetPassword->addListener("onclick", "resetPassword",$this);
@@ -77,6 +82,25 @@ class UserApp extends wDesktop
 
 		return $objResponse;
 	}
+
+	public function ChangeTo($source, $event, $formData) {
+	
+		$objResponse = new xajaxResponse();
+		if ($formData["ID"]<3) {
+		  $objResponse->alert(_('Cannot login as admin'));
+		  return $objResponse;
+		}
+		$user=newObject("user",$formData["ID"]);
+		$_SESSION["__auth"]["backto"]=BILO_uid();
+		$_SESSION["__auth"]["username"]=$user->username;
+		$_SESSION["__auth"]["uid"]=$user->ID;
+		session_commit();
+
+		$objResponse->script("parent.window.location.href='{$GLOBALS["SYS"]["ROOT"]}'");
+
+		return $objResponse;
+	}
+
 
       public function ResetPassword($source, $event, $formData) {
 	
