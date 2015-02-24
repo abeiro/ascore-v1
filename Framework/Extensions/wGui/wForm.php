@@ -204,16 +204,16 @@ class wForm extends wObject implements wRenderizable {
                                 break;
 
                             case "ref":
+				
                                 $inputs["$k1"] = new wListBoxSearch($k1, $this);
-								
                                 $references = $object->get_references($k1);
                                 $inputs["$k1"]->setSelectedIndex($object->$k1);
-								$inputs["$k1"]->setDataModel($references);
+				$inputs["$k1"]->setDataModel($references);
 
 
                                 break;
 
-							case "xref":
+			    case "xref":
                                 $inputs["$k1"] = new wListBox($k1, $this);
                                 $references = $object->get_references($k1);
 								$inputs["$k1"]->moreHTMLproperties="multiple";
@@ -252,10 +252,10 @@ class wForm extends wObject implements wRenderizable {
                         $inputs["$k1"] = new wInput($k1, $this);
                         break;
 			
-					case "inlineimage":
-						$labels["$k1"] = new wLabel("-", $this, $v1["label"]);
+		    case "inlineimage":
+			$labels["$k1"] = new wLabel("-", $this, $v1["label"]);
                         $inputs["$k1"] = new wInlineImage($k1, $this);
-						break;
+			break;
                             
                     default:
                         break;

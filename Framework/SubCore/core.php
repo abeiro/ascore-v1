@@ -195,7 +195,7 @@ function newObject($class,$id=0) {
   else {
   
     $tmp=newObj($class);
-    debug("Inicialiando objecto $id");
+    debug("Inicialiando objeto $id");
     $tmp->load($id);
     
     debug("Tiempo de carga de la clase ".(getmicrotime()-$bm)." s.","yellow" );

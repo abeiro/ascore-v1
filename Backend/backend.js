@@ -17,7 +17,7 @@ function fPrint() {
 function fBack() {
 
  try {
-		eval(currentView+".removeDesktop()");
+	eval(currentView+".removeDesktop()");
 	} catch (idontcare) {}
 
 	try {
