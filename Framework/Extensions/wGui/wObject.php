@@ -223,7 +223,7 @@ class wObject implements wRenderizable {
 
     function wObjectWalk($wnode, &$lastParent, &$parentObject) {
         foreach ($wnode->children() as $nodeName => $node) {
-            if (in_array($nodeName, array("wCheckBox", "wInput", "wForm", "wPassword", "wLabel", "wButton", "wInputDate", "wListBox", "wTextArea", "wHidden", "wGrid", "wInlineImage","wInputSearchable","wListBoxSearch"))) {
+            if (in_array($nodeName, array("wPane","wCheckBox", "wInput", "wForm", "wPassword", "wLabel", "wButton", "wInputDate", "wListBox", "wTextArea", "wHidden", "wGrid", "wInlineImage","wInputSearchable","wListBoxSearch"))) {
                 $atts = $node->attributes();
 
                 //debug("Registering Class: $nodeName Name: {$atts["name"]} Parent: {$lastParent->id}", "green");

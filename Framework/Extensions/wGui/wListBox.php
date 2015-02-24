@@ -161,7 +161,7 @@ class wListBoxSearch extends wObject implements wRenderizable {
 			$result[$k]=$pst."# $v vs $term";;
 		}
 		arsort($result,SORT_NUMERIC);
-		debug(print_r($result,true),"blue");
+		//debug(print_r($result,true),"blue");
 		foreach ($result as $k=>$v) {
 			if ($k>1) {
 				$text=$this->dataModel[$k];
@@ -212,7 +212,7 @@ class wListBoxSearch extends wObject implements wRenderizable {
 			else
 				echo "<input type='text'  name='{$this->name}_dropdown' id='{$this->id}_dropdown'  style='{$this->cssStyle}' value='{$this->value}' onkeyup='_delayedKeyUp($(\"{$this->id}_dropdown\"),\"{$this->id}_dropdown\")' >";
 			echo "<input type='hidden'  name='{$this->name}' $eventCode id='{$this->id}'  style='{$this->cssStyle}' value='{$this->value}'>\n";
-			echo "<img onclick='$(\"{$this->id}_dropdown\").value=\"\";$(\"{$this->id}\").value=\"\";Event.simulate(\"{$this->id}\",\"change\")' style='left:-10px;cursor:pointer;' src='{$GLOBALS["SYS"]["ROOT"]}Framework/Extensions/wGui/Img/mini_del.gif' 
+			echo "<img onclick='$(\"{$this->id}_dropdown\").value=\"\";$(\"{$this->id}\").value=\"0\";Event.simulate(\"{$this->id}\",\"change\")' style='left:-10px;cursor:pointer;' src='{$GLOBALS["SYS"]["ROOT"]}Framework/Extensions/wGui/Img/mini_del.gif' 
 			title='"._("Limpiar")."'/>";
 			echo "<div name='{$this->name}_autosg' id='{$this->id}_autosg' value='' style='padding:0px;border:0px;position:absolute;background-color:white;width:{$this->staticCSS["width"]};z-index:5;'></div>\n";
 			echo "<script>
