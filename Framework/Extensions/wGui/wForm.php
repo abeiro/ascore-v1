@@ -369,7 +369,7 @@ class wForm extends wObject implements wRenderizable {
         if ($id < 2)
             $this->coreObject->__isNew = true;
 
-
+		
         $this->coreObject->ID = $this->coreObject->save();
         if ($this->coreObject->ID === false) {
             $objResponse->script("alert('Error: {$this->coreObject->ID} {$this->coreObject->ERROR}')");

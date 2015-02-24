@@ -611,7 +611,11 @@ EOFSCRIPT;
             debug(__FILE__ . " Calling parent: " . get_class($cParent), "white");
             if (method_exists($cParent, $MethodtoCall)) {
                 debug(basename(__FILE__)." :: Parent component method exists $MethodtoCall: " . get_class($cParent), "blue");
-                call_user_func(array($cParent, $MethodtoCall), $ajaxresponse, $object, $jid);
+                $retVal=call_user_func(array($cParent, $MethodtoCall), $ajaxresponse, $object, $jid);
+				if ($retVal===false)
+	                debug(basename(__FILE__)." :: $retVal failed to call  $MethodtoCall", "red");
+				else
+					debug(basename(__FILE__)." :: $retVal failed to call  $MethodtoCall", "green");
                 break;
             }
             else

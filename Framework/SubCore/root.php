@@ -751,11 +751,15 @@ class Ente extends core {
 
         global $prefix, $SYS;
 		
+		
+
         $All = array();
         if ((empty($sort)))
             $sort = "`ID`";
         if ((empty($offset)) || ($offset < 0))
             $offset = 0;
+
+		$GLOBALS["__lastqueryConds"]="$q $groupby"; 
 
         $q = "SELECT SQL_CALC_FOUND_ROWS *$addfields from {$prefix}_" . $this->name . " WHERE $q AND `ID`>1 $groupby";
         $q.=" ORDER BY $sort LIMIT $offset," . $SYS["DEFAULTROWS"];

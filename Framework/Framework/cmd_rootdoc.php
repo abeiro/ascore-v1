@@ -123,7 +123,7 @@ function parse_code($file) {
 			foreach ($all as $k=>$cl) {
 				if (in_array($token,get_class_methods($cl))) {
 					$desc.='<h2>'.Cbr($cl,$token).'</h2>'."";
-					$desc.="M�todo: pertenece a la clase <b>$cl</b><br>";
+					$desc.="Método: pertenece a la clase <b>$cl</b><br>";
 					$desc.="Clase <b>$cl</b> </i>: derivada de <b>".get_parent_class($cl)."</b><br>";
 
 
