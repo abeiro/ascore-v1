@@ -367,7 +367,7 @@ class Ente extends core {
         foreach ($arraydata as $k => $v)
             if (in_array($k, array_keys($this->properties)))
                 if (strpos($this->properties_type[$k], "boolean:") !== False) {
-					if (($arraydata["$k"]=="true")||($arraydata["$k"]=="Si"))
+					if (($arraydata["$k"]=="true")||($arraydata["$k"]=="Si")||($arraydata["$k"]=="on"))
 						$this->properties[$k] = 'Si';
 					else if (($arraydata["$k"]=="false")||($arraydata["$k"]=="No"))
 						$this->properties[$k] = 'No';
