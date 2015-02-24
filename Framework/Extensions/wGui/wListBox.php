@@ -115,8 +115,9 @@ class wListBoxSearch extends wObject implements wRenderizable {
 			$this->dataModel=$this->updateModelDynamic($this->dataModel,$idx);
 
 		}
+		
 		$objResponse->assign("{$id}_dropdown","value",$this->dataModel[$idx]);
-		$objResponse->assign("{$id}_autosg","innerHTML",$final);
+		$objResponse->assign("{$id}_autosg","innerHTML",$final."");
 		//$objResponse->alert("fu");
 		return $objResponse;
 	}
@@ -216,8 +217,14 @@ class wListBoxSearch extends wObject implements wRenderizable {
 			title='"._("Limpiar")."'/>";
 			echo "<div name='{$this->name}_autosg' id='{$this->id}_autosg' value='' style='padding:0px;border:0px;position:absolute;background-color:white;width:{$this->staticCSS["width"]};z-index:5;'></div>\n";
 			echo "<script>
-				$('{$this->id}_dropdown').addEventListener('delayedchange',function() { $customEventCode });
-				$('{$this->id}').addEventListener('change',function() { ".$this->Listener["_onchange"]->getScript($SYS["ROOT"])." })
+				try {
+					$('{$this->id}_dropdown').bind('delayedchange',function() { $customEventCode });
+					$('{$this->id}').bind('change',function() { ".$this->Listener["_onchange"]->getScript($SYS["ROOT"])." })
+				} catch (ie) {
+					$('{$this->id}_dropdown').bind('ondelayedchange',function() { $customEventCode });
+					$('{$this->id}').bind('onchange',function() { ".$this->Listener["_onchange"]->getScript($SYS["ROOT"])." })
+
+				}
 				</script>";
 			
             
