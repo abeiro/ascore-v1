@@ -15,7 +15,7 @@ if ($o->type=="archive") {
 		if ($tmpl=="minilist")
 			require("action_fileselector.php");
 		else
-			require("list.php");
+			header("Location: list.php?inode=$ID");
 	}
 }
 
@@ -26,7 +26,7 @@ else {
 	if ($tmpl=="minilist")
 			require("action_fileselector.php");
 		else
-			require("list.php");
+			header("Location: list.php?inode=$ID");
 
 }
 

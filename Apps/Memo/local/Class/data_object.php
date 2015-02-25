@@ -1,6 +1,6 @@
 <?php
 
-/* Extensiï¿½n de la clase inventarios_muestrarios */
+/* Extensión de la clase inventarios_muestrarios */
 
 function donothing() {
 	return True;

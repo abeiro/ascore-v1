@@ -60,22 +60,24 @@ onclick="window.open('info.php?ID=<!-- D:ID -->','info','width=450,height=350,sc
     
 </tr>
 <!--END-->
-<tr>
-<td colspan="10" height="250" align="right" valign="bottom" bgcolor="white">
-
-
-</textarea>
-<br>
-
-</td>
-</tr>
-<tr>
-<td  class="<!-- dynamic_class -->" colspan="10">
-<!-- K:_("Total ") -->&nbsp;:&nbsp;<!-- D:nRes -->
+<tr><td  class="<!-- dynamic_class -->" colspan="10">
+<!-- K:_("Total ") -->&nbsp;:&nbsp;<!-- D:totalPages -->
 &nbsp;
 </td>	
 </tr>
 </table>
+
+<table width="100%" cellspacing="0" border="0" cellpadding="4" align="center" >
+<tr><th align="left" width="120">
+	<!-- IFPAGER1 --><a href="<!-- N:prevpage -->">Página anterior</a><!-- FIPAGER1 -->
+</th>
+<th align="center"><!-- D:Pager -->
+</th><th align="right" width="120">
+	<!-- IFPAGER2 --><a href="<!-- N:nextpage -->">Página siguiente</a><!-- FIPAGER2 -->
+</th>
+</tr>
+</table>
+
 <br>
 
 </div>

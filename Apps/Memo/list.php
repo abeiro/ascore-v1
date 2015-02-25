@@ -3,6 +3,7 @@
 require_once("Memo.php");
 require_once("security.php");
 
+setLimitRows(20);
 $dir=newObject("data_object");
 
 if (!isset($inode))
@@ -11,7 +12,7 @@ else
 	$inode=$inode+0;
 	
 if (!isset($sort))
-	$sort="`type` DESC";
+	$sort="`fecha` DESC";
 
 $aux=newObject("data_object",$inode);	
 $aux2=newObject("data_object",0);	
@@ -44,7 +45,8 @@ if (checkReadSecurity($aux))
 	plantHTML($SYS,"navigator_top");
 	include_once("mime_icons.php");
 	
-	
+	setNavVars(array("inode"));
+
 	listList($dir,array(
 		"mime_image"=>'code#return img_icon($object->mime);',
 		"usuario"=>'xref#user|uid|username',

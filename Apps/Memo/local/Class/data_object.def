@@ -12,6 +12,5 @@
 	<mime type="string" option="50">tipo mime</mime>
 	<fecha type="date" >fecha</fecha>
 	<descripcion type="string"  option="255">Descripcion</descripcion>
-	
 </cpd>
 
