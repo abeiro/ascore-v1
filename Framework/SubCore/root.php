@@ -111,7 +111,7 @@ if (substr(PHP_VERSION, 0, 1) < 5) {
         return ($prop);
     }
 
-} else if (substr(PHP_VERSION, 0, 1) == 5) {
+} else  {
 
 
     function load_prop($file) {
@@ -766,13 +766,9 @@ class Ente extends core {
 
 		$GLOBALS["__lastquery"]=$q;
         $bdres = _query($q);
-        /* $rawres=fetch_array($bdres);
-          $this->ID=$rawres["ID"];
-          $this->properties=array_slice($rawres,1); */
 
-        for ($i = 0, $aff_rows = _affected_rows(); $i < $aff_rows; $i++) {
+        for ($i = 0, $aff_rows = _affected_rows($bdres); $i < $aff_rows; $i++) {
             $rawres = _fetch_array($bdres);
-            //$p=array_slice($rawres,1);
             $All[$i] = $this->_clone($rawres);
         }
         $this->nRes = _affected_rows();
@@ -878,8 +874,9 @@ class Ente extends core {
      * ******************* */
 
     function _clone($data) {
-
-        if (((int) substr(PHP_VERSION, 0, 1) == 5)) {
+        debug("Cloning v.".PHP_VERSION,"white");
+        if (((int) substr(PHP_VERSION, 0, 1) >= 5)) {
+            debug("Cloning","white");
             $bin = clone($this);
             $bin->properties = $data;
             $bin->_normalize();

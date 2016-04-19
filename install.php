@@ -138,11 +138,11 @@ if (empty($_POST["step"])) {
 
 	$CONF["ROOT"]=$_POST["FSROOT"];
 	$CONF["URL"]=$_POST["WEBROOT"];
-	
+	print_r($_POST);
 	$HTACCESS_SAMPLE=file_get_contents(".htaccess_sample");
-	$HTACCESS_SAMPLE=preg_replace("/<([^\{]{1,100}?)>/e",'$CONF[$1]',$HTACCESS_SAMPLE);
+	$HTACCESS_SAMPLE2=preg_replace_callback("/<([^\{]{1,100}?)>/",function($tok){ return $GLOBALS["CONF"][$tok[1]]; },$HTACCESS_SAMPLE);
 	$fileOut=fopen(".htaccess","w") or die("Couldn't write .htaccess file, check permissions and reload page");
-	fwrite($fileOut,   $HTACCESS_SAMPLE);
+	fwrite($fileOut,   $HTACCESS_SAMPLE2);
 
 ?>
 
@@ -181,7 +181,10 @@ if (empty($_POST["step"])) {
 } else if (($_POST["step"])==2) {
 
 	//print_r($_POST);
-	//resource mysql_connect ( [string server [, string username [, string password [, bool new_link [, int client_flags]]]]] )
+	//resource 
+
+
+	//connect ( [string server [, string username [, string password [, bool new_link [, int client_flags]]]]] )
          //Array ( [DBAHOST] => localhost [DBAUSER] => root [DBAPASS] => agupicam [DBDBNAME] => worldspace [DBDBUSER] => worldspace [step] => 2 [Confirmar] => Confirmar )
         //grant all on accounts.* to jsmith@localhost identified by 'Secret15';
 
@@ -197,24 +200,24 @@ if (empty($_POST["step"])) {
 			$DATA["SECRETKEY"]=md5(time());
 	
 			echo "* Checking DB connection...";
-			if (mysql_connect($_POST["DBAHOST"],$_POST["DBAUSER"],$_POST["DBAPASS"]))
+			if ($DBLINK=mysqli_connect($_POST["DBAHOST"],$_POST["DBAUSER"],$_POST["DBAPASS"]))
 				echo " <strong>OK</strong><br />";
 			else
-				die(" Failed!!<br /></div>".mysql_error()."</div></div></body></html>");
+				die(" Failed!!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 			
 			echo "* Creating DB....";
-			mysql_query("DROP DATABASE {$_POST["DBDBNAME"]}");		
-			if (mysql_query("CREATE DATABASE {$_POST["DBDBNAME"]}"))
+			mysqli_query($DBLINK,"DROP DATABASE {$_POST["DBDBNAME"]}");		
+			if (mysqli_query($DBLINK,"CREATE DATABASE {$_POST["DBDBNAME"]}"))
 				echo " <strong>OK</strong><br />";
 			else
-				die(" Failed!!<br /></div>".mysql_error()."</div></div></body></html>");
+				die(" Failed!!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 	
 			echo "* Creating user password...";
 			$DATA["DBDBPASS"]=crypt(time(),'rl');
-			if (mysql_query("GRANT ALL ON  {$_POST["DBDBNAME"]}.* TO {$_POST["DBDBUSER"]}@{$_POST["DBAHOST"]} IDENTIFIED BY '{$DATA["DBDBPASS"]}'"))
+			if (mysqli_query($DBLINK,"GRANT ALL ON  {$_POST["DBDBNAME"]}.* TO {$_POST["DBDBUSER"]}@{$_POST["DBAHOST"]} IDENTIFIED BY '{$DATA["DBDBPASS"]}'"))
 				echo " <strong><strong>OK</strong></strong><br />";
 			else
-				die(" Failed!!<br /></div>".mysql_error()."</div></div></body></html>");
+				die(" Failed!!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 	}  else {
 		error_reporting(E_ERROR);
 		$DATA=$_POST;
@@ -224,22 +227,22 @@ if (empty($_POST["step"])) {
 	}
 
 	echo "* Checking new user...";
-	mysql_close();
-	if (mysql_connect($_POST["DBAHOST"],$_POST["DBDBUSER"],$DATA["DBDBPASS"]))
+	mysqli_close();
+	if ($DBLINK=mysqli_connect($_POST["DBAHOST"],$_POST["DBDBUSER"],$DATA["DBDBPASS"]))
 		echo " <strong>OK</strong><br />";
 	else
-		die(" Failed!<br /></div>".mysql_error()."</div></div></body></html>");
+		die(" Failed!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 	
 	echo "* Checking DB access...";
-	if (mysql_select_db($_POST["DBDBNAME"]))
+	if (mysqli_select_db($DBLINK,$_POST["DBDBNAME"]))
 		echo " <strong>OK</strong><br />";
 	else
-		die(" Failed!<br /></div>".mysql_error()."</div></div></body></html>");
+		die(" Failed!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 
 	echo "* Creating configuration file...";
 	$CONF_SAMPLE=file_get_contents(dirname(__FILE__)."/Framework/conf_sample.php");
-	$CONF_SAMPLE=preg_replace("/<([^\{]{1,100}?)>/e",'$DATA[$1]',$CONF_SAMPLE);
-	fwrite(fopen(dirname(__FILE__)."/Framework/conf.php","w"),   $CONF_SAMPLE);
+	$CONF_SAMPLE2=preg_replace_callback("/<([^\{]{1,100}?)>/",function($tok){ return $GLOBALS["DATA"][$tok[1]]; },$CONF_SAMPLE);
+	fwrite(fopen(dirname(__FILE__)."/Framework/conf.php","w"),   $CONF_SAMPLE2);
 
 
 ?>
@@ -271,16 +274,16 @@ if (empty($_POST["step"])) {
 <?php
 	if (!empty($_POST["IMPORTPLEASE"])) {
 		echo "* Checking connection...";
-		if (mysql_connect($DATA["DBAHOST"],$DATA["DBDBUSER"],$DATA["DBDBPASS"]))
+		if ($DBLINK=mysqli_connect($DATA["DBAHOST"],$DATA["DBDBUSER"],$DATA["DBDBPASS"]))
 			echo " <strong>OK</strong><br />";
 		else
-			die(" Failed!<br /></div>".mysql_error()."</div></div></body></html>");
+			die(" Failed!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 		echo "* Checking DB access...";
 		
-		if (mysql_select_db($DATA["DBDBNAME"]))
+		if (mysqli_select_db($DBLINK,$DATA["DBDBNAME"]))
 			echo " <strong>OK</strong><br />";
 		else
-			die(" Failed!<br /></div>".mysql_error()."</div></div></body></html>");
+			die(" Failed!<br /></div>".mysqli_error($DBLINK)."</div></div></body></html>");
 
 		$_FILE="Data/ascore-initial.sql";
         	ini_set("max_execution_time","600");
@@ -296,10 +299,10 @@ if (empty($_POST["step"])) {
 	    	   		$bufferd=utf8_decode($buffer);
 	    			$buffer=$bufferd;
 			 /**********  UTF-8 PATCH */
-				if (mysql_query($buffer))
+				if (mysqli_query($DBLINK,$buffer))
 					$success++;
 				else {
-					$last_error=mysql_error();
+					$last_error=mysqli_error($DBLINK);
 					$errors++;
 				}				
 

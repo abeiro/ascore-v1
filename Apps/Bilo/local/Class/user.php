@@ -120,6 +120,7 @@
         global $AUTH;
         $u = newObject("user");
         $res = $u->select("username='$user'");
+        debug(print_r($res[0],true),"white");
         if ($u->nRes > 0)
         {
             $user = current($res);

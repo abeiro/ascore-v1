@@ -54,7 +54,7 @@ class xajaxCallableObject
 	*/
 	function xajaxCallableObject(&$obj)
 	{
-		$this->obj =& $obj;
+		$this->obj = $obj;
 		$this->aConfiguration = array();
 	}
 	
@@ -115,7 +115,7 @@ class xajaxCallableObject
 			if ($sClass == $sMethodName)
 				$bInclude = false;
 			if ($bInclude)
-				$aRequests[strtolower($sMethodName)] =& 
+				$aRequests[strtolower($sMethodName)] = 
 					new xajaxRequest("{$sXajaxPrefix}{$sClass}.{$sMethodName}");
 		}
 
@@ -217,7 +217,7 @@ class xajaxCallableObject
 	*/
 	function call($sMethod, $aArgs)
 	{
-		$objResponseManager =& xajaxResponseManager::getInstance();
+		$objResponseManager = xajaxResponseManager::getInstance();
 		$objResponseManager->append(
 			call_user_func_array(
 				array(&$this->obj, $sMethod), 

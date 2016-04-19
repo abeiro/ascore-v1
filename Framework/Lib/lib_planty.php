@@ -323,12 +323,10 @@ class plantilla {
 
 
 		/* Function call */
-		$res = preg_replace("/<!-- K:(.*)\(\"(.*)\"\) -->/e", "\\1('\\2')", $res);
+		/*$res = preg_replace("/<!-- K:(.*)\(\"(.*)\"\) -->/e", "\\1('\\2')", $res);
 		$res = preg_replace("/<!-- K:(.*)\('(.*)'\) -->/e", "\\1('\\2')", $res);
-		$res = preg_replace("/<!-- K:(.*)\((.*)\) -->/e", "\\1(\\2)", $res);
+		$res = preg_replace("/<!-- K:(.*)\((.*)\) -->/e", "\\1(\\2)", $res);*/
 
-		//debug($res,"red");
-		//debug("Plantilla parseada!");
 		$nn++;
 		$res = preg_replace("'<!-- [\/\!]*?[^<>]*? -->'si", "", $res);
 		$res = str_replace("<!--SET-->", "", $res);

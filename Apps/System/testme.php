@@ -84,15 +84,18 @@ $t->draw();
 
 /* Data Base Perfomance Test */
 
-echo "Test '$M^ Saves' ";
+echo "Test '$M^ Saves ";
+
 $a=newObject("void");
+$a->save();
+
 $bm=getmicrotime();
 $DB_TIME=$bm;
 for ($i=0;$i<=$M*2;$i+=$N) {
-  
-  for ($j=0;$j<$i;$j++) {
+  for ($j=0;$j<=$i;$j++) {
     $a->ID=1;
     $a->save();
+
   }
   $p=round($i/$M*100);
 

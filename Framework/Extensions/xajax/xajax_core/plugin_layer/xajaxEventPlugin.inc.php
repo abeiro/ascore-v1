@@ -127,7 +127,7 @@ class xajaxEventPlugin extends xajaxRequestPlugin
 
 				if (false === isset($this->aEvents[$sEvent]))
 				{
-					$xe =& new xajaxEvent($sEvent);
+					$xe = new xajaxEvent($sEvent);
 
 					if (2 < count($aArgs))
 						if (is_array($aArgs[2]))
@@ -151,9 +151,9 @@ class xajaxEventPlugin extends xajaxRequestPlugin
 						$xuf =& $aArgs[2];
 
 						if (false === is_a($xuf, 'xajaxUserFunction'))
-							$xuf =& new xajaxUserFunction($xuf);
+							$xuf = new xajaxUserFunction($xuf);
 
-						$objEvent =& $this->aEvents[$sEvent];
+						$objEvent = $this->aEvents[$sEvent];
 						$objEvent->addHandler($xuf);
 
 						return true;
@@ -207,12 +207,12 @@ class xajaxEventPlugin extends xajaxRequestPlugin
 		if (NULL == $this->sRequestedEvent)
 			return false;
 
-		$objArgumentManager =& xajaxArgumentManager::getInstance();
+		$objArgumentManager = xajaxArgumentManager::getInstance();
 		$aArgs = $objArgumentManager->process();
 
 		foreach (array_keys($this->aEvents) as $sKey)
 		{
-			$objEvent =& $this->aEvents[$sKey];
+			$objEvent = $this->aEvents[$sKey];
 
 			if ($objEvent->getName() == $this->sRequestedEvent)
 			{
@@ -225,5 +225,5 @@ class xajaxEventPlugin extends xajaxRequestPlugin
 	}
 }
 
-$objPluginManager =& xajaxPluginManager::getInstance();
+$objPluginManager = xajaxPluginManager::getInstance();
 $objPluginManager->registerPlugin(new xajaxEventPlugin(), 103);
